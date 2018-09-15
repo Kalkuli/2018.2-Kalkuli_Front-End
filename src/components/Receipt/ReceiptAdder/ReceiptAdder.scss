@@ -1,34 +1,12 @@
 @import "../../../assets/sass/main";
 
 .receipt-adder {
-
   padding: 60px 40px;
-  &__container {
-    height: 400px;
-    display: flex;
-    flex-flow: column;
-    text-align: center;
-    justify-content: center;
-    color: $color-light-blue;
-    border: 6px dashed rgba($color-light-blue, .6);
-    border-radius: 30px;
-    padding: 3rem;
-
-    &--title {
-      font-family: 'Alfa Slab One', cursive;
-      font-weight: 100;
-      font-size: 3rem;
-    }
-
-    &--p {
-      font-family: 'Alfa Slab One', cursive;
-      margin-top: 25px;
-      font-size: 2rem;
-    }
-  }
 
   &__footer {
-    height: 300px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3rem;
   }
 
 }

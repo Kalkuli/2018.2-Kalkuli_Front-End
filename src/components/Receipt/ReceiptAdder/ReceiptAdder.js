@@ -1,20 +1,16 @@
 import React from 'react'
 import './ReceiptAdder.scss'
-import ChooseFile from '../../UI/Button/ChooseFile/ChooseFile'
+import BaseButton from '../../UI/Button/BaseButton/BaseButton'
+import DropArea from '../../UI/DropArea/DropArea'
 
 const ReceiptAdder = () => {
 
   return (
     <section className="receipt-adder">
-      <div className="receipt-adder__container">
-        <h1 className="receipt-adder__container--title">Arraste o arquivo</h1>
-        <p className="receipt-adder__container--p">ou</p>
-        <ChooseFile />
-        {/* botao */}
-      </div>
-
+      <DropArea />
       <div className="receipt-adder__footer">
-        {/* botões */}
+        <BaseButton type="cancel">Cancelar</BaseButton>
+        <BaseButton type="confirm">Confirmar</BaseButton>
       </div>
     </section>
   )
