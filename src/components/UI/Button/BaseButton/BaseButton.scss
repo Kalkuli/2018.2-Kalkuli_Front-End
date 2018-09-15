@@ -1,7 +1,7 @@
 @import "../../../../assets/sass/main.scss";
 
 .base-button {
-  font-family: 'Alfa Slab One', cursive;
+  
   font-weight: 100;
   font-size: 1.5rem;
   width: 15%;
@@ -11,24 +11,29 @@
   margin-top: 2.8rem;
   user-select: none;
   cursor: pointer;
-  border: 1px solid $color-light-blue;
   transition: all .3s;
+}
 
+.confirm {
+  color: $color-white;
+  background-color: $color-light-blue;
+}
+
+.cancel {
+  border: 1px solid $color-light-blue;
+}
+
+.choose-file {
+  font-family: 'Alfa Slab One', cursive;
+  border: 1px solid $color-light-blue;
+  font-weight: 100;
   &:hover {
     box-shadow: 0 1px 1px $color-black;
     transform: translateY(-0.3rem);
   }
-
+  
   &:active {
     box-shadow: 0 0 0 $color-black;
     transform: translateY(0);
   }
-}
-
-.confirm {
-
-}
-
-.cancel {
-
 }
