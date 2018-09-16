@@ -1,0 +1,13 @@
+@import "../../../assets/sass/main";
+
+.receipt-adder {
+  padding: 60px 40px;
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+}

@@ -1,0 +1,14 @@
+@import "../../../assets/sass/main";
+
+.modal {
+    position: fixed;
+    z-index: 500;
+    background-color: $color-white;
+    width: 70%;
+    box-shadow: 1px 1px 10px $color-black;
+    padding: 1.6rem;
+    left: 15%;
+    top: 5%;
+    box-sizing: border-box;
+    transition: all 0.5s ease-out;
+}

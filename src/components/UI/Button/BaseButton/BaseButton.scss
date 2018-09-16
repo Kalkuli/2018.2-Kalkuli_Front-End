@@ -1,0 +1,46 @@
+@import "../../../../assets/sass/main.scss";
+
+.base-button {
+  font-family: 'Montserrat';
+  font-size: 2rem;
+  padding: 8px;
+  border-radius: 7px;
+  margin: 0 auto;
+  margin-top: 2.8rem;
+  user-select: none;
+  cursor: pointer;
+  transition: all .3s;
+  width: 300px;
+
+  @media screen and (max-width: 980px) {
+    font-size: 1.3rem;
+  }
+}
+
+.confirm {
+  text-align: center;
+  color: $color-white;
+  background-color: $color-light-blue;
+}
+
+.cancel {
+  text-align: center;
+  color: $color-light-blue;
+  border: 1px solid $color-light-blue;
+  margin-right: 25px;
+}
+
+.choose-file {
+  font-family: 'Alfa Slab One', cursive;
+  border: 1px solid $color-light-blue;
+  font-weight: 100;
+  &:hover {
+    box-shadow: 0 1px 1px $color-black;
+    transform: translateY(-0.3rem);
+  }
+  
+  &:active {
+    box-shadow: 0 0 0 $color-black;
+    transform: translateY(0);
+  }
+}

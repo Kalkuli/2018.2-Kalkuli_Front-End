@@ -10,7 +10,7 @@ COPY . /app
 COPY package.json /usr/src/app/package.json
 
 # Install packages
-RUN npm install --silent
+RUN npm install
 
 # Tell Docker about the port we'll run on.
 EXPOSE 3000
