@@ -1,18 +1,23 @@
 import React,{Component} from 'react'
 import "./DropArea.scss"
-import ChooseFile from '../Button/ChooseFile/ChooseFile'
+import ReactDropzone from 'react-dropzone'
 
 class DropArea extends Component {
 
   render() {
     return (
-      <div className="drop-area">
+      <ReactDropzone className="drop-area" onDrop={this.onDropHandler}>
         <h1 className="drop-area__title">Arraste o arquivo</h1>
         <p className="drop-area__p">ou</p>
-        <ChooseFile />
-      </div>
+        <p className="drop-area__p">clique dentro desta área</p>
+      </ReactDropzone>
     )
   }
+
+  onDropHandler = (file, rejectedFiles) => {
+    console.log(file)
+  }
+
 }
 
 export default DropArea
