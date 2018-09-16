@@ -2,7 +2,7 @@
 
 .base-button {
   font-family: 'Montserrat';
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 8px;
   border-radius: 7px;
   margin: 0 auto;
@@ -10,20 +10,21 @@
   user-select: none;
   cursor: pointer;
   transition: all .3s;
+  width: 300px;
+
+  @media screen and (max-width: 980px) {
+    font-size: 1.3rem;
+  }
 }
 
 .confirm {
-  width: 20%;
   text-align: center;
-  font-size: 2rem;
   color: $color-white;
   background-color: $color-light-blue;
 }
 
 .cancel {
-  width: 20%;
   text-align: center;
-  font-size: 2rem;
   color: $color-light-blue;
   border: 1px solid $color-light-blue;
   margin-right: 25px;

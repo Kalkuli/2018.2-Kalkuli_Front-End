@@ -1,7 +1,7 @@
 @import "../../../assets/sass/main.scss";
 
 .drop-area {
-  height: 480px;
+  height: 48rem;
   display: flex;
   flex-flow: column;
   text-align: center;
@@ -24,6 +24,10 @@
     margin-top: 25px;
     font-size: 2rem;
     user-select: none;
+  }
+
+  @media screen and (max-height: 760px) {
+    height: 34rem;
   }
 }
 

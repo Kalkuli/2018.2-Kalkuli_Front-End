@@ -18,9 +18,14 @@ class DropArea extends Component {
     )
   }
 
-  onDropHandler = (file, rejectedFiles) => {
-    console.log(file)
-    alert("preview do arquivo: " + file[0].preview)
+  onDropHandler = (file, rejectedFiles) => {    
+    if(file.length === 1){
+      alert("preview do arquivo: " + file[0].preview)
+      console.log("Arquivo aceito:", file)
+    } else if(rejectedFiles) {
+      alert("Só aceitamos 1 arquivo PDF")
+      console.log("arquivo rejeitado: ", rejectedFiles)
+    }
   }
 
 }
