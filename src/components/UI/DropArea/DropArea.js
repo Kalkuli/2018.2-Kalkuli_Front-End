@@ -9,7 +9,8 @@ class DropArea extends Component {
       <ReactDropzone className="drop-area" 
                      onDrop={this.onDropHandler}
                      multiple={false}
-                     accept="application/pdf">
+                     accept="application/pdf"
+                     acceptClassName="accept">
         <h1 className="drop-area__title">Arraste o arquivo</h1>
         <p className="drop-area__p">ou</p>
         <p className="drop-area__p">clique dentro desta área</p>
@@ -19,6 +20,7 @@ class DropArea extends Component {
 
   onDropHandler = (file, rejectedFiles) => {
     console.log(file)
+    alert("preview do arquivo: " + file[0].preview)
   }
 
 }

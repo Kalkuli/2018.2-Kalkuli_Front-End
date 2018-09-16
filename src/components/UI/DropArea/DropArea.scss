@@ -10,6 +10,7 @@
   border: 6px dashed rgba($color-light-blue, .6);
   border-radius: 30px;
   padding: 3rem;
+  transition: all 1s;
 
   &__title {
     font-family: 'Alfa Slab One', cursive;
@@ -24,4 +25,9 @@
     font-size: 2rem;
     user-select: none;
   }
+}
+
+.accept {
+  border: 6px solid $color-dark-blue;
+  box-shadow: 0px 1px 3px $color-black;
 }
