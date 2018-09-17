@@ -75,11 +75,11 @@ e então
 ## Colocando no ar
 Agora ficou fácil, basta apenas utilizar o usar o Docker Compose para colocar a aplicação no ar! Utilize os comando:
 
-```docker-compose build```
+```sudo docker-compose -f docker-compose-dev.yml build```
 
 e
 
-```docker-compose up```
+```sudo docker-compose -f docker-compose-dev.yml up```
 
 Acesse o servidor local no endereço apresentado abaixo:
 
