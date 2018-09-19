@@ -13,6 +13,7 @@ class App extends Component {
           <Route path='/compare-data-with-receipt' render={() => <h1>compare data</h1>} />
           <Route path='/edit-receipt-data' render={() => <h1>edit receipt data</h1>} />
           <Route path='/list-all-receipts' render={() => <h1>list all receipts</h1>} />
+          <Route render={() => <h1>Not found</h1>} />
         </Switch>
       </BrowserRouter>
     )
