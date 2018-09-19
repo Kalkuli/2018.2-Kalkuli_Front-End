@@ -6,7 +6,10 @@ import Modal from '../../UI/Modal/Modal'
 const ReceiptCompare = () => {
     return(
         <Modal>
-            <Receipt/>
+            <div className="compare-area">
+                <Receipt/>
+                <Receipt/>
+            </div>
         </Modal>
     )
 }
