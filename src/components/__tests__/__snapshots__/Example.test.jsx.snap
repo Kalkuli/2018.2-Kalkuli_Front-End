@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test example 1`] = `
+<a
+  className="base-button"
+  onClick={undefined}
+/>
+`;
