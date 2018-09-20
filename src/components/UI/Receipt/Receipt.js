@@ -1,12 +1,19 @@
 import React from 'react'
 import './Receipt.scss'
 
-const Receipt = (props) => (
-    <div className="receipt">
-        <div className="receipt__content" >
-            <p className="receipt__content__text">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+const Receipt = (props) => {
+
+    let style = ["receipt"]
+    if(props.size === "small")
+        style.push("receipt--small")
+    else if(props.size === "large")
+        style.push("receipt--large")
+
+    return(
+        <div className={style.join(' ')}>
+            {props.children}
         </div>
-    </div>
-)
+    )
+}
 
 export default Receipt

@@ -1,5 +1,13 @@
 .compare-area {
-  height: 800px;
+  height: 850px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+
+  &__preview {
+    border: solid 1px black;
+    width: 50rem;
+    height: 83rem;
+  }
 }
+

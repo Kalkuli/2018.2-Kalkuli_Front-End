@@ -1,18 +1,16 @@
 .receipt {
-    width: 500px;
-    background-image: url("../../../assets/img/nota.png");
-    background-size: contain ;
+    background-image: url("../../../assets/img/notaY.svg");
     background-repeat: no-repeat;
-    background-size: 500px;
-}
 
-.receipt__content {
-    word-wrap: break-word;
-    width: 300px;
-    text-align: center;
-    margin: auto;
-}
-
-.receipt__content__text {
-    padding-top: 100px;
+    &--small {
+        width: 200px;
+        height: 400px;
+        background-size: 200px;
+    }
+    &--large {
+        width: 50rem;
+        height: 83rem;
+        background-size: 50rem;
+    
+    }
 }
