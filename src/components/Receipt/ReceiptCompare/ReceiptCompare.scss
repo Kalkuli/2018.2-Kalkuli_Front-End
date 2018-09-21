@@ -9,5 +9,12 @@
     width: 50rem;
     height: 83rem;
   }
+
+  &__content {
+    display: flex;
+    flex-flow: column;
+    padding: 5rem;
+
+  }
 }
 
