@@ -4,11 +4,12 @@
     position: fixed;
     z-index: 500;
     background-color: $color-white;
-    width: 70%;
+    width: inherit;
     box-shadow: 1px 1px 10px $color-black;
-    padding: 1.6rem;
-    left: 15%;
-    top: 5%;
+    padding: 2rem 8rem;
     box-sizing: border-box;
     transition: all 0.5s ease-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
