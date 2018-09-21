@@ -2,6 +2,12 @@
 
 .confirm-area {
     text-align: center;
+    height: 50rem;
+    width: 60rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .confirm-icon {
