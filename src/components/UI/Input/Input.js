@@ -10,7 +10,7 @@ const Input = (props) => {
     styles.push("small")
 
   return (
-    <input onChange={props.onChangeHandler} className={styles.join(' ')} placeholder={props.placeholder} />
+    <input onChange={props.onChangeHandler} className={styles.join(' ')} value={props.value} />
   )
 }
 
