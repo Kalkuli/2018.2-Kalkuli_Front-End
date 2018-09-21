@@ -31,13 +31,13 @@ const ReceiptCompare = () => {
     return(
         <Modal>
             <div className="compare-area">
-                <Receipt size="large">
+                <Receipt className="receipt-font" size="large">
                     <div>
-                        <h1>{fakeData.receipt.company_id}</h1>
-                        <h1>{fakeData.receipt.emission_date}</h1>
-                        <h1>{fakeData.receipt.emission_place}</h1>
-                        <h1>{fakeData.receipt.tax_value}</h1>
-                        <h1>{fakeData.receipt.total_price}</h1>
+                        <h1 className="receipt-font">{fakeData.receipt.company_id}</h1>
+                        <h1 className="receipt-font">{fakeData.receipt.emission_date}</h1>
+                        <h1 className="receipt-font">{fakeData.receipt.emission_place}</h1>
+                        <h1 className="receipt-font">{fakeData.receipt.tax_value}</h1>
+                        <h1 className="receipt-font">{fakeData.receipt.total_price}</h1>
 
                         {fakeData.receipt.products.map(product => (
                             <Products key={product.id} quantity={product.quantity} unit_price={product.unit_price}/>

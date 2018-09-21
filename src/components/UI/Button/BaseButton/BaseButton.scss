@@ -1,16 +1,13 @@
 @import "../../../../assets/sass/main.scss";
 
 .base-button {
-  font-family: 'Montserrat';
   font-size: 2rem;
-  padding: 8px;
   border-radius: 7px;
-  margin: 0 auto;
-  margin-top: 2.8rem;
   user-select: none;
   cursor: pointer;
   transition: all .3s;
   width: 300px;
+  padding: 1rem;
 
   @media screen and (max-width: 980px) {
     font-size: 1.3rem;
@@ -20,7 +17,7 @@
 .confirm {
   text-align: center;
   color: $color-white;
-  background-color: $color-light-blue;
+  background-color: $color-dark-blue;
 }
 
 .cancel {
