@@ -1,3 +1,7 @@
 @import "base/base";
 @import "abstracts/variables";
 @import "base/typography"
+
+html{
+    background-color: $color-white;
+}
