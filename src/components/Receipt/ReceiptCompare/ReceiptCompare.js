@@ -6,49 +6,43 @@ import Products from '../../UI/Products/Products'
 
 const ReceiptCompare = () => {
 
-    var fakeData = [
-        {
-            "receipt": {
-             "company_id": 123,
-             "emission_date": "aaa",
-             "emission_place": "aaaaaa",
-             "tax_value": 20.20,
-             "total_price": 123.12,
-             "products": [{
-               "quantity": 12,
-               "unit_price": 13.3
-              },
-              {
-               "quantity": 12,
-               "unit_price": 13.3
-              }]
-             }
-           }
-    ];
+    var fakeData = {
+        "receipt": {
+            "company_id": 123,
+            "emission_date": "aaa",
+            "emission_place": "aaaaaa",
+            "tax_value": 20.20,
+            "total_price": 123.12,
+            "products": [{
+                "id": 123,
+                "quantity": 12,
+                "unit_price": 13.3
+            },
+            {
+                "id": 1233123,
+                "quantity": 12,
+                "unit_price": 13.3
+            }]
+        }
+    }
+
+    console.log(fakeData.receipt)
 
     return(
-
-<Modal>
+        <Modal>
             <div className="compare-area">
                 <Receipt size="large">
-                    {fakeData.map((i) => {
-                        return(
-                            <div>
-                                <h1>{i.receipt.company_id}</h1>
-                                <h1>{i.receipt.emission_date}</h1>
-                                <h1>{i.receipt.emission_place}</h1>
-                                <h1>{i.receipt.tax_value}</h1>
-                                <h1>{i.receipt.total_price}</h1>
+                    <div>
+                        <h1>{fakeData.receipt.company_id}</h1>
+                        <h1>{fakeData.receipt.emission_date}</h1>
+                        <h1>{fakeData.receipt.emission_place}</h1>
+                        <h1>{fakeData.receipt.tax_value}</h1>
+                        <h1>{fakeData.receipt.total_price}</h1>
 
-                                {i.receipt.products.map((j) => {
-                                    return(
-                                        <Products quantity={j.quantity} unit_price={j.unit_price}/>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })}
-
+                        {fakeData.receipt.products.map(product => (
+                            <Products key={product.id} quantity={product.quantity} unit_price={product.unit_price}/>
+                        ))}
+                    </div>
                 </Receipt>
             </div>
         </Modal>
