@@ -87,3 +87,14 @@ http://localhost:3000/
 
 
 Agora você já pode começar a contribuir!
+
+
+## Testando
+
+Para rodar os teste utilize:
+
+```sudo docker-compose -f docker-compose-dev.yml run front-end npm test```
+
+E para saber a cobertura de testes utilize:
+
+```sudo docker-compose -f docker-compose-dev.yml run front-end npm test -- --coverage```
