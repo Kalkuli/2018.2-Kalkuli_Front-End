@@ -99,8 +99,11 @@
     "extends": "react-app"
   },
   "devDependencies": {
+<<<<<<< d5c60df6ec2208651fd10a5bcc51084edded6bd2
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+=======
+>>>>>>> Add json to Receipt in ReceiptCompare
     "json-loader": "^0.5.7"
   }
 }
