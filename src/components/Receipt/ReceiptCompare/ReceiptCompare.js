@@ -10,9 +10,9 @@ class ReceiptCompare extends Component {
 
         var fakeData = {
             "receipt": {
-                "company_id": 123,
-                "emission_date": "aaa",
-                "emission_place": "aaaaaa",
+                "company_id": "00.000.000/0000-00",
+                "emission_date": "00/00/0000",
+                "emission_place": "Gama",
                 "tax_value": 20.20,
                 "total_price": 123.12,
                 "products": [{
@@ -35,15 +35,19 @@ class ReceiptCompare extends Component {
                 <div className="compare-area">
                     <Receipt size="large">
                         <div className="compare-area__content">
-                            <Input placeholder={fakeData.receipt.company_id} />
-                            <Input placeholder={fakeData.receipt.emission_date} />
-                            <Input placeholder={fakeData.receipt.emission_place} />
-                            <Input placeholder={fakeData.receipt.tax_value} />
-                            <Input placeholder={fakeData.receipt.total_price} />
+                            <Input width="large" placeholder={fakeData.receipt.company_id} />
+                            <Input width="large" placeholder={fakeData.receipt.emission_date} />
+                            <Input width="large" placeholder={fakeData.receipt.emission_place} />
+                            <Input width="large" placeholder={fakeData.receipt.tax_value} />
+                            <Input width="large" placeholder={fakeData.receipt.total_price} />
     
-                            {fakeData.receipt.products.map(product => 
-                                <Input key={product.id} placeholder={product.unit_price} />
-                            )}
+                            {fakeData.receipt.products.map(product => (
+                                <div key={product.id} className="compare-area__content__product">
+                                    <Input width="small" placeholder={product.quantity} />    
+                                    <h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
+                                    <Input width="small" placeholder={product.unit_price} />
+                                </div>    
+                            ))}
                         </div>
                     </Receipt>
                 </div>
