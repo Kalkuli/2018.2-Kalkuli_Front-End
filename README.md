@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Kalkuli/2018.2-Kalkuli_Front-End.svg?branch=master
+)](https://travis-ci.com/Kalkuli/2018.2-Kalkuli_Front-End)
+
 # Configurando o ambiente
 Abaixo temos instruções de como configurar o ambiente de forma rápida.
 

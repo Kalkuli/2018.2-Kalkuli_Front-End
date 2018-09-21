@@ -17,10 +17,4 @@ test('Text example', () => {
     
     // Test's Assetion
     expect(element.props.className).toBe('base-button');
-    
-    // You can also spashot elements, snapshotting is used for ensure that the component's  
-    // "apearence" does not change. Read more at: https://jestjs.io/docs/en/snapshot-testing 
-    const tree = renderer.create(<BaseButton/>).toJSON();
-    expect(tree).toMatchSnapshot();
-
 });
