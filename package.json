@@ -96,5 +96,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7"
   }
 }
