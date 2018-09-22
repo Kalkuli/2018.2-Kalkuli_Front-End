@@ -15,12 +15,12 @@ class ReceiptCompare extends Component {
 				"tax_value": 20.20,
 				"total_price": 123.12,
 				"products": [{
-					"id": 123,
-					"quantity": 12,
+					"id": 0,
+					"quantity": 5,
 					"unit_price": 13.3
 				},
 				{
-					"id": 1233123,
+					"id": 1,
 					"quantity": 12,
 					"unit_price": 1.22
 				}]
@@ -42,9 +42,9 @@ class ReceiptCompare extends Component {
 
 							{this.state.fakeData.receipt.products.map(product => (
 									<div key={product.id} className="compare-area__content__product">
-											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event)}/>    
+											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
 											<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
-											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event)}/>
+											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
 									</div>    
 							))}
 						</div>
@@ -54,12 +54,21 @@ class ReceiptCompare extends Component {
 		)
 	}
 
-	onChangeHandler = (event, inputID) => {
+	onChangeHandler = (event, inputID, key) => {
 
 		const oldData = {
 			...this.state.fakeData,
 		}
-		console.log(oldData.receipt[""+inputID+""])
+
+		if(key){
+			if(key === "unit_price")
+				oldData.receipt.products[inputID].unit_price = event.target.value
+			else
+				oldData.receipt.products[inputID].quantity = event.target.value
+		}else
+			oldData.receipt[`${inputID}`] = event.target.value
+
+		console.log(oldData.receipt)
 		this.setState({fakeData: oldData})
 	}
 }
