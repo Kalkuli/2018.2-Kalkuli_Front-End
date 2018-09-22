@@ -10,20 +10,20 @@ import './ReceiptList.scss'
 //const URL = 'URL'
 
 export default class ReceiptList extends Component{
-    constructor(props){
+   /* constructor(props){
         super(props)
-        this.state = [1]
+        this.state = []
     }
 
    getAllReceipts(){
        Axios.get('${URL}?sort=-creatAt')
-   }
+   }*/
 
     render(){
         return(
             <div >
                 <Navbar/>
-                <List list = {this.state.list} />
+                <List/>
             </div>
         )
     }

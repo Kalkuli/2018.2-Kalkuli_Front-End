@@ -31,13 +31,35 @@ export default props =>{
 import React from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
-const dados = ['1', '2', '3', '3','4','5','6','7', 7, 8 ,8 , 7 , 7 , 7 ]
+const dadosNota = [{
+    nomeEmpresa: 'João LTDA',
+    produto: 'Pão de queijo',
+    valor: 5.50
+},{
+    nomeEmpresa: 'Maia LTDA',
+    produto: 'Carne',
+    valor: 15.00
+}, {
+    nomeEmpresa: 'X LTDA',
+    produto: 'X',
+    valor: 'XX.XX'
+}]
 const ReceiptList = () => {
     return(
-    
         <div className='receipt-all-position'>
-            {dados.map( i => {
-                return <Receipt size="small"/>
+            {dadosNota.map( dados => {
+                return <div>
+                            <Receipt size="small">
+                                <div className='receipt-font'>
+                                    <div className='dadosNotas'>
+                                        <div className='dados'>{dados.nomeEmpresa}</div>
+                                        <div className='dados'>{dados.produto}</div>
+                                        <div className='dados'>{dados.valor}</div>
+                                    </div>
+                                </div>
+                            </Receipt>
+                        
+                        </div>
             })}
         </div>
     
@@ -45,3 +67,6 @@ const ReceiptList = () => {
 }
 
 export default ReceiptList
+
+
+
