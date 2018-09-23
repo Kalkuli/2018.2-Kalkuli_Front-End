@@ -1,7 +1,6 @@
 .receipt {
     background-image: url("../../../assets/img/notaY.svg");
     background-repeat: no-repeat;
-
     &--small {
         background-size: 100px;
         margin-right: 3em;
@@ -11,9 +10,8 @@
         background-size: 200px;
     }
     &--large {
-        width: 50rem;
-        height: 83rem;
-        background-size: 50rem;
-    
+        width: 40rem;
+        height: 66rem;
+        background-size: 100% 100%;
     }
 }

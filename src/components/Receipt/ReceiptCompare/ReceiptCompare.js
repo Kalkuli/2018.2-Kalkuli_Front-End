@@ -33,30 +33,33 @@ class ReceiptCompare extends Component {
 		return(
 			<Modal>
 				<div className="compare-area">
-					<object className="compare-area__preview" type="text/html" data="http://validator.w3.org/">
-					</object>
+					<div className="compare-area__comparing">
+						<object className="compare-area__preview" type="text/html" data="http://validator.w3.org/">
+						</object>
 
-					<Receipt size="large">
-						<div className="compare-area__content">
-							<Input width="large" value={this.state.fakeData.receipt.company_id} onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
-							<Input width="large" value={this.state.fakeData.receipt.emission_date} onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}/>
-							<Input width="large" value={this.state.fakeData.receipt.emission_place} onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}/>
-							<Input width="large" value={this.state.fakeData.receipt.tax_value} onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}/>
-							<Input width="large" value={this.state.fakeData.receipt.total_price} onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}/>
+						<Receipt size="large">
+							<div className="compare-area__content">
+								<Input width="large" value={this.state.fakeData.receipt.company_id} onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
+								<Input width="large" value={this.state.fakeData.receipt.emission_date} onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}/>
+								<Input width="large" value={this.state.fakeData.receipt.emission_place} onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}/>
+								<Input width="large" value={this.state.fakeData.receipt.tax_value} onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}/>
+								<Input width="large" value={this.state.fakeData.receipt.total_price} onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}/>
 
-							{this.state.fakeData.receipt.products.map(product => (
-									<div key={product.id} className="compare-area__content__product">
-											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
-											<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
-											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
-									</div>    
-							))}
-						</div>
-					</Receipt>
-				</div>
-				<div className="compare-area__buttons">
-					<BaseButton type="cancel" click={this.onCancelHandler}>Cancelar</BaseButton>
-					<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+								{this.state.fakeData.receipt.products.map(product => (
+										<div key={product.id} className="compare-area__content__product">
+												<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
+												<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
+												<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
+										</div>    
+								))}
+							</div>
+						</Receipt>
+
+					</div>
+					<div className="compare-area__buttons">
+						<BaseButton type="cancel" click={this.onCancelHandler}>Cancelar</BaseButton>
+						<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+					</div>
 				</div>
 			</Modal>
 		)
