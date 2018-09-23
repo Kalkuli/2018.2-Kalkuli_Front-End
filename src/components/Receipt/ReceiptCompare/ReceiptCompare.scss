@@ -1,27 +1,40 @@
 @import "../../../assets/sass/main";
 
 .compare-area {
-  height: 850px;
+  height: 80%;
+  width: 1000px;
   display: flex;
+  flex-flow: column;
   justify-content: space-around;
-  align-items: center;
+  margin-top: 40px;
 
   &__preview {
     border: solid 1px black;
-    width: 50rem;
-    height: 83rem;
+    width: 45rem;
+    height: 65rem;
   }
 
+  &__buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+  }
   &__content {
     display: flex;
     flex-flow: column;
-    padding: 5rem;
-    align-items: center;
-
+    margin: 10px;
+    margin-top: 4rem;
+    width: inherit;
     &__product {
       display: flex;
       flex-flow: row wrap;
     }
+  }
+
+  &__comparing {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
   }
 }
 
