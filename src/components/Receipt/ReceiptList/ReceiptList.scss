@@ -1,0 +1,25 @@
+@import "../../../assets/sass/main";
+
+.receipt-all-position{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 5em;
+    width: 80%;
+    justify-content: center;
+    margin-left: 10em;
+}
+
+.dadosNotas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.dados{
+    font-size: 1.5em;
+    margin-top: .5em;
+    margin-left: .5em;
+}

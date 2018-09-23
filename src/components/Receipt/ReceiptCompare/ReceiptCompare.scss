@@ -1,0 +1,27 @@
+@import "../../../assets/sass/main";
+
+.compare-area {
+  height: 850px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__preview {
+    border: solid 1px black;
+    width: 50rem;
+    height: 83rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-flow: column;
+    padding: 5rem;
+    align-items: center;
+
+    &__product {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+}
+
