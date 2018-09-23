@@ -11,6 +11,7 @@
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "^3.1.2",
     "babel-runtime": "6.26.0",
+    "base64-to-uint8array": "^1.0.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
@@ -99,11 +100,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
-<<<<<<< d5c60df6ec2208651fd10a5bcc51084edded6bd2
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-=======
->>>>>>> Add json to Receipt in ReceiptCompare
     "json-loader": "^0.5.7"
   }
 }

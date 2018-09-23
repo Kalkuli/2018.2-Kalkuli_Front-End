@@ -3,6 +3,7 @@ import './ReceiptCompare.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
+import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 
 class ReceiptCompare extends Component {
 	
@@ -32,6 +33,9 @@ class ReceiptCompare extends Component {
 		return(
 			<Modal>
 				<div className="compare-area">
+					<object className="compare-area__preview" type="text/html" data="http://validator.w3.org/">
+					</object>
+
 					<Receipt size="large">
 						<div className="compare-area__content">
 							<Input width="large" value={this.state.fakeData.receipt.company_id} onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
@@ -50,8 +54,20 @@ class ReceiptCompare extends Component {
 						</div>
 					</Receipt>
 				</div>
+				<div className="compare-area__buttons">
+					<BaseButton type="cancel" click={this.onCancelHandler}>Cancelar</BaseButton>
+					<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+				</div>
 			</Modal>
 		)
+	}
+
+	onConfirmHandler = () => {
+		this.props.history.push('/confirmation')
+	}
+
+	onCancelHandler = () => {
+		console.log('cancel')
 	}
 
 	onChangeHandler = (event, inputID, key) => {
