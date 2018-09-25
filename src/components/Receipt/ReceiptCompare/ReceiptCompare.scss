@@ -2,18 +2,8 @@
 
 .compare-area {
   height: 80%;
-  width: 1000px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  margin-top: 40px;
-
-  &__preview {
-    border: solid 1px black;
-    width: 45rem;
-    height: 65rem;
-  }
-
+  width: auto;
+  
   &__buttons {
     display: flex;
     flex-flow: row;
@@ -22,9 +12,13 @@
   &__content {
     display: flex;
     flex-flow: column;
-    margin: 10px;
-    margin-top: 4rem;
-    width: inherit;
+    align-items: center;
+    padding-top: 3rem;
+    //height: 80%;
+    //justify-content: space-around;
+    
+    
+    
     &__product {
       display: flex;
       flex-flow: row wrap;

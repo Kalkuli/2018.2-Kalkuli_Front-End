@@ -1,6 +1,9 @@
 @import "../../../assets/sass/main";
 
 .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 500;
     background-color: $color-white;
