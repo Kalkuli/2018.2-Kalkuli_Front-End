@@ -1,0 +1,48 @@
+@import "../../../assets/sass/main";
+
+.report {
+    min-width: 40em;
+    height: 50em;
+    border: solid 1px $color-dark-blue;
+    margin-top: 2em;
+    position: relative;
+    border-radius: 5px;
+    float: right;
+    margin: 5em;
+    padding: 3em;
+    padding-top: 2em;
+}
+
+.report__total {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 12%;
+    font-size: 150%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+    border-top: solid 1px $color-dark-blue;
+}
+
+.report__area {
+    height: 96%;
+    overflow-y: hidden;
+
+}
+
+.report__area:hover {
+    overflow-y: auto;
+}
+
+
+::-webkit-scrollbar {
+    width: 1%;
+}
+ 
+::-webkit-scrollbar-track {
+    background: $color-white; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: $color-dark-blue; 
+}

@@ -1,0 +1,13 @@
+@import "../../../assets/sass/main";
+
+.receipt-info {
+    width: 32em;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 3%;
+    flex-wrap: wrap;
+}
+
+.receipt-info__data {
+    font-size: 150%;
+}

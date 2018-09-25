@@ -1,0 +1,9 @@
+@import '../../assets/sass/main.scss';
+
+.dashboard {
+    background-color: $color-white;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    overflow-x: hidden;
+}
