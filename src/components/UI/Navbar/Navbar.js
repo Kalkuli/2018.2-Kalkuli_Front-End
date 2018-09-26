@@ -7,14 +7,14 @@ const Navbar = () => {
             <div className="navbar-logo">
                 <nav><a href="/"><h1>Kalkuli</h1></a></nav>
             </div>
-            <lu className="navbar-menu">                
+            <ul className="navbar-menu">
                 <nav><a href="#">Empresa</a></nav>
                 <nav><a href="#">Dados</a></nav>
                 <nav><a href="/list-all-receipts">Notas</a></nav>
                 <nav><a href="#">Sair</a></nav>
-            </lu>
+            </ul>
         </div>
     )
 }
-   
+
 export default Navbar
