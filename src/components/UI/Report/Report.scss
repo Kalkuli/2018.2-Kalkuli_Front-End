@@ -4,11 +4,10 @@
     min-width: 40em;
     height: 50em;
     border: solid 1px $color-dark-blue;
-    margin-top: 2em;
     position: relative;
     border-radius: 5px;
     float: right;
-    margin: 5em;
+    margin-bottom: 2em;
     padding: 3em;
     padding-top: 2em;
 }
@@ -24,16 +23,11 @@
     border-top: solid 1px $color-dark-blue;
 }
 
-.report__area {
+.report__content {
     height: 96%;
-    overflow-y: hidden;
-
-}
-
-.report__area:hover {
     overflow-y: auto;
-}
 
+}
 
 ::-webkit-scrollbar {
     width: 1%;

@@ -12,6 +12,11 @@
   @media screen and (max-width: 980px) {
     font-size: 1.3rem;
   }
+
+  &--small {
+    width: 10em;
+    font-size: 1.5rem;
+  }
 }
 
 .confirm {

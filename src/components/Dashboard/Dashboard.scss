@@ -7,3 +7,12 @@
     position: absolute;
     overflow-x: hidden;
 }
+
+.dashboard__report-area {
+    float: right;
+    display: flex;
+    width: 50em;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 5%;
+}

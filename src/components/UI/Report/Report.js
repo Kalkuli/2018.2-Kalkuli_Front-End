@@ -186,7 +186,7 @@ class Report extends Component {
     render(){
         return(
             <div className="report">
-                <div className="report__area">
+                <div className="report__content">
                     {info.map((dados) => {
                         return(
                         <ReceiptInfo date={dados.date} cnpj={dados.cnpj} price={dados.price}/>
