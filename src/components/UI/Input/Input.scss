@@ -1,19 +1,31 @@
 @import "../../../assets/sass/main";
 
-.input {
-  padding: .5rem;
-  font-size: 1.5rem;
-  border: none;
-  border-bottom: 1px solid $color-black;
-  margin: .4rem;
-  outline: none;
+.input-area {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  &__input {
+    
+    padding: .5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-bottom: 1px solid $color-black;
+    margin: .4rem 1rem;
+    outline: none;
 
-  background-color: rgba($color-white, .5);
-  font-family: $cutive-mono;
+    background-color: rgba($color-white, .5);
+    font-family: $cutive-mono;
+  }
+
+  &__edit-image {
+    width: 20px;
+  }
 }
 
 .large {
-  width: 20rem;
+  width: 18rem;
 }
 
 .small {

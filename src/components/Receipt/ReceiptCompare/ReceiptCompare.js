@@ -37,11 +37,23 @@ class ReceiptCompare extends Component {
 						
 
 						<Receipt size="large">
-							 <div className="compare-area__content">
-								<Input width="large" value={this.state.fakeData.receipt.company_id} onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
-								<Input width="large" value={this.state.fakeData.receipt.emission_date} onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}/>
-								<Input width="large" value={this.state.fakeData.receipt.emission_place} onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}/>
-								<Input width="large" value={this.state.fakeData.receipt.tax_value} onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}/>
+							<div className="compare-area__content">
+									<Input 	width="large" 
+													value={this.state.fakeData.receipt.company_id} 
+													onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
+									
+									<Input 	width="large" 
+													value={this.state.fakeData.receipt.emission_date} 
+													onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}/>
+									
+									<Input 	width="large" 
+													value={this.state.fakeData.receipt.emission_place} 
+													onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}/>
+									
+									<Input 	width="large" 
+													value={this.state.fakeData.receipt.tax_value} 
+													onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}/>
+								
 								{/* <Input width="large" value={this.state.fakeData.receipt.total_price} onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}/>
 
 								{this.state.fakeData.receipt.products.map(product => (

@@ -16,13 +16,14 @@
     padding-top: 3rem;
     //height: 80%;
     //justify-content: space-around;
-    
-    
-    
-    &__product {
+    &__input-area {
       display: flex;
-      flex-flow: row wrap;
-    }
+      justify-content: center;
+      &__edit-image {
+        background-color: red;
+        width: 30px;
+      }
+    }    
   }
 
   &__comparing {
