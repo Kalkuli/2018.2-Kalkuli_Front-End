@@ -922,20 +922,24 @@ const info = {
     }
 }
 
-var position = 0;
 var type = "cancel";
 
 class Reports extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            position: 0
+        }
+    }
 
     render() {
-
         return(
             <div className="reports">
                 <Navbar/>
                 <div className="reports__area">
                     <div className="reports__area__resumes">
                         {info.fakeData.report.map((data, index) => {
-                            if(position === index){
+                            if(this.state.position === index){
                                 type = "confirm";
                             }
                             else{
@@ -946,7 +950,7 @@ class Reports extends Component {
                             )
                         })}
                     </div>
-                    <Report data={info.fakeData.report[position].receipts}/>
+                    <Report data={info.fakeData.report[this.state.position].receipts}/>
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
@@ -956,8 +960,7 @@ class Reports extends Component {
     }
 
     onConfirmHandler = (index) => {
-        position = index
-        this.forceUpdate()
+        this.setState({ position: index });
     }
 
     onDeleteHandler = () => {
