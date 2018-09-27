@@ -13,7 +13,7 @@ const Input = (props) => {
   return (
     <div className="input-area">
       <input className={styles.join(' ')} onChange={props.onChangeHandler} value={props.value} />
-      <img className="input-area__edit-image" src={editImage} />
+      <img onClick={props.onClickHandler} className="input-area__edit-image" src={editImage} />
     </div>
   )
 }

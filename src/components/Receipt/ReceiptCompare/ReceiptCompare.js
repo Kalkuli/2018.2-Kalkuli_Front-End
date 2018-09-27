@@ -26,33 +26,42 @@ class ReceiptCompare extends Component {
 					"unit_price": 1.22
 				}]
 			}
-		}
-	}
+		},
+		editable: [
+			false,
+			false,
+			false,
+			false
+		],
+	} 
 	render() {
 
 		return(
 			<Modal>
 				<div className="compare-area">
 					<div className="compare-area__comparing">
-						
 
 						<Receipt size="large">
 							<div className="compare-area__content">
 									<Input 	width="large" 
 													value={this.state.fakeData.receipt.company_id} 
-													onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}/>
+													onChangeHandler={(event) => this.onChangeHandler(event, "company_id")}
+													onClickHandler={() => this.onClickHandler("company_id")}/>
 									
 									<Input 	width="large" 
 													value={this.state.fakeData.receipt.emission_date} 
-													onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}/>
+													onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
+													onClickHandler={() => this.onClickHandler("emission_date")}/>
 									
 									<Input 	width="large" 
 													value={this.state.fakeData.receipt.emission_place} 
-													onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}/>
+													onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
+													onClickHandler={() => this.onClickHandler("emission_place")}/>
 									
 									<Input 	width="large" 
 													value={this.state.fakeData.receipt.tax_value} 
-													onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}/>
+													onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
+													onClickHandler={() => this.onClickHandler("tax_value")}/>
 								
 								{/* <Input width="large" value={this.state.fakeData.receipt.total_price} onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}/>
 
@@ -76,6 +85,41 @@ class ReceiptCompare extends Component {
 		)
 	}
 
+	onClickHandler = (inputClicked) => {
+
+		let newEditable = [...this.state.editable]
+		console.log(inputClicked)
+
+		if(inputClicked === "company_id"){
+			newEditable[0] = !newEditable[0]
+		} else if(inputClicked === "emission_date") {
+			newEditable[1] = !newEditable[1]
+		}else if(inputClicked === "emission_place") {
+			newEditable[2] = !newEditable[2]
+		}else if(inputClicked === "tax_value") {
+			newEditable[3] = !newEditable[3]
+		}
+
+		this.setState({ editable: newEditable })
+		/* switch(inputClicked) {
+			case (inputClicked === "company_id"):
+				newEditable[0] = !newEditable[0]
+				console.log('1input')
+				break
+			case inputClicked === "emission_date":
+				newEditable[1] = !newEditable[1]
+				break
+			case inputClicked === "emission_place":
+				newEditable[2] = !newEditable[2]
+				break
+			case inputClicked === "tax_value": 
+				newEditable[3] = !newEditable[3]
+				break
+		}  */
+
+		console.log(newEditable)
+	}
+	
 	onConfirmHandler = () => {
 		this.props.history.push('/confirmation')
 	}
@@ -89,7 +133,6 @@ class ReceiptCompare extends Component {
 		const oldData = {
 			...this.state.fakeData,
 		}
-
 		if(key){
 			if(key === "unit_price")
 				oldData.receipt.products[inputID].unit_price = event.target.value
