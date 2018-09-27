@@ -6,28 +6,34 @@
   flex-flow: row;
   align-items: center;
   justify-content: center;
+
   &__input {
-    
     padding: .5rem;
     font-size: 1.5rem;
     border: none;
-    border-bottom: 1px solid $color-black;
     margin: .4rem 1rem;
     outline: none;
-
-    background-color: rgba($color-white, .5);
     font-family: $cutive-mono;
+    
+    &--edit {
+      border-bottom: 1px solid $color-black;
+      background-color: rgba($color-white, .5);
+    }
+    
+    &--no-edit {
+      background-color: transparent;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
   &__edit-image {
-    width: 20px;
+    width: 22px;
+    border: 1px solid $color-black;
+    border-radius: 5px;
   }
 }
 
 .large {
   width: 18rem;
-}
-
-.small {
-  width: 13rem;
 }

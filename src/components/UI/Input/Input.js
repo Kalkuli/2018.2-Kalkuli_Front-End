@@ -5,10 +5,10 @@ import editImage from '../../../assets/img/baseline-edit-24px.svg'
 const Input = (props) => {
 
   let styles = ["input-area__input"]
-  if(props.width === "large") 
-    styles.push("large") 
-  else if(props.width === "small")
-    styles.push("small")
+  if(props.editable) 
+    styles.push("input-area__input--edit") 
+  else
+    styles.push("input-area__input--no-edit")
 
   return (
     <div className="input-area">
@@ -17,6 +17,5 @@ const Input = (props) => {
     </div>
   )
 }
-
 
 export default Input
