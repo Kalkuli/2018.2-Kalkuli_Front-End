@@ -5,6 +5,7 @@ import Confirmation from './components/Confirmation/Confirmation'
 import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
+import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
@@ -21,7 +22,9 @@ class App extends Component {
           <Route path='/confirmation' component={Confirmation} />
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/reports' component={Reports} />
+          <Route path='/receipt' component={ReceiptView} />
           <Route render={() => <h1>Not found</h1>} />
+          
         </Switch>
       </BrowserRouter>
     )
