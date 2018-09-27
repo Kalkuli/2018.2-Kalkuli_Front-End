@@ -12,7 +12,6 @@
 .change-buttons{
     display: flex;
     flex-flow: column;
-    margin-top: 2rem;
     align-content: space-around;
     height: 500px !important;
 }
@@ -22,3 +21,20 @@ a{
     margin-left: 5rem;
 }
 
+.receipt-area{
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    padding-top: 1rem;
+    font-size: 2rem;
+   
+}
+p{
+    padding-top: 2rem;
+}
+
+
+.receipt{
+    display: flex;
+    justify-content: center;
+}
