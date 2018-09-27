@@ -1,14 +1,16 @@
 @import "../../../../assets/sass/main.scss";
 
 .base-button {
-  font-size: 2rem;
-  border-radius: 7px;
+  font-size: 1.5rem;
+  border-radius: 4px;
   user-select: none;
   height: 40px;
   cursor: pointer;
+  width: 15rem;
   transition: all .3s;
-  width: 300px;
-  padding: 1rem;
+  text-align: center;
+  padding: .5rem;
+
 
   @media screen and (max-width: 980px) {
     font-size: 1.3rem;
@@ -27,9 +29,9 @@
 }
 
 .confirm {
-  text-align: center;
   color: $color-white;
   background-color: $color-dark-blue;
+  border: 2px solid $color-dark-blue;
 }
 
 .cancel {
@@ -52,6 +54,13 @@
 .cancel:hover {
   color: $color-white;
   background-color: $color-dark-blue;
+  color: #FE7185;
+  border: 2px solid #FE7185;
+}
+
+.edit {
+  color: $color-light-blue;
+  border: 2px solid $color-light-blue;
 }
 
 .choose-file {

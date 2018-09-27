@@ -16,6 +16,8 @@ const BaseButton = (props) => {
     styles.push('base-button--small')
   else if(props.size === 'medium')
     styles.push('base-button--medium')
+    else if(props.type === 'edit')
+    styles.push('edit')
 
   return (
     <a className={styles.join(' ')} onClick={props.click}>

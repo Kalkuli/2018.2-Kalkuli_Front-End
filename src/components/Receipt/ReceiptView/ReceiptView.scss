@@ -1,1 +1,24 @@
 @import "../../../assets/sass/main";
+
+.area-buttons{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 48rem;
+    justify-content: space-between;
+    
+}
+
+.change-buttons{
+    display: flex;
+    flex-flow: column;
+    margin-top: 2rem;
+    align-content: space-around;
+    height: 500px !important;
+}
+
+a{
+    margin-top: 1rem;
+    margin-left: 5rem;
+}
+
