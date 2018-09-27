@@ -100,7 +100,6 @@ class ReceiptCompare extends Component {
 		let newEditable = [...this.state.editable]
 		console.log(inputClicked)
 
-<<<<<<< be9888e2306b4e28f378ae2a231be60662cb86e8
 		if(inputClicked === "company_id")
 			newEditable[0] = !newEditable[0]
 		else if(inputClicked === "emission_date") 
@@ -110,41 +109,6 @@ class ReceiptCompare extends Component {
 		else if(inputClicked === "tax_value") 
 			newEditable[3] = !newEditable[3]
 		
-=======
-		if(inputClicked === "company_id"){
-			newEditable[0] = !newEditable[0]
-		} else if(inputClicked === "emission_date") {
-			newEditable[1] = !newEditable[1]
-		}else if(inputClicked === "emission_place") {
-			newEditable[2] = !newEditable[2]
-		}else if(inputClicked === "tax_value") {
-			newEditable[3] = !newEditable[3]
-		}
-
-		this.setState({ editable: newEditable })
-		/* switch(inputClicked) {
-			case (inputClicked === "company_id"):
-				newEditable[0] = !newEditable[0]
-				console.log('1input')
-				break
-			case inputClicked === "emission_date":
-				newEditable[1] = !newEditable[1]
-				break
-			case inputClicked === "emission_place":
-				newEditable[2] = !newEditable[2]
-				break
-			case inputClicked === "tax_value": 
-				newEditable[3] = !newEditable[3]
-				break
-		}  */
-
-		console.log(newEditable)
-	}
-	
-	onConfirmHandler = () => {
-		this.props.history.push('/confirmation')
-	}
->>>>>>> Add logic to the clicked button to edit the respective input
 
 		this.setState({ editable: newEditable })
 		console.log(newEditable)
