@@ -27,7 +27,7 @@ class ReceiptCompare extends Component {
 				}]
 			}
 		}
-	} 
+	}
 	render() {
 
 		return(

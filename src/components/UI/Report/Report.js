@@ -2,192 +2,45 @@ import React, { Component } from 'react'
 import './Report.scss'
 import ReceiptInfo from '../ReceiptInfo/ReceiptInfo'
 
+/*
 const info = [{
-    date: 'xx/xx/xxxx',
+    date: '27/09/2018',
     cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
+    price: '20,48'
 },
 {
-    date: 'xx/xx/xxxx',
+    date: '27/09/2018',
     cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
+    price: '20,48'
 },
 {
-    date: 'xx/xx/xxxx',
+    date: '27/09/2018',
     cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
+    price: '20,48'
 },
 {
-    date: 'xx/xx/xxxx',
+    date: '27/09/2018',
     cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
+    price: '20,48'
 },
 {
-    date: 'xx/xx/xxxx',
+    date: '27/09/2018',
     cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
-},
-{
-    date: 'xx/xx/xxxx',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: 'xx,xx'
+    price: '20,48'
 }]
+*/
+
 
 const soma = {
     total: 'yy,xx'
-}
+    }
 
 class Report extends Component {
     render(){
         return(
             <div className="report">
                 <div className="report__content">
-                    {info.map((dados) => {
+                    {this.props.data.map((dados) => {
                         return(
                         <ReceiptInfo date={dados.date} cnpj={dados.cnpj} price={dados.price}/>
                     );
