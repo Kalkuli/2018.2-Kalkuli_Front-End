@@ -7,7 +7,6 @@ import Report from '../UI/Report/Report'
 const info = {
     fakeData: {
         "report": [{
-            "id": 1,
             "period": "01/09/2018 - 30/09/2018",
             "receipts":[{
                 date: '27/09/2018',
@@ -32,7 +31,6 @@ const info = {
 
         },
         { 
-            "id": 2,
             "period": "22/09/2018 - 22/10/2018",
             "receipts":[{
                 date: '27/09/2018',
@@ -57,7 +55,6 @@ const info = {
             
         },
         { 
-            "id": 3,
             "period": "22/09/2018 - 22/10/2018",
             "receipts":[{
                 date: '27/09/2018',
@@ -82,11 +79,826 @@ const info = {
             
         },
         { 
-            "id": 3,
             "period": "22/09/2018 - 22/10/2018",
             "receipts":[{
                 date: '27/09/2018',
                 cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            },
+            {
+                date: '27/09/2018',
+                cnpj: 'xx.xxx.xxx/xxxx-xx',
+                price: '20,48'  
+            }],
+            
+        },
+        { 
+            "period": "22/09/2018 - 22/10/2018",
+            "receipts":[{
+                date: '27/09/2018',
+                cnpj: 'yy.yyy.yyy/xxxx-xx',
                 price: '20,48'  
             },
             {
@@ -120,20 +932,25 @@ class Reports extends Component {
         return(
             <div className="reports">
                 <Navbar/>
-                <div className="reports__resumes">
-                {info.fakeData.report.map((data, index) => {
-                    if(position === index){
-                        type = "confirm";
-                    }
-                    else{
-                        type = "cancel";
-                    }
-                    return(
-                        <BaseButton size="small" type={type} click={() => {this.onConfirmHandler(index)}} >{data.period}</BaseButton>
-                    )
-                })}
+                <div className="reports__area">
+                    <div className="reports__area__resumes">
+                        {info.fakeData.report.map((data, index) => {
+                            if(position === index){
+                                type = "confirm";
+                            }
+                            else{
+                                type = "cancel";
+                            }
+                            return(
+                                <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{data.period}</BaseButton>
+                            )
+                        })}
+                    </div>
+                    <Report data={info.fakeData.report[position].receipts}/>
                 </div>
-                <Report data={info.fakeData.report[position].receipts}/>
+                <div className="reports__button">
+                    <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                </div>
             </div>
         )
     }
@@ -141,6 +958,10 @@ class Reports extends Component {
     onConfirmHandler = (index) => {
         position = index
         this.forceUpdate()
+    }
+
+    onDeleteHandler = () => {
+
     }
 }
 

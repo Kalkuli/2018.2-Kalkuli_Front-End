@@ -2,37 +2,8 @@ import React, { Component } from 'react'
 import './Report.scss'
 import ReceiptInfo from '../ReceiptInfo/ReceiptInfo'
 
-/*
-const info = [{
-    date: '27/09/2018',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: '20,48'
-},
-{
-    date: '27/09/2018',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: '20,48'
-},
-{
-    date: '27/09/2018',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: '20,48'
-},
-{
-    date: '27/09/2018',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: '20,48'
-},
-{
-    date: '27/09/2018',
-    cnpj: 'xx.xxx.xxx/xxxx-xx',
-    price: '20,48'
-}]
-*/
-
-
 const soma = {
-    total: 'yy,xx'
+    total: '81,92'
     }
 
 class Report extends Component {
