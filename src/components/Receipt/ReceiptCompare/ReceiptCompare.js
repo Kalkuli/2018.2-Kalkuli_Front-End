@@ -33,7 +33,13 @@ class ReceiptCompare extends Component {
 			false,
 			false
 		],
+
+		fileReader: new FileReader(),
+		files: [],
+		pages: [],
+		currentFile: null
 	} 
+
 	render() {
 
 		return(
@@ -85,65 +91,26 @@ class ReceiptCompare extends Component {
 		)
 	}
 
-	onClickHandler = (inputClicked) => {
-
-		let newEditable = [...this.state.editable]
-		console.log(inputClicked)
-
-		if(inputClicked === "company_id")
-			newEditable[0] = !newEditable[0]
-		else if(inputClicked === "emission_date") 
-			newEditable[1] = !newEditable[1]
-		else if(inputClicked === "emission_place") 
-			newEditable[2] = !newEditable[2]
-		else if(inputClicked === "tax_value") 
-			newEditable[3] = !newEditable[3]
-		
-
-		this.setState({ editable: newEditable })
-		/* switch(inputClicked) {
-			case (inputClicked === "company_id"):
-				newEditable[0] = !newEditable[0]
-				console.log('1input')
-				break
-			case inputClicked === "emission_date":
-				newEditable[1] = !newEditable[1]
-				break
-			case inputClicked === "emission_place":
-				newEditable[2] = !newEditable[2]
-				break
-			case inputClicked === "tax_value": 
-				newEditable[3] = !newEditable[3]
-				break
-		}  */
-
-		console.log(newEditable)
-	}
 	
-	onConfirmHandler = () => {
-		this.props.history.push('/confirmation')
-	}
-
-	onCancelHandler = () => {
-		console.log('cancel')
-	}
-
 	onChangeHandler = (event, inputID, key) => {
-
+		
 		const oldData = {
 			...this.state.fakeData,
 		}
 		if(key){
 			if(key === "unit_price")
-				oldData.receipt.products[inputID].unit_price = event.target.value
+			oldData.receipt.products[inputID].unit_price = event.target.value
 			else
-				oldData.receipt.products[inputID].quantity = event.target.value
+			oldData.receipt.products[inputID].quantity = event.target.value
 		}else
-			oldData.receipt[`${inputID}`] = event.target.value
-
+		oldData.receipt[`${inputID}`] = event.target.value
+		
 		console.log(oldData.receipt)
 		this.setState({fakeData: oldData})
 	}
+
+	onConfirmHandler = () => { this.props.history.push('/confirmation') }
+	onCancelHandler = () => { console.log('cancel') }
 }
 
 export default ReceiptCompare
