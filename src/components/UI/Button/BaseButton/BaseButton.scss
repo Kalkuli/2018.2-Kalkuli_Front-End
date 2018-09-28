@@ -62,18 +62,3 @@
   color: $color-light-blue;
   border: 2px solid $color-light-blue;
 }
-
-.choose-file {
-  font-family: 'Alfa Slab One', cursive;
-  border: 1px solid $color-light-blue;
-  font-weight: 100;
-  &:hover {
-    box-shadow: 0 1px 1px $color-black;
-    transform: translateY(-0.3rem);
-  }
-  
-  &:active {
-    box-shadow: 0 0 0 $color-black;
-    transform: translateY(0);
-  }
-}
