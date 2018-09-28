@@ -30,7 +30,7 @@ class ReceiptView extends Component{
                         <BaseButton  type="cancel" click={this.onConfirmHandler}>Excluir</BaseButton>
                     </div>
                     
-                    <BaseButton className='confirm-button' type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+                    <BaseButton className='confirm-button' type="confirm" onClick={this.props.closePopup}>Confirmar</BaseButton>
 
                 </div>
                 

@@ -31,6 +31,8 @@ export default props =>{
 import React from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
+import Popup from 'reactjs-popup'
+import ReceiptView from '../ReceiptView/ReceiptView';
 
 const dadosNota = [{
     nomeEmpresa: 'João LTDA',
@@ -61,14 +63,12 @@ const ReceiptList = () => {
                                         <div className='dados'>{dados.valor}</div>
                                     </div>
                                 </div>
-                            </Receipt>
-                        
-                        </div>
-            })}
-        </div>
-    
-    )
-}
+                    })}
+                </div>
+            
+            )
+        }
+    }
 
 export default ReceiptList
 
