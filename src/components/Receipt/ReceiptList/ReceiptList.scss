@@ -9,24 +9,14 @@
     width: 80%;
     justify-content: center;
     margin-left: 10em;
-}
 
-.dadosNotas{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-left: .5rem;
-}
-.popup-content {
-    width: 0% !important;
-}
-.dados{
-    font-size: 1.5em;
-}
-
-a{
-    cursor:pointer;
+    &__receipt-data{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 2rem;
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-left: .5rem;
+    }
 }

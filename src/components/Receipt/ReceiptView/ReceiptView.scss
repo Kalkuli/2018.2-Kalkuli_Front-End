@@ -6,25 +6,16 @@
     align-items: center;
     height: 55rem;
     justify-content: space-between;
-    
-}
-
-.change-buttons{
-    display: flex;
-    flex-flow: column;
-    align-content: space-around;
-    height: 55rem !important;
-}
-
-a{
-    margin-top: 1rem;
     margin-left: 5rem;
+    
+
     &__change-buttons{
         display: flex;
         flex-flow: column;
-        justify-content: space-around;    
+        justify-content: space-around;
         height: 30%;    
     }
+
 }
 
 .receipt-area{
