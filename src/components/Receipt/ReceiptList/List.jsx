@@ -31,19 +31,23 @@ export default props =>{
 import React from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
+
 const dadosNota = [{
     nomeEmpresa: 'João LTDA',
     produto: 'Pão de queijo',
     valor: 5.50
-},{
+},
+{
     nomeEmpresa: 'Maia LTDA',
     produto: 'Carne',
     valor: 15.00
-}, {
+},
+{
     nomeEmpresa: 'X LTDA',
     produto: 'X',
     valor: 'XX.XX'
 }]
+
 const ReceiptList = () => {
     return(
         <div className='receipt-all-position'>

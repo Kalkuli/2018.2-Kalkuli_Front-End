@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Axios from 'axios'
+//import Axios from 'axios'
 
 import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'

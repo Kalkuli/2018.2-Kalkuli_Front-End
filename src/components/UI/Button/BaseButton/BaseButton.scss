@@ -4,6 +4,7 @@
   font-size: 2rem;
   border-radius: 7px;
   user-select: none;
+  height: 40px;
   cursor: pointer;
   transition: all .3s;
   width: 300px;
@@ -11,6 +12,17 @@
 
   @media screen and (max-width: 980px) {
     font-size: 1.3rem;
+  }
+
+  &--small {
+    width: 10em;
+    font-size: 1.5rem;
+  }
+
+  &--medium {
+    width: 15em;
+    font-size: 1.4rem;
+    margin-bottom: 1.2em;
   }
 }
 
@@ -22,9 +34,24 @@
 
 .cancel {
   text-align: center;
-  color: $color-light-blue;
-  border: 1px solid $color-light-blue;
-  margin-right: 25px;
+  color: $color-dark-blue;
+  border: 1px solid $color-dark-blue;
+}
+
+.delete {
+  text-align: center;
+  color: $color-red;
+  border: 1px solid $color-red; 
+}
+
+.delete:hover {
+  color: $color-white;
+  background-color: $color-red;
+}
+
+.cancel:hover {
+  color: $color-white;
+  background-color: $color-dark-blue;
 }
 
 .choose-file {
