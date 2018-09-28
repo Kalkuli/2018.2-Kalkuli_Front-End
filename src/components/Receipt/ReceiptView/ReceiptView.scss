@@ -4,18 +4,15 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    height: 55rem;
     justify-content: space-between;
+    height: 47rem;
     margin-left: 5rem;
-    
-
     &__change-buttons{
         display: flex;
         flex-flow: column;
-        justify-content: space-around;
+        justify-content: space-around;    
         height: 30%;    
     }
-
 }
 
 .receipt-area{
@@ -27,4 +24,3 @@
     margin-left: 4rem;
     font-size: 2rem;
 }
-
