@@ -33,11 +33,6 @@ class ReceiptCompare extends Component {
 			false,
 			false
 		],
-
-		fileReader: new FileReader(),
-		files: [],
-		pages: [],
-		currentFile: null
 	} 
 
 	render() {
@@ -89,6 +84,25 @@ class ReceiptCompare extends Component {
 				</div>
 			</Modal>
 		)
+	}
+
+	onClickHandler = (inputClicked) => {
+
+		let newEditable = [...this.state.editable]
+		console.log(inputClicked)
+
+		if(inputClicked === "company_id")
+			newEditable[0] = !newEditable[0]
+		else if(inputClicked === "emission_date") 
+			newEditable[1] = !newEditable[1]
+		else if(inputClicked === "emission_place") 
+			newEditable[2] = !newEditable[2]
+		else if(inputClicked === "tax_value") 
+			newEditable[3] = !newEditable[3]
+		
+
+		this.setState({ editable: newEditable })
+		console.log(newEditable)
 	}
 
 	
