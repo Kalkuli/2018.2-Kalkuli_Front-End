@@ -6,8 +6,7 @@ import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
-
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   render() {
