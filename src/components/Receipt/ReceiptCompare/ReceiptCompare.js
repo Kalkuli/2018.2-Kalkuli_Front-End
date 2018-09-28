@@ -4,6 +4,7 @@ import Receipt from '../../UI/Receipt/Receipt'
 import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
+import { connect } from 'react-redux'
 
 class ReceiptCompare extends Component {
 	
@@ -42,7 +43,7 @@ class ReceiptCompare extends Component {
 			<Modal>
 				<div className="compare-area">
 					<div className="compare-area__comparing">
-
+						<embed src={this.props.file} type="application/pdf" width="450px" height="600px" />
 						<Receipt size="large">
 							<div className="compare-area__content">
 									<Input	value={this.state.fakeData.receipt.company_id} 
@@ -64,7 +65,6 @@ class ReceiptCompare extends Component {
 													onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
 													onClickHandler={() => this.onClickHandler("tax_value")}
 													editable={this.state.editable[3]}/>
-								
 								{/* <Input width="large" value={this.state.fakeData.receipt.total_price} onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}/>
 
 								{this.state.fakeData.receipt.products.map(product => (
@@ -128,4 +128,10 @@ class ReceiptCompare extends Component {
 	onCancelHandler = () => { console.log('cancel') }
 }
 
-export default ReceiptCompare
+const mapStateToProps = state => {
+  return {
+    file: state.fileBLOB
+  }
+}
+
+export default connect(mapStateToProps)(ReceiptCompare)

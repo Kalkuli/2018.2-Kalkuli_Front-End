@@ -21,7 +21,6 @@ class ReceiptAdder extends Component {
           <div className="receipt-adder__footer">
             <BaseButton type="edit" click={this.onCancelHandler}>Cancelar</BaseButton>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
-            <embed src={this.state.preview} type="application/pdf" width="300px" height="800px" />
           </div>
         </section>
       </Modal>
@@ -47,12 +46,6 @@ class ReceiptAdder extends Component {
 
   onCancelHandler = () => { console.log("cancel") }
 
-}
-
-const mapStateToProps = state => {
-  return {
-    file: state.fileBLOB
-  }
 }
 
 const mapDispatchToProps = dispatch => {
