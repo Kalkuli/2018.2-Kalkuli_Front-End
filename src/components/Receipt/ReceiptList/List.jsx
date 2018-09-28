@@ -51,6 +51,8 @@ const dadosNota = [{
     "tax_value": 20.20
 }]
 class ReceiptList extends React.Component {
+
+
     render(){
             return(
                 <div className='receipt-all-position'>
@@ -72,7 +74,7 @@ class ReceiptList extends React.Component {
                                     modal
                                     
                                     closeOnDocumentClick
-                                    > <ReceiptView/>
+                                    > <ReceiptView onClosePopup={this.onClosePopup}/>
                                     
                                     </Popup>
                                     
@@ -81,6 +83,10 @@ class ReceiptList extends React.Component {
                 </div>
             
             )
+        }
+
+        onClosePopup = () =>{
+            alert('oi')
         }
     }
 

@@ -4,6 +4,7 @@ import Modal from '../../UI/Modal/Modal'
 import Receipt from '../../UI/Receipt/Receipt'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 
+
 class ReceiptView extends Component{
   receipt = {
     "company_id": "00.000.000/0000-00",
