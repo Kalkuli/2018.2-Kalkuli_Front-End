@@ -31,41 +31,58 @@ export default props =>{
 import React from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
+import Popup from 'reactjs-popup'
+import ReceiptView from '../ReceiptView/ReceiptView';
 
 const dadosNota = [{
-    nomeEmpresa: 'João LTDA',
-    produto: 'Pão de queijo',
-    valor: 5.50
+    "company_id": "00.000.000/0000-00",
+    "emission_date": "00/00/0000",
+    "emission_place": "Gama",
+    "tax_value": 20.20
 },{
-    nomeEmpresa: 'Maia LTDA',
-    produto: 'Carne',
-    valor: 15.00
+    "company_id": "00.000.000/0000-00",
+    "emission_date": "00/00/0000",
+    "emission_place": "Gama",
+    "tax_value": 20.20
 }, {
-    nomeEmpresa: 'X LTDA',
-    produto: 'X',
-    valor: 'XX.XX'
+    "company_id": "00.000.000/0000-00",
+    "emission_date": "00/00/0000",
+    "emission_place": "Gama",
+    "tax_value": 20.20
 }]
-const ReceiptList = () => {
-    return(
-        <div className='receipt-all-position'>
-            {dadosNota.map( dados => {
-                return <div>
-                            <Receipt size="small">
-                                <div className='receipt-font'>
-                                    <div className='dadosNotas'>
-                                        <div className='dados'>{dados.nomeEmpresa}</div>
-                                        <div className='dados'>{dados.produto}</div>
-                                        <div className='dados'>{dados.valor}</div>
-                                    </div>
+class ReceiptList extends React.Component {
+    render(){
+            return(
+                <div className='receipt-all-position'>
+                    {dadosNota.map( dados => {
+                        return <div className="receipt-distance">
+                                    <Popup trigger={<a className=''>
+                                    <Receipt size="small">
+                                        <div className='receipt-font'>
+                                            <div className='dadosNotas'>
+                                                <p className='dados'>{dados.company_id}</p>
+                                                <p className='dados'>{dados.emission_date}</p>
+                                                <p className='dados'>{dados.emission_place}</p>
+                                                <p className='dados'>{dados.tax_value}</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </Receipt>
+                                    </a>}
+                                    modal
+                                    
+                                    closeOnDocumentClick
+                                    > <ReceiptView/>
+                                    
+                                    </Popup>
+                                    
                                 </div>
-                            </Receipt>
-                        
-                        </div>
-            })}
-        </div>
-    
-    )
-}
+                    })}
+                </div>
+            
+            )
+        }
+    }
 
 export default ReceiptList
 
