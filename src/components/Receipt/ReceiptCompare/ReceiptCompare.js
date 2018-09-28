@@ -33,6 +33,7 @@ class ReceiptCompare extends Component {
 			false,
 			false
 		],
+
 	} 
 
 	render() {
