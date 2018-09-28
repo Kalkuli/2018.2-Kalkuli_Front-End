@@ -68,6 +68,10 @@ const ReceiptList = () => {
             
             )
         }
+
+        onClosePopup = () =>{
+            alert('oi')
+        }
     }
 
 export default ReceiptList
