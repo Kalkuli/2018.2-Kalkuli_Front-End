@@ -34,16 +34,24 @@ class ReceiptCompare extends Component {
 			false,
 			false
 		],
-
 	} 
 
 	render() {
+
+		let preview = null
+		if(this.props.file !== null)
+			preview = <embed className="pdf-preview" src={this.props.file} type="application/pdf" width="290px" height="466px" />
+		else
+			preview = <h1>Nenhum arquivo encontrado</h1>
 
 		return(
 			<Modal>
 				<div className="compare-area">
 					<div className="compare-area__comparing">
-						<embed src={this.props.file} type="application/pdf" width="450px" height="600px" />
+						<div className="compare-area__comparing__preview">
+							{preview}
+						</div>
+						
 						<Receipt size="large">
 							<div className="compare-area__content">
 									<Input	value={this.state.fakeData.receipt.company_id} 
@@ -78,10 +86,10 @@ class ReceiptCompare extends Component {
 						</Receipt>
 
 					</div>
-					{/* <div className="compare-area__buttons">
-						<BaseButton type="cancel" click={this.onCancelHandler}>Cancelar</BaseButton>
+					<div className="compare-area__buttons">
+						<BaseButton type="edit" click={this.onCancelHandler}>Cancelar</BaseButton>
 						<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
-					</div> */}
+					</div> 
 				</div>
 			</Modal>
 		)

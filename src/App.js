@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
 import ReceiptCompare from './components/Receipt/ReceiptCompare/ReceiptCompare'
-import Confirmation from './components/Confirmation/Confirmation'
+import Confirmation from './components/UI/Confirmation/Confirmation'
 import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
-import { Route, Switch } from 'react-router-dom'
+import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   render() {
