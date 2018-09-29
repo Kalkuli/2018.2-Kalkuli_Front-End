@@ -4,10 +4,13 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import DropArea from '../../UI/DropArea/DropArea'
 import Modal from '../../UI/Modal/Modal'
 import axios from 'axios';
+import { connect } from 'react-redux'
+import * as actionTypes from '../../../store/actions/actions'
 
 class ReceiptAdder extends Component {
   state = {
-    file: null
+    file: null,
+    preview: null
   }
 
   render() {
@@ -15,9 +18,9 @@ class ReceiptAdder extends Component {
     return (
       <Modal>
         <section className="receipt-adder">
-          <DropArea onFileDropped={this.handleDrop} />
+          <DropArea onDropHandler={this.onDropHandler} />
           <div className="receipt-adder__footer">
-            <BaseButton type="cancel" click={this.onCancelHandler}>Cancelar</BaseButton>
+            <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
           </div>
         </section>
@@ -25,10 +28,7 @@ class ReceiptAdder extends Component {
     )
   }
 
-  handleDrop = (file) => {
-    this.setState({ file: file });
-    console.log(file);
-  }
+
 
   onConfirmHandler = () => {
     let formData = new FormData();
@@ -46,13 +46,31 @@ class ReceiptAdder extends Component {
           }
         });
       });
-
   }
 
-  onCancelHandler = () => {
-    console.log("cancel")
+  onDropHandler = (file, rejectedFiles) => {
+    if (file.length === 1) {
+      const currentFile = file[0]
+      const reader = new FileReader()
+      reader.addEventListener("load", () => {
+        this.setState({ preview: reader.result })
+        this.props.onFileAdded(this.state.preview)
+      }, false)
+      reader.readAsDataURL(currentFile)
+      this.setState({ file: file });
+    } else if (rejectedFiles) {
+      alert("Só aceitamos 1 arquivo PDF")
+      console.log("arquivo rejeitado: ", rejectedFiles)
+    }
   }
 
+  onCancelHandler = () => { console.log("cancel") }
 }
 
-export default ReceiptAdder
+const mapDispatchToProps = dispatch => {
+  return {
+    onFileAdded: (file) => dispatch({ type: actionTypes.ADD_FILE, file: file })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ReceiptAdder)

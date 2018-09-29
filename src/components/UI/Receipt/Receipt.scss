@@ -1,17 +1,23 @@
 .receipt {
     background-image: url("../../../assets/img/notaY.svg");
     background-repeat: no-repeat;
+    background-position: center;
     &--small {
         background-size: 100px;
-        margin-right: 3em;
-        margin-top: 2em;
         width: 200px;
-        height: 400px;
+        height: 335px;
         background-size: 200px;
+        margin-top: 5rem;
     }
     &--large {
-        width: 40rem;
-        height: 66rem;
-        background-size: 100% 100%;
+        width: 29rem;
+        height: 50rem;
+        background-size:100%;
+    
+        @media screen and (min-width: 1400px) {
+            width: 40rem;
+            height: 60rem;
+            background-size: 90% auto;
+        }
     }
 }

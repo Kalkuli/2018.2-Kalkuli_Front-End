@@ -1,0 +1,29 @@
+@import "../../../assets/sass/main";
+
+.report {
+    min-width: 40em;
+    height: 50em;
+    border: solid 1px $color-dark-blue;
+    position: relative;
+    border-radius: 5px;
+    float: right;
+    margin-bottom: 2em;
+    padding: 3em;
+    padding-top: 2em;
+}
+
+.report__total {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 12%;
+    font-size: 150%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+    border-top: solid 1px $color-dark-blue;
+}
+
+.report__content {
+    height: 96%;
+    overflow-y: auto;
+}

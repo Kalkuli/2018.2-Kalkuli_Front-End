@@ -2,6 +2,7 @@
 
 .drop-area {
   height: 48rem;
+  width: 60rem;
   display: flex;
   flex-flow: column;
   text-align: center;
@@ -9,7 +10,6 @@
   color: $color-light-blue;
   border: 6px dashed rgba($color-light-blue, .6);
   border-radius: 30px;
-  padding: 3rem;
   transition: all 1s;
 
   &__title {

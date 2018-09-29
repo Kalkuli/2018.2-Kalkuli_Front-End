@@ -2,39 +2,47 @@
 
 .compare-area {
   height: 80%;
-  width: 1000px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  margin-top: 40px;
-
-  &__preview {
-    border: solid 1px black;
-    width: 45rem;
-    height: 65rem;
-  }
-
+  width: auto;
+  
   &__buttons {
     display: flex;
     flex-flow: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    margin-top: 3rem;
   }
   &__content {
     display: flex;
     flex-flow: column;
-    margin: 10px;
-    margin-top: 4rem;
-    width: inherit;
-    &__product {
+    align-items: center;
+    padding-top: 3rem;
+    //height: 80%;
+    //justify-content: space-around;
+    &__input-area {
       display: flex;
-      flex-flow: row wrap;
-    }
+      justify-content: center;
+    }    
   }
 
   &__comparing {
+    width: 80rem;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
+    align-items: center;
+
+    &__preview {
+      text-align: center;
+      flex-flow: column wrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 29rem;
+      height: 47rem;
+      border: 2px solid $color-black;
+    }
   }
 }
 
+.pdf-preview {
+  border: 2px solid $color-black;
+}
