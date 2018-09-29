@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cutive+Mono|Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
 
 $montserrat: 'Montserrat', sans-serif;
 $alfa-slab-one: 'Alfa Slab One', cursive;
@@ -16,7 +17,7 @@ body {
 
 .base-button {
     font-family: $montserrat;
-    font-weight: normal; 
+    font-weight: 600; 
 }
 
 .receipt-font {

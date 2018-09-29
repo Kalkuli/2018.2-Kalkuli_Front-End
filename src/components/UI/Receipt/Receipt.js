@@ -10,7 +10,7 @@ const Receipt = (props) => {
         style.push("receipt--large")
 
     return(
-        <div className={style.join(' ')}>
+        <div className={style.join(' ')} onClick={props.onClickHandler}>
             {props.children}
         </div>
     )

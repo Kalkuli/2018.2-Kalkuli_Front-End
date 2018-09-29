@@ -1,24 +1,26 @@
 @import "../../../../assets/sass/main.scss";
 
 .base-button {
-  font-size: 2rem;
-  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 4px;
   user-select: none;
   height: 40px;
   cursor: pointer;
-  transition: all .3s;
-  width: 300px;
-  padding: 1rem;
+  width: 15rem;
+  transition: all .2s;
+  text-align: center;
+  padding: .5rem;
 
   @media screen and (max-width: 980px) {
     font-size: 1.3rem;
   }
-
   &--small {
     width: 10em;
     font-size: 1.5rem;
   }
-
   &--medium {
     width: 15em;
     font-size: 1.4rem;
@@ -27,44 +29,41 @@
 }
 
 .confirm {
-  text-align: center;
   color: $color-white;
   background-color: $color-dark-blue;
+  border: 2px solid $color-dark-blue;
+  &:hover {
+    background-color: $color-light-blue;
+    border: 2px solid $color-light-blue;
+  }
 }
 
 .cancel {
   text-align: center;
   color: $color-dark-blue;
   border: 1px solid $color-dark-blue;
+  &:hover {
+    color: $color-white;
+    background-color: $color-dark-blue;
+    border: 2px solid $color-dark-blue;
+  }
 }
 
 .delete {
   text-align: center;
   color: $color-red;
   border: 1px solid $color-red; 
-}
-
-.delete:hover {
-  color: $color-white;
-  background-color: $color-red;
-}
-
-.cancel:hover {
-  color: $color-white;
-  background-color: $color-dark-blue;
-}
-
-.choose-file {
-  font-family: 'Alfa Slab One', cursive;
-  border: 1px solid $color-light-blue;
-  font-weight: 100;
   &:hover {
-    box-shadow: 0 1px 1px $color-black;
-    transform: translateY(-0.3rem);
+    color: $color-white;
+    background-color: $color-red;
   }
-  
-  &:active {
-    box-shadow: 0 0 0 $color-black;
-    transform: translateY(0);
+}
+
+.no-background {
+  color: $color-dark-blue;
+  border: 2px solid $color-dark-blue;
+  &:hover {
+    color: $color-light-blue;
+    border: 2px solid $color-light-blue;
   }
 }
