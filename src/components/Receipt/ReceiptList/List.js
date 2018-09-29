@@ -1,8 +1,8 @@
 import React from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
-import Popup from 'reactjs-popup'
-import ReceiptView from '../ReceiptView/ReceiptView';
+import ReceiptView from '../ReceiptView/ReceiptView'
+import Backdrop from '../../UI/BackDrop/BackDrop'
 
 const dadosNota = [
 	{
@@ -38,30 +38,36 @@ const dadosNota = [
 
 class ReceiptList extends React.Component {
 
-	render(){
-			return(
-				<div className='container-receipts'>
-					{dadosNota.map( dados => (
-						<Receipt size="small" onClickHandler={this.onClosePopup}>
-							<div className='container-receipts__receipt-data receipt-font'>
-								<p>{dados.company_id}</p>
-								<p>{dados.emission_date}</p>
-								<p>{dados.emission_place}</p>
-								<p>{dados.tax_value}</p>
-							</div>
-							{/* <ReceiptView onClosePopup={this.onClosePopup}/> */}
-						</Receipt>
-					))}
-				</div>
-			)
-		}
+	state = {
+		showModal: false
+	}
+	
+	render() {
+	
+		return (
+			<div className='container-receipts'>
+				<Backdrop show={this.state.showModal} click={this.onClosePopup}/>
 
-		onClosePopup = () =>{
-				alert('oi')
-		}
+				{ this.state.showModal ? <ReceiptView onClosePopup={this.onClosePopup}/> : null }
+
+				{dadosNota.map( dados => (
+					<Receipt size="small" onClickHandler={this.onOpenPopup}>
+						<div className='container-receipts__receipt-data receipt-font'>
+							<p>{dados.company_id}</p>
+							<p>{dados.emission_date}</p>
+							<p>{dados.emission_place}</p>
+							<p>{dados.tax_value}</p>
+						</div>
+					</Receipt>
+				))}
+			</div>
+		)
+	}
+
+	onOpenPopup = () => { this.setState({showModal: true})}
+	onClosePopup = () =>{ this.setState({showModal: false})}
 }
 
 export default ReceiptList
-
 
 
