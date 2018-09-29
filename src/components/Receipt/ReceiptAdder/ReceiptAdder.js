@@ -19,7 +19,7 @@ class ReceiptAdder extends Component {
         <section className="receipt-adder">
           <DropArea onDropHandler={this.onDropHandler}/>
           <div className="receipt-adder__footer">
-            <BaseButton type="edit" click={this.onCancelHandler}>Cancelar</BaseButton>
+            <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
           </div>
         </section>

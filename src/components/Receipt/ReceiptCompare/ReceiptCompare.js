@@ -87,7 +87,7 @@ class ReceiptCompare extends Component {
 
 					</div>
 					<div className="compare-area__buttons">
-						<BaseButton type="edit" click={this.onCancelHandler}>Cancelar</BaseButton>
+						<BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
 						<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
 					</div> 
 				</div>
