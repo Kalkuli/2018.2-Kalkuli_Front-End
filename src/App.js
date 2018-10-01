@@ -6,6 +6,8 @@ import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
+import HomePage from './components/HomePage/HomePage'
+
 import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 
 class App extends Component {
@@ -13,7 +15,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact render={() => <h1>Home</h1>}/>    
+          <Route path='/' exact component={HomePage}/>    
           <Route path='/send-receipt' component={ReceiptAdder} />
           <Route path='/compare-data-with-receipt' component={ReceiptCompare}/>
           <Route path='/edit-receipt-data' render={() => <h1>edit receipt data</h1>} />
