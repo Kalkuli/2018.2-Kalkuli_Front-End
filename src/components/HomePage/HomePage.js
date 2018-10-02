@@ -31,7 +31,7 @@ const HomePage = () => {
       </section>
       <div className='footer-img'></div>
       <footer>
-        <p>Copyright © 2012 | Kalkuli</p> 
+        <p>Copyright © 2018 | Kalkuli</p> 
       </footer>
 
     </div>
