@@ -13,4 +13,29 @@
     color: $color-white;
     font-size: 3.5em;
     font-weight: 700;
+    margin: .5em;
+}
+
+.call-bar{
+    padding: .3em;
+    background-color: $color-yellow;
+    width: 40%;  
+    border-radius: .5em;
+    margin: .5em;
+}
+
+.call-first{
+    font-size: 4.5em !important;
+    margin: 1em;
+}
+
+.call-button{
+    background-color: $color-white;
+    font-size: 2em;
+    color: $color-dark-blue;
+    font-weight: 700;
+    padding: .8em;
+    border-radius: .3em;
+    margin-top: 2em;
+    cursor: pointer;
 }

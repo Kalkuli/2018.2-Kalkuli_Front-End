@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react'
 import './about.scss'
 import './call.scss'
+import './footer.scss'
 
 const HomePage = () => {
   return (
@@ -20,10 +21,10 @@ const HomePage = () => {
         </div>
       </section>
       <section className='call'>
-        <p>Rápido entendimento Fiscal</p>
-        <div></div>
+        <p className='call-first'>Rápido entendimento fiscal</p>
+        <div className='call-bar'></div>
         <p>Melhores relatórios geram melhores gestões</p>
-        <div></div>
+        <div className='call-button'>Conheça a nossa empresa</div>
       </section>
       <section>
         Features 
