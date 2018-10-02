@@ -45,25 +45,38 @@ class ReceiptCompare extends Component {
 										editable={this.state.editable[0]} />
 								</div>
 
-								<Input value={this.state.receipt.emission_date}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
-									onClickHandler={() => this.onClickHandler("emission_date")}
-									editable={this.state.editable[1]} />
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">Data:</p>
+									<Input value={this.state.receipt.emission_date}
+										onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
+										onClickHandler={() => this.onClickHandler("emission_date")}
+										editable={this.state.editable[1]} />
+								</div>
 
-								<Input value={this.state.receipt.emission_place}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
-									onClickHandler={() => this.onClickHandler("emission_place")}
-									editable={this.state.editable[2]} />
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">Lugar:</p>
+									<Input value={this.state.receipt.emission_place}
+										onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
+										onClickHandler={() => this.onClickHandler("emission_place")}
+										editable={this.state.editable[2]} />
+								</div>
 
-								<Input value={this.state.receipt.tax_value}
-									onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
-									onClickHandler={() => this.onClickHandler("tax_value")}
-									editable={this.state.editable[3]} />
 
-								<Input value={this.state.receipt.total_price}
-									onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
-									onClickHandler={() => this.onClickHandler("total_price")}
-									editable={this.state.editable[4]} />
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">Imposto:</p>
+									<Input value={this.state.receipt.tax_value}
+										onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
+										onClickHandler={() => this.onClickHandler("tax_value")}
+										editable={this.state.editable[3]} />
+								</div>
+
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">Valor Total:</p>
+									<Input value={this.state.receipt.total_price}
+										onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
+										onClickHandler={() => this.onClickHandler("total_price")}
+										editable={this.state.editable[4]} />
+								</div>
 
 								{/* this.state.fakeData.receipt.products.map(product => (
 										<div key={product.id} className="compare-area__content__product">
