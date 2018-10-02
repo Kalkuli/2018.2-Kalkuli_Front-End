@@ -13,7 +13,7 @@ const HomePage = () => {
         Header
       </section>
       <section className="about">
-        <img alt='Uma Imagem legal aqui'></img>
+        <div className='about-img'></div>
         <div className='about-text'>
           <h1>Quem somos</h1>
           <p>O Kalkuli é uma aplicação que tem o intuito de facilitar o gerenciamento de notas fiscais. 
