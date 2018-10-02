@@ -7,31 +7,47 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
+import Loader from '../../UI/Loader/Loader'
 
 class ReceiptAdder extends Component {
   state = {
     file: null,
-    preview: null
+    preview: null,
+    loading: false
   }
 
   render() {
 
     return (
       <Modal>
+        {this.ChoseScreen()}
+      </Modal>
+    )
+  }
+
+  ChoseScreen = () => {
+    if(!this.state.loading){
+      return(
         <section className="receipt-adder">
           <DropArea onDropHandler={this.onDropHandler} />
           <div className="receipt-adder__footer">
             <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
           </div>
-        </section>
-      </Modal>
-    )
+        </section> 
+      )
+    }
+    else {
+      return(
+        <Loader/>
+      )
+    }
   }
 
-
-
   onConfirmHandler = () => {
+    this.setState({
+      loading: true
+    })
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
     axios.post('http://172.23.0.1:5008/api/v1/extract_data', formData, {
