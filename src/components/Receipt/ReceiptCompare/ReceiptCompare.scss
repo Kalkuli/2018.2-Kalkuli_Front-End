@@ -19,11 +19,13 @@
     //justify-content: space-around;
     &__input-area {
       display: flex;
-      justify-content: center;
     }
     &__labels {
       display: flex;
-      height: ;
+      &__label {
+        width: auto;
+        font-size: 1.5rem;
+      }
     }    
   }
 
