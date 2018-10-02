@@ -24,14 +24,14 @@ const HomePage = () => {
         <p className='call-first'>Rápido entendimento fiscal</p>
         <div className='call-bar'></div>
         <p>Melhores relatórios geram melhores gestões</p>
-        <div className='call-button'>Conheça a nossa empresa</div>
+        <div className='call-button'>Cadastre sua empresa</div>
       </section>
       <section>
         Features 
       </section>
       <div className='footer-img'></div>
       <footer>
-
+        <p>Copyright © 2012 | Kalkuli</p> 
       </footer>
 
     </div>

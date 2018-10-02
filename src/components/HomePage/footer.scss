@@ -2,7 +2,12 @@
 
 footer{
     background-color: $color-black;
-    height: 5em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7em;
+    color: $color-white;
 }
 
 .footer-img{
