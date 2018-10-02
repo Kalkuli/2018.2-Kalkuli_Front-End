@@ -1,10 +1,21 @@
-# Configurando o ambiente
-Abaixo temos instruções de como configurar o ambiente de forma rápida.
+# _Front-end_  
+
+<div style="text-align: center"> 
+
+<a href="https://travis-ci.com/Kalkuli/2018.2-Kalkuli_Front-End"><img src="https://travis-ci.com/Kalkuli/2018.2-Kalkuli_Front-End.svg?branch=master" /></a>
+<a href="https://codeclimate.com/github/Kalkuli/2018.2-Kalkuli_Front-End/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2a9aa6cb147af153a8c7/test_coverage" /></a>
+<a href="https://codeclimate.com/github/Kalkuli/2018.2-Kalkuli_Front-End/maintainability"><img src="https://api.codeclimate.com/v1/badges/2a9aa6cb147af153a8c7/maintainability" /></a>
+<a href="https://opensource.org/licenses/GPL-3.0"><img src="https://img.shields.io/badge/license-GPL-%235DA8C1.svg"/></a>
+
+</div> 
 
 <br>
 
+# Configurando o ambiente
+Abaixo temos instruções de como configurar o ambiente de forma rápida.   
 
-## Instalando Docker
+
+## Instalando o _Docker_  
 
 #### 1. Desinstale versões antigas
 
@@ -54,7 +65,7 @@ e então
 <br>
 
 
-## Instalando Docker-Compose
+## Instalando o _Docker-Compose_   
 
 #### 1. Baixe-o
 
@@ -73,13 +84,13 @@ e então
 <br>
 
 ## Colocando no ar
-Agora ficou fácil, basta apenas utilizar o usar o Docker Compose para colocar a aplicação no ar! Utilize os comando:
+Agora ficou fácil, basta apenas utilizar o _Docker Compose_ para colocar a aplicação no ar! Utilize os comandos:
 
-```docker-compose build```
+```sudo docker-compose -f docker-compose-dev.yml build```
 
 e
 
-```docker-compose up```
+```sudo docker-compose -f docker-compose-dev.yml up```
 
 Acesse o servidor local no endereço apresentado abaixo:
 
@@ -87,3 +98,14 @@ http://localhost:3000/
 
 
 Agora você já pode começar a contribuir!
+
+
+## Testando
+
+Para rodar os testes utilize:
+
+```sudo docker-compose -f docker-compose-dev.yml run front-end npm test```
+
+E para saber a cobertura de testes utilize:
+
+```sudo docker-compose -f docker-compose-dev.yml run front-end npm test -- --coverage```

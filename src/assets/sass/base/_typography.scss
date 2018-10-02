@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cutive+Mono|Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+$montserrat: 'Montserrat', sans-serif;
+$alfa-slab-one: 'Alfa Slab One', cursive;
+$cutive-mono: 'Cutive Mono', monospace;
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $alfa-slab-one;
+    font-weight: normal;
+}
+
+body {
+    font-family: $montserrat;
+    font-weight: normal;
+}
+
+.base-button {
+    font-family: $montserrat;
+    font-weight: 600; 
+}
+
+.receipt-font {
+    font-family: $cutive-mono !important;
+    font-weight: normal; 
+}

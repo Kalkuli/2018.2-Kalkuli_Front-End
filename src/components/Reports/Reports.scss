@@ -1,0 +1,32 @@
+@import '../../assets/sass/main.scss';
+
+.reports {
+    background-color: $color-white;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.reports__area {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.reports__area__resumes {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90em;
+    justify-content: space-between;
+    align-content: flex-start;
+    height: 50em;
+    overflow-y: auto;
+}
+
+.reports__button {
+    float: right;
+    margin-right: 5%;  
+    margin-top: 1em; 
+}

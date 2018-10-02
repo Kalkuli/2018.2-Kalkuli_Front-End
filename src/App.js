@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
+import ReceiptCompare from './components/Receipt/ReceiptCompare/ReceiptCompare'
+import Confirmation from './components/UI/Confirmation/Confirmation'
+import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
+import Dashboard from './components/Dashboard/Dashboard'
+import Reports from './components/Reports/Reports'
+import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
+import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' exact render={() => <h1>Home</h1>}/>    
+          <Route path='/send-receipt' component={ReceiptAdder} />
+          <Route path='/compare-data-with-receipt' component={ReceiptCompare}/>
+          <Route path='/edit-receipt-data' render={() => <h1>edit receipt data</h1>} />
+          <Route path='/list-all-receipts'component={ReceiptList} />
+          <Route path='/confirmation' component={Confirmation} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/reports' component={Reports} />
+          <Route path='/receipt' component={ReceiptView} />
+          <Route render={() => <h1>Not found</h1>} />
+          
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
 
