@@ -29,6 +29,7 @@ const HomePage = () => {
       <section>
         Features 
       </section>
+      <div className='footer-img'></div>
       <footer>
 
       </footer>
