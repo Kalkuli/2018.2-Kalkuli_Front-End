@@ -25,13 +25,27 @@
 }
 .plus{
     background-image: url("../../../assets/img/plus.png");
+.receipt{
+    background-image: url("../../../assets/img/receiptplus.png");
     background-repeat: no-repeat;
-    background-size: 130px;
-    width: 130px;
-    height: 130px;
+    background-size: 150px;
+    width: 150px;
+    height: 150px;
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 1em;
     margin-right: 3em;
+}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.receipt__plus{
+    background-image: url("../../../assets/img/plus.png");
+    background-repeat: no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
 }

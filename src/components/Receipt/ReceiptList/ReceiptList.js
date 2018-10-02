@@ -38,7 +38,9 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
-                <div className='plus'></div>
+                <div className='receipt'>
+                    <div className='receipt__plus'></div>
+                </div>
             </div>
         )
     }
