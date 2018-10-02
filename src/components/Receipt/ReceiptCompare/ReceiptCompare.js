@@ -37,10 +37,13 @@ class ReceiptCompare extends Component {
 
 						<Receipt size="large">
 							<div className="compare-area__content">
-								<Input value={this.state.receipt.cnpj}
-									onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
-									onClickHandler={() => this.onClickHandler("cnpj")}
-									editable={this.state.editable[0]} />
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">CNPJ:</p>
+									<Input value={this.state.receipt.cnpj}
+										onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
+										onClickHandler={() => this.onClickHandler("cnpj")}
+										editable={this.state.editable[0]} />
+								</div>
 
 								<Input value={this.state.receipt.emission_date}
 									onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}

@@ -6,6 +6,7 @@ import Modal from '../../UI/Modal/Modal'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
+import Confirmation from '../../UI/Confirmation/Confirmation'
 
 class ReceiptAdder extends Component {
   state = {
