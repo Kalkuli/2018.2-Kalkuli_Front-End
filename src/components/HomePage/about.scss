@@ -1,0 +1,19 @@
+@import '../../assets/sass/main.scss';
+
+.about{
+    background-color: $color-white;
+    padding: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.about-text{
+    width: 50%;
+    font-size: 3em;
+}
+
+.about-text p {
+    text-align: justify;
+    margin-top: .3em;
+}
