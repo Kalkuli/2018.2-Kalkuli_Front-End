@@ -23,3 +23,15 @@
     display: flex;
     justify-content: space-between;
 }
+.plus{
+    background-image: url("../../../assets/img/plus.png");
+    background-repeat: no-repeat;
+    background-size: 130px;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1em;
+    margin-right: 3em;
+}
