@@ -1,5 +1,6 @@
 import React,{Fragment} from 'react'
 import './about.scss'
+import './call.scss'
 
 const HomePage = () => {
   return (
@@ -18,8 +19,11 @@ const HomePage = () => {
             Nossa meta é ajudar micro e pequenas empresas a fazer o controle de tributos fiscais de maneira rápida e prática.</p>
         </div>
       </section>
-      <section>
-        cadastro
+      <section className='call'>
+        <p>Rápido entendimento Fiscal</p>
+        <div></div>
+        <p>Melhores relatórios geram melhores gestões</p>
+        <div></div>
       </section>
       <section>
         Features 

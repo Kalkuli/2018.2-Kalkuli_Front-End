@@ -1,0 +1,16 @@
+@import '../../assets/sass/main.scss';
+
+.call{
+    background-color: red;
+    padding: 3em;
+    background-image: linear-gradient(to bottom right, $color-dark-blue, $color-light-blue); 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+}
+
+.call p{
+    color: $color-white;
+    font-size: 3.5em;
+    font-weight: 700;
+}
