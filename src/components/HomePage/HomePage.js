@@ -13,23 +13,23 @@ const HomePage = () => {
         Header
       </section>
       <section className="about">
-        <div className='about-img'></div>
-        <div className='about-text'>
+        <div className='about__img'></div>
+        <div className='about__text'>
           <h1>Quem somos</h1>
           <p>O Kalkuli é uma aplicação que tem o intuito de facilitar o gerenciamento de notas fiscais. 
             Nossa meta é ajudar micro e pequenas empresas a fazer o controle de tributos fiscais de maneira rápida e prática.</p>
         </div>
       </section>
       <section className='call'>
-        <p className='call-first'>Rápido entendimento fiscal</p>
-        <div className='call-bar'></div>
+        <p className='call__p--first'>Rápido entendimento fiscal</p>
+        <div className='call__bar'></div>
         <p>Melhores relatórios geram melhores gestões</p>
-        <div className='call-button'>Cadastre sua empresa</div>
+        <div className='call__button'>Cadastre sua empresa</div>
       </section>
       <section>
         Features 
       </section>
-      <div className='footer-img'></div>
+      <div className='footer__img'></div>
       <footer>
         <p>Copyright © 2018 | Kalkuli</p> 
       </footer>

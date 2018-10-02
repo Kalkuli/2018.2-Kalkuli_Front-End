@@ -9,19 +9,19 @@
     align-items: center;
 }
 
-.about-text{
+.about__text{
     color: $color-black;
     width: 50%;
     font-size: 3em;
     margin-right: 2em;
 }
 
-.about-text p {
+.about__text p {
     text-align: justify;
     margin-top: .3em;
 }
 
-.about-img{
+.about__img{
     background-image: url('../../assets/img/aboutgrafico.png');
     background-repeat: no-repeat;
     background-position: left;

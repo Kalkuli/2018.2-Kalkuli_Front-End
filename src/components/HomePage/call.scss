@@ -16,7 +16,7 @@
     margin: .5em;
 }
 
-.call-bar{
+.call__bar{
     padding: .3em;
     background-color: $color-yellow;
     width: 40%;  
@@ -24,12 +24,12 @@
     margin: .5em;
 }
 
-.call-first{
+.call__p--first{
     font-size: 4.5em !important;
     margin: 1em;
 }
 
-.call-button{
+.call__button{
     background-color: $color-white;
     font-size: 2em;
     color: $color-dark-blue;
