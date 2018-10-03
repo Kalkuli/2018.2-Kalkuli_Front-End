@@ -9,7 +9,14 @@ import { connect } from 'react-redux'
 
 class ReceiptCompare extends Component {
 	state = {
-		receipt: null,
+		receipt: {
+			cnpj: "",
+			emission_date: "",
+			emission_place: "",
+			products: [],
+			tax_value: "",
+			total_price: 0
+		},
 		editable: [
 			false,
 			false,
@@ -121,7 +128,6 @@ class ReceiptCompare extends Component {
 	onClickHandler = (inputClicked) => {
 
 		let newEditable = [...this.state.editable]
-		console.log(inputClicked)
 
 		if (inputClicked === "cnpj")
 			newEditable[0] = !newEditable[0]
@@ -136,7 +142,6 @@ class ReceiptCompare extends Component {
 
 
 		this.setState({ editable: newEditable })
-		console.log(newEditable)
 	}
 
 
@@ -152,8 +157,6 @@ class ReceiptCompare extends Component {
 				oldData.products[inputID].quantity = event.target.value
 		} else
 			oldData[`${inputID}`] = event.target.value
-
-		console.log(oldData)
 
 		this.setState({
 			receipt: oldData
