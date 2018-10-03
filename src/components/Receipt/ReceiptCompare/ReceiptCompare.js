@@ -31,8 +31,10 @@ class ReceiptCompare extends Component {
 
 	render() {
 		let preview = null
-		if (this.props.filePDF !== null)
+		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
+			console.log("katiau")
+		}
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 

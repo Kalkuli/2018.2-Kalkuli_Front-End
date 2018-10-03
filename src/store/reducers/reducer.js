@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_PDF_FILE:
       return {
         ...state,
-        fileBLOB: action.filePDF
+        filePDF: action.filePDF
       }
     case actionTypes.ADD_EXTRACTED_DATA:
       return {
