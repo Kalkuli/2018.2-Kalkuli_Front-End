@@ -12,6 +12,7 @@ const DropArea = (props) => (
                                       acceptClassName="accept"
                                       disabled="true">
                                       <h1 className="drop-area__title">Arquivo Selecionado com Sucesso</h1>
+                                      <p className="drop-area__p">Clique em Confirmar para continuar</p>
                           </ReactDropzone> : <ReactDropzone className="drop-area"
                                                         onDrop={props.onDropHandler}
                                                         accept="application/pdf"

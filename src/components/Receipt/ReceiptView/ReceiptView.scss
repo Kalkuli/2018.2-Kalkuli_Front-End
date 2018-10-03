@@ -23,4 +23,15 @@
     margin-top: 3rem;
     margin-left: 4rem;
     font-size: 2rem;
+    width: 32rem;
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+
+        &__label{
+            padding-bottom: 1em;
+            color: $color-black;
+        }
+    }
 }
