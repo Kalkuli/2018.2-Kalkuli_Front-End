@@ -12,8 +12,8 @@ import Loader from '../../UI/Loader/Loader'
 class ReceiptAdder extends Component {
   state = {
     file: null,
-    preview: null,
     loading: false,
+    binaryPDF: null
   }
 
   render() {
@@ -68,11 +68,11 @@ class ReceiptAdder extends Component {
       const currentFile = file[0]
       const reader = new FileReader()
       reader.addEventListener("load", () => {
-        this.setState({ preview: reader.result })
-        this.props.onFilePDFAdded(this.state.preview)
+        this.setState({ binaryPDF: reader.result })
+        this.props.onFilePDFAdded(this.state.binaryPDF)
       }, false)
       reader.readAsDataURL(currentFile)
-      //this.setState({ file: file })
+      this.setState({ file: file })
     } else if (rejectedFiles) {
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
