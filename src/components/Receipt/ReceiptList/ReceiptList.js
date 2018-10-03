@@ -11,10 +11,10 @@ import './ReceiptList.scss'
 
 export default class ReceiptList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {  
             loaded: false,
-            rotated: false 
+            rotated: false, 
         }
 
         this.changeRotate = this.changeRotate.bind(this);
@@ -46,7 +46,16 @@ export default class ReceiptList extends Component {
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
                 <div className='receipt' onClick={this.changeRotate} >
-                    <div className='receipt__plus' style={{transform: this.state.rotated ? 'rotate(45deg)' : 'rotate(0)'}} />
+                    <div className='receipt__plus' 
+                    style={{transform: this.state.rotated ? 'rotate(45deg)' : 'rotate(0)'}} />
+                </div>
+                <div className='receipt__options'>
+                    <div className='receipt__options--newReceipt'>
+
+                    </div>
+                    <div className='receipt__options--newReport'>
+
+                    </div>
                 </div>
             </div>
         )
