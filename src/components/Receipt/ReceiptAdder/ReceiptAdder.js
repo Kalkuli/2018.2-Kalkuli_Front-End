@@ -33,7 +33,7 @@ class ReceiptAdder extends Component {
           <DropArea onDropHandler={this.onDropHandler} fileSelected = {this.state.fileSelected} />
           <div className="receipt-adder__footer">
             <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
-            <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="confirm" >Confirmar</BaseButton>}
           </div>
         </section> 
       )
