@@ -13,7 +13,7 @@ class ReceiptAdder extends Component {
   state = {
     file: null,
     preview: null,
-    loading: false
+    loading: false,
   }
 
   render() {
@@ -55,14 +55,12 @@ class ReceiptAdder extends Component {
         'Content-Type': 'multipart/form-data'
       }
     })
-      .then((response) => {
-        this.props.history.push({
-          pathname: '/compare-data-with-receipt',
-          state: {
-            receipt: response.data.receipt
-          }
-        });
-      });
+    .then(response => {
+      this.props.onFileExtractedAdded(response.data.receipt)
+      this.props.history.push({
+        pathname: '/compare-data-with-receipt',
+      })
+    })
   }
 
   onDropHandler = (file, rejectedFiles) => {
@@ -71,10 +69,10 @@ class ReceiptAdder extends Component {
       const reader = new FileReader()
       reader.addEventListener("load", () => {
         this.setState({ preview: reader.result })
-        this.props.onFileAdded(this.state.preview)
+        this.props.onFilePDFAdded(this.state.preview)
       }, false)
       reader.readAsDataURL(currentFile)
-      this.setState({ file: file });
+      //this.setState({ file: file })
     } else if (rejectedFiles) {
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
@@ -86,7 +84,8 @@ class ReceiptAdder extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFileAdded: (file) => dispatch({ type: actionTypes.ADD_FILE, file: file })
+    onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF}),
+    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted})
   }
 }
 

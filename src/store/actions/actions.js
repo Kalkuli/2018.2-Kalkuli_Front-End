@@ -1,1 +1,2 @@
-export const ADD_FILE = 'ADD_FILE'
+export const ADD_PDF_FILE = 'ADD_PDF_FILE'
+export const ADD_EXTRACTED_DATA = 'ADD_EXTRACTED_DATA'
