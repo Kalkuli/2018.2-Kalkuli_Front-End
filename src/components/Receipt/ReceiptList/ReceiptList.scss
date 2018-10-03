@@ -43,9 +43,8 @@
     width: 90px;
     height: 90px;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 4em;
+    bottom: 3em;
+    right: 3em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,4 +91,37 @@
     height: 60px;
     -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
     box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    margin: 0;
 }
+
+.receipt__img__container{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    justify-content: center !important;
+
+}
+
+.receipt__options__imgReceipt{
+    background-image: url("../../../assets/img/receipt.svg");
+    background-repeat: no-repeat;
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.receipt__options__imgReport{
+    background-image: url("../../../assets/img/report.svg");
+    background-repeat: no-repeat;
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.scalehover:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+

@@ -45,17 +45,24 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
-                <div className='receiptplus' onClick={this.changeRotate} >
+                <div className='receiptplus scalehover' onClick={this.changeRotate} >
                     <div className='receipt__plus' 
                     style={{transform: this.state.rotated ? 'rotate(45deg)' : 'rotate(0)'}} />
                 </div>
                 <div className='receipt__options'>
-                    <div className='receipt__options--newReceipt'
-                    style={{display: this.state.display ? 'none' : 'block'}}/>
+                    <div className='receipt__options--newReceipt scalehover'
+                    style={{display: this.state.display ? 'none' : 'block'}}>
+                        <div className='receipt__img__container'>
+                            <div className='receipt__options__imgReceipt'/>
+                        </div>
+                    </div>
 
-                    <div className='receipt__options--newReport'
-                    style={{display: this.state.display ? 'none' : 'block'}}/>
-
+                    <div className='receipt__options--newReport scalehover'
+                    style={{display: this.state.display ? 'none' : 'block'}}>
+                        <div className='receipt__img__container'>
+                            <div className='receipt__options__imgReport'/>  
+                        </div>
+                    </div>
                 </div>
             </div>
         )
