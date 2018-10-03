@@ -15,13 +15,20 @@ class ReceiptAdder extends Component {
     file: null,
     loading: false,
     fileSent: false,
-    fileSelected: false
+    fileSelected: false,
+    completed: false
   }
 
   render() {
+    let content = this.ChooseScreen()
+    if(this.state.fileSent && !this.state.completed){
+      content = <ReceiptCompare onCancelHandler = {this.onCancelHandler} onConfirmButton = {this.onConfirmButton}/>
+    } else if(this.state.completed){
+      content = <Confirmation />
+    }
     return (
       <Modal>
-        {this.state.fileSent ? <ReceiptCompare onCancelHandler = {this.onCancelHandler}/> : this.ChooseScreen()}
+        {content}
       </Modal>
     )
   }
@@ -43,6 +50,23 @@ class ReceiptAdder extends Component {
         <Loader/>
       )
     }
+  } 
+
+  onConfirmButton = (receipt) => {
+    axios.post('http://172.23.0.1:5008/api/v1/receipt', {
+			"receipt": {
+				...receipt,
+				company_id: 1
+			}
+    })
+    .then(() => {
+      this.setState({
+        completed: true
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   onConfirmHandler = () => {
