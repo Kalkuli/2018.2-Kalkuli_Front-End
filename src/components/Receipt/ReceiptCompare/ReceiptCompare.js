@@ -33,79 +33,76 @@ class ReceiptCompare extends Component {
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
-			console.log("katiau")
 		}
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 
 		return (
-			<Modal>
-				<div className="compare-area">
-					<div className="compare-area__comparing">
-						<div className="compare-area__comparing__preview">
-							{preview}
-						</div>
+			<div className="compare-area">
+				<div className="compare-area__comparing">
+					<div className="compare-area__comparing__preview">
+						{preview}
+					</div>
 
-						<Receipt size="large">
-							<div className="compare-area__content">
-								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">CNPJ:</p>
-									<Input value={this.state.receipt.cnpj}
-										onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
-										onClickHandler={() => this.onClickHandler("cnpj")}
-										editable={this.state.editable[0]} />
-								</div>
-
-								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">Data:</p>
-									<Input value={this.state.receipt.emission_date}
-										onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
-										onClickHandler={() => this.onClickHandler("emission_date")}
-										editable={this.state.editable[1]} />
-								</div>
-
-								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">Lugar:</p>
-									<Input value={this.state.receipt.emission_place}
-										onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
-										onClickHandler={() => this.onClickHandler("emission_place")}
-										editable={this.state.editable[2]} />
-								</div>
-
-
-								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">Taxas:</p>
-									<Input value={this.state.receipt.tax_value}
-										onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
-										onClickHandler={() => this.onClickHandler("tax_value")}
-										editable={this.state.editable[3]} />
-								</div>
-
-								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">Total:</p>
-									<Input value={this.state.receipt.total_price}
-										onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
-										onClickHandler={() => this.onClickHandler("total_price")}
-										editable={this.state.editable[4]} />
-								</div>
-
-								{/* this.state.fakeData.receipt.products.map(product => (
-										<div key={product.id} className="compare-area__content__product">
-												<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
-												<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
-												<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
-										</div>    
-								))} */}
+					<Receipt size="large">
+						<div className="compare-area__content">
+							<div className="compare-area__content__labels"> 
+								<p className="receipt-font compare-area__content__labels__label">CNPJ:</p>
+								<Input value={this.state.receipt.cnpj}
+									onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
+									onClickHandler={() => this.onClickHandler("cnpj")}
+									editable={this.state.editable[0]} />
 							</div>
-						</Receipt>
 
-					</div>
-					<div className="compare-area__buttons">
-						<BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
-						<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
-					</div>
+							<div className="compare-area__content__labels"> 
+								<p className="receipt-font compare-area__content__labels__label">Data:</p>
+								<Input value={this.state.receipt.emission_date}
+									onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
+									onClickHandler={() => this.onClickHandler("emission_date")}
+									editable={this.state.editable[1]} />
+							</div>
+
+							<div className="compare-area__content__labels"> 
+								<p className="receipt-font compare-area__content__labels__label">Lugar:</p>
+								<Input value={this.state.receipt.emission_place}
+									onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
+									onClickHandler={() => this.onClickHandler("emission_place")}
+									editable={this.state.editable[2]} />
+							</div>
+
+
+							<div className="compare-area__content__labels"> 
+								<p className="receipt-font compare-area__content__labels__label">Taxas:</p>
+								<Input value={this.state.receipt.tax_value}
+									onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
+									onClickHandler={() => this.onClickHandler("tax_value")}
+									editable={this.state.editable[3]} />
+							</div>
+
+							<div className="compare-area__content__labels"> 
+								<p className="receipt-font compare-area__content__labels__label">Total:</p>
+								<Input value={this.state.receipt.total_price}
+									onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
+									onClickHandler={() => this.onClickHandler("total_price")}
+									editable={this.state.editable[4]} />
+							</div>
+
+							{/* this.state.fakeData.receipt.products.map(product => (
+									<div key={product.id} className="compare-area__content__product">
+											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
+											<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
+											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
+									</div>    
+							))} */}
+						</div>
+					</Receipt>
+
 				</div>
-			</Modal>
+				<div className="compare-area__buttons">
+					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
+					<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+				</div>
+			</div>
 		)
 	}
 
@@ -166,7 +163,6 @@ class ReceiptCompare extends Component {
 
 	}
 
-	onCancelHandler = () => { console.log('cancel') }
 }
 
 const mapStateToProps = state => {

@@ -8,24 +8,26 @@ import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
+import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 
 class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
-    binaryPDF: null
+    binaryPDF: null,
+    fileSent: false
   }
 
   render() {
 
     return (
       <Modal>
-        {this.ChoseScreen()}
+        {this.state.fileSent ? <ReceiptCompare onCancelHandler = {this.onCancelHandler}/> : this.ChooseScreen()}
       </Modal>
     )
   }
 
-  ChoseScreen = () => {
+  ChooseScreen = () => {
     if(!this.state.loading){
       return(
         <section className="receipt-adder">
@@ -57,8 +59,9 @@ class ReceiptAdder extends Component {
     })
     .then(response => {
       this.props.onFileExtractedAdded(response.data.receipt)
-      this.props.history.push({
-        pathname: '/compare-data-with-receipt',
+      this.setState({
+        fileSent: true,
+        loading:false
       })
     })
   }
@@ -79,7 +82,7 @@ class ReceiptAdder extends Component {
     }
   }
 
-  onCancelHandler = () => { console.log("cancel") }
+  onCancelHandler = () => { this.setState({fileSent: false}) }
 }
 
 const mapDispatchToProps = dispatch => {
