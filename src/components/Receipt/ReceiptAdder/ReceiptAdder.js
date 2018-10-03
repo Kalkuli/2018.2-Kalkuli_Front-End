@@ -75,12 +75,13 @@ class ReceiptAdder extends Component {
       reader.readAsDataURL(currentFile)
       this.setState({ file: file, fileSelected: true })
     } else if (rejectedFiles) {
+      this.setState({fileSelected: false})
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
     }
   }
 
-  onCancelHandler = () => { this.setState({fileSent: false}) }
+  onCancelHandler = () => { this.setState({fileSent: false, fileSelected: false}) }
 }
 
 const mapDispatchToProps = dispatch => {

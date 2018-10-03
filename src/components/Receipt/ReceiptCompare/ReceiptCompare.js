@@ -109,7 +109,7 @@ class ReceiptCompare extends Component {
 
 
 	onConfirmHandler = () => {
-		/* axios.post('http://172.23.0.1:5008/api/v1/receipt', {
+		 axios.post('http://172.23.0.1:5008/api/v1/receipt', {
 			"receipt": {
 				...this.state.receipt,
 				company_id: 1,
@@ -121,7 +121,7 @@ class ReceiptCompare extends Component {
 			})
 			.catch((err) => {
 				console.log(err);
-			}); */
+			}); 
 	}
 
 	onClickHandler = (inputClicked) => {
