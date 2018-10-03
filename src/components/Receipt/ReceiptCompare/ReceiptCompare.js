@@ -14,10 +14,11 @@ class ReceiptCompare extends Component {
 			emission_date: "",
 			emission_place: "",
 			products: [],
-			tax_value: "",
+			tax_value: 0,
 			total_price: 0
 		},
 		editable: [
+			false,
 			false,
 			false,
 			false,
@@ -109,19 +110,7 @@ class ReceiptCompare extends Component {
 
 
 	onConfirmHandler = () => {
-		 axios.post('http://172.23.0.1:5008/api/v1/receipt', {
-			"receipt": {
-				...this.state.receipt,
-				company_id: 1,
-			}
-		})
-			.then((response) => {
-				console.log(response);
-				this.props.history.push('/confirmation')
-			})
-			.catch((err) => {
-				console.log(err);
-			}); 
+		this.props.onConfirmButton(this.state.receipt)
 	}
 
 	onClickHandler = (inputClicked) => {
