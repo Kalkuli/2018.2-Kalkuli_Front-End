@@ -14,7 +14,8 @@ export default class ReceiptList extends Component {
         super(props);
         this.state = {  
             loaded: false,
-            rotated: false, 
+            rotated: false,
+            display: 'block',
         }
 
         this.changeRotate = this.changeRotate.bind(this);
@@ -36,8 +37,7 @@ export default class ReceiptList extends Component {
             })
     }
     changeRotate(){ 
-        this.setState({rotated: !this.state.rotated});
-
+        this.setState({rotated: !this.state.rotated, display: !this.state.display});
     }
 
     render() {
@@ -45,17 +45,17 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
-                <div className='receipt' onClick={this.changeRotate} >
+                <div className='receiptplus' onClick={this.changeRotate} >
                     <div className='receipt__plus' 
                     style={{transform: this.state.rotated ? 'rotate(45deg)' : 'rotate(0)'}} />
                 </div>
                 <div className='receipt__options'>
-                    <div className='receipt__options--newReceipt'>
+                    <div className='receipt__options--newReceipt'
+                    style={{display: this.state.display ? 'none' : 'block'}}/>
 
-                    </div>
-                    <div className='receipt__options--newReport'>
+                    <div className='receipt__options--newReport'
+                    style={{display: this.state.display ? 'none' : 'block'}}/>
 
-                    </div>
                 </div>
             </div>
         )

@@ -37,39 +37,59 @@
     margin: 1em;
     margin-right: 3em;
 }
+.receiptplus{
+    background-color: $color-light-blue;
+    border-radius: 20em;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4em;
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
 }
 
 .receipt__plus{
     background-image: url("../../../assets/img/plus.png");
     background-repeat: no-repeat;
-    background-size: 90px;
-    width: 90px;
-    height: 90px;
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .receipt__options{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 15em;
+    right: 4em;
+    width: auto;
+    align-items: center;
 }
 
 .receipt__options--newReceipt{
-    background-image: url("../../../assets/img/newRelatorio.png");
+    background-color: $color-dark-blue;
+    border-radius: 20em;
     background-repeat: no-repeat;
-    background-size: 100px;
-    width: 110px;
-    height: 155px;
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    margin: 1.5em;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
 }
 
 .receipt__options--newReport{
-    background-image: url("../../../assets/img/newNota.png");
+    background-color: $color-yellow;
+    border-radius: 20em;
     background-repeat: no-repeat;
-    background-size: 100px;
-    width: 110px;
-    height: 155px;
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
 }
