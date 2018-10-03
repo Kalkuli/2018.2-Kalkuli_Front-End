@@ -14,12 +14,11 @@ class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
-    binaryPDF: null,
-    fileSent: false
+    fileSent: false,
+    fileSelected: false
   }
 
   render() {
-
     return (
       <Modal>
         {this.state.fileSent ? <ReceiptCompare onCancelHandler = {this.onCancelHandler}/> : this.ChooseScreen()}
@@ -31,7 +30,7 @@ class ReceiptAdder extends Component {
     if(!this.state.loading){
       return(
         <section className="receipt-adder">
-          <DropArea onDropHandler={this.onDropHandler} />
+          <DropArea onDropHandler={this.onDropHandler} fileSelected = {this.state.fileSelected} />
           <div className="receipt-adder__footer">
             <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
@@ -71,11 +70,10 @@ class ReceiptAdder extends Component {
       const currentFile = file[0]
       const reader = new FileReader()
       reader.addEventListener("load", () => {
-        this.setState({ binaryPDF: reader.result })
-        this.props.onFilePDFAdded(this.state.binaryPDF)
+        this.props.onFilePDFAdded(reader.result)
       }, false)
       reader.readAsDataURL(currentFile)
-      this.setState({ file: file })
+      this.setState({ file: file, fileSelected: true })
     } else if (rejectedFiles) {
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
