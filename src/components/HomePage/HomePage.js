@@ -1,16 +1,19 @@
 import React,{Fragment} from 'react'
+import './header.scss'
 import './about.scss'
 import './call.scss'
 import './footer.scss'
 
 const HomePage = () => {
   return (
-      <div>
-      <Fragment>
-        <h1>Homepage</h1>
-      </Fragment>
-      <section>
-        Header
+    <Fragment>
+
+      <section className="header">
+        <div className="header__container">
+          <h1 className="header__container__h1">De Notas para Dados</h1>
+          <div className="header__container__bar"></div>
+          <p className="header__container__p">Automatize seu controle financeiro a partir de imagens de suas Notas Fiscais</p>
+        </div>
       </section>
       <section className="about">
         <div className='about__img'></div>
@@ -33,8 +36,7 @@ const HomePage = () => {
       <footer>
         <p>Copyright © 2018 | Kalkuli</p> 
       </footer>
-
-    </div>
+    </Fragment>
   )
 }
 

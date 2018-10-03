@@ -1,0 +1,35 @@
+@import '../../assets/sass/main.scss';
+
+.header {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(
+                      to right bottom, 
+                      $color-dark-blue, 
+                      $color-light-blue
+                    );
+  
+  &__container {
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    width: 48rem;
+
+    &__h1 {
+      color: white;
+      font-size: 8rem;
+    }
+
+    &__bar {
+      padding: .3em;
+      background-color: $color-yellow;
+      width: 43%;
+      margin: 2.4rem 0;
+    }
+
+    &__p {
+      font-size: 2.3rem;
+      color: white;
+    }
+  }
+}
