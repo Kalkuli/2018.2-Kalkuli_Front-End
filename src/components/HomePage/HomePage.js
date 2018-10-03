@@ -2,6 +2,7 @@ import React,{Fragment} from 'react'
 import './header.scss'
 import './about.scss'
 import './call.scss'
+import './features.scss'
 import './footer.scss'
 
 const HomePage = () => {
@@ -29,8 +30,26 @@ const HomePage = () => {
         <p>Melhores relatórios geram melhores gestões</p>
         <div className='call__button'>Cadastre sua empresa</div>
       </section>
-      <section>
-        Features 
+      <section className="feature">
+        <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
+        <div className="feature__container">
+          <div className="feature__container__element">
+            <img className=""/>
+            <p></p>
+          </div>
+          <div className="feature__container__element">
+            <img className=""/>
+            <p></p>
+          </div>
+          <div className="feature__container__element">
+            <img className=""/>
+            <p></p>
+          </div>
+          <div className="feature__container__element">
+            <img className=""/>
+            <p></p>
+          </div>
+        </div>
       </section>
       <div className='footer__img'></div>
       <footer>
