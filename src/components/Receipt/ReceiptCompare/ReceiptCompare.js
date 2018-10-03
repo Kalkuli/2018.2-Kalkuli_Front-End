@@ -9,8 +9,7 @@ import { connect } from 'react-redux'
 
 class ReceiptCompare extends Component {
 	state = {
-		receipt: {},
-
+		receipt: null,
 		editable: [
 			false,
 			false,
@@ -19,11 +18,14 @@ class ReceiptCompare extends Component {
 		],
 	}
 
-	render() {
+	componentDidMount() {
+		this.setState({ receipt: this.props.fileExtracted })
+	}
 
+	render() {
 		let preview = null
-		if (this.props.file !== null)
-			preview = <embed className="pdf-preview" src={this.props.file} type="application/pdf" width="290px" height="466px" />
+		if (this.props.filePDF !== null)
+			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 
@@ -98,14 +100,10 @@ class ReceiptCompare extends Component {
 		)
 	}
 
-	componentDidMount() {
-		this.setState({
-			receipt: { ...this.props.location.state.receipt }
-		})
-	}
+
 
 	onConfirmHandler = () => {
-		axios.post('http://172.23.0.1:5008/api/v1/receipt', {
+		/* axios.post('http://172.23.0.1:5008/api/v1/receipt', {
 			"receipt": {
 				...this.state.receipt,
 				company_id: 1,
@@ -117,8 +115,9 @@ class ReceiptCompare extends Component {
 			})
 			.catch((err) => {
 				console.log(err);
-			});
+			}); */
 	}
+
 	onClickHandler = (inputClicked) => {
 
 		let newEditable = [...this.state.editable]
@@ -167,7 +166,8 @@ class ReceiptCompare extends Component {
 
 const mapStateToProps = state => {
 	return {
-		file: state.fileBLOB
+		filePDF: state.filePDF,
+		fileExtracted: state.fileExtracted
 	}
 }
 
