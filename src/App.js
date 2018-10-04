@@ -14,8 +14,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path='/' exact render={() => <h1>Home</h1>}/>    
-          <Route path='/send-receipt' component={ReceiptAdder} />
-          <Route path='/compare-data-with-receipt' component={ReceiptCompare}/>
+          <Route path='/extract-data' component={ReceiptAdder} />
           <Route path='/edit-receipt-data' render={() => <h1>edit receipt data</h1>} />
           <Route path='/list-all-receipts'component={ReceiptList} />
           <Route path='/confirmation' component={Confirmation} />

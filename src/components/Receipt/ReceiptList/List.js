@@ -24,9 +24,18 @@ class ReceiptList extends React.Component {
 						<Receipt size="small" onClickHandler={this.onOpenPopup}>
 							<div className='container-receipts__receipt-data receipt-font'>
 								<div className='dadosNotas'>
-									<div className='dados'>{receipt.emission_date}</div>
-									<div className='dados'>{receipt.emission_place}</div>
-									<div className='dados'>{receipt.total_price}</div>
+									<div className='dados'>
+										<p><b>Data:</b></p>
+										<p>{receipt.emission_date}</p>
+									</div>
+									<div className='dados'>
+										<p><b>Local:</b></p>
+										<p>{receipt.emission_place}</p>
+									</div>
+									<div className='dados'>
+										<p><b>Preço:</b></p>
+										<p>{receipt.total_price}</p>
+									</div>
 								</div>
 							</div>
 						</Receipt>
