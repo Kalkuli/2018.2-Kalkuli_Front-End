@@ -89,7 +89,7 @@ class ReceiptCompare extends Component {
 	}
 
 	onConfirmHandler = () => {
-		axios.post('http://172.31.0.1:5008/api/v1/receipt', {
+		axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/receipt', {
 			"receipt": {
 				...this.state.receipt,
 				company_id: 1,
