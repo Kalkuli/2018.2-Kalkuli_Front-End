@@ -24,7 +24,7 @@ class ReceiptAdder extends Component {
     if(this.state.fileSent && !this.state.completed){
       content = <ReceiptCompare onCancelHandler = {this.onCancelHandler} onConfirmButton = {this.onConfirmButton}/>
     } else if(this.state.completed){
-      content = <Confirmation />
+      content = <Confirmation onConfirmOk = {this.onConfirmOk}/>
     }
     return (
       <Modal>
@@ -66,6 +66,12 @@ class ReceiptAdder extends Component {
     })
     .catch((error) => {
       console.log(error)
+    })
+  }
+
+  onConfirmOk = () => {
+    this.props.history.push({
+      pathname: '/dashboard'
     })
   }
 
