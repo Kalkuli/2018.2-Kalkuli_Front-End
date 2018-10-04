@@ -9,10 +9,10 @@
                       $color-light-blue
                     );
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  position: relative;
   
+
   &__container {
-    position: absolute;
+    position: fixed;
     top: 30%;
     left: 8%;
     width: 48rem;

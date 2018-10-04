@@ -4,6 +4,10 @@ import './about.scss'
 import './call.scss'
 import './features.scss'
 import './footer.scss'
+import imgPiggy from '../../assets/img/piggy-bank.svg'
+import imgReceipt from '../../assets/img/receipt.svg'
+import imgAnalysis from '../../assets/img/analysis.svg'
+import imgResult from '../../assets/img/result.svg'
 
 const HomePage = () => {
   return (
@@ -33,22 +37,43 @@ const HomePage = () => {
       <section className="feature">
         <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
         <div className="feature__container">
-          <div className="feature__container__element">
-            <img className=""/>
-            <p></p>
+          <div className="feature__container__block ">
+            <div className="feature__container__element">
+              <div className="feature__container__element__border">
+                <img className="feature__container__element__img" src={imgPiggy}/>
+              </div>
+              <p className="feature__container__element__p">
+                Melhora o controle financeiro
+              </p>
+            </div>
+            <div className="feature__container__element">
+              <div className="feature__container__element__border">
+                <img className="feature__container__element__img" src={imgReceipt}/>
+              </div>
+              <p className="feature__container__element__p">
+                Evita a perda de comprovantes
+              </p>
+            </div>
           </div>
-          <div className="feature__container__element">
-            <img className=""/>
-            <p></p>
-          </div>
-          <div className="feature__container__element">
-            <img className=""/>
-            <p></p>
-          </div>
-          <div className="feature__container__element">
-            <img className=""/>
-            <p></p>
-          </div>
+
+          <div className="feature__container__block">
+            <div className="feature__container__element">
+              <div className="feature__container__element__border">
+                <img className="feature__container__element__img" src={imgResult}/>
+              </div>
+              <p className="feature__container__element__p">
+                Agiliza a confecção de relatórios
+              </p>
+            </div>
+            <div className="feature__container__element">
+              <div className="feature__container__element__border">
+                <img className="feature__container__element__img" src={imgAnalysis}/>
+              </div>
+              <p className="feature__container__element__p">
+                Facilita o entendimento de informações
+              </p>
+            </div>
+          </div>          
         </div>
       </section>
       <div className='footer__img'></div>
