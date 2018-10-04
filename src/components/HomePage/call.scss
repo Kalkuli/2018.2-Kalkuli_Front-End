@@ -6,7 +6,8 @@
     background-image: linear-gradient(to bottom right, $color-light-blue, $color-dark-blue); 
     display: flex;
     flex-direction: column; 
-    align-items: center;   
+    align-items: center;  
+    padding-bottom: 3rem; 
 }
 
 .call p{

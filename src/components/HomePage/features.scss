@@ -6,6 +6,7 @@
   flex-flow: column;
   align-items: center;
 
+
   &__h1 {
     font-size: 4rem;
     margin-top: 6rem;
@@ -18,7 +19,7 @@
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-evenly;
-
+    
     &__element {
       padding: 2rem;
       text-align: center;

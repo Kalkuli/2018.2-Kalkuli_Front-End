@@ -8,13 +8,12 @@ footer{
     justify-content: center;
     font-size: 1.7em;
     color: $color-white;
+    padding: 5rem;
 }
 
 .footer__img{
     background-image: url('../../assets/img/footer.png');
-    background-repeat: repeat-x;
     background-position: center;
-    background-size: 10em;
-    width: 100%;
+    background-size: 10rem;
     height: 1em;
 }
