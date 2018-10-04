@@ -1,3 +1,4 @@
+@import "../abstracts/variables.scss";
 
 *,
 *::after,
@@ -12,7 +13,8 @@ html {
   font-size: 62.5%; // defines what 1rem is
 }
 
-body{
+body {
   box-sizing: border-box;
+  background-color: $color-white;
   //padding: 4rem;
 }

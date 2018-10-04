@@ -1,0 +1,19 @@
+@import '../../assets/sass/main.scss';
+
+footer{
+    background-color: $color-black;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7em;
+    color: $color-white;
+    padding: 5rem;
+}
+
+.footer__img{
+    background-image: url('../../assets/img/footer.png');
+    background-position: center;
+    background-size: 10rem;
+    height: 1em;
+}
