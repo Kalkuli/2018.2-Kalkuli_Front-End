@@ -110,6 +110,14 @@ class ReceiptCompare extends Component {
 
 
 	onConfirmHandler = () => {
+		// let taxValue = this.state.receipt.tax_value
+		// let taxValueFloat = parseFloat(taxValue)
+		// let newState = {...this.state.receipt, tax_value: taxValueFloat}
+		// this.setState({
+		// 	receipt: newState
+		// })
+		// console.log(this.state.receipt)
+		this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		this.props.onConfirmButton(this.state.receipt)
 	}
 
