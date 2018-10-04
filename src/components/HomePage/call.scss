@@ -3,7 +3,7 @@
 .call{
     background-color: red;
     padding: 3em;
-    background-image: linear-gradient(to bottom right, $color-dark-blue, $color-light-blue); 
+    background-image: linear-gradient(to bottom right, $color-light-blue, $color-dark-blue); 
     display: flex;
     flex-direction: column; 
     align-items: center;   

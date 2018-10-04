@@ -5,8 +5,8 @@
   height: 100vh;
   background-image: linear-gradient(
                       to right bottom, 
-                      $color-dark-blue, 
-                      $color-light-blue
+                      $color-light-blue,
+                      $color-dark-blue
                     );
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   

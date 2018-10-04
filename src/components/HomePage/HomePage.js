@@ -37,43 +37,38 @@ const HomePage = () => {
       <section className="feature">
         <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
         <div className="feature__container">
-          <div className="feature__container__block ">
-            <div className="feature__container__element">
-              <div className="feature__container__element__border">
-                <img className="feature__container__element__img" src={imgPiggy}/>
-              </div>
-              <p className="feature__container__element__p">
-                Melhora o controle financeiro
-              </p>
+          <div className="feature__container__element">
+            <div className="feature__container__element__border">
+              <img className="feature__container__element__img" src={imgPiggy}/>
             </div>
-            <div className="feature__container__element">
-              <div className="feature__container__element__border">
-                <img className="feature__container__element__img" src={imgReceipt}/>
-              </div>
-              <p className="feature__container__element__p">
-                Evita a perda de comprovantes
-              </p>
-            </div>
+            <p className="feature__container__element__p">
+              Melhora o controle financeiro
+            </p>
           </div>
-
-          <div className="feature__container__block">
-            <div className="feature__container__element">
-              <div className="feature__container__element__border">
-                <img className="feature__container__element__img" src={imgResult}/>
-              </div>
-              <p className="feature__container__element__p">
-                Agiliza a confecção de relatórios
-              </p>
+          <div className="feature__container__element">
+            <div className="feature__container__element__border">
+              <img className="feature__container__element__img" src={imgReceipt}/>
             </div>
-            <div className="feature__container__element">
-              <div className="feature__container__element__border">
-                <img className="feature__container__element__img" src={imgAnalysis}/>
-              </div>
-              <p className="feature__container__element__p">
-                Facilita o entendimento de informações
-              </p>
+            <p className="feature__container__element__p">
+              Evita a perda de comprovantes
+            </p>
+          </div>
+          <div className="feature__container__element">
+            <div className="feature__container__element__border">
+              <img className="feature__container__element__img" src={imgResult}/>
             </div>
-          </div>          
+            <p className="feature__container__element__p">
+              Agiliza a confecção de relatórios
+            </p>
+          </div>
+          <div className="feature__container__element">
+            <div className="feature__container__element__border">
+              <img className="feature__container__element__img" src={imgAnalysis}/>
+            </div>
+            <p className="feature__container__element__p">
+              Facilita o entendimento de informações
+            </p>
+          </div>
         </div>
       </section>
       <div className='footer__img'></div>
