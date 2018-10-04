@@ -4,6 +4,7 @@ import './about.scss'
 import './call.scss'
 import './features.scss'
 import './footer.scss'
+import './navbar.scss'
 import imgPiggy from '../../assets/img/piggy-bank.svg'
 import imgReceipt from '../../assets/img/receipt.svg'
 import imgAnalysis from '../../assets/img/analysis.svg'
@@ -12,7 +13,16 @@ import imgResult from '../../assets/img/result.svg'
 const HomePage = () => {
   return (
     <Fragment>
-
+      <nav className="nav">
+        <a><h1 className="nav__logo">Kalkuli</h1></a>
+        <div className="nav__end">
+          <a className="nav__link" href="#">Sobre</a>
+          <a className="nav__link" href="#">Funcionalidades</a>
+          <div className="nav__bar"></div>
+          <a className="nav__link" href="#">Log in</a>
+          <a className="nav__link nav__button" href="#">Cadastre sua empresa</a>
+        </div>
+      </nav>
       <section className="header">
         <div className="header__container">
           <h1 className="header__container__h1">De Notas para Dados</h1>
