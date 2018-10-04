@@ -1,4 +1,5 @@
 import React,{Fragment} from 'react'
+import Scrollchor from 'react-scrollchor';
 import './header.scss'
 import './about.scss'
 import './call.scss'
@@ -16,11 +17,11 @@ const HomePage = () => {
       <nav className="nav">
         <a><h1 className="nav__logo">Kalkuli</h1></a>
         <div className="nav__end">
-          <a className="nav__link" href="#">Sobre</a>
-          <a className="nav__link" href="#">Funcionalidades</a>
+          <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
+          <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
           <div className="nav__bar"></div>
-          <a className="nav__link" href="#">Log in</a>
-          <a className="nav__link nav__button" href="#">Cadastre sua empresa</a>
+          <a to="#about" className="nav__link" href="#">Log in</a>
+          <a to="#about" className="nav__link nav__button" href="#">Cadastre sua empresa</a>
         </div>
       </nav>
       <section className="header">
@@ -30,7 +31,7 @@ const HomePage = () => {
           <p className="header__container__p">Automatize seu controle financeiro a partir de imagens de suas Notas Fiscais</p>
         </div>
       </section>
-      <section className="about">
+      <section id="about" className="about">
         <div className='about__img'></div>
         <div className='about__text'>
           <h1>Quem somos</h1>
@@ -44,7 +45,7 @@ const HomePage = () => {
         <p>Melhores relatórios geram melhores gestões</p>
         <div className='call__button'>Cadastre sua empresa</div>
       </section>
-      <section className="feature">
+      <section id="features" className="feature">
         <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
         <div className="feature__container">
           <div className="feature__container__element">
