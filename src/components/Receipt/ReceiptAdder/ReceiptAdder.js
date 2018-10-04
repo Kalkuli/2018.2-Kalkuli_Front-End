@@ -33,7 +33,7 @@ class ReceiptAdder extends Component {
   onConfirmHandler = () => {
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
-    axios.post('http://172.31.0.1:5008/api/v1/extract_data', formData, {
+    axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/extract_data', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
