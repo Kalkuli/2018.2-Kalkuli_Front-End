@@ -1,29 +1,19 @@
 import React,{Fragment} from 'react'
-import Scrollchor from 'react-scrollchor';
 import './header.scss'
 import './about.scss'
 import './call.scss'
 import './features.scss'
 import './footer.scss'
-import './navbar.scss'
 import imgPiggy from '../../assets/img/piggy-bank.svg'
 import imgReceipt from '../../assets/img/receipt.svg'
 import imgAnalysis from '../../assets/img/analysis.svg'
 import imgResult from '../../assets/img/result.svg'
+import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 
 const HomePage = () => {
   return (
     <Fragment>
-      <nav className="nav">
-        <a><h1 className="nav__logo">Kalkuli</h1></a>
-        <div className="nav__end">
-          <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
-          <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
-          <div className="nav__bar"></div>
-          <a to="#about" className="nav__link" href="#">Log in</a>
-          <a to="#about" className="nav__link nav__button" href="#">Cadastre sua empresa</a>
-        </div>
-      </nav>
+      <HomeNavBar/>
       <section className="header">
         <div className="header__container">
           <h1 className="header__container__h1">De Notas para Dados</h1>
