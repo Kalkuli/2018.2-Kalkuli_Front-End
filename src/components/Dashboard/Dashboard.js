@@ -4,8 +4,11 @@ import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report';
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 
+
 import 'react-dates/initialize';
 import {DateRangePicker} from 'react-dates';
+import moment from 'moment'
+import 'moment/locale/pt-br'
 import './DatePicker.scss'
 
 const info = {
@@ -50,6 +53,7 @@ class Dashboard extends Component{
     }
 
     render(){
+        moment.locale('pt-br')
         return(
             <div className="dashboard">
                 {console.log(this.state.startDate)}
@@ -58,13 +62,14 @@ class Dashboard extends Component{
                     <div className="dashboard__content__datepicker">
                         <DateRangePicker
                         startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                        startDatePlaceholderText="Data Inicial"
+                        endDatePlaceholderText="Data Final"
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                         endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
                         onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                        displayFormat="D/M/Y"
                         />
                     </div>
                     <div className="dashboard__content__report-area">
