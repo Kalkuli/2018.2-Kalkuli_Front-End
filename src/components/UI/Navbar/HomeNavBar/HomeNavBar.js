@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import './HomeNavBar.scss'
 import Scrollchor from 'react-scrollchor';
+import CadastreEmpresa from '../../Button/CadastreEmpresa/CadastreEmpresa'
+
 class HomeNavBar extends Component {
 
   state = {
@@ -31,7 +33,7 @@ class HomeNavBar extends Component {
           <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
           <div className="nav__bar"></div>
           <a to="#about" className="nav__link" href="#">Log in</a>
-          <a to="#about" className="nav__link nav__button" href="#">Cadastre sua empresa</a>
+          <CadastreEmpresa size="small"/>
         </div>
       </nav>
     )
