@@ -6,31 +6,81 @@ import Modal from '../../UI/Modal/Modal'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
+import Confirmation from '../../UI/Confirmation/Confirmation'
+import Loader from '../../UI/Loader/Loader'
+import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 
 class ReceiptAdder extends Component {
   state = {
     file: null,
-    preview: null
+    loading: false,
+    fileSent: false,
+    fileSelected: false,
+    completed: false
   }
 
   render() {
-
+    let content = this.ChooseScreen()
+    if(this.state.fileSent && !this.state.completed){
+      content = <ReceiptCompare onCancelHandler = {this.onCancelHandler} onConfirmButton = {this.onConfirmButton}/>
+    } else if(this.state.completed){
+      content = <Confirmation onConfirmOk = {this.onConfirmOk}/>
+    }
     return (
       <Modal>
-        <section className="receipt-adder">
-          <DropArea onDropHandler={this.onDropHandler} />
-          <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
-            <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
-          </div>
-        </section>
+        {content}
       </Modal>
     )
   }
 
+  ChooseScreen = () => {
+    if(!this.state.loading){
+      return(
+        <section className="receipt-adder">
+          <DropArea onDropHandler={this.onDropHandler} fileSelected = {this.state.fileSelected} />
+          <div className="receipt-adder__footer">
+            <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
+            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="confirm" >Confirmar</BaseButton>}
+          </div>
+        </section> 
+      )
+    }
+    else {
+      return(
+        <Loader/>
+      )
+    }
+  } 
 
+  onConfirmButton = (receipt) => {
+    axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/receipt', {
+			"receipt": {
+        "receipt": {
+          ...receipt,
+          company_id: 1
+        }
+			}
+    })
+    .then(() => {
+      this.setState({
+        completed: true
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  onConfirmOk = () => {
+    this.props.history.push({
+      pathname: '/dashboard'
+    })
+  }
 
   onConfirmHandler = () => {
+    this.setState({
+      loading: true
+    })
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
     axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/extract_data', formData, {
@@ -38,14 +88,13 @@ class ReceiptAdder extends Component {
         'Content-Type': 'multipart/form-data'
       }
     })
-      .then((response) => {
-        this.props.history.push({
-          pathname: '/compare-data-with-receipt',
-          state: {
-            receipt: response.data.receipt
-          }
-        });
-      });
+    .then(response => {
+      this.props.onFileExtractedAdded(response.data.receipt)
+      this.setState({
+        fileSent: true,
+        loading:false
+      })
+    })
   }
 
   onDropHandler = (file, rejectedFiles) => {
@@ -53,23 +102,24 @@ class ReceiptAdder extends Component {
       const currentFile = file[0]
       const reader = new FileReader()
       reader.addEventListener("load", () => {
-        this.setState({ preview: reader.result })
-        this.props.onFileAdded(this.state.preview)
+        this.props.onFilePDFAdded(reader.result)
       }, false)
       reader.readAsDataURL(currentFile)
-      this.setState({ file: file });
+      this.setState({ file: file, fileSelected: true })
     } else if (rejectedFiles) {
+      this.setState({fileSelected: false})
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
     }
   }
 
-  onCancelHandler = () => { console.log("cancel") }
+  onCancelHandler = () => { this.setState({fileSent: false, fileSelected: false}) }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFileAdded: (file) => dispatch({ type: actionTypes.ADD_FILE, file: file })
+    onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF}),
+    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted})
   }
 }
 
