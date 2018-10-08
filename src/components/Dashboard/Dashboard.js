@@ -59,8 +59,8 @@ class Dashboard extends Component{
                 {console.log(this.state.startDate)}
                 <Navbar/>
                 <div className="dashboard__content">
-                    <div className="dashboard__content__datepicker">
-                        <DateRangePicker
+                    <div className="dashboard__content__datepicker datepicker">
+                        <DateRangePicker 
                         startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                         startDatePlaceholderText="Data Inicial"
                         endDatePlaceholderText="Data Final"
