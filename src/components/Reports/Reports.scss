@@ -10,23 +10,24 @@
 .reports__area {
     display: flex;
     justify-content: space-between;
-    padding-top: 5%;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-top: 3%;
+    padding-right: 4%;
+    padding-left: 4%;
 }
 
 .reports__area__resumes {
     display: flex;
     flex-wrap: wrap;
     width: 90em;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-content: flex-start;
-    height: 50em;
+    height: 45em;
     overflow-y: auto;
+    padding-top: 2em;
 }
 
 .reports__button {
     float: right;
-    margin-right: 5%;  
-    margin-top: 1em; 
+    margin-right: 5.5em;  
+    margin-top: 2em; 
 }
