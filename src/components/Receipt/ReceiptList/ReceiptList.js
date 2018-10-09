@@ -35,12 +35,24 @@ export default class ReceiptList extends Component {
         console.log('rodando rodando!')
     }
 
+    onNewReceiptHandler = () => {
+        console.log('nova nota')
+    }
+
+    onNewReportHandler = () => {
+        this.props.history.push({pathname: '/reports'})
+    }
+
     render() {
         return (
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
-                <MenuButton display={this.state.display} rotate={this.state.rotate} onClickRotate={this.changeRotate} />
+                <MenuButton     display={this.state.display} 
+                                rotate={this.state.rotate} 
+                                onClickRotate={this.changeRotate} 
+                                onNewReceiptHandler={this.onNewReceiptHandler}
+                                onNewReportHandler={this.onNewReportHandler}/>
             </div>
         )
     }
