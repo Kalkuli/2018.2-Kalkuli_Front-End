@@ -10,6 +10,7 @@ export default class ReceiptList extends Component {
     state = {  
         loaded: false,
         display: 'block',
+        rotate: false
     }
 
 
@@ -30,6 +31,7 @@ export default class ReceiptList extends Component {
     }
 
     changeRotate = () => { 
+        this.setState({rotate: !this.state.rotate, display: !this.state.display});
         console.log('rodando rodando!')
     }
 
@@ -38,7 +40,7 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
-                <MenuButton display={this.state.display} onClickRotate={this.changeRotate} />
+                <MenuButton display={this.state.display} rotate={this.state.rotate} onClickRotate={this.changeRotate} />
             </div>
         )
     }

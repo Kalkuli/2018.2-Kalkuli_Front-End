@@ -1,10 +1,11 @@
 import React from 'react'
 import './MenuButton.scss'
 
-const MenuButton = ({ display, onClickRotate }) => (
+const MenuButton = ({ display, rotate, onClickRotate }) => (
   <div>
     <div className='receiptplus scalehover' onClick={onClickRotate} >
-        <div className='receipt__plus' />
+        <div className='receipt__plus'
+        style={{transform: rotate ? 'rotate(45deg)' : 'rotate(0)'}}/>
     </div>
     <div className='receipt__options'>
       <div style={{display: display ? 'none' : 'block'}}>
