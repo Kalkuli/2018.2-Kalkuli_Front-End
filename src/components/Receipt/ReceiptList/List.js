@@ -24,7 +24,7 @@ class ReceiptList extends React.Component {
 
 				{receiptView}
 
-				{this.props.receipts.map(receipt => {
+				{/* this.props.receipts.map(receipt => {
 					console.log(this.props.receipts)
 					return <div key={receipt.id}>
 						<Receipt size="small" onClickHandler={() => this.onOpenPopup(receipt)}>
@@ -42,12 +42,17 @@ class ReceiptList extends React.Component {
 										<p><b>Preço:</b></p>
 										<p>{receipt.total_price}</p>
 									</div>
+									<Receipt size="small" onClickHandler={this.onOpenPopup}>
+										<div className='container-receipts__receipt-data receipt-font'>
+											<div className='dadosNotas'>
+												<div className='dados'>{receipt.emission_date}</div>
+												<div className='dados'>{receipt.emission_place}</div>
+												<div className='dados'>{receipt.total_price}</div>
+											</div>
+										</div>
+									</Receipt>
 								</div>
-							</div>
-						</Receipt>
-
-					</div>
-				})}
+				}) */}
 			</div>
 		)
 	}
