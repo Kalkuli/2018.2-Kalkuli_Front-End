@@ -3,6 +3,8 @@ import './Dashboard.scss'
 import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report';
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
+import axios from 'axios';
+import Loader from '../UI/Loader/Loader'
 
 
 import 'react-dates/initialize';
@@ -46,6 +48,7 @@ class Dashboard extends Component{
         super(props);
 
         this.state = {
+            loading: false,
             startDate: null,
             endDate: null,
             focusedInput: null
@@ -76,7 +79,7 @@ class Dashboard extends Component{
                     </div>
                     <div className="dashboard__content__report-area">
                         <Report data={info.fakeData.report.receipts}/>
-                        <BaseButton size="small" type="confirm" click={this.onConfirmHandler}>Salvar Relatório</BaseButton>
+                        {this.state.loading ? <Loader type="loader_reports"/> : <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>}
                     </div>
                 </div>
             </div>
@@ -84,7 +87,29 @@ class Dashboard extends Component{
     }
     onConfirmHandler = () => {
 		this.props.history.push('/confirmation')
-	}
+    }
+    
+
+    onConfirmButton = (receipt) => {
+        this.setState({
+            loading: true
+        })
+        axios.post('#', {  //adicionar rota do get de notas a partir de um período 
+                "period": {
+                    start_date: this.state.startDate,
+                    end_date: this.state.endDate
+                }
+        })
+        .then(() => {
+          this.setState({
+            loading: false
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      }
+
 }
 
 export default Dashboard

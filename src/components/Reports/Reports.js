@@ -216,6 +216,7 @@ class Reports extends Component {
                             focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                             onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                             isOutsideRange={() => false}
+                            hideKeyboardShortcutsPanel = {() => true}
                             />
                         </div>
                         <div className="reports__area__resumes">
