@@ -216,9 +216,9 @@
 	color: $color-white;
   }
   .CalendarDay__hovered_span:active {
-	background: #80e8e0;
-	border: 1px double #80e8e0;
-	color: #007a87
+	background: $color-light-blue;
+	border: 1px double $color-dark-blue;
+	color: $color-white;
   }
   .CalendarDay__blocked_calendar,
   .CalendarDay__blocked_calendar:active,
@@ -494,4 +494,5 @@
 	z-index: 1;
 	background-color: transparent;
 	position: absolute
-  }
+	}
+	
