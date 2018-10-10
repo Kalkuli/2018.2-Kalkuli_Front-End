@@ -4,13 +4,16 @@ import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'
 import './ReceiptList.scss'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
+import ReceiptAdder from '../../Receipt/ReceiptAdder/ReceiptAdder'
+import Backdrop from '../../UI/BackDrop/BackDrop'
 
 export default class ReceiptList extends Component {
 
     state = {  
         loaded: false,
         display: 'block',
-        rotate: false
+        rotate: false,
+        newReceipt: false
     }
 
 
@@ -32,11 +35,21 @@ export default class ReceiptList extends Component {
 
     changeRotate = () => { 
         this.setState({rotate: !this.state.rotate, display: !this.state.display});
-        console.log('rodando rodando!')
+    }
+
+    renderModal = () => {
+        return <div>
+                <Backdrop show={this.state.newReceipt} click={this.onCloseReceiptAdder} />
+                <ReceiptAdder />
+               </div>
+    } 
+
+    onCloseReceiptAdder = () => {
+        this.setState({newReceipt: false})
     }
 
     onNewReceiptHandler = () => {
-        console.log('nova nota')
+        this.setState({newReceipt: true})
     }
 
     onNewReportHandler = () => {
@@ -48,6 +61,7 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar />
                 {this.state.loaded && <List receipts={this.state.receipts} />}
+                {this.state.newReceipt ? this.renderModal() : false}
                 <MenuButton     display={this.state.display} 
                                 rotate={this.state.rotate} 
                                 onClickRotate={this.changeRotate} 
