@@ -24,7 +24,7 @@ class ReceiptList extends React.Component {
 
 				{receiptView}
 
-				{/* this.props.receipts.map(receipt => {
+				{this.props.receipts.map(receipt => {
 					console.log(this.props.receipts)
 					return <div key={receipt.id}>
 						<Receipt size="small" onClickHandler={() => this.onOpenPopup(receipt)}>
@@ -52,7 +52,7 @@ class ReceiptList extends React.Component {
 										</div>
 									</Receipt>
 								</div>
-				}) */}
+				})}
 			</div>
 		)
 	}
