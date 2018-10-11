@@ -1,0 +1,16 @@
+@keyframes popUp {
+  
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+
+  65% {
+    transform: translate(-50%, -42%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

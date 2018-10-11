@@ -16,9 +16,24 @@ export default class ReceiptList extends Component {
         newReceipt: false
     }
 
-
     componentDidMount() {
         this.getAllReceipts();
+    }
+
+    render() {
+        return (
+            <div >
+                <Navbar/>
+                <Backdrop show={this.state.newReceipt} click={this.onCloseReceiptAdder} />
+                { this.state.newReceipt ? <ReceiptAdder show={this.state.newReceipt}/> : null }
+                { this.state.loaded && <List receipts={this.state.receipts} /> }
+                <MenuButton     display={this.state.display} 
+                                rotate={this.state.rotate} 
+                                onClickRotate={this.changeRotate} 
+                                onNewReceiptHandler={this.onNewReceiptHandler}
+                                onNewReportHandler={this.onNewReportHandler}/>
+            </div>
+        )
     }
 
     getAllReceipts = () => {
@@ -37,13 +52,6 @@ export default class ReceiptList extends Component {
         this.setState({rotate: !this.state.rotate, display: !this.state.display});
     }
 
-    renderModal = () => {
-        return <div>
-                <Backdrop show={this.state.newReceipt} click={this.onCloseReceiptAdder} />
-                <ReceiptAdder />
-               </div>
-    } 
-
     onCloseReceiptAdder = () => {
         this.setState({newReceipt: false})
     }
@@ -54,20 +62,5 @@ export default class ReceiptList extends Component {
 
     onNewReportHandler = () => {
         this.props.history.push({pathname: '/reports'})
-    }
-
-    render() {
-        return (
-            <div >
-                <Navbar/>
-                    {this.state.loaded && <List receipts={this.state.receipts} />}
-                    {this.state.newReceipt ? this.renderModal() : false}
-                    <MenuButton     display={this.state.display} 
-                                    rotate={this.state.rotate} 
-                                    onClickRotate={this.changeRotate} 
-                                    onNewReceiptHandler={this.onNewReceiptHandler}
-                                    onNewReportHandler={this.onNewReportHandler}/>
-            </div>
-        )
     }
 }
