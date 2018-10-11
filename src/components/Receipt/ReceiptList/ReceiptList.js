@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Axios from 'axios'
 import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'
@@ -11,7 +11,6 @@ export default class ReceiptList extends Component {
 
     state = {  
         loaded: false,
-        display: 'block',
         rotate: false,
         newReceipt: false
     }
@@ -24,13 +23,11 @@ export default class ReceiptList extends Component {
         return (
             <div >
                 <Navbar/>
-                <Backdrop show={this.state.newReceipt} click={this.onCloseReceiptAdder} />
-                { this.state.newReceipt ? <ReceiptAdder show={this.state.newReceipt}/> : null }
+                { this.state.newReceipt ? this.renderReceiptAdder() : null }
                 { this.state.loaded && <List receipts={this.state.receipts} /> }
-                <MenuButton     display={this.state.display} 
-                                rotate={this.state.rotate} 
-                                onClickRotate={this.changeRotate} 
-                                onNewReceiptHandler={this.onNewReceiptHandler}
+                <MenuButton     rotate={this.state.rotate} 
+                                onClickMenuButton={this.onClickMenuButton} 
+                                onNewReceiptHandler={this.onToggleNewReceipt}
                                 onNewReportHandler={this.onNewReportHandler}/>
             </div>
         )
@@ -48,16 +45,25 @@ export default class ReceiptList extends Component {
             })
     }
 
-    changeRotate = () => { 
-        this.setState({rotate: !this.state.rotate, display: !this.state.display});
+    onClickMenuButton = () => { 
+        this.setState({rotate: !this.state.rotate, display: !this.state.display})
+    }
+
+    renderReceiptAdder = () => {
+        return (
+            <Fragment>
+                <Backdrop show={this.state.newReceipt} click={this.onToggleNewReceipt} />
+                <ReceiptAdder show={this.state.newReceipt}/>
+            </Fragment>
+        )
     }
 
     onCloseReceiptAdder = () => {
         this.setState({newReceipt: false})
     }
 
-    onNewReceiptHandler = () => {
-        this.setState({newReceipt: true})
+    onToggleNewReceipt = () => {
+        this.setState(prevState => ({newReceipt: !prevState.newReceipt}))
     }
 
     onNewReportHandler = () => {

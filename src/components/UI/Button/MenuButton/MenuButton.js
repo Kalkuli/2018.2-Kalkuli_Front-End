@@ -1,37 +1,26 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import './MenuButton.scss'
 
-const MenuButton = (props) => (
-  <div>
-    <div className='receiptplus scalehover' onClick={props.onClickRotate} >
-        <div className='receipt__plus'
-        style={{transform: props.rotate ? 'rotate(45deg)' : 'rotate(0)'}}/>
-    </div>
-    <div className='receipt__options'>
-      <div style={{display: props.display ? 'none' : 'block'}} onClick={props.onNewReceiptHandler}>
-          <div className='receipt__options--newReceipt scalehover'>
-              <div className='receipt__img__container'>
-                  <div className='receipt__options__imgReceipt'/>
-              </div>
-          </div>
-      </div>
-      <div style={{display: props.display ? 'none' : 'block'}} onClick={props.onNewReportHandler}>
-          <div className='receipt__options--newReport scalehover'>
-              <div className='receipt__img__container'>
-                  <div className='receipt__options__imgReport'/>  
-              </div>
-          </div>
-      </div>
-      <div className='receipt__report__names'>
-          <div style={{display: props.display ? 'none' : 'block'}} >
-              <p>Nova Nota</p>
-          </div>
-          <div style={{display: props.display ? 'none' : 'block'}}>
-              <p className='receipt__report__name--text'>Novo relatório</p>
-          </div>
-      </div>
-    </div>
-  </div>
-)
+const MenuButton = (props) => {
+    
+    return (
+        <Fragment>
+            <div className="menubutton button" onClick={props.onClickMenuButton} >
+                <h1 className="menubutton__plus base-button">+</h1>
+            </div>
+            {props.rotate ? 
+                    <div className="options">
+                        <div className="options__element">
+                            <p className="options__element--text">nova nota</p>
+                            <span className="options__element--circle button"> </span>            
+                        </div>
+                        <div className="options__element">
+                            <p className="options__element--text">novo relatório</p>
+                            <span className="options__element--circle button"></span>
+                        </div>
+                    </div> : null}
+        </Fragment>
+    )
+}
 
 export default MenuButton
