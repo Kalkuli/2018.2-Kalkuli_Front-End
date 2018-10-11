@@ -59,14 +59,14 @@ export default class ReceiptList extends Component {
     render() {
         return (
             <div >
-                <Navbar />
-                {this.state.loaded && <List receipts={this.state.receipts} />}
-                {this.state.newReceipt ? this.renderModal() : false}
-                <MenuButton     display={this.state.display} 
-                                rotate={this.state.rotate} 
-                                onClickRotate={this.changeRotate} 
-                                onNewReceiptHandler={this.onNewReceiptHandler}
-                                onNewReportHandler={this.onNewReportHandler}/>
+                <Navbar/>
+                    {this.state.loaded && <List receipts={this.state.receipts} />}
+                    {this.state.newReceipt ? this.renderModal() : false}
+                    <MenuButton     display={this.state.display} 
+                                    rotate={this.state.rotate} 
+                                    onClickRotate={this.changeRotate} 
+                                    onNewReceiptHandler={this.onNewReceiptHandler}
+                                    onNewReportHandler={this.onNewReportHandler}/>
             </div>
         )
     }

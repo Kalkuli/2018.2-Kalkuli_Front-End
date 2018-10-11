@@ -26,16 +26,16 @@ class HomeNavBar extends Component {
       styles.push("color")
     
     return(
-      <nav className={styles.join(' ')}>
+      <div className={styles.join(' ')}>
         <a><h1 className="nav__logo">Kalkuli</h1></a>
-        <div className="nav__end">
+        <nav className="nav__end">
           <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
           <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
           <div className="nav__bar"></div>
           <a to="#about" className="nav__link" href="#">Log in</a>
           <CadastreEmpresa size="small"/>
-        </div>
-      </nav>
+        </nav>
+      </div>
     )
   }
 }
