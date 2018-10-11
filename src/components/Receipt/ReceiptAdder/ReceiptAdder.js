@@ -21,10 +21,10 @@ class ReceiptAdder extends Component {
 
   render() {
     let content = this.ChooseScreen()
-    if(this.state.fileSent && !this.state.completed){
-      content = <ReceiptCompare onCancelHandler = {this.onCancelHandler} onConfirmButton = {this.onConfirmButton}/>
-    } else if(this.state.completed){
-      content = <Confirmation onConfirmOk = {this.onConfirmOk}/>
+    if (this.state.fileSent && !this.state.completed) {
+      content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} />
+    } else if (this.state.completed) {
+      content = <Confirmation onConfirmOk={this.onConfirmOk} />
     }
     return (
       <Modal>
@@ -34,41 +34,39 @@ class ReceiptAdder extends Component {
   }
 
   ChooseScreen = () => {
-    if(!this.state.loading){
-      return(
+    if (!this.state.loading) {
+      return (
         <section className="receipt-adder">
-          <DropArea onDropHandler={this.onDropHandler} fileSelected = {this.state.fileSelected} />
+          <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
             <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
             {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="confirm" >Confirmar</BaseButton>}
           </div>
-        </section> 
+        </section>
       )
     }
     else {
-      return(
-        <Loader/>
+      return (
+        <Loader />
       )
     }
-  } 
+  }
 
   onConfirmButton = (receipt) => {
-    axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/receipt', {
-			"receipt": {
-        "receipt": {
-          ...receipt,
-          company_id: 1
-        }
-			}
+    axios.post('http://172.31.0.1:5008/api/v1/receipt', {
+      "receipt": {
+        ...receipt,
+        company_id: 1
+      }
     })
-    .then(() => {
-      this.setState({
-        completed: true
+      .then(() => {
+        this.setState({
+          completed: true
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   onConfirmOk = () => {
@@ -83,18 +81,18 @@ class ReceiptAdder extends Component {
     })
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
-    axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/extract_data', formData, {
+    axios.post('http://172.31.0.1:5008/api/v1/extract_data', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(response => {
-      this.props.onFileExtractedAdded(response.data.receipt)
-      this.setState({
-        fileSent: true,
-        loading:false
+      .then(response => {
+        this.props.onFileExtractedAdded(response.data.receipt)
+        this.setState({
+          fileSent: true,
+          loading: false
+        })
       })
-    })
   }
 
   onDropHandler = (file, rejectedFiles) => {
@@ -107,19 +105,19 @@ class ReceiptAdder extends Component {
       reader.readAsDataURL(currentFile)
       this.setState({ file: file, fileSelected: true })
     } else if (rejectedFiles) {
-      this.setState({fileSelected: false})
+      this.setState({ fileSelected: false })
       alert("Só aceitamos 1 arquivo PDF")
       console.log("arquivo rejeitado: ", rejectedFiles)
     }
   }
 
-  onCancelHandler = () => { this.setState({fileSent: false, fileSelected: false}) }
+  onCancelHandler = () => { this.setState({ fileSent: false, fileSelected: false }) }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF}),
-    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted})
+    onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
+    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted })
   }
 }
 
