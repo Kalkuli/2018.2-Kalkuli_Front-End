@@ -1,4 +1,4 @@
-@keyframes popUp {
+@keyframes fall {
   
   0% {
     opacity: 0;
@@ -13,4 +13,28 @@
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    transform: translate(0, 11rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  } 
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, 11rem);
+  } 
 }

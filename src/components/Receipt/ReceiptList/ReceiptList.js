@@ -12,7 +12,8 @@ export default class ReceiptList extends Component {
     state = {  
         loaded: false,
         rotate: false,
-        newReceipt: false
+        newReceipt: false,
+        clickedMenuButton: false
     }
 
     componentDidMount() {
@@ -26,6 +27,7 @@ export default class ReceiptList extends Component {
                 { this.state.newReceipt ? this.renderReceiptAdder() : null }
                 { this.state.loaded && <List receipts={this.state.receipts} /> }
                 <MenuButton     rotate={this.state.rotate} 
+                                clickedMenuButton={this.state.clickedMenuButton}
                                 onClickMenuButton={this.onClickMenuButton} 
                                 onNewReceiptHandler={this.onToggleNewReceipt}
                                 onNewReportHandler={this.onNewReportHandler}/>
@@ -46,7 +48,7 @@ export default class ReceiptList extends Component {
     }
 
     onClickMenuButton = () => { 
-        this.setState({rotate: !this.state.rotate, display: !this.state.display})
+        this.setState(prevState => ({rotate: !prevState.rotate, clickedMenuButton: true}))
     }
 
     renderReceiptAdder = () => {
