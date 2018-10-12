@@ -9,7 +9,7 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-
+import {withRouter} from 'react-router-dom'
 class ReceiptAdder extends Component {
   state = {
     file: null,
@@ -121,4 +121,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ReceiptAdder)
+export default withRouter(connect(null, mapDispatchToProps)(ReceiptAdder))

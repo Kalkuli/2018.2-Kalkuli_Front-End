@@ -15,15 +15,11 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path='/' exact component={HomePage}/> 
-          <Route path='/extract-data' component={ReceiptAdder} />
-          <Route path='/edit-receipt-data' render={() => <h1>edit receipt data</h1>} />
           <Route path='/list-all-receipts'component={ReceiptList} />
-          <Route path='/confirmation' component={Confirmation} />
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/reports' component={Reports} />
           <Route path='/receipt' component={ReceiptView} />
           <Route render={() => <h1>Not found</h1>} />
-          
         </Switch>
       </BrowserRouter>
     )
