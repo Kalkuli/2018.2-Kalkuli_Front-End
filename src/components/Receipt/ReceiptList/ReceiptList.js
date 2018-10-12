@@ -22,7 +22,7 @@ export default class ReceiptList extends Component {
     }
 
     getAllReceipts() {
-        Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
+        Axios.get('http://kalkuli-gateway.herokuapp.com/api/v1/receipts')
             .then((response) => {
                 console.log(response);
                 this.setState({
