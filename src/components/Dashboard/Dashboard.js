@@ -51,7 +51,10 @@ class Dashboard extends Component{
             loading: false,
             startDate: null,
             endDate: null,
-            focusedInput: null
+            isEndDate: false,
+            focusedInput: null,
+            date_from: null,
+            date_to:null
         }
     }
 
@@ -59,7 +62,6 @@ class Dashboard extends Component{
         moment.locale('pt-br')
         return(
             <div className="dashboard">
-                {console.log(this.state.startDate)}
                 <Navbar/>
                 <div className="dashboard__content">
                     <div className="dashboard__content__datepicker datepicker">
@@ -70,7 +72,7 @@ class Dashboard extends Component{
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                         endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                        onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                         isOutsideRange={() => false}
@@ -88,16 +90,43 @@ class Dashboard extends Component{
     onConfirmHandler = () => {
 		this.props.history.push('/confirmation')
     }
+
+    onChange = (startDate, endDate) => {
+        this.setState(startDate, endDate)
+        this.setState({isEndDate: true})
+        if(this.state.isEndDate){
+            var date_from = startDate.startDate._d
+            var date_to = startDate.endDate._d
+
+            this.setState({
+                date_from: date_from,
+                date_to: date_to
+            })
+            
+            axios.post('#', {  //rota que recebe duas datas e retorna um json report, q possui notas e a soma dos valores
+                "period": {
+                    start_date: this.state.date_from,
+                    end_date: this.state.date_to
+                }
+            })
+            .then(
+                this.setState({isEndDate: false})
+            )
+            .catch((error) => {
+                console.log(error)
+            })
+        }
+    }
     
 
     onConfirmButton = (receipt) => {
         this.setState({
             loading: true
         })
-        axios.post('#', {  //adicionar rota do get de notas a partir de um período 
+        axios.post('#', {  //adicionar rota que receba duas datas, faça a soma do valor total da report e salve as datas e a soma no banco
                 "period": {
-                    start_date: this.state.startDate,
-                    end_date: this.state.endDate
+                    start_date: this.state.date_from,
+                    end_date: this.state.date_to
                 }
         })
         .then(() => {
