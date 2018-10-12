@@ -50,9 +50,15 @@ class ReceiptList extends React.Component {
 												<div className='dados'>{receipt.total_price}</div>
 											</div>
 										</div>
-									</Receipt>
+										<div className='dados'>
+											<p><b>Preço:</b></p>
+											<p>{receipt.total_price}</p>
+										</div>
+									</div>
 								</div>
-				})}
+							</Receipt>
+						</div>
+					)})}
 			</div>
 		)
 	}

@@ -38,12 +38,10 @@ export default class ReceiptList extends Component {
     getAllReceipts = () => {
         Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
             .then((response) => {
-                console.log(response);
                 this.setState({
                     receipts: response.data.data.receipts,
                     loaded: true
                 })
-                console.log(this.state);
             })
     }
 
