@@ -16,26 +16,14 @@
 }
 
 .receipt-area{
+    display: flex;
     flex-flow: column;
     justify-content: space-around;
-    // height: 30%;
-    display: flex;
-    margin-top: 3rem;
-    margin-left: 4rem;
     font-size: 2rem;
-    width: 32rem;
-
-    @media screen and (max-width: 1400px){
-        font-size: 1.5rem;
-        width: 23rem;
-        margin-left: 3rem;
-    }
-
-    @media screen and (min-width: 1400px) {
-        width: 40rem;
-        // height: 60rem;
-        background-size: 90% auto;
-    }
+    width: 80%;
+    font-size: 1.7rem;
+    margin-top: 4rem;
+    margin-left: 2.2rem;
 
     &__content{
         display: flex;

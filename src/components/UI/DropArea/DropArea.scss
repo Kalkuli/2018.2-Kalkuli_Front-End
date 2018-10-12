@@ -13,10 +13,9 @@
   transition: all 1s;
 
   &__title {
-    font-family: 'Alfa Slab One', cursive;
-    font-weight: 100;
     font-size: 3rem;
     user-select: none;
+    color: $color-light-blue;
   }
 
   &__p {
