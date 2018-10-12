@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import './HomeNavBar.scss'
 import Scrollchor from 'react-scrollchor';
 import CadastreEmpresa from '../../Button/CadastreEmpresa/CadastreEmpresa'
+import {Link} from 'react-router-dom'
 
 class HomeNavBar extends Component {
 
@@ -32,7 +33,7 @@ class HomeNavBar extends Component {
           <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
           <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
           <div className="nav__bar"></div>
-          <a to="#about" className="nav__link" href="#">Log in</a>
+          <Link to="/" className="nav__link" href="">Log in</Link>
           <CadastreEmpresa size="small"/>
         </nav>
       </div>

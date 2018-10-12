@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react'
 import './MenuButton.scss'
-import BackDrop from '../../BackDrop/BackDrop'
 import imgReport from '../../../../assets/img/report.svg'
 import imgReceipt from '../../../../assets/img/receiptWhite.svg'
 
@@ -25,13 +24,13 @@ const MenuButton = (props) => {
                 <div className="options__element">
                     <p className="options__element--text">nova nota</p>
                     <span className="options__element--circle button" onClick={props.onNewReceiptHandler}>
-                        <img src={imgReceipt} alt="receipt image"/>
+                        <img src={imgReceipt} alt="nota fiscal"/>
                     </span>            
                 </div>
                 <div className="options__element">
                     <p className="options__element--text">novo relatório</p>
                     <span className="options__element--circle button" onClick={props.onNewReportHandler}>
-                        <img src={imgReport} alt="report image"/>
+                        <img src={imgReport} alt="relatorio"/>
                     </span>
                 </div>
             </div> 

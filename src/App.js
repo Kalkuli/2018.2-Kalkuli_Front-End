@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
-import ReceiptCompare from './components/Receipt/ReceiptCompare/ReceiptCompare'
 import Confirmation from './components/UI/Confirmation/Confirmation'
 import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'

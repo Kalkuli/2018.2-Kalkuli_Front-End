@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import "./DropArea.scss"
 import ReactDropzone from 'react-dropzone'
-import Receipt from '../../UI/Receipt/Receipt'
 
 const DropArea = (props) => (
   <Fragment>

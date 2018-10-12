@@ -41,7 +41,7 @@ const HomePage = () => {
         <div className="feature__container">
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgPiggy}/>
+              <img className="feature__container__element__img" src={imgPiggy} alt="controle financeiro"/>
             </div>
             <p className="feature__container__element__p">
               Melhora o controle financeiro
@@ -49,7 +49,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgReceipt}/>
+              <img className="feature__container__element__img" src={imgReceipt} alt="evita perda de comprovantes"/>
             </div>
             <p className="feature__container__element__p">
               Evita a perda de comprovantes
@@ -57,7 +57,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgResult}/>
+              <img className="feature__container__element__img" src={imgResult} alt="agiliza relatórios"/>
             </div>
             <p className="feature__container__element__p">
               Agiliza a confecção de relatórios
@@ -65,7 +65,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgAnalysis}/>
+              <img className="feature__container__element__img" src={imgAnalysis} alt="interpreta informações"/>
             </div>
             <p className="feature__container__element__p">
               Facilita o entendimento de informações

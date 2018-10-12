@@ -3,9 +3,6 @@ import './Modal.scss'
 
 class Modal extends React.PureComponent {
 
-/* 	shouldComponentUpdate(nextProps, nextState) {
-	}
- */
 	render() {
 		let style = ["modal"]
 		this.props.show ? style.push("show") : null
