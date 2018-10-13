@@ -20,7 +20,7 @@
 
 .menubutton {
   z-index: 50;
-  position: absolute;
+  position: fixed;
   width: 8rem;
   height: 8rem;
   border-radius: 20em;
@@ -40,7 +40,7 @@
   justify-content: space-around;
   width: 20rem;
   height: 15rem;
-  position: absolute;
+  position: fixed;
   bottom: 14rem;
   right: 7rem;
 
