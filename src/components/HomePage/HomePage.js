@@ -9,7 +9,7 @@ import imgReceipt from '../../assets/img/receipt.svg'
 import imgAnalysis from '../../assets/img/analysis.svg'
 import imgResult from '../../assets/img/result.svg'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
-import CadastreEmpresa from '../UI/Button/CadastreEmpresa/CadastreEmpresa'
+import SignUp from '../UI/Button/SignUp/SignUp'
 
 const HomePage = () => {
   return (
@@ -34,7 +34,7 @@ const HomePage = () => {
         <p className='call__p--first'>Rápido entendimento fiscal</p>
         <div className='call__bar'></div>
         <p>Melhores relatórios geram melhores gestões</p>
-        <CadastreEmpresa size="large"/>
+        <SignUp size="large"/>
       </section>
       <section id="features" className="feature">
         <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>

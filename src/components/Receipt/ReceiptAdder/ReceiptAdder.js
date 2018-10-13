@@ -27,7 +27,7 @@ class ReceiptAdder extends Component {
       content = <Confirmation onConfirmOk={this.onConfirmOk} />
     }
     return (
-      <Modal>
+      <Modal show={this.props.show}>
         {content}
       </Modal>
     )

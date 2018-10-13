@@ -1,8 +1,8 @@
 import React from 'react'
-import './CadastreEmpresa.scss'
+import './SignUp.scss'
 
-const cadastreEmpresa = (props) => {
-  let styles = ["cadastra-btn"]
+const SignUp = (props) => {
+  let styles = ["SignUp-btn"]
   if(props.size === "large")
     styles.push("large")
   else(props.size === "small")
@@ -12,4 +12,4 @@ const cadastreEmpresa = (props) => {
   )
 }
 
-export default cadastreEmpresa
+export default SignUp
