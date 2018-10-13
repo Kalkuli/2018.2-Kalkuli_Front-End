@@ -42,6 +42,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scrollchor": "^6.0.0",
+    "react-test-renderer": "^16.5.2",
     "reactjs-popup": "^1.2.0",
     "redux": "^4.0.0",
     "resolve": "1.6.0",

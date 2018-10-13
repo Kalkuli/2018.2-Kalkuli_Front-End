@@ -1,0 +1,32 @@
+@import "../../../../assets/sass/main.scss";
+
+.cadastra-btn {
+  background-color: $color-white;
+  color: $color-dark-blue;
+  font-weight: 700;
+  padding: .8em;
+  border-radius: .3em;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  text-align: center;
+  &:hover {
+    box-shadow: 0 1px 1.2rem $color-black;
+    transform: translateY(-.2rem);
+  }
+  
+  &:active {
+    box-shadow: 0 1px .5rem $color-black;
+    transform: translateY(.2rem);
+  }
+}
+
+.large {
+  margin-top: 2em;
+  font-size: 2em;
+  width: 27rem;
+}
+
+.small {
+  margin-left: 1.5rem;
+}

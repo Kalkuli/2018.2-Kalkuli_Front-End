@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import './ReceiptCompare.scss'
 import Receipt from '../../UI/Receipt/Receipt'
-import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
-import axios from 'axios';
 import { connect } from 'react-redux'
 
 class ReceiptCompare extends Component {

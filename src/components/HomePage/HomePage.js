@@ -9,6 +9,7 @@ import imgReceipt from '../../assets/img/receipt.svg'
 import imgAnalysis from '../../assets/img/analysis.svg'
 import imgResult from '../../assets/img/result.svg'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
+import CadastreEmpresa from '../UI/Button/CadastreEmpresa/CadastreEmpresa'
 
 const HomePage = () => {
   return (
@@ -33,14 +34,14 @@ const HomePage = () => {
         <p className='call__p--first'>Rápido entendimento fiscal</p>
         <div className='call__bar'></div>
         <p>Melhores relatórios geram melhores gestões</p>
-        <div className='call__button'>Cadastre sua empresa</div>
+        <CadastreEmpresa size="large"/>
       </section>
       <section id="features" className="feature">
         <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
         <div className="feature__container">
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgPiggy}/>
+              <img className="feature__container__element__img" src={imgPiggy} alt="controle financeiro"/>
             </div>
             <p className="feature__container__element__p">
               Melhora o controle financeiro
@@ -48,7 +49,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgReceipt}/>
+              <img className="feature__container__element__img" src={imgReceipt} alt="evita perda de comprovantes"/>
             </div>
             <p className="feature__container__element__p">
               Evita a perda de comprovantes
@@ -56,7 +57,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgResult}/>
+              <img className="feature__container__element__img" src={imgResult} alt="agiliza relatórios"/>
             </div>
             <p className="feature__container__element__p">
               Agiliza a confecção de relatórios
@@ -64,7 +65,7 @@ const HomePage = () => {
           </div>
           <div className="feature__container__element">
             <div className="feature__container__element__border">
-              <img className="feature__container__element__img" src={imgAnalysis}/>
+              <img className="feature__container__element__img" src={imgAnalysis} alt="interpreta informações"/>
             </div>
             <p className="feature__container__element__p">
               Facilita o entendimento de informações

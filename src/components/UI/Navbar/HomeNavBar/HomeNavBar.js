@@ -1,6 +1,9 @@
 import React,{Component} from 'react'
 import './HomeNavBar.scss'
 import Scrollchor from 'react-scrollchor';
+import CadastreEmpresa from '../../Button/CadastreEmpresa/CadastreEmpresa'
+import {Link} from 'react-router-dom'
+
 class HomeNavBar extends Component {
 
   state = {
@@ -24,16 +27,16 @@ class HomeNavBar extends Component {
       styles.push("color")
     
     return(
-      <nav className={styles.join(' ')}>
+      <div className={styles.join(' ')}>
         <a><h1 className="nav__logo">Kalkuli</h1></a>
-        <div className="nav__end">
+        <nav className="nav__end">
           <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
           <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
           <div className="nav__bar"></div>
-          <a to="#about" className="nav__link" href="#">Log in</a>
-          <a to="#about" className="nav__link nav__button" href="#">Cadastre sua empresa</a>
-        </div>
-      </nav>
+          <Link to="/" className="nav__link" href="">Log in</Link>
+          <CadastreEmpresa size="small"/>
+        </nav>
+      </div>
     )
   }
 }

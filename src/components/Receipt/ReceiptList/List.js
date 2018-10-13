@@ -25,7 +25,6 @@ class ReceiptList extends React.Component {
 				{receiptView}
 
 				{this.props.receipts.map(receipt => {
-					console.log(this.props.receipts)
 					return <div key={receipt.id}>
 						<Receipt size="small" onClickHandler={() => this.onOpenPopup(receipt)}>
 							<div className='container-receipts__receipt-data receipt-font'>
@@ -67,5 +66,4 @@ class ReceiptList extends React.Component {
 }
 
 export default ReceiptList
-
 

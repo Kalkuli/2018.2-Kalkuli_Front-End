@@ -1,0 +1,91 @@
+@import "../../../../assets/sass/main";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-light-blue;
+  box-shadow: 2px 2px 1rem rgba($color-black, .6);
+  transition: all .2s;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.05);
+    box-shadow: 2px 2px 1.5rem rgba($color-black, .6);
+  }
+  &:active {
+    box-shadow: 2px 2px 1rem rgba($color-black, .6);
+    transform: scale(1);
+  }
+}
+
+.menubutton {
+  z-index: 50;
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 20em;
+  bottom: 5rem;
+  right: 6rem;
+
+  &__plus {
+    color: white;  
+    font-size: 6rem;
+  }
+}
+
+.options {
+  transition: all .5s;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  width: 20rem;
+  height: 15rem;
+  position: absolute;
+  bottom: 14rem;
+  right: 7rem;
+
+  &__element {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+      
+    &--text {
+      user-select: none;  
+      font-size: 1.5rem;
+      margin-right: 15px;
+    }
+
+    &--circle {
+      border-radius: 10rem;
+      height: 6rem;
+      width: 6rem;
+    }
+  }
+}
+
+.rotate {
+  transition: all .8s;
+  transform: rotate(45deg);
+  &:hover {
+    transform: scale(1.05) rotate(45deg);
+  }
+  &:active {
+    box-shadow: 2px 2px 1rem rgba($color-black, .6);
+    transform: scale(1);
+  }
+}
+
+.open {
+  animation: open .8s;
+}
+
+.close {
+  animation: close .3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.firstTimeRunning {
+  display: none;
+}

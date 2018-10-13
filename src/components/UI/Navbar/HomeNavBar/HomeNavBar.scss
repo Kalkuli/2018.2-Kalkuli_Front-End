@@ -13,6 +13,7 @@
 }
 
 .nav {
+  font-size: 1.5rem;
   transition: all .4s;
   display: flex;
   justify-content: space-between;
@@ -20,16 +21,15 @@
   margin: 0;
   position: fixed;
   width: 100%;
-  
   z-index: 100;
   padding: 1.2rem 4rem;
-
 
   &__logo {
     color: $color-white;
   }
 
   &__link {
+    text-decoration: none;
     font-weight: 600;
     margin: .5rem;
     color: $color-white;
