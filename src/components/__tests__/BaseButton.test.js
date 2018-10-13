@@ -2,7 +2,7 @@ import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
-import { wrap } from 'module';
+
 
 configure({adapter: new Adapter()})
 
