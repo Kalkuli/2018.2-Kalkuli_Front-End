@@ -1,17 +1,16 @@
 import React from 'react'
 import './Modal.scss'
 
-class Modal extends React.PureComponent {
+const Modal = (props) => {
 
-	render() {
-		let style = ["modal"]
-		this.props.show ? style.push("show") : null
-		return (
-			<div className={style.join(' ')}>
-				{this.props.children}
-			</div>
-		)
-	}
+	let style = ["modal"]
+	props.show ? style.push("show") : null
+	console.log(props.show)
+	return (
+		<div className={style.join(' ')}>
+			{props.children}
+		</div>
+	)
 }
 
 export default Modal
