@@ -46,7 +46,6 @@ class ReceiptView extends Component {
             <BaseButton type="no-background" click={this.onConfirmHandler}>Editar</BaseButton>
             <BaseButton type="delete" click={this.onDeleteHandler}>Excluir</BaseButton>
           </div>
-
           <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup}>Confirmar</BaseButton>
         </div>
       </Modal>

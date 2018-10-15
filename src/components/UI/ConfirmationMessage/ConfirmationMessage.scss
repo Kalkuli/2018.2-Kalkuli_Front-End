@@ -1,1 +1,23 @@
 @import '../../../assets/sass/main.scss'; 
+
+.confirmation-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 41rem;
+    height: 10rem;
+    justify-content: space-evenly;
+}
+
+.confirmation-area p {
+    margin-bottom: .8em;
+    font-size: 2.5em;
+}
+
+.confirmation-area__buttons{
+    display: flex;
+    flex-direction: row; 
+    width: 95%;
+    justify-content: space-evenly;   
+}
+
