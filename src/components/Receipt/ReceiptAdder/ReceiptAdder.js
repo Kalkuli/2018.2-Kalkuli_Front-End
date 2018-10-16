@@ -10,6 +10,8 @@ import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import {withRouter} from 'react-router-dom'
+
+
 class ReceiptAdder extends Component {
   state = {
     file: null,

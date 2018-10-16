@@ -10,6 +10,15 @@
     margin-bottom: 2em;
     padding: 3em;
     padding-top: 2em;
+
+    &__warning {
+        padding-top: 58%;
+        &__content{
+            color: $color-dark-blue;
+            margin: auto;
+            text-align: center;
+        }
+    }
 }
 
 .report__total {
@@ -26,4 +35,8 @@
 .report__content {
     height: 96%;
     overflow-y: auto;
+}
+
+.pulsing-text-report { 
+    animation: pulse 0.7s 0.5s infinite alternate backwards;
 }

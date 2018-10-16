@@ -13,36 +13,6 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 import './DatePicker.scss'
 
-const info = {
-    fakeData: {
-        "report": {
-            "id": 1,
-            "period": "01/09/2018 - 30/09/2018",
-            "total_price": '81,92',
-            "receipts":[{
-                date: '27/09/2018',
-                cnpj: 'xx.xxx.xxx/xxxx-xx',
-                price: '20,48'  
-            },
-            {
-                date: '27/09/2018',
-                cnpj: 'zz.zzz.zzz/xxxx-xx',
-                price: '20,48'  
-            },
-            {
-                date: '27/09/2018',
-                cnpj: 'xx.xxx.xxx/xxxx-xx',
-                price: '20,48'  
-            },
-            {
-                date: '27/09/2018',
-                cnpj: 'xx.xxx.xxx/xxxx-xx',
-                price: '20,48'  
-            }], 
-        }
-    }
-}
-
 class Dashboard extends Component{
     constructor(props){
         super(props);
@@ -54,7 +24,8 @@ class Dashboard extends Component{
             isEndDate: false,
             focusedInput: null,
             receipts: null,
-            sum: null
+            sum: null,
+            position: 0
         }
     }
 
@@ -80,7 +51,7 @@ class Dashboard extends Component{
                         />
                     </div>
                     <div className="dashboard__content__report-area">
-                        <Report receipts={this.state.receipts} sum={this.state.sum}/>
+                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} /> : <Report receipts={false} sum={false}/>}
                         {this.state.loading ? <Loader type="loader_reports"/> : <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>}
                     </div>
                 </div>
@@ -94,12 +65,10 @@ class Dashboard extends Component{
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({isEndDate: true})
-        if(this.state.isEndDate){
-            var date_from = moment(startDate.startDate._d).format('YYYY-MM-DD')
-            var date_to = moment(startDate.endDate._d).format('YYYY-MM-DD')
 
-            console.log(date_from)
-            console.log(date_to)
+        if(this.state.isEndDate){
+            var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
+            var date_to = moment(startDate.endDate).format('YYYY-MM-DD')   
             
             axios.post('http://172.25.0.1:5008/api/v1/report', {  //rota que recebe duas datas e retorna um json report, q possui notas e a soma dos valores
                 "period": {
@@ -109,8 +78,8 @@ class Dashboard extends Component{
             })
             .then((response) => {
                 this.setState({
-                    receipts: response.receipts,
-                    sum: response.total_cost,
+                    receipts: response.data.receipts,
+                    sum: response.data.total_cost,
                     isEndDate: false
                 })
             })

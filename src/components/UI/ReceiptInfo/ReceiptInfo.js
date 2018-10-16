@@ -2,6 +2,7 @@ import React from 'react'
 import './ReceiptInfo.scss'
 
 const ReceiptInfo = (props) => {
+
     return(
         <div className="receipt-info">
             <p className="receipt-info__data ">{props.date}</p>
