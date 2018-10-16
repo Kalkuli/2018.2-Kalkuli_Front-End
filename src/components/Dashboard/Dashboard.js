@@ -25,7 +25,8 @@ class Dashboard extends Component{
             focusedInput: null,
             receipts: null,
             sum: null,
-            position: 0
+            date_from: null,
+            date_to: null
         }
     }
 
@@ -70,6 +71,8 @@ class Dashboard extends Component{
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')   
             
+            this.setState({date_from: date_from, date_to: date_to})
+
             axios.post('http://172.25.0.1:5008/api/v1/report', {  //rota que recebe duas datas e retorna um json report, q possui notas e a soma dos valores
                 "period": {
                     date_from: date_from,
@@ -96,8 +99,8 @@ class Dashboard extends Component{
         })
         axios.post('http://172.25.0.1:5008/api/v1/save_report', {  //adicionar rota que receba duas datas, faça a soma do valor total da report e salve as datas e a soma no banco
                 "period": {
-                    start_date: this.state.date_from,
-                    end_date: this.state.date_to
+                    date_from: this.state.date_from,
+                    date_to: this.state.date_to
                 }
         })
         .then(() => {
