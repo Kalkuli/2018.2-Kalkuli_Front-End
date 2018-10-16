@@ -1,6 +1,7 @@
 @import "../../../assets/sass/main";
 
 .receipt-adder {
+  z-index: 100;
   padding: 3rem 6rem;
   &__footer {
     display: flex;

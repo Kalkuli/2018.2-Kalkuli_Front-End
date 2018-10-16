@@ -51,7 +51,6 @@ class ReceiptList extends React.Component {
 								</div>
 							</div>
 						</Receipt>
-
 					</div>
 				})}
 			</div>

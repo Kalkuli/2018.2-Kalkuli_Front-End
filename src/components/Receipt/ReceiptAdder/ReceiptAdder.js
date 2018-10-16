@@ -41,8 +41,8 @@ class ReceiptAdder extends Component {
         <section className="receipt-adder">
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.onCancelHandler}>Cancelar</BaseButton>
-            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="confirm" >Confirmar</BaseButton>}
+            <BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
+            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="disable" >Confirmar</BaseButton>}
           </div>
         </section>
       )
@@ -88,11 +88,7 @@ class ReceiptAdder extends Component {
       })
   }
 
-  onConfirmOk = () => {
-    this.props.history.push({
-      pathname: '/dashboard'
-    })
-  }
+  onConfirmOk = () => { this.props.history.push({pathname: '/list-all-receipts'}) }
 
   onConfirmHandler = () => {
     this.setState({

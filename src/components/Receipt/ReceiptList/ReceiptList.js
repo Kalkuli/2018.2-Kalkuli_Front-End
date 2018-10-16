@@ -46,14 +46,15 @@ export default class ReceiptList extends Component {
     }
 
     onClickMenuButton = () => { 
-        this.setState(prevState => ({rotate: !prevState.rotate, clickedMenuButton: true}))
+        !this.state.clickedMenuButton ? this.setState({clickedMenuButton: true}) : null
+        this.setState(prevState => ({rotate: !prevState.rotate}))
     }
 
     renderReceiptAdder = () => {
         return (
             <Fragment>
                 <Backdrop show={this.state.newReceipt} click={this.onToggleNewReceipt} />
-                <ReceiptAdder show={this.state.newReceipt}/>
+                <ReceiptAdder onCancelHandler={this.onCloseReceiptAdder} show={this.state.newReceipt}/>
             </Fragment>
         )
     }

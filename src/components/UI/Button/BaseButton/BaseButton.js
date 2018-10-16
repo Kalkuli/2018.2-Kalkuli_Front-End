@@ -14,6 +14,8 @@ const BaseButton = (props) => {
     styles.push('base-button--medium')
   else if(props.type === 'no-background')
     styles.push('no-background')
+  else if(props.type === 'disable')
+    styles.push('disable')
 
   return (
     <a className={styles.join(' ')} onClick={props.click}>
