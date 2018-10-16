@@ -8,8 +8,8 @@ const ConfirmationMessage = (props) => (
         <div className='confirmation-area'>
             <p>Tem certeza que deseja {props.action}?</p>
             <div className='confirmation-area__buttons'>
-                <Button type="no-background" click={this.onConfirmHandler}>Cancelar</Button>
-                <Button type="delete" click={this.onDeleteHandler}>Deletar</Button>
+                <Button type="no-background" click={props.onCancelHandler}>Cancelar</Button>
+                <Button type="delete" click={props.onDeleteHandler}>Deletar</Button>
             </div>
         </div>
     </Modal>

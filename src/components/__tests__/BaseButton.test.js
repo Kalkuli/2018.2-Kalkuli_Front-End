@@ -30,11 +30,6 @@ describe('Testing <BaseButton />', () => {
         expect(wrapper.find('.delete').exists()).toBe(true)
     })
 
-    it('should return the action to choose-file', () => {
-        wrapper = shallow(<BaseButton type='choose-file' />)
-        expect(wrapper.find('.choose-file').exists()).toBe(true)
-    })
-
     it('should return an action to choose the file of a small button', () => {
         wrapper = shallow(<BaseButton type='choose-file' size='small' />)
         expect(wrapper.find('.base-button--small').exists()).toBe(true)
