@@ -57,6 +57,7 @@ class Reports extends Component {
             this.setState({
                 reports: response.data.data.reports
             })
+            console.log(this.state.reports)
         })
     }
 
@@ -81,8 +82,9 @@ class Reports extends Component {
                             hideKeyboardShortcutsPanel = {() => true}
                             />
                         </div>
+                        
                         <div className="reports__area__resumes">
-                            {this.state.reports.map((data, index) => {
+                            {this.state.reports === null ? null : this.state.reports.map((data, index) => {
                                 if(this.state.position === index){
                                     type = "confirm";
                                 }
@@ -90,12 +92,13 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{data.date_from}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{data.date_from + "-" + data.date_to}</BaseButton>
                                 )
                             })}
                         </div>
+                        
                     </div>
-                    {/* <Report data={info.fakeData.report[this.state.position].receipts}/> */}
+                    {this.state.reports === null ? null : <Report data={this.state.reports[this.state.position].receipts}/> }
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
