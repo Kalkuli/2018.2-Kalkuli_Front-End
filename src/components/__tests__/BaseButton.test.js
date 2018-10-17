@@ -20,11 +20,6 @@ describe('Testing <BaseButton />', () => {
         expect(wrapper.find('.confirm').exists()).toBe(true)
     })
 
-    it('should return the action to cancel', () => {
-        wrapper = shallow(<BaseButton type='cancel' />)
-        expect(wrapper.find('.cancel').exists()).toBe(true)
-    })
-
     it('should return the action to delete', () => {
         wrapper = shallow(<BaseButton type='delete'/>)
         expect(wrapper.find('.delete').exists()).toBe(true)
