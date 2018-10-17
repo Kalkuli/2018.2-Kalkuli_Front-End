@@ -9,7 +9,7 @@ configure({adapter: new Adapter()})
 describe('Testing <Report />', () => {
 
     it('', () => {
-        const wrapper = shallow(<Report data={[            {
+        const wrapper = shallow(<Report receipts={[            {
             date: '30/09/2018',
             cnpj: 'xx.xxx.xxx/xxxx-xx',
             price: '40,48'  
@@ -20,5 +20,10 @@ describe('Testing <Report />', () => {
             price: '20,48'  
         }]} />)
         expect(wrapper.find(ReceiptInfo).exists()).toBe(true)
+    })
+
+    it('', () => {
+        const wrapper = shallow(<Report />)
+        expect(wrapper.find(ReceiptInfo).exists()).toBe(false)
     })
 })
