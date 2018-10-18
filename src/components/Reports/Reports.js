@@ -86,10 +86,12 @@ class Reports extends Component {
                         
                         <div className="reports__area__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
-                                let start = new Date(data.date_from)
-                                let end = new Date(data.date_to)
-                                console.log(data.date_from)
+                                let start = data.date_from
+                                let end = data.date_to
+                                let startTimeDisplay = new Date(start + " " + "GMT-0300").toLocaleDateString()
+                                let endTimeDisplay = new Date(end + " " + "GMT-0300").toLocaleDateString()
                                 console.log(start)
+                                console.log(end)
 
                                 if(this.state.position === index){
                                     type = "confirm";
@@ -98,7 +100,7 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{start + "-" + end}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{startTimeDisplay + "-" + endTimeDisplay}</BaseButton>
                                 )
                             })}
                         </div>
