@@ -93,7 +93,7 @@ class Dashboard extends Component{
     }
     
 
-    onConfirmButton = (receipt) => {
+    onConfirmButton = () => {
         this.setState({
             loading: true
         })
