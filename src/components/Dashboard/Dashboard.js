@@ -73,7 +73,7 @@ class Dashboard extends Component{
             
             this.setState({date_from: date_from, date_to: date_to})
 
-            axios.post('http://172.25.0.1:5008/api/v1/report', {  //rota que recebe duas datas e retorna um json report, q possui notas e a soma dos valores
+            axios.post('http://172.25.0.1:5008/api/v1/report', {  
                 "period": {
                     date_from: date_from,
                     date_to: date_to

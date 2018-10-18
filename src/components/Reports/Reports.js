@@ -6,6 +6,7 @@ import Report from '../UI/Report/Report'
 import Axios from 'axios'
 import {DateRangePicker} from 'react-dates';
 
+
 // const info = {
 //     fakeData: {
 //         "report": [{
@@ -39,16 +40,16 @@ var type = "cancel";
 
 class Reports extends Component {
     
-    constructor(props){
-        super(props)
-        this.state = {
-            position: 0,
-            reports: null
-        }
+    state = {
+        position: 0,
+        reports: null,
+        receipts: null,
+        sum: null
     }
 
     componentDidMount() {
         this.getAllReports()
+        this.onConfirmHandler(0)
     }
 
     getAllReports = () => {
@@ -85,6 +86,11 @@ class Reports extends Component {
                         
                         <div className="reports__area__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
+                                let start = new Date(data.date_from)
+                                let end = new Date(data.date_to)
+                                console.log(data.date_from)
+                                console.log(start)
+
                                 if(this.state.position === index){
                                     type = "confirm";
                                 }
@@ -92,13 +98,13 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{data.date_from + "-" + data.date_to}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{start + "-" + end}</BaseButton>
                                 )
                             })}
                         </div>
                         
                     </div>
-                    {this.state.reports === null ? null : <Report data={this.state.reports[this.state.position].receipts}/> }
+                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} /> : <Report receipts={false} sum={false}/>}
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
@@ -107,7 +113,27 @@ class Reports extends Component {
         )
     }
 
+    getReportInfo = (date_from, date_to) => {
+        Axios.post('http://172.25.0.1:5008/api/v1/report', {
+            "period": {
+                date_from: date_from,
+                date_to: date_to
+            }
+        })
+        .then((response) => {
+            this.setState({
+                receipts: response.data.receipts,
+                sum: response.data.total_cost,
+                isEndDate: false
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
     onConfirmHandler = (index) => {
+        this.getReportInfo()
         this.setState({ position: index });
     }
 
