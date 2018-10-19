@@ -88,7 +88,7 @@ class Dashboard extends Component{
             
             this.setState({date_from: date_from, date_to: date_to})
 
-            axios.post('http://172.25.0.1:5008/api/v1/report', {  
+            axios.post('http://kalkuli-gateway.herokuapp.com/api/v1/report', {  
                 "period": {
                     date_from: date_from,
                     date_to: date_to
@@ -115,7 +115,7 @@ class Dashboard extends Component{
         this.setState({
             loading: true
         })
-        axios.post('http://172.25.0.1:5008/api/v1/save_report', {  //adicionar rota que receba duas datas, faça a soma do valor total da report e salve as datas e a soma no banco
+        axios.post('http://kalkuli-gateway.herokuapp.com/api/v1/save_report', {
                 "period": {
                     date_from: this.state.date_from,
                     date_to: this.state.date_to

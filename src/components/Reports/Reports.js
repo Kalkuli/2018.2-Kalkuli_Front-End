@@ -77,7 +77,7 @@ class Reports extends Component {
     }
 
     getAllReports = () => {
-        Axios.get('http://172.25.0.1:5008/api/v1/get_all_reports')
+        Axios.get('http://kalkuli-gateway.herokuapp.com/api/v1/get_all_reports')
         .then((response) => {
             this.setState({
                 reports: response.data.data.reports,
@@ -89,7 +89,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post('http://172.25.0.1:5008/api/v1/report', {
+        Axios.post('http://kalkuli-gateway.herokuapp.com/api/v1/report', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
