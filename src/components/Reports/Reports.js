@@ -47,8 +47,11 @@ class Reports extends Component {
                         
                         <div className="reports__area__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
-                                let start = moment(data.date_from).format('YYYY-MM-DD')
-                                let end = moment(data.date_to).format('YYYY-MM-DD')
+                                let start = moment(data.date_from + " " + "GMT-0300").format('YYYY-MM-DD')
+                                let end = moment(data.date_to + " " + "GMT-0300").format('YYYY-MM-DD')
+
+                                let startDisplayReport = new Date(start + " " + "GMT-0300").toLocaleDateString()
+                                let endDisplayReport = new Date(end + " " + "GMT-0300").toLocaleDateString()
 
                                 if(this.state.position === index){
                                     type = "confirm";
@@ -57,13 +60,13 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index, start, end)}} >{start + "-" + end}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
                                 )
                             })}
                         </div>
                         
                     </div>
-                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} /> : <Report receipts={false} sum={false}/>}
+                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={true} page={"reports"} /> : <Report receipts={false} sum={false} isValid={true} page={"reports"}/>}
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>

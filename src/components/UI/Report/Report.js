@@ -23,21 +23,35 @@ const chooseContent = (props) => {
         )
     }
     else if(!props.isValid){
+        let text
+        if(props.page == "dashboard"){
+            text = " nota"
+        } else {
+            text = " relatório"
+        }
         return(
             <div className="report">
                 <div className="report__warning pulsing-text-report">
-                    <h1 className="report__warning__content">Nesse período não existe nota</h1>
+                    <h1 className="report__warning__content">Nesse período não existe {text}</h1>
                 </div>
             </div>
         )
     }
-
     else {
+        let text
+        let subText
+        if(props.page == "dashboard"){
+            text = "Insira uma data valida"
+            subText = "Para gerar um relatório"
+        } else {
+            text = "Clique em um relatório"
+            subText = "ou selecione um período de relatórios"
+        }
         return(
             <div className="report">
                 <div className="report__warning pulsing-text-report">
-                    <h1 className="report__warning__content">Insira uma data valida</h1>
-                    <h2 className="report__warning__content">Para gerar um relatório</h2>
+                    <h1 className="report__warning__content">{text}</h1>
+                    <h2 className="report__warning__content">{subText}</h2>
                 </div>
             </div>
         )

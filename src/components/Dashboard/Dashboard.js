@@ -53,7 +53,7 @@ class Dashboard extends Component{
                         />
                     </div>
                     <div className="dashboard__content__report-area">
-                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={this.state.isValid} /> : <Report receipts={false} sum={false} isValid={this.state.isValid}/>}
+                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={this.state.isValid} page={"dashboard"} /> : <Report receipts={false} sum={false} isValid={this.state.isValid} page={"dashboard"} />}
                         {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
                     </div>
                 </div>
@@ -66,13 +66,11 @@ class Dashboard extends Component{
 
     chooseButton = (loading, isValid, receipts) => {
         if(loading && isValid){
-            console.log("1")
             return(
                 <Loader type="loader_reports"/>
             )
         }
         else if(receipts && isValid){
-            console.log("2")
             return(
                 <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
             )
