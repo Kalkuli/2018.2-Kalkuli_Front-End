@@ -5,63 +5,24 @@ import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report'
 import Axios from 'axios'
 import {DateRangePicker} from 'react-dates';
-
-
-// const info = {
-//     fakeData: {
-//         "report": [{
-//             "period": "01/09/2018 - 30/09/2018",
-//             "receipts":[{
-//                 date: '27/09/2018',
-//                 cnpj: 'xx.xxx.xxx/xxxx-xx',
-//                 price: '20,48'  
-//             },
-//             {
-//                 date: '27/09/2018',
-//                 cnpj: 'zz.zzz.zzz/xxxx-xx',
-//                 price: '20,48'  
-//             },
-//             {
-//                 date: '27/09/2018',
-//                 cnpj: 'xx.xxx.xxx/xxxx-xx',
-//                 price: '20,48'  
-//             },
-//             {
-//                 date: '27/09/2018',
-//                 cnpj: 'xx.xxx.xxx/xxxx-xx',
-//                 price: '20,48'  
-//             }]
-//         }]
-//     }
-// }
-
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 var type = "cancel";
 
 class Reports extends Component {
     
     state = {
-        position: 0,
+        position: null,
         reports: null,
         receipts: null,
         sum: null
     }
 
-    componentDidMount() {
+    componentDidMount(){
         this.getAllReports()
-        this.onConfirmHandler(0)
     }
-
-    getAllReports = () => {
-        Axios.get('http://172.25.0.1:5008/api/v1/get_all_reports')
-        .then((response) => {
-            this.setState({
-                reports: response.data.data.reports
-            })
-            console.log(this.state.reports)
-        })
-    }
-
+    
     render() {
         return(
             <div className="reports">
@@ -86,12 +47,8 @@ class Reports extends Component {
                         
                         <div className="reports__area__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
-                                let start = data.date_from
-                                let end = data.date_to
-                                let startTimeDisplay = new Date(start + " " + "GMT-0300").toLocaleDateString()
-                                let endTimeDisplay = new Date(end + " " + "GMT-0300").toLocaleDateString()
-                                console.log(start)
-                                console.log(end)
+                                let start = moment(data.date_from).format('YYYY-MM-DD')
+                                let end = moment(data.date_to).format('YYYY-MM-DD')
 
                                 if(this.state.position === index){
                                     type = "confirm";
@@ -100,7 +57,7 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index)}} >{startTimeDisplay + "-" + endTimeDisplay}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index, start, end)}} >{start + "-" + end}</BaseButton>
                                 )
                             })}
                         </div>
@@ -113,6 +70,18 @@ class Reports extends Component {
                 </div>
             </div>
         )
+    }
+
+    getAllReports = () => {
+        Axios.get('http://172.25.0.1:5008/api/v1/get_all_reports')
+        .then((response) => {
+            this.setState({
+                reports: response.data.data.reports,
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
 
     getReportInfo = (date_from, date_to) => {
@@ -134,9 +103,9 @@ class Reports extends Component {
         })
     }
 
-    onConfirmHandler = (index) => {
-        this.getReportInfo()
+    onConfirmHandler = (index, date_from, date_to) => {
         this.setState({ position: index });
+        this.getReportInfo(date_from, date_to)
     }
 
     onDeleteHandler = () => {

@@ -19,22 +19,34 @@
             text-align: center;
         }
     }
-}
 
-.report__total {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 12%;
-    font-size: 150%;
-    padding-bottom: 3%;
-    padding-top: 3%;
-    border-top: solid 1px $color-dark-blue;
-}
+    &__total {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 7%;
+        font-size: 150%;
+        padding-bottom: 3%;
+        padding-top: 3%;
+        border-top: solid 1px $color-dark-blue;
+    }
 
-.report__content {
-    height: 96%;
-    overflow-y: auto;
+    &__content {
+        height: 96%;
+        overflow-y: auto;
+
+        &__labels {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+            border-bottom: solid 1px $color-dark-blue;
+            &__data{
+                font-size: 150%;
+            }
+        }
+    }
 }
 
 .pulsing-text-report { 

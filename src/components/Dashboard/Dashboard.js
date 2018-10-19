@@ -26,7 +26,8 @@ class Dashboard extends Component{
             receipts: null,
             sum: null,
             date_from: null,
-            date_to: null
+            date_to: null,
+            isValid: true
         }
     }
 
@@ -52,8 +53,8 @@ class Dashboard extends Component{
                         />
                     </div>
                     <div className="dashboard__content__report-area">
-                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} /> : <Report receipts={false} sum={false}/>}
-                        {this.state.loading ? <Loader type="loader_reports"/> : <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>}
+                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={this.state.isValid} /> : <Report receipts={false} sum={false} isValid={this.state.isValid}/>}
+                        {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
                     </div>
                 </div>
             </div>
@@ -61,6 +62,21 @@ class Dashboard extends Component{
     }
     onConfirmHandler = () => {
 		this.props.history.push('/confirmation')
+    }
+
+    chooseButton = (loading, isValid, receipts) => {
+        if(loading && isValid){
+            console.log("1")
+            return(
+                <Loader type="loader_reports"/>
+            )
+        }
+        else if(receipts && isValid){
+            console.log("2")
+            return(
+                <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
+            )
+        }
     }
 
     onChange = (startDate, endDate) => {
@@ -83,11 +99,14 @@ class Dashboard extends Component{
                 this.setState({
                     receipts: response.data.receipts,
                     sum: response.data.total_cost,
-                    isEndDate: false
+                    isEndDate: false,
+                    isValid: true
                 })
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(() => {
+                this.setState({
+                    isValid: false
+                })
             })
         }
     }
