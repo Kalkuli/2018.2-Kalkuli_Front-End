@@ -16,7 +16,8 @@ class Reports extends Component {
         position: null,
         reports: null,
         receipts: null,
-        sum: null
+        sum: null,
+        reportCase: null
     }
 
     componentDidMount(){
@@ -60,13 +61,13 @@ class Reports extends Component {
                                     type = "cancel";
                                 }
                                 return(
-                                    <BaseButton size="medium" type={type} click={() => {this.onConfirmHandler(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                    <BaseButton size="medium" type={type} click={() => {this.onReportSelect(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
                                 )
                             })}
                         </div>
                         
                     </div>
-                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={true} page={"reports"} /> : <Report receipts={false} sum={false} isValid={true} page={"reports"}/>}
+                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
@@ -98,15 +99,18 @@ class Reports extends Component {
             this.setState({
                 receipts: response.data.receipts,
                 sum: response.data.total_cost,
-                isEndDate: false
+                isEndDate: false,
+                reportCase: 'reports'
             })
         })
-        .catch((error) => {
-            console.log(error)
+        .catch(() => {
+            this.setState({
+                reportCase: 'do not exist'
+            })
         })
     }
 
-    onConfirmHandler = (index, date_from, date_to) => {
+    onReportSelect = (index, date_from, date_to) => {
         this.setState({ position: index });
         this.getReportInfo(date_from, date_to)
     }

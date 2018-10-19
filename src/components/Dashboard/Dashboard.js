@@ -27,7 +27,8 @@ class Dashboard extends Component{
             sum: null,
             date_from: null,
             date_to: null,
-            isValid: true
+            isValid: true,
+            reportCase: null
         }
     }
 
@@ -53,7 +54,7 @@ class Dashboard extends Component{
                         />
                     </div>
                     <div className="dashboard__content__report-area">
-                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} isValid={this.state.isValid} page={"dashboard"} /> : <Report receipts={false} sum={false} isValid={this.state.isValid} page={"dashboard"} />}
+                        {this.state.receipts ? <Report reportCase={this.state.reportCase} receipts={this.state.receipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
                         {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
                     </div>
                 </div>
@@ -98,12 +99,12 @@ class Dashboard extends Component{
                     receipts: response.data.receipts,
                     sum: response.data.total_cost,
                     isEndDate: false,
-                    isValid: true
+                    reportCase: 'reports'
                 })
             })
             .catch(() => {
                 this.setState({
-                    isValid: false
+                    reportCase: 'do not exist'
                 })
             })
         }
