@@ -20,7 +20,6 @@ class ReceiptList extends React.Component {
 
 	render() {
 		let receiptView = null;
-
 		if (this.state.selectedReceipt) {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
 																	receipt={this.state.selectedReceipt}

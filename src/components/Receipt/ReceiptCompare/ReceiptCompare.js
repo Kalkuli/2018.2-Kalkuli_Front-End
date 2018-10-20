@@ -5,7 +5,7 @@ import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 
-class ReceiptCompare extends Component {
+export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: {
 			title: {
@@ -126,7 +126,7 @@ class ReceiptCompare extends Component {
 						<div className="compare-area__content">
 
 							{Object.keys(receiptInput).map(key => (
-								<div className="compare-area__content__labels"> 
+								<div key={key} className="compare-area__content__labels"> 
 									<p className="receipt-font compare-area__content__labels__label">
 										<b>{receiptInput[key].name}:</b>
 									</p>

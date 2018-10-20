@@ -17,7 +17,7 @@ class ReceiptAdder extends Component {
     file: null,
     loading: false,
     fileSent: true,
-    fileSelected: false,
+    fileSelected: true,
     completed: false
   }
 

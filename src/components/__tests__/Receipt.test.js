@@ -13,10 +13,10 @@ describe('Testing <Receipt />', () => {
   })
 
   it('should mock a function', () => {
-    const mockCallback = jest.fn(x => x);
-    wrapper = shallow(<Receipt onClickHandler={mockCallback}/>)
+    const spy = jest.fn(x => x);
+    wrapper = shallow(<Receipt onClickHandler={spy}/>)
     wrapper.simulate('click')
-    expect(mockCallback).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled()
   })
 
   it('should render follow receipt className', () => {

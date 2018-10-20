@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16'
 import List from '../Receipt/ReceiptList/List'
 import ReceiptView from '../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../UI/BackDrop/BackDrop'
-import Receipt from '../UI/Receipt/Receipt'
 
 configure({adapter: new Adapter()})
 
@@ -21,15 +20,7 @@ describe("Testing <List />", () => {
   }
 
   beforeEach(() => {
-    wrapper = shallow(<List receipts={[{
-      "cnpj": "100asd0966",
-      "company_id": 0,
-      "emission_date": "2018-09-22",
-      "emission_place": "aaaaaa",
-      "id": 2,
-      "tax_value": 20.2,
-      "total_price": 123.12
-    }]}/>)
+    wrapper = shallow(<List receipts={[{...receipt}]}/>)
   })
 
   it('should find ReceiptView when selecting a receipt from List', () => {
