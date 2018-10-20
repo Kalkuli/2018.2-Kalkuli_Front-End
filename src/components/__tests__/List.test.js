@@ -43,7 +43,6 @@ describe("Testing <List />", () => {
 
   it('should test selectedReceipt state by directly invoking method', () => {
     const instance = wrapper.instance()
-    
     expect(wrapper.state('selectedReceipt')).toBe(null)
     instance.onOpenPopup(receipt)
     expect(wrapper.state('selectedReceipt')).toBe(receipt)
@@ -60,9 +59,4 @@ describe("Testing <List />", () => {
     expect(wrapper.state('showModal')).toBe(false)
   })
   
-  it('should', () => {
-    const instance = wrapper.instance()
-    instance.onOpenPopup(receipt)
-  })
- 
 })
