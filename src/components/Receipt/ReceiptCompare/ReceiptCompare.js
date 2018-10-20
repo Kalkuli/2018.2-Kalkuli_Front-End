@@ -14,6 +14,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -26,6 +27,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -38,6 +40,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -50,6 +53,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -62,6 +66,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -74,6 +79,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -86,6 +92,7 @@ class ReceiptCompare extends Component {
 				type: 'text',
 				valid: false,
 				editable: false,
+				touched: false,
 				validation: {
 					required: true,
 					minLength: 5,
@@ -93,26 +100,11 @@ class ReceiptCompare extends Component {
 				}
 			}
 		},
-		
-		receipt: {
-			cnpj: "",
-			emission_date: "",
-			emission_place: "",
-			products: [],
-			tax_value: 0,
-			total_price: 0
-		},
-		editable: [
-			false,
-			false,
-			false,
-			false,
-			false
-		],
+		receiptIsValid: false
 	}
 
 	componentDidMount() {
-		//this.setState({ receipt: this.props.fileExtracted })
+		this.setState({ receipt: this.props.fileExtracted })
 	}
 
 	render() {
@@ -139,66 +131,66 @@ class ReceiptCompare extends Component {
 										<b>{receiptInput[key].name}:</b>
 									</p>
 									<Input 	value={receiptInput[key].value}
+													valid={receiptInput[key].valid}
+													touched={receiptInput[key].touched}
 													onChangeHandler={(event) => this.onChangeHandler(event, key)}
 													onClickHandler={() => this.onClickHandler(key)}
 													editable={receiptInput[key].editable} />
 								</div>
 							))}
-								
-
-
-							{/* this.state.fakeData.receipt.products.map(product => (
-									<div key={product.id} className="compare-area__content__product">
-											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
-											<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
-											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
-									</div>    
-							))} */}
 						</div>
 					</Receipt>
-
 				</div>
+				
 				<div className="compare-area__buttons">
 					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
-					<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
+											click={this.onConfirmHandler}>Confirmar</BaseButton>
 				</div>
 			</div>
 		)
 	}
 
-
-
 	onConfirmHandler = () => {
-		// let taxValue = this.state.receipt.tax_value
-		// let taxValueFloat = parseFloat(taxValue)
-		// let newState = {...this.state.receipt, tax_value: taxValueFloat}
-		// this.setState({
-		// 	receipt: newState
-		// })
-		// console.log(this.state.receipt)
-		this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
+		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		this.props.onConfirmButton(this.state.receipt)
 	}
 
 	onClickHandler = (inputKey) => {
 		let inputState = {...this.state.receiptInput}
 		let inputElement = {...inputState[inputKey]}
-
 		inputElement.editable = !inputElement.editable
+		inputElement.touched = false
 		inputState[inputKey] = inputElement
 		this.setState({receiptInput: inputState})
 	}
-
 
 	onChangeHandler = (event, inputKey) => {
 		let inputState = {...this.state.receiptInput}
 		let inputElement = {...inputState[inputKey]}
-
 		inputElement.value = event.target.value
+		inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+		inputElement.touched = true
 		inputState[inputKey] = inputElement
-		this.setState({receiptInput: inputState})
+
+		let receiptIsValid = true
+		for(let inputKey in inputState) {
+			receiptIsValid = inputState[inputKey].valid && receiptIsValid
+		}
+
+		this.setState({receiptInput: inputState, receiptIsValid: receiptIsValid})
 	}
 
+	checkValidity = (value, rules) => {
+		let isValid = false
+		if(rules.required)
+			isValid = value.trim() !== ''
+		
+		if(rules.minLength)
+			isValid = value.length >= rules.minLength
+
+		return isValid
+	}
 }
 
 const mapStateToProps = state => {
