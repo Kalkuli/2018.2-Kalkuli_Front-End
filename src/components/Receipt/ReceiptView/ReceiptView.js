@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import Axios from 'axios'
 import './ReceiptView.scss'
 import Modal from '../../UI/Modal/Modal'
 import Receipt from '../../UI/Receipt/Receipt'
@@ -54,7 +55,15 @@ class ReceiptView extends Component {
   }
 
   onDeleteHandler = () => {
-    alert('oi')
+    let receipt_id = this.props.receipt.id
+    Axios.delete(`https://kalkuli-gateway.herokuapp.com/api/v1/receipt/${receipt_id}`)
+         .then((response) => {
+              this.setState({
+                    confirmation: false
+              })
+              this.props.onClosePopup()
+              this.props.onGetAllReceipts()
+          })
   }
   
   onCancelHandler = () => {

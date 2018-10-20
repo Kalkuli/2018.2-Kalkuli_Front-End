@@ -25,7 +25,8 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar/>
                 { this.state.newReceipt ? this.renderReceiptAdder() : null }
-                { this.state.loaded && <List receipts={this.state.receipts} /> }
+                { this.state.loaded && <List    receipts={this.state.receipts} 
+                                                onGetAllReceipts={this.getAllReceipts} /> }
                 <MenuButton     rotate={this.state.rotate} 
                                 clickedMenuButton={this.state.clickedMenuButton}
                                 onClickMenuButton={this.onClickMenuButton} 
