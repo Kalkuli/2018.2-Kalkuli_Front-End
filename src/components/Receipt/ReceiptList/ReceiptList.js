@@ -6,10 +6,13 @@ import './ReceiptList.scss'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
 import ReceiptAdder from '../../Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../UI/BackDrop/BackDrop'
+import { connect } from 'react-redux'
+import * as actionTypes from '../../../store/actions/actions'
 
-export default class ReceiptList extends Component {
+class ReceiptList extends Component {
 
     state = {  
+        receipts: [],
         loaded: false,
         rotate: false,
         newReceipt: false,
@@ -17,7 +20,7 @@ export default class ReceiptList extends Component {
     }
 
     componentDidMount() {
-        this.getAllReceipts();
+        this.getAllReceipts()
     }
 
     render() {
@@ -36,14 +39,10 @@ export default class ReceiptList extends Component {
         )
     }
 
-    getAllReceipts = () => {
-        Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
-            .then((response) => {
-                this.setState({
-                    receipts: response.data.data.receipts,
-                    loaded: true
-                })
-            })
+    getAllReceipts = async () => {
+        const response = await Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
+        this.props.onReceiptsAdded(response.data.data.receipts)
+        this.setState({ loaded: true })
     }
 
     onClickMenuButton = () => { 
@@ -60,15 +59,23 @@ export default class ReceiptList extends Component {
         )
     }
 
-    onCloseReceiptAdder = () => {
-        this.setState({newReceipt: false})
-    }
+    onCloseReceiptAdder = () => { this.setState({newReceipt: false}) }
 
-    onToggleNewReceipt = () => {
-        this.setState(prevState => ({newReceipt: !prevState.newReceipt}))
-    }
+    onToggleNewReceipt = () => { this.setState(prevState => ({newReceipt: !prevState.newReceipt})) }
 
-    onNewReportHandler = () => {
-        this.props.history.push({pathname: '/reports'})
+    onNewReportHandler = () => { this.props.history.push({pathname: '/reports'}) }
+}
+
+const mapStateToProps = state => {
+    return {
+        
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)

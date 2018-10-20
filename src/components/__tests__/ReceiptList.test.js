@@ -4,21 +4,39 @@ import Adapter from 'enzyme-adapter-react-16'
 import ReceiptList from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
+import mockAxios from 'axios'
 
 configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptList/>", () => {
 
   let wrapper = null
+  /* let receipt = {
+    "cnpj": "100asd0966",
+    "company_id": 0,
+    "emission_date": "2018-09-22",
+    "emission_place": "aaaaaa",
+    "id": 2,
+    "tax_value": 20.2,
+    "total_price": 123.12
+  } */
+
   beforeEach(() => {
     wrapper = shallow(<ReceiptList />)
   })
-
-  it('should test Axios get', async () => {
+  
+  /* it('should test Axios get', async() => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+        data: {
+          data: {
+            receipts: ["oioi"]
+          }
+        }
+    }))
     const instance = wrapper.instance()
-    const reponse = await instance.getAllReceipts()
-    console.log(reponse)
-  })
+    //const response = await instance.getAllReceipts()
+    //console.log(response)
+  }) */
 
   it('should find NavBar', () => {
     expect(wrapper.find(NavBar).exists()).toBe(true)

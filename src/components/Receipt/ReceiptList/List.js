@@ -4,13 +4,6 @@ import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 
-let receipts = {
-	id: 1,
-	emission_date: '03-02-2018',
-	emission_place: 'Gama',
-	total_price: '34.43'
-}
-
 class ReceiptList extends React.Component {
 
 	state = {
