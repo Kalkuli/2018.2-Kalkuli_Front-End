@@ -71,7 +71,7 @@ class ReceiptCompare extends Component {
 
 
 							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Taxas:</b></p>
+								<p className="receipt-font compare-area__content__labels__label"><b>Taxas:</b> R$</p>
 								<Input value={this.state.receipt.tax_value}
 									onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
 									onClickHandler={() => this.onClickHandler("tax_value")}
@@ -79,7 +79,7 @@ class ReceiptCompare extends Component {
 							</div>
 
 							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Total:</b></p>
+								<p className="receipt-font compare-area__content__labels__label"><b>Total:</b> R$</p>
 								<Input value={this.state.receipt.total_price}
 									onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
 									onClickHandler={() => this.onClickHandler("total_price")}

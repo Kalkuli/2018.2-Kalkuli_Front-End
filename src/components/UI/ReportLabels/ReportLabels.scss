@@ -1,0 +1,14 @@
+@import "../../../assets/sass/main";
+
+.report-labels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    border-bottom: solid 1px $color-dark-blue;
+    
+    &__data{
+        font-size: 150%;
+    }
+}
