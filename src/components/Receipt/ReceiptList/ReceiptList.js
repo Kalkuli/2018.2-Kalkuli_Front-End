@@ -9,10 +9,9 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 
-class ReceiptList extends Component {
+export class ReceiptList extends Component {
 
     state = {  
-        receipts: [],
         loaded: false,
         rotate: false,
         newReceipt: false,
@@ -28,7 +27,7 @@ class ReceiptList extends Component {
             <div >
                 <Navbar/>
                 { this.state.newReceipt ? this.renderReceiptAdder() : null }
-                { this.state.loaded && <List    receipts={this.state.receipts} 
+                { this.state.loaded && <List    receipts={this.props.receipts} 
                                                 onGetAllReceipts={this.getAllReceipts} /> }
                 <MenuButton     rotate={this.state.rotate} 
                                 clickedMenuButton={this.state.clickedMenuButton}
@@ -68,7 +67,7 @@ class ReceiptList extends Component {
 
 const mapStateToProps = state => {
     return {
-        
+        receipts: state.receipts
     }
 }
 

@@ -19,7 +19,6 @@ const reducer = (state = initialState, action) => {
         fileExtracted: action.fileExtracted
       }
     case actionTypes.ADD_RECEIPTS:
-      console.log(action.receipts)
       return {
         ...state,
         receipts: action.receipts
