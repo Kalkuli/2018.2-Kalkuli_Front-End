@@ -46,11 +46,7 @@ class ReceiptView extends Component {
           <div className='area-buttons__change-buttons'>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Exportar</BaseButton>
             <BaseButton type="no-background" click={this.onConfirmHandler}>Editar</BaseButton>
-<<<<<<< e2620410b383fda1bda4685377bfefbf550fc919
-            <BaseButton type="delete" click={this.setState.bind(this, {confirmation: true})}>Excluir</BaseButton>
-=======
             <BaseButton type="delete" click={() => this.setState({confirmation: true})}>Excluir</BaseButton>
->>>>>>> Link ConfirmationMessage to ReceiptView's methods
           </div>
           <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup}>Confirmar</BaseButton>
         </div>
@@ -59,7 +55,6 @@ class ReceiptView extends Component {
   }
 
   onDeleteHandler = () => {
-<<<<<<< e2620410b383fda1bda4685377bfefbf550fc919
     let receipt_id = this.props.receipt.id
     Axios.delete(`https://kalkuli-gateway.herokuapp.com/api/v1/receipt/${receipt_id}`)
          .then((response) => {
@@ -69,9 +64,6 @@ class ReceiptView extends Component {
               this.props.onClosePopup()
               this.props.onGetAllReceipts()
           })
-=======
-    alert('oi')
->>>>>>> Link ConfirmationMessage to ReceiptView's methods
   }
   
   onCancelHandler = () => {

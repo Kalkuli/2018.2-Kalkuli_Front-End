@@ -122,6 +122,7 @@ class ReceiptCompare extends Component {
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 
+		let {receiptInput} = this.state
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -132,15 +133,15 @@ class ReceiptCompare extends Component {
 					<Receipt size="large">
 						<div className="compare-area__content">
 
-							{Object.keys(this.state.receiptInput).map(input => (
+							{Object.keys(receiptInput).map(key => (
 								<div className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label"><b>
-										{this.state.receiptInput[input].name}:
-									</b></p>
-									<Input 	value={this.state.receipt.cnpj}
+									<p className="receipt-font compare-area__content__labels__label">
+										<b>{receiptInput[key].name}:</b>
+									</p>
+									<Input 	value={receiptInput[key].value}
 													onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
-													onClickHandler={() => this.onClickHandler("cnpj")}
-													editable={this.state.editable[0]} />
+													onClickHandler={() => this.onClickHandler(key)}
+													editable={receiptInput[key].editable} />
 								</div>
 							))}
 								
@@ -179,23 +180,14 @@ class ReceiptCompare extends Component {
 		this.props.onConfirmButton(this.state.receipt)
 	}
 
-	onClickHandler = (inputClicked) => {
+	onClickHandler = (inputKey) => {
+		let inputState = {...this.state.receiptInput}
+		let inputElement = {...inputState[inputKey]}
 
-		let newEditable = [...this.state.editable]
-
-		if (inputClicked === "cnpj")
-			newEditable[0] = !newEditable[0]
-		else if (inputClicked === "emission_date")
-			newEditable[1] = !newEditable[1]
-		else if (inputClicked === "emission_place")
-			newEditable[2] = !newEditable[2]
-		else if (inputClicked === "tax_value")
-			newEditable[3] = !newEditable[3]
-		else if (inputClicked === "total_price")
-			newEditable[4] = !newEditable[4]
-
-
-		this.setState({ editable: newEditable })
+		inputElement.editable = !inputElement.editable
+		inputState[inputKey] = inputElement
+		this.setState({receiptInput: inputState})
+		console.log(this.state.receiptInput[inputKey])
 	}
 
 
