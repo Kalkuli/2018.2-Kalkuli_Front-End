@@ -139,7 +139,7 @@ class ReceiptCompare extends Component {
 										<b>{receiptInput[key].name}:</b>
 									</p>
 									<Input 	value={receiptInput[key].value}
-													onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
+													onChangeHandler={(event) => this.onChangeHandler(event, key)}
 													onClickHandler={() => this.onClickHandler(key)}
 													editable={receiptInput[key].editable} />
 								</div>
@@ -187,27 +187,16 @@ class ReceiptCompare extends Component {
 		inputElement.editable = !inputElement.editable
 		inputState[inputKey] = inputElement
 		this.setState({receiptInput: inputState})
-		console.log(this.state.receiptInput[inputKey])
 	}
 
 
-	onChangeHandler = (event, inputID, key) => {
-		const oldData = {
-			...this.state.receipt
-		}
+	onChangeHandler = (event, inputKey) => {
+		let inputState = {...this.state.receiptInput}
+		let inputElement = {...inputState[inputKey]}
 
-		if (key) {
-			if (key === "unit_price")
-				oldData.products[inputID].unit_price = event.target.value
-			else
-				oldData.products[inputID].quantity = event.target.value
-		} else
-			oldData[`${inputID}`] = event.target.value
-
-		this.setState({
-			receipt: oldData
-		});
-
+		inputElement.value = event.target.value
+		inputState[inputKey] = inputElement
+		this.setState({receiptInput: inputState})
 	}
 
 }
