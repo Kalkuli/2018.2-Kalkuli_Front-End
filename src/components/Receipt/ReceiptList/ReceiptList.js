@@ -8,6 +8,7 @@ import ReceiptAdder from '../../Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
+import getAllReceipts from '../../../services/getAllReceipts'
 
 export class ReceiptList extends Component {
 
@@ -18,8 +19,9 @@ export class ReceiptList extends Component {
         clickedMenuButton: false
     }
 
-    componentDidMount() {
-        this.getAllReceipts()
+    async componentDidMount() {
+        this.props.onReceiptsAdded(await getAllReceipts())
+        this.setState({ loaded: true })
     }
 
     render() {
@@ -38,11 +40,6 @@ export class ReceiptList extends Component {
         )
     }
 
-    getAllReceipts = async () => {
-        const response = await Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
-        this.props.onReceiptsAdded(response.data.data.receipts)
-        this.setState({ loaded: true })
-    }
 
     onClickMenuButton = () => { 
         !this.state.clickedMenuButton ? this.setState({clickedMenuButton: true}) : null
