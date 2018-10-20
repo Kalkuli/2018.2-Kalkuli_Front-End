@@ -46,7 +46,7 @@ class ReceiptView extends Component {
           <div className='area-buttons__change-buttons'>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Exportar</BaseButton>
             <BaseButton type="no-background" click={this.onConfirmHandler}>Editar</BaseButton>
-            <BaseButton type="delete" click={() => this.setState({confirmation: true})}>Excluir</BaseButton>
+            <BaseButton type="delete" click={this.onConfirmationTrue}>Excluir</BaseButton>
           </div>
           <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup}>Confirmar</BaseButton>
         </div>
@@ -79,6 +79,10 @@ class ReceiptView extends Component {
         <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
       </Fragment>
     )
+  }
+
+  onConfirmationTrue = () => {
+    this.setState({confirmation: true})
   }
 }
 
