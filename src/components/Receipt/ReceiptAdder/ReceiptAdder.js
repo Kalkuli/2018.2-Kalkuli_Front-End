@@ -16,7 +16,7 @@ class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
-    fileSent: false,
+    fileSent: true,
     fileSelected: false,
     completed: false
   }
@@ -78,14 +78,14 @@ class ReceiptAdder extends Component {
         company_id: 1
       }
     })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
+    .then(() => {
+      this.setState({
+        completed: true
       })
-      .catch((error) => {
-        console.log(error)
-      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   onConfirmOk = () => { this.props.history.push({pathname: '/list-all-receipts'}) }

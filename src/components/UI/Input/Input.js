@@ -11,7 +11,11 @@ const Input = (props) => {
     styles.push("input-area__input--no-edit")
   return (
     <div className="input-area">
-      <input className={styles.join(' ')} onChange={props.onChangeHandler} value={props.value} disabled={!props.editable}/>
+      <input  className={styles.join(' ')} 
+              value={props.value} 
+              type="text"
+              onChange={props.onChangeHandler} 
+              disabled={!props.editable}/>
       <img onClick={props.onClickHandler} className="input-area__edit-image" src={editImage} alt="edit" />
     </div>
   )

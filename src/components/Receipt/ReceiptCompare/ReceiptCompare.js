@@ -7,6 +7,93 @@ import { connect } from 'react-redux'
 
 class ReceiptCompare extends Component {
 	state = {
+		receiptInput: {
+			title: {
+				name: 'Título',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			cnpj: {
+				name: 'CNPJ',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			emission_date: {
+				name: 'Data',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			emission_place: {
+				name: 'Local',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			tax_value: {
+				name: 'Impostos',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			total_price: {
+				name: 'Total',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			description: {
+				name: 'Descrição',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			}
+		},
+		
 		receipt: {
 			cnpj: "",
 			emission_date: "",
@@ -25,14 +112,13 @@ class ReceiptCompare extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ receipt: this.props.fileExtracted })
+		//this.setState({ receipt: this.props.fileExtracted })
 	}
 
 	render() {
 		let preview = null
-		if (this.props.filePDF !== null) {
+		if (this.props.filePDF !== null)
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
-		}
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 
@@ -45,46 +131,20 @@ class ReceiptCompare extends Component {
 
 					<Receipt size="large">
 						<div className="compare-area__content">
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>CNPJ:</b></p>
-								<Input value={this.state.receipt.cnpj}
-									onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
-									onClickHandler={() => this.onClickHandler("cnpj")}
-									editable={this.state.editable[0]} />
-							</div>
 
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Data:</b></p>
-								<Input value={this.state.receipt.emission_date}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
-									onClickHandler={() => this.onClickHandler("emission_date")}
-									editable={this.state.editable[1]} />
-							</div>
+							{Object.keys(this.state.receiptInput).map(input => (
+								<div className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label"><b>
+										{this.state.receiptInput[input].name}:
+									</b></p>
+									<Input 	value={this.state.receipt.cnpj}
+													onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
+													onClickHandler={() => this.onClickHandler("cnpj")}
+													editable={this.state.editable[0]} />
+								</div>
+							))}
+								
 
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Lugar:</b></p>
-								<Input value={this.state.receipt.emission_place}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
-									onClickHandler={() => this.onClickHandler("emission_place")}
-									editable={this.state.editable[2]} />
-							</div>
-
-
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Taxas:</b> R$</p>
-								<Input value={this.state.receipt.tax_value}
-									onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
-									onClickHandler={() => this.onClickHandler("tax_value")}
-									editable={this.state.editable[3]} />
-							</div>
-
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Total:</b> R$</p>
-								<Input value={this.state.receipt.total_price}
-									onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
-									onClickHandler={() => this.onClickHandler("total_price")}
-									editable={this.state.editable[4]} />
-							</div>
 
 							{/* this.state.fakeData.receipt.products.map(product => (
 									<div key={product.id} className="compare-area__content__product">
