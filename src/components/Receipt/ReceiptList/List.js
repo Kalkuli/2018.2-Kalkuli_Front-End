@@ -23,8 +23,8 @@ class ReceiptList extends React.Component {
 
 		if (this.state.selectedReceipt) {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
-										receipt={this.state.selectedReceipt}
-										onGetAllReceipts={this.props.onGetAllReceipts} />
+																	receipt={this.state.selectedReceipt}
+																	onGetAllReceipts={this.props.onGetAllReceipts} />
 		}
 
 		return (
@@ -32,7 +32,6 @@ class ReceiptList extends React.Component {
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 
 				{receiptView}
-
 				{this.props.receipts.map(receipt => {
 					return <div key={receipt.id}>
 						<Receipt size="small" onClickHandler={() => this.onOpenPopup(receipt)}>
