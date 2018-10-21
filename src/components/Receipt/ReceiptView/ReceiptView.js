@@ -6,6 +6,7 @@ import Receipt from '../../UI/Receipt/Receipt'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../UI/BackDrop/BackDrop'
+import deleteReceipt from '../../../services/deleteReceipt'
 
 class ReceiptView extends Component {
 
@@ -54,16 +55,13 @@ class ReceiptView extends Component {
     )
   }
 
-  onDeleteHandler = () => {
+  onDeleteHandler = async() => {
     let receipt_id = this.props.receipt.id
-    Axios.delete(`https://kalkuli-gateway.herokuapp.com/api/v1/receipt/${receipt_id}`)
-         .then((response) => {
-              this.setState({
-                    confirmation: false
-              })
-              this.props.onClosePopup()
-              this.props.onGetAllReceipts()
-          })
+    const response = await deleteReceipt(receipt_id)
+    console.log(response)
+    this.setState({ confirmation: false })
+    this.props.onClosePopup()
+    this.props.onGetAllReceipts()
   }
   
   onCancelHandler = () => {

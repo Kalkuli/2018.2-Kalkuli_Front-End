@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import ReceiptView from '../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../UI/BackDrop/BackDrop'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
+jest.mock('../../services/deleteReceipt')
 configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptView />", () => {
@@ -18,8 +19,16 @@ describe("Testing <ReceiptView />", () => {
     "tax_value": 20.2,
     "total_price": 123.12
   }
+
+  const spyOnClosePopUp = jest.fn()
+  const spyOnGetAllReceipts = jest.fn()
+  const props = {
+    onClosePopup: spyOnClosePopUp,
+    onGetAllReceipts: spyOnGetAllReceipts
+  }
+
   beforeEach(() => {
-    wrapper = shallow(<ReceiptView receipt={receipt}/>)
+    wrapper = shallow(<ReceiptView {...props} receipt={receipt}/>)
   })
 
   it('should find BackDrop', () => {
@@ -39,4 +48,16 @@ describe("Testing <ReceiptView />", () => {
     expect(wrapper.state('confirmation')).toBe(false)
   }) 
 
+  it('should set confirmation state to true', () => {
+    wrapper.setState({confirmation: false})
+    expect(wrapper.state('confirmation')).toBe(false)
+    wrapper.instance().onConfirmationTrue()
+    expect(wrapper.state('confirmation')).toBe(true)
+  })
+
+  it('should delete the clicked receipt', () => {
+    const spyOnDeleteHandler = jest.fn()
+    wrapper.instance().onDeleteHandler()
+    expect(wrapper.state('confirmation')).toBe(false)
+  })
 })

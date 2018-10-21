@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16'
 import { ReceiptList, mapStateToProps, mapDispatchToProps} from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
-import List from '../Receipt/ReceiptList/List'
 jest.mock('../../services/getAllReceipts')
 
 configure({adapter: new Adapter()})
@@ -64,9 +63,6 @@ describe("Testing <ReceiptList/>", () => {
     expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_RECEIPTS'})
   })
 
-  it('should find List', () => {
-    expect(wrapper.find(List).exists()).toBe(true)
-  })
   it('should find NavBar', () => {
     expect(wrapper.find(NavBar).exists()).toBe(true)
   })
