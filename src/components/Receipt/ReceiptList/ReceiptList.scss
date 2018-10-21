@@ -8,20 +8,20 @@
     width: 90%;
     margin: auto;
     &__receipt-data {
-        font-size: 1.5em;
-        height: 30%;
+        font-size: 1.3rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         margin-left: 1.4rem;
-        width: 17rem;
+        width: 19rem;
+        height: 20rem;
     }
 }
 
-.dados {
+.data {
     display: flex;
     justify-content: space-between;
+    margin: .5rem 0;
 }
 
 .receiptplus{

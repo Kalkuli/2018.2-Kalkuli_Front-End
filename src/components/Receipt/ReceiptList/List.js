@@ -24,28 +24,18 @@ class ReceiptList extends React.Component {
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 
 				{receiptView}
-				{this.props.receipts.map(receipt => {
-					return <div key={receipt.id}>
-						<Receipt size="small" onClickHandler={this.onOpenPopup.bind(this, receipt)}>
-							<div className='container-receipts__receipt-data receipt-font'>
-								<div className='dadosNotas'>
-									<div className='dados'>
-										<p><b>Data:</b></p>
-										<p>{receipt.emission_date}</p>
-									</div>
-									<div className='dados'>
-										<p><b>Local:</b></p>
-										<p>{receipt.emission_place}</p>
-									</div>
-									<div className='dados'>
-										<p><b>Preço:</b></p>
-										<p>{receipt.total_price}</p>
-									</div>
-								</div>
-							</div>
-						</Receipt>
-					</div>
-				})}
+				{this.props.receipts.map(receipt => (
+					<Receipt key={receipt.id} size="small" onClickHandler={this.onOpenPopup.bind(this, receipt)}>
+						<div className='container-receipts__receipt-data receipt-font'>
+							{Object.keys(receipt).map(data => (
+								<div key={data} className="data">
+									<p><b>label:</b></p>
+									<p>{receipt[data]}</p>
+								</div>	
+							))}
+						</div>
+					</Receipt>
+				))}
 			</div>
 		)
 	}
