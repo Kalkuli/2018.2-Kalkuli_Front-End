@@ -55,4 +55,8 @@ describe('Testing <ReceiptCompare/>', () => {
     wrapper.instance().onChangeHandler({target: {value: 'teste'}}, receiptInputs.title)
     expect(wrapper.state('receiptIsValid')).toBe(false)
   })
+
+  it('should receive a null file', () => {
+    wrapper.setProps({filePDF: null})
+  })
 })
