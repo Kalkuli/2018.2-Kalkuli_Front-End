@@ -12,7 +12,6 @@ import getAllReceipts from '../../../services/getAllReceipts'
 export class ReceiptList extends Component {
 
     state = {  
-        receipts: [],
         loaded: false,
         rotate: false,
         newReceipt: false,
@@ -21,7 +20,6 @@ export class ReceiptList extends Component {
 
     componentDidMount() {
         this.fetchReceipts()
-        //this.props.onReceiptsAdded(this.state.receipts)
     }
 
     render() {
@@ -42,7 +40,8 @@ export class ReceiptList extends Component {
 
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
-        this.setState({ loaded: true, receipts: receipts })
+        this.setState({ loaded: true })
+        this.props.onReceiptsAdded(receipts)
     }
 
     onClickMenuButton = () => { 
@@ -66,10 +65,16 @@ export class ReceiptList extends Component {
     onNewReportHandler = () => { this.props.history.push({pathname: '/reports'}) }
 }
 
-const mapDispatchToProps = dispatch => {
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts
+    }
+}
+
+export const mapDispatchToProps = dispatch => {
     return {
         onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
     }
 }
 
-export default connect(null, mapDispatchToProps)(ReceiptList)
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)
