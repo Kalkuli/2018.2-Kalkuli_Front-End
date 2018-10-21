@@ -25,10 +25,19 @@
       background-color: transparent;
       cursor: not-allowed;
     }
+    
+    &--valid {
+      border-bottom: 1px solid green;
+    }
+
+    &--invalid {
+      border-bottom: 1px solid red;
+    }
   }
 
   &__edit-image {
     width: 15px;
+    height: 15px;
   }
 }
 

@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
-import Axios from 'axios'
 import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'
 import './ReceiptList.scss'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
 import ReceiptAdder from '../../Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../UI/BackDrop/BackDrop'
+import { connect } from 'react-redux'
+import * as actionTypes from '../../../store/actions/actions'
+import getAllReceipts from '../../../services/getAllReceipts'
 
-export default class ReceiptList extends Component {
+export class ReceiptList extends Component {
 
     state = {  
         loaded: false,
@@ -17,7 +19,7 @@ export default class ReceiptList extends Component {
     }
 
     componentDidMount() {
-        this.getAllReceipts();
+        this.fetchReceipts()
     }
 
     render() {
@@ -25,7 +27,8 @@ export default class ReceiptList extends Component {
             <div >
                 <Navbar/>
                 { this.state.newReceipt ? this.renderReceiptAdder() : null }
-                { this.state.loaded && <List receipts={this.state.receipts} /> }
+                { this.state.loaded && <List    receipts={this.props.receipts} 
+                                                onGetAllReceipts={this.fetchReceipts} /> }
                 <MenuButton     rotate={this.state.rotate} 
                                 clickedMenuButton={this.state.clickedMenuButton}
                                 onClickMenuButton={this.onClickMenuButton} 
@@ -35,38 +38,43 @@ export default class ReceiptList extends Component {
         )
     }
 
-    getAllReceipts = () => {
-        Axios.get('https://kalkuli-gateway.herokuapp.com/api/v1/receipts')
-            .then((response) => {
-                this.setState({
-                    receipts: response.data.data.receipts,
-                    loaded: true
-                })
-            })
+    fetchReceipts = async() => {
+        const receipts = await getAllReceipts()
+        this.setState({ loaded: true })
+        this.props.onReceiptsAdded(receipts)
     }
 
     onClickMenuButton = () => { 
-        this.setState(prevState => ({rotate: !prevState.rotate, clickedMenuButton: true}))
+        !this.state.clickedMenuButton ? this.setState({clickedMenuButton: true}) : null
+        this.setState(prevState => ({rotate: !prevState.rotate}))
     }
 
     renderReceiptAdder = () => {
         return (
             <Fragment>
                 <Backdrop show={this.state.newReceipt} click={this.onToggleNewReceipt} />
-                <ReceiptAdder show={this.state.newReceipt}/>
+                <ReceiptAdder onCancelHandler={this.onCloseReceiptAdder} show={this.state.newReceipt}/>
             </Fragment>
         )
     }
 
-    onCloseReceiptAdder = () => {
-        this.setState({newReceipt: false})
-    }
+    onCloseReceiptAdder = () => { this.setState({newReceipt: false}) }
 
-    onToggleNewReceipt = () => {
-        this.setState(prevState => ({newReceipt: !prevState.newReceipt}))
-    }
+    onToggleNewReceipt = () => { this.setState(prevState => ({newReceipt: !prevState.newReceipt})) }
 
-    onNewReportHandler = () => {
-        this.props.history.push({pathname: '/reports'})
+    onNewReportHandler = () => { this.props.history.push({pathname: '/reports'}) }
+}
+
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts
     }
 }
+
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)

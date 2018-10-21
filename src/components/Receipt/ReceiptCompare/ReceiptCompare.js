@@ -5,23 +5,102 @@ import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 
-class ReceiptCompare extends Component {
+export class ReceiptCompare extends Component {
 	state = {
-		receipt: {
-			cnpj: "",
-			emission_date: "",
-			emission_place: "",
-			products: [],
-			tax_value: 0,
-			total_price: 0
+		receiptInput: {
+			title: {
+				name: 'Título',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			cnpj: {
+				name: 'CNPJ',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			emission_date: {
+				name: 'Data',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			emission_place: {
+				name: 'Local',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			tax_value: {
+				name: 'Impostos',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			total_price: {
+				name: 'Total',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			},
+			description: {
+				name: 'Descrição',
+				value: '',
+				type: 'text',
+				valid: false,
+				editable: false,
+				touched: false,
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 10
+				}
+			}
 		},
-		editable: [
-			false,
-			false,
-			false,
-			false,
-			false
-		],
+		receiptIsValid: false
 	}
 
 	componentDidMount() {
@@ -30,12 +109,12 @@ class ReceiptCompare extends Component {
 
 	render() {
 		let preview = null
-		if (this.props.filePDF !== null) {
+		if (this.props.filePDF !== null)
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
-		}
 		else
 			preview = <h1>Nenhum arquivo encontrado</h1>
 
+		let {receiptInput} = this.state
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -45,119 +124,73 @@ class ReceiptCompare extends Component {
 
 					<Receipt size="large">
 						<div className="compare-area__content">
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>CNPJ:</b></p>
-								<Input value={this.state.receipt.cnpj}
-									onChangeHandler={(event) => this.onChangeHandler(event, "cnpj")}
-									onClickHandler={() => this.onClickHandler("cnpj")}
-									editable={this.state.editable[0]} />
-							</div>
 
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Data:</b></p>
-								<Input value={this.state.receipt.emission_date}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_date")}
-									onClickHandler={() => this.onClickHandler("emission_date")}
-									editable={this.state.editable[1]} />
-							</div>
-
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Lugar:</b></p>
-								<Input value={this.state.receipt.emission_place}
-									onChangeHandler={(event) => this.onChangeHandler(event, "emission_place")}
-									onClickHandler={() => this.onClickHandler("emission_place")}
-									editable={this.state.editable[2]} />
-							</div>
-
-
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Taxas:</b> R$</p>
-								<Input value={this.state.receipt.tax_value}
-									onChangeHandler={(event) => this.onChangeHandler(event, "tax_value")}
-									onClickHandler={() => this.onClickHandler("tax_value")}
-									editable={this.state.editable[3]} />
-							</div>
-
-							<div className="compare-area__content__labels"> 
-								<p className="receipt-font compare-area__content__labels__label"><b>Total:</b> R$</p>
-								<Input value={this.state.receipt.total_price}
-									onChangeHandler={(event) => this.onChangeHandler(event, "total_price")}
-									onClickHandler={() => this.onClickHandler("total_price")}
-									editable={this.state.editable[4]} />
-							</div>
-
-							{/* this.state.fakeData.receipt.products.map(product => (
-									<div key={product.id} className="compare-area__content__product">
-											<Input width="small" value={product.quantity} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "quantity")}/>    
-											<h1 style={{marginTop:"10px"}}>. . . . . . . .</h1>
-											<Input width="small" value={product.unit_price} onChangeHandler={(event) => this.onChangeHandler(event, product.id, "unit_price")}/>
-									</div>    
-							))} */}
+							{Object.keys(receiptInput).map(key => (
+								<div key={key} className="compare-area__content__labels"> 
+									<p className="receipt-font compare-area__content__labels__label">
+										<b>{receiptInput[key].name}:</b>
+									</p>
+									<Input 	value={receiptInput[key].value}
+													valid={receiptInput[key].valid}
+													touched={receiptInput[key].touched}
+													onChangeHandler={(event) => this.onChangeHandler(event, key)}
+													onClickHandler={() => this.onClickHandler(key)}
+													editable={receiptInput[key].editable} />
+								</div>
+							))}
 						</div>
 					</Receipt>
-
 				</div>
+				
 				<div className="compare-area__buttons">
 					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
-					<BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton>
+					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
+											click={this.onConfirmHandler}>Confirmar</BaseButton>
 				</div>
 			</div>
 		)
 	}
 
-
-
 	onConfirmHandler = () => {
-		// let taxValue = this.state.receipt.tax_value
-		// let taxValueFloat = parseFloat(taxValue)
-		// let newState = {...this.state.receipt, tax_value: taxValueFloat}
-		// this.setState({
-		// 	receipt: newState
-		// })
-		// console.log(this.state.receipt)
-		this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
+		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		this.props.onConfirmButton(this.state.receipt)
 	}
 
-	onClickHandler = (inputClicked) => {
-
-		let newEditable = [...this.state.editable]
-
-		if (inputClicked === "cnpj")
-			newEditable[0] = !newEditable[0]
-		else if (inputClicked === "emission_date")
-			newEditable[1] = !newEditable[1]
-		else if (inputClicked === "emission_place")
-			newEditable[2] = !newEditable[2]
-		else if (inputClicked === "tax_value")
-			newEditable[3] = !newEditable[3]
-		else if (inputClicked === "total_price")
-			newEditable[4] = !newEditable[4]
-
-
-		this.setState({ editable: newEditable })
+	onClickHandler = (inputKey) => {
+		let inputState = {...this.state.receiptInput}
+		let inputElement = {...inputState[inputKey]}
+		inputElement.editable = !inputElement.editable
+		inputElement.touched = false
+		inputState[inputKey] = inputElement
+		this.setState({receiptInput: inputState})
 	}
 
+	onChangeHandler = (event, inputKey) => {
+		let inputState = {...this.state.receiptInput}
+		let inputElement = {...inputState[inputKey]}
+		inputElement.value = event.target.value
+		inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+		inputElement.touched = true
+		inputState[inputKey] = inputElement
 
-	onChangeHandler = (event, inputID, key) => {
-		const oldData = {
-			...this.state.receipt
+		let receiptIsValid = true
+		for(let inputKey in inputState) {
+			receiptIsValid = inputState[inputKey].valid && receiptIsValid
 		}
 
-		if (key) {
-			if (key === "unit_price")
-				oldData.products[inputID].unit_price = event.target.value
-			else
-				oldData.products[inputID].quantity = event.target.value
-		} else
-			oldData[`${inputID}`] = event.target.value
-
-		this.setState({
-			receipt: oldData
-		});
-
+		this.setState({receiptInput: inputState, receiptIsValid: receiptIsValid})
 	}
 
+	checkValidity = (value, rules) => {
+		let isValid = false
+		if(rules.required)
+			isValid = value.trim() !== ''
+		
+		if(rules.minLength)
+			isValid = value.length >= rules.minLength
+
+		return isValid
+	}
 }
 
 const mapStateToProps = state => {

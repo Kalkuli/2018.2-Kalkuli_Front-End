@@ -4,13 +4,6 @@ import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 
-let receipts = {
-	id: 1,
-	emission_date: '03-02-2018',
-	emission_place: 'Gama',
-	total_price: '34.43'
-}
-
 class ReceiptList extends React.Component {
 
 	state = {
@@ -20,9 +13,10 @@ class ReceiptList extends React.Component {
 
 	render() {
 		let receiptView = null;
-
 		if (this.state.selectedReceipt) {
-			receiptView = <ReceiptView onClosePopup={this.onClosePopup} receipt={this.state.selectedReceipt} />
+			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
+																	receipt={this.state.selectedReceipt}
+																	onGetAllReceipts={this.props.onGetAllReceipts} />
 		}
 
 		return (
@@ -30,10 +24,9 @@ class ReceiptList extends React.Component {
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 
 				{receiptView}
-
 				{this.props.receipts.map(receipt => {
 					return <div key={receipt.id}>
-						<Receipt size="small" onClickHandler={() => this.onOpenPopup(receipt)}>
+						<Receipt size="small" onClickHandler={this.onOpenPopup.bind(this, receipt)}>
 							<div className='container-receipts__receipt-data receipt-font'>
 								<div className='dadosNotas'>
 									<div className='dados'>
@@ -51,7 +44,6 @@ class ReceiptList extends React.Component {
 								</div>
 							</div>
 						</Receipt>
-
 					</div>
 				})}
 			</div>

@@ -8,7 +8,6 @@ const Receipt = (props) => {
         style.push("receipt--small")
     else if(props.size === "large")
         style.push("receipt--large")
-
     return(
         <div className={style.join(' ')} onClick={props.onClickHandler}>
             {props.children}

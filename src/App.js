@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
-import Confirmation from './components/UI/Confirmation/Confirmation'
 import ReceiptList from './components/Receipt/ReceiptList/ReceiptList'
 import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 import HomePage from './components/HomePage/HomePage'
+import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
 
 import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 
@@ -14,6 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path='/compare' component={ReceiptAdder} />
           <Route path='/' exact component={HomePage}/> 
           <Route path='/list-all-receipts'component={ReceiptList} />
           <Route path='/dashboard' component={Dashboard} />
