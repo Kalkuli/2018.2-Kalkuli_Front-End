@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import Axios from 'axios'
 import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'
 import './ReceiptList.scss'
@@ -13,15 +12,16 @@ import getAllReceipts from '../../../services/getAllReceipts'
 export class ReceiptList extends Component {
 
     state = {  
+        receipts: [],
         loaded: false,
         rotate: false,
         newReceipt: false,
         clickedMenuButton: false
     }
 
-    async componentDidMount() {
-        this.props.onReceiptsAdded(await getAllReceipts())
-        this.setState({ loaded: true })
+    componentDidMount() {
+        this.fetchReceipts()
+        //this.props.onReceiptsAdded(this.state.receipts)
     }
 
     render() {
@@ -40,6 +40,10 @@ export class ReceiptList extends Component {
         )
     }
 
+    fetchReceipts = async() => {
+        const receipts = await getAllReceipts()
+        this.setState({ loaded: true, receipts: receipts })
+    }
 
     onClickMenuButton = () => { 
         !this.state.clickedMenuButton ? this.setState({clickedMenuButton: true}) : null
@@ -62,16 +66,10 @@ export class ReceiptList extends Component {
     onNewReportHandler = () => { this.props.history.push({pathname: '/reports'}) }
 }
 
-const mapStateToProps = state => {
-    return {
-        receipts: state.receipts
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)
+export default connect(null, mapDispatchToProps)(ReceiptList)
