@@ -50,8 +50,6 @@ describe("Testing <ReceiptList/>", () => {
 
   it('should test mapStateToProps', () => {
     const initialState = {
-      filePDF: null,
-      fileExtracted: null,
       receipts: ["test"]
     }
     expect(mapStateToProps(initialState).receipts).toEqual(["test"])
