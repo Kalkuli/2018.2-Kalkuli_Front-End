@@ -24,7 +24,7 @@ export class ReceiptCompare extends Component {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
 
-		let {receiptInput} = this.state
+		let { receiptInput } = this.state
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">

@@ -15,31 +15,18 @@ class ReceiptView extends Component {
   }
 
   render() {
+    let { receipt } = this.props
     return (
       <Modal>
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <Receipt size='large'>
           <div className='receipt-area receipt-font'>
-            <div className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>CNPJ:</b></p>
-              <p>{this.props.receipt.cnpj}</p>
-            </div>
-            <div className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>Data:</b></p>
-              <p>{this.props.receipt.emission_date}</p>
-            </div>
-            <div className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>Lugar:</b></p>
-              <p>{this.props.receipt.emission_place}</p>
-            </div>
-            <div className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>Impostos:</b></p>
-              <p>{this.props.receipt.tax_value}</p>
-            </div>
-            <div className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>Total:</b></p>
-              <p>{this.props.receipt.total_price}</p>
-            </div>
+            {Object.keys(receipt).map(data => (
+              <div key={data} className='receipt-area__content'>
+                <p className="receipt-font receipt-area__content__label"><b>label:</b></p>
+                <p>{receipt[data]}</p>
+              </div>
+            ))}
           </div>
         </Receipt>
 
