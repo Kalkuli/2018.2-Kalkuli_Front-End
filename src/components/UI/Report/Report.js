@@ -5,8 +5,8 @@ import ReportLabels from '../ReportLabels/ReportLabels';
 import ReportWarning from '../ReportWarning/ReportWarning';
 
 const chooseContent = (props) => {
-    let text
-    let subText
+    let text = null
+    let subText = null
     switch(props.reportCase){
         case 'reports':
             return(
@@ -15,7 +15,7 @@ const chooseContent = (props) => {
                         <ReportLabels/>
                         {props.receipts.map((data) => {
                             return(
-                                <ReceiptInfo key={data.id} date={data.emission_date} cnpj={data.cnpj} price={data.total_price}/>
+                                <ReceiptInfo key={+data.id} date={data.emission_date} cnpj={data.cnpj} price={data.total_price}/>
                             )}
                         )}
                     </div>
@@ -24,7 +24,7 @@ const chooseContent = (props) => {
             )
 
         case 'do not exist':
-            if(props.page == "dashboard"){
+            if(props.page === "dashboard"){
                 text = " nota"
             } else {
                 text = " relatório"
@@ -37,7 +37,7 @@ const chooseContent = (props) => {
             )
     
         default:
-            if(props.page == "dashboard"){
+            if(props.page === "dashboard"){
                 text = "Insira uma data valida"
                 subText = "Para gerar um relatório"
             } else {

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import Axios from 'axios'
 import './ReceiptView.scss'
 import Modal from '../../UI/Modal/Modal'
 import Receipt from '../../UI/Receipt/Receipt'
@@ -7,6 +6,7 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../UI/BackDrop/BackDrop'
 import deleteReceipt from '../../../services/deleteReceipt'
+import receiptInput from '../../../helpers/receiptInputs'
 
 class ReceiptView extends Component {
 
@@ -21,12 +21,23 @@ class ReceiptView extends Component {
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <Receipt size='large'>
           <div className='receipt-area receipt-font'>
-            {Object.keys(receipt).map(data => (
-              <div key={data} className='receipt-area__content'>
-                <p className="receipt-font receipt-area__content__label"><b>label:</b></p>
-                <p>{receipt[data]}</p>
-              </div>
-            ))}
+            <div key={'title'} className='receipt-area__content'>
+              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
+              <p>{receipt['title']}</p>
+            </div>
+            {Object.keys(receipt).map(data => {
+              if(data === 'title' || data === 'description')
+                return null
+              return (
+                <div key={data} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
+                  <p>{receipt[data]}</p>
+                </div>
+            )})}
+            <div key={'description'} className='receipt-area__content'>
+              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
+              <p>{receipt['description']}</p>
+            </div>
           </div>
         </Receipt>
 
@@ -43,9 +54,8 @@ class ReceiptView extends Component {
   }
 
   onDeleteHandler = async() => {
-    let receipt_id = this.props.receipt.id
+    let receipt_id = this.props.receiptId
     const response = await deleteReceipt(receipt_id)
-    console.log(response)
     this.setState({ confirmation: false })
     this.props.onClosePopup()
     this.props.onGetAllReceipts()
