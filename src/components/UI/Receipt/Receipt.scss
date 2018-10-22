@@ -2,13 +2,17 @@
     background-image: url("../../../assets/img/notaY.svg");
     background-repeat: no-repeat;
     background-position: center;
+    transition: all .5s;
     &--small {
-        background-size: 100px;
-        width: 200px;
-        height: 335px;
-        background-size: 200px;
+        width: 220px;
+        height: 365px;
+        background-size: 220px;
         margin-top: 5rem;
+        margin-left: 1.5rem;
         cursor: pointer;
+        &:hover {
+            transform: translateY(-1rem);
+        }
     }
     &--large {
         width: 29rem;

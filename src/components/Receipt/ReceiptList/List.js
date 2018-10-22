@@ -3,49 +3,58 @@ import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
+import receiptInput from '../../../helpers/receiptInputs'
 
 class ReceiptList extends React.Component {
 
 	state = {
 		showModal: false,
 		selectedReceipt: null,
+		selectedReceiptId: null
 	}
 
 	render() {
-		let receiptView = null;
+		let receiptView = null
 		if (this.state.selectedReceipt) {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
 																	receipt={this.state.selectedReceipt}
+																	receiptId={this.state.selectedReceiptId}
 																	onGetAllReceipts={this.props.onGetAllReceipts} />
 		}
 
+		let receipts = JSON.parse(JSON.stringify(this.props.receipts))
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
-
 				{receiptView}
-				{this.props.receipts.map(receipt => {
-					return <div key={receipt.id}>
-						<Receipt size="small" onClickHandler={this.onOpenPopup.bind(this, receipt)}>
+
+				{receipts.map(receipt => {
+					let receiptId = receipt.id
+					delete receipt.id
+					delete receipt.company_id
+					return (
+						<Receipt key={+receiptId} size="small" onClickHandler={this.onOpenPopup.bind(this, [receipt, receiptId])}>
 							<div className='container-receipts__receipt-data receipt-font'>
-								<div className='dadosNotas'>
-									<div className='dados'>
-										<p><b>Data:</b></p>
-										<p>{receipt.emission_date}</p>
-									</div>
-									<div className='dados'>
-										<p><b>Local:</b></p>
-										<p>{receipt.emission_place}</p>
-									</div>
-									<div className='dados'>
-										<p><b>Preço:</b></p>
-										<p>{receipt.total_price}</p>
-									</div>
-								</div>
+								<div key={"title"} className="data">
+										<p><b>{receiptInput["title"].name}:</b></p>
+										<p>{receipt["title"]}</p>
+								</div>	
+								{Object.keys(receipt).map(data => {
+									if(data === 'title' || data === 'description')
+										return null
+									return (
+										<div key={data} className="data">
+											<p><b>{receiptInput[data].name}:</b></p>
+											<p>{receipt[data]}</p>
+										</div>	
+								)})}
+								<div key={"description"} className="data">
+										<p><b>{receiptInput["description"].name}:</b></p>
+										<p>{receipt["description"]}</p>
+								</div>	
 							</div>
 						</Receipt>
-					</div>
-				})}
+				)})}
 			</div>
 		)
 	}
@@ -53,7 +62,8 @@ class ReceiptList extends React.Component {
 	onOpenPopup = (receipt) => {
 		this.setState({
 			showModal: true,
-			selectedReceipt: receipt
+			selectedReceipt: receipt[0],
+			selectedReceiptId: receipt[1]
 		})
 	}
 	onClosePopup = () => {

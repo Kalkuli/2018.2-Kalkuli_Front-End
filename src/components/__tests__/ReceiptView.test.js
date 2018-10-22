@@ -11,13 +11,13 @@ describe("Testing <ReceiptView />", () => {
 
   let wrapper = null
   let receipt = {
-    "cnpj": "100asd0966",
-    "company_id": 0,
     "emission_date": "2018-09-22",
-    "emission_place": "aaaaaa",
-    "id": 2,
-    "tax_value": 20.2,
-    "total_price": 123.12
+    "emission_place": "aqqqqqq",
+    "tax_value": 20.20,
+    "total_price": 123.12,
+    "title": "oi",
+    "description": "teste",
+    "cnpj": "320490234-002",
   }
 
   const spyOnClosePopUp = jest.fn()

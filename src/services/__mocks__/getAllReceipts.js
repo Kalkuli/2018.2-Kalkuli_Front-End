@@ -2,13 +2,13 @@ const fakeData = {
   data: {
     data: {
       receipts: [{
-        "cnpj": "78787866",
-        "company_id": 12,
         "emission_date": "2018-09-22",
-        "emission_place": "aaaaaa",
-        "id": 2,
-        "tax_value": 20.2,
+        "emission_place": "aqqqqqq",
+        "tax_value": 20.20,
         "total_price": 123.12,
+        "title": "oi",
+        "description": "teste",
+        "cnpj": "320490234-002",
       }]
     }
   }

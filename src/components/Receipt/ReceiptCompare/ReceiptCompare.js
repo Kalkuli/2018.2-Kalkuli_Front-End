@@ -4,102 +4,11 @@ import Receipt from '../../UI/Receipt/Receipt'
 import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
+import receiptInputs from '../../../helpers/receiptInputs'
 
 export class ReceiptCompare extends Component {
 	state = {
-		receiptInput: {
-			title: {
-				name: 'Título',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			cnpj: {
-				name: 'CNPJ',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			emission_date: {
-				name: 'Data',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			emission_place: {
-				name: 'Local',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			tax_value: {
-				name: 'Impostos',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			total_price: {
-				name: 'Total',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			},
-			description: {
-				name: 'Descrição',
-				value: '',
-				type: 'text',
-				valid: false,
-				editable: false,
-				touched: false,
-				validation: {
-					required: true,
-					minLength: 5,
-					maxLength: 10
-				}
-			}
-		},
+		receiptInput: receiptInputs,
 		receiptIsValid: false
 	}
 
@@ -109,12 +18,13 @@ export class ReceiptCompare extends Component {
 
 	render() {
 		let preview = null
-		if (this.props.filePDF !== null)
+		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
-		else
+		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
+		}
 
-		let {receiptInput} = this.state
+		let { receiptInput } = this.state
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -134,7 +44,7 @@ export class ReceiptCompare extends Component {
 													valid={receiptInput[key].valid}
 													touched={receiptInput[key].touched}
 													onChangeHandler={(event) => this.onChangeHandler(event, key)}
-													onClickHandler={() => this.onClickHandler(key)}
+													onClickHandler={this.onClickHandler.bind(this, key)}
 													editable={receiptInput[key].editable} />
 								</div>
 							))}
@@ -193,7 +103,7 @@ export class ReceiptCompare extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
 	return {
 		filePDF: state.filePDF,
 		fileExtracted: state.fileExtracted

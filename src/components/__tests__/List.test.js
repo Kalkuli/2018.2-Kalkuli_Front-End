@@ -10,13 +10,13 @@ configure({adapter: new Adapter()})
 describe("Testing <List />", () => {
   let wrapper = null
   let receipt = {
-    "cnpj": "100asd0966",
-    "company_id": 0,
     "emission_date": "2018-09-22",
-    "emission_place": "aaaaaa",
-    "id": 2,
-    "tax_value": 20.2,
-    "total_price": 123.12
+    "emission_place": "aqqqqqq",
+    "tax_value": 20.20,
+    "total_price": 123.12,
+    "title": "oi",
+    "description": "teste",
+    "cnpj": "320490234-002",
   }
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe("Testing <List />", () => {
   it('should test selectedReceipt state by directly invoking method', () => {
     const instance = wrapper.instance()
     expect(wrapper.state('selectedReceipt')).toBe(null)
-    instance.onOpenPopup(receipt)
+    instance.onOpenPopup([receipt, 1])
     expect(wrapper.state('selectedReceipt')).toBe(receipt)
     instance.onClosePopup()
     expect(wrapper.state('selectedReceipt')).toBe(null)
@@ -44,7 +44,7 @@ describe("Testing <List />", () => {
   it('should test showModal state by directly invoking method', () => {
     const instance = wrapper.instance()
     expect(wrapper.state('showModal')).toBe(false)
-    instance.onOpenPopup()
+    instance.onOpenPopup([receipt, 1])
     expect(wrapper.state('showModal')).toBe(true)
     instance.onClosePopup()
     expect(wrapper.state('showModal')).toBe(false)

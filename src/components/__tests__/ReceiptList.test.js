@@ -1,7 +1,7 @@
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { ReceiptList, mapStateToProps, mapDispatchToProps} from '../Receipt/ReceiptList/ReceiptList'
+import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
@@ -50,8 +50,6 @@ describe("Testing <ReceiptList/>", () => {
 
   it('should test mapStateToProps', () => {
     const initialState = {
-      filePDF: null,
-      fileExtracted: null,
       receipts: ["test"]
     }
     expect(mapStateToProps(initialState).receipts).toEqual(["test"])
