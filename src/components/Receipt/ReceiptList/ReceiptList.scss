@@ -8,12 +8,95 @@
     width: 90%;
     margin: auto;
     &__receipt-data {
-        font-size: 1.5em;
-        height: 30%;
+        font-size: 1.3rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         margin-left: 1.4rem;
+        width: 19rem;
+        height: 20rem;
     }
+}
+
+.data {
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0;
+}
+
+.receiptplus{
+    background-color: $color-light-blue;
+    border-radius: 20em;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    bottom: 3em;
+    right: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+}
+
+
+.receipt__options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 14em;
+    right: 3.5em;
+    width: auto;
+    align-items: center;
+    
+}
+
+.receipt__options--newReceipt{
+    background-color: $color-dark-blue;
+    border-radius: 20em;
+    background-repeat: no-repeat;
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    margin: 1.5em;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    
+}
+
+.receipt__options--newReport{
+    background-color: $color-yellow;
+    border-radius: 20em;
+    background-repeat: no-repeat;
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+    margin: 0;
+    
+}
+
+.receipt__img__container{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    justify-content: center !important;
+    
+}
+
+
+.scalehover:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.receipt__report__names{
+    position: absolute;
+    bottom: 0;
+    right: 8em; 
+    width: 11em;
+    margin-right: 1.5em;
+    text-align: end;
 }

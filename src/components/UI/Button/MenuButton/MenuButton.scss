@@ -1,0 +1,99 @@
+@import "../../../../assets/sass/main";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-light-blue;
+  box-shadow: 2px 2px 1rem rgba($color-black, .6);
+  transition: all .2s;
+  user-select: none;
+  cursor: pointer;
+  
+  &:hover{
+    box-shadow: 2px 2px 2rem rgba($color-black, .6);
+    transform: scale(1.05);
+  }
+  &:active {
+    box-shadow: 2px 2px 1rem rgba($color-black, .6);
+    transform: scale(1);
+  }
+}
+
+.menubutton {
+  position: fixed;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 20em;
+  bottom: 5rem;
+  right: 6rem;
+  z-index: 90;
+  &__plus {
+    color: white;  
+    font-size: 6rem;
+  }
+}
+
+.options {
+  transition: all .5s;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  width: 22rem;
+  height: 15rem;
+  position: fixed;
+  bottom: 14rem;
+  right: 7rem;
+
+  &__element {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+      
+    &--text {
+      user-select: none;  
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-right: 15px;
+      color: $color-white;
+      background-color: $color-light-blue;
+      border-radius: 8px;
+      padding: 5px;
+      box-shadow: 2px 2px 1rem rgba($color-black, .6);
+    }
+
+    &--circle {
+      border-radius: 10rem;
+      height: 6rem;
+      width: 6rem;
+    }
+  }
+}
+
+.rotate {
+  transition: all .8s;
+  transform: rotate(45deg);
+  &:hover {
+    transform: scale(1.05) rotate(45deg);
+  }
+  &:active {
+    box-shadow: 2px 2px 1rem rgba($color-black, .6);
+    transform: scale(1);
+  }
+}
+
+.open {
+  animation: open .8s;
+}
+
+.close {
+  animation: close .3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.firstTimeRunning {
+  display: none;
+}
+

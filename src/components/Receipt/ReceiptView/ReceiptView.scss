@@ -6,7 +6,8 @@
     align-items: center;
     justify-content: space-between;
     height: 47rem;
-    margin-left: 5rem;
+    margin-left: 5.5rem;
+    margin-right: 3rem;
     &__change-buttons{
         display: flex;
         flex-flow: column;
@@ -16,11 +17,22 @@
 }
 
 .receipt-area{
+    display: flex;
     flex-flow: column;
     justify-content: space-around;
-    height: 30%;
-    display: flex;
-    margin-top: 3rem;
-    margin-left: 4rem;
     font-size: 2rem;
+    width: 80%;
+    font-size: 1.7rem;
+    margin-top: 4rem;
+    margin-left: 2.2rem;
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+
+        &__label{
+            padding-bottom: 1em;
+            color: $color-black;
+        }
+    }
 }

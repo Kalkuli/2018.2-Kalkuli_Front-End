@@ -1,26 +1,43 @@
-import React, {Component} from 'react'
+import React, { Component, Fragment } from 'react'
 import './ReceiptView.scss'
 import Modal from '../../UI/Modal/Modal'
 import Receipt from '../../UI/Receipt/Receipt'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
+import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessage'
+import BackDrop from '../../UI/BackDrop/BackDrop'
+import deleteReceipt from '../../../services/deleteReceipt'
+import receiptInput from '../../../helpers/receiptInputs'
 
-class ReceiptView extends Component{
-  receipt = {
-    "company_id": "00.000.000/0000-00",
-    "emission_date": "00/00/0000",
-    "emission_place": "Gama",
-    "tax_value": 20.20
+class ReceiptView extends Component {
+
+  state = {
+    confirmation: false 
   }
-  
-  render(){
-    return(
+
+  render() {
+    let { receipt } = this.props
+    return (
       <Modal>
+        {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <Receipt size='large'>
           <div className='receipt-area receipt-font'>
-            <p>{this.receipt.company_id}</p>
-            <p>{this.receipt.emission_date}</p>
-            <p>{this.receipt.emission_place}</p>
-            <p>{this.receipt.tax_value}</p>
+            <div key={'title'} className='receipt-area__content'>
+              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
+              <p>{receipt['title']}</p>
+            </div>
+            {Object.keys(receipt).map(data => {
+              if(data === 'title' || data === 'description')
+                return null
+              return (
+                <div key={data} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
+                  <p>{receipt[data]}</p>
+                </div>
+            )})}
+            <div key={'description'} className='receipt-area__content'>
+              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
+              <p>{receipt['description']}</p>
+            </div>
           </div>
         </Receipt>
 
@@ -28,13 +45,39 @@ class ReceiptView extends Component{
           <div className='area-buttons__change-buttons'>
             <BaseButton type="confirm" click={this.onConfirmHandler}>Exportar</BaseButton>
             <BaseButton type="no-background" click={this.onConfirmHandler}>Editar</BaseButton>
-            <BaseButton type="delete" click={this.onConfirmHandler}>Excluir</BaseButton>
+            <BaseButton type="delete" click={this.onConfirmationTrue}>Excluir</BaseButton>
           </div>
-          
           <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup}>Confirmar</BaseButton>
         </div>
       </Modal>
     )
+  }
+
+  onDeleteHandler = async() => {
+    let receipt_id = this.props.receiptId
+    const response = await deleteReceipt(receipt_id)
+    this.setState({ confirmation: false })
+    this.props.onClosePopup()
+    this.props.onGetAllReceipts()
+  }
+  
+  onCancelHandler = () => {
+    this.setState({confirmation: false})
+  }
+  
+  renderConfirmationMessage = () => {
+    return (
+      <Fragment>
+        <ConfirmationMessage  onDeleteHandler={this.onDeleteHandler}
+                              onCancelHandler={this.onCancelHandler}   
+                              action="deletar" />
+        <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
+      </Fragment>
+    )
+  }
+
+  onConfirmationTrue = () => {
+    this.setState({confirmation: true})
   }
 }
 

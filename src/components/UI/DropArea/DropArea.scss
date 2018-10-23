@@ -1,9 +1,10 @@
 @import "../../../assets/sass/main.scss";
 
 .drop-area {
-  height: 48rem;
-  width: 60rem;
+  height: 45rem;
+  width: 65rem;
   display: flex;
+  margin-top: 2.5rem;
   flex-flow: column;
   text-align: center;
   justify-content: center;
@@ -13,10 +14,9 @@
   transition: all 1s;
 
   &__title {
-    font-family: 'Alfa Slab One', cursive;
-    font-weight: 100;
     font-size: 3rem;
     user-select: none;
+    color: $color-light-blue;
   }
 
   &__p {
@@ -27,7 +27,7 @@
   }
 
   @media screen and (max-height: 760px) {
-    height: 34rem;
+    height: 40rem;
   }
 }
 
@@ -40,4 +40,8 @@
   border: 2px solid black;
   height: 500px;
   width: 300px;
+}
+
+.pulsing-text { 
+  animation: pulse 1s 2s infinite alternate backwards;
 }

@@ -38,17 +38,6 @@
   }
 }
 
-.cancel {
-  text-align: center;
-  color: $color-dark-blue;
-  border: 1px solid $color-dark-blue;
-  &:hover {
-    color: $color-white;
-    background-color: $color-dark-blue;
-    border: 2px solid $color-dark-blue;
-  }
-}
-
 .delete {
   text-align: center;
   color: $color-red;
@@ -63,7 +52,14 @@
   color: $color-dark-blue;
   border: 2px solid $color-dark-blue;
   &:hover {
-    color: $color-light-blue;
+    background-color: $color-light-blue;
+    color: $color-white;
     border: 2px solid $color-light-blue;
   }
+}
+
+.disable {
+  cursor: not-allowed;
+  color: $color-white;
+  background-color: rgba($color-dark-blue, .6);
 }

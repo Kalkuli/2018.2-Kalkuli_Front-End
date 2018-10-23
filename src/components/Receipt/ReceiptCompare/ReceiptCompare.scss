@@ -17,9 +17,19 @@
     padding-top: 3rem;
     //height: 80%;
     //justify-content: space-around;
+    width: 90%;
+    margin-left: 1.5em;
     &__input-area {
       display: flex;
-      justify-content: center;
+    }
+    &__labels {
+      display: flex;
+      &__label {
+        width: auto;
+        font-size: 1.5rem;
+        padding-top:1em;
+        padding-bottom: 1em;
+      }
     }    
   }
 

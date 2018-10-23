@@ -1,0 +1,62 @@
+import React from 'react'
+import { configure, shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import { ReceiptCompare, mapStateToProps } from '../Receipt/ReceiptCompare/ReceiptCompare'
+import BaseButton from '../UI/Button/BaseButton/BaseButton'
+import receiptInputs from '../../helpers/receiptInputs'
+
+configure({adapter: new Adapter()})
+
+describe('Testing <ReceiptCompare/>', () => {
+  let wrapper = null
+
+  const spyOnConfirmButton = jest.fn()
+  const props = {
+    onConfirmButton: spyOnConfirmButton
+  }
+
+  beforeEach(() => {
+    wrapper = shallow(<ReceiptCompare {...props} />)
+  })
+
+  it('should find BaseButton', () => {
+    expect(wrapper.find(BaseButton).exists()).toBe(true)
+  })
+
+  it('should test mapStateToProps', () => {
+    const initialState = {
+      filePDF: null,
+		  fileExtracted: null
+    }
+    expect(mapStateToProps(initialState).filePDF).toEqual(null)
+    expect(mapStateToProps(initialState).fileExtracted).toEqual(null)
+  })
+
+  it('should call onConfirmHandler and trigger spyOnConfirmButton', () => {
+    wrapper.instance().onConfirmHandler()
+    expect(spyOnConfirmButton).toHaveBeenCalled()
+  })
+
+  it('should call onClickHandler', () => {
+    wrapper.instance().onClickHandler()
+  })
+
+  it('should test a valid input value', () => {
+    wrapper.setState({receiptInput: receiptInputs})
+    expect(wrapper.instance().checkValidity('Valor Válido', receiptInputs.title.validation)).toBe(true)
+  })
+
+  it('should test an invalid input value', () => {
+    expect(wrapper.instance().checkValidity('o', receiptInputs.title.validation)).toBe(false)
+  })
+
+  it('should call onChangeHandler', () => {
+    wrapper.instance().checkValidity = jest.fn(() => {return true})
+    wrapper.instance().onChangeHandler({target: {value: 'teste'}}, receiptInputs.title)
+    expect(wrapper.state('receiptIsValid')).toBe(false)
+  })
+
+  it('should receive a null file', () => {
+    wrapper.setProps({filePDF: null})
+  })
+})

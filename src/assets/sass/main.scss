@@ -1,10 +1,11 @@
 @import "base/base";
 @import "abstracts/variables";
 @import "base/typography";
+@import "base/animations";
 
 
 ::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
 }
  
 ::-webkit-scrollbar-track {
@@ -14,3 +15,5 @@
 ::-webkit-scrollbar-thumb {
     background: $color-dark-blue; 
 }
+
+

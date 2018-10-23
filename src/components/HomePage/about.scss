@@ -1,0 +1,33 @@
+@import '../../assets/sass/main.scss';
+
+.about{
+    background-color: $color-white;
+    padding: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.about__text{
+    color: $color-black;
+    width: 50%;
+    font-size: 2.5em;
+    margin-right: 2em;
+}
+
+.about__text p {
+    text-align: justify;
+    margin-top: .5em;
+}
+
+.about__img{
+    background-image: url('../../assets/img/aboutgrafico.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 40em;
+    width: 40em;
+    height: 40em;
+    margin-left: 6em;
+}

@@ -1,0 +1,56 @@
+@import "../../../../assets/sass/main.scss";
+
+.transparent {
+  background-color: rgba(white, 0);
+}
+
+.color {
+  background-image: linear-gradient(
+    to right bottom, 
+    $color-light-blue,
+    $color-dark-blue
+  );
+}
+
+.nav {
+  font-size: 1.5rem;
+  transition: all .4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  padding: 1.2rem 4rem;
+
+  &__logo {
+    color: $color-white;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-weight: 600;
+    margin: .5rem;
+    color: $color-white;
+  }
+
+  &__button {
+    color: $color-dark-blue;
+    background-color: $color-white;
+    padding: 1rem;
+    border-radius: .5rem;
+  }
+
+  &__bar {
+    height: 3rem;
+    background-color: $color-white;
+    width: .2rem;
+    margin: 0 1rem;
+  }
+
+  &__end {
+    display: flex;
+    align-items: center;
+  }
+}
