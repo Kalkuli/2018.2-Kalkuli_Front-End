@@ -12,6 +12,7 @@ import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import ReceiptAdder from '../../components/Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
+import Register from '../Register/Register'
 
 
 class HomePage extends Component{
@@ -24,7 +25,7 @@ class HomePage extends Component{
     return (
       <Fragment>
           <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
-          <ReceiptAdder onCancelHandler={this.onCloseRegister} show={this.state.newCompany}/>
+          <Register show={this.state.newCompany}/>
       </Fragment>
     )
   }
