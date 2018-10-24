@@ -20,24 +20,26 @@ class HomePage extends Component{
     newCompany: false 
   }
 
-  showForm = () =>{
+  showRegister = () =>{
     return (
       <Fragment>
-          <Backdrop show={this.state.newReceipt} click={this.onToggleNewReceipt} />
-          <ReceiptAdder onCancelHandler={this.onCloseReceiptAdder} show={this.state.newReceipt}/>
+          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
+          <ReceiptAdder onCancelHandler={this.onCloseRegister} show={this.state.newCompany}/>
       </Fragment>
     )
   }
 
-  oi = ()=>{
+  onCloseRegister = () => { this.setState({newCompany: false}) }
+
+  registerClick = ()=>{
     this.setState(prevState => ({newCompany: !prevState.newCompany}))
   }
 
   render(){
     return (
       <Fragment>
-        <HomeNavBar click={this.oi}/>
-        {this.state.newCompany ? this.showForm() : null}
+        <HomeNavBar click={this.registerClick}/>
+        {this.state.newCompany ? this.showRegister() : null}
         <section className="header">
           <div className="header__container">
             <h1 className="header__container__h1">De Notas para Dados</h1>
