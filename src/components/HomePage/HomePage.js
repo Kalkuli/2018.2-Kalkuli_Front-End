@@ -10,7 +10,6 @@ import imgAnalysis from '../../assets/img/analysis.svg'
 import imgResult from '../../assets/img/result.svg'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
-import ReceiptAdder from '../../components/Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Register'
 
@@ -60,7 +59,7 @@ class HomePage extends Component{
           <p className='call__p--first'>Rápido entendimento fiscal</p>
           <div className='call__bar'></div>
           <p>Melhores relatórios geram melhores gestões</p>
-          <SignUp size="large"/>
+          <SignUp size="large" click={this.registerClick}/>
         </section>
         <section id="features" className="feature">
           <h1 className="feature__h1">Como o Kalkuli pode te ajudar?</h1>
