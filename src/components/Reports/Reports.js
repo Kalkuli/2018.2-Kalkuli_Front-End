@@ -74,7 +74,6 @@ class Reports extends Component {
                                 )
                             })}
                         </div>
-
                     </div>
                     <div className="reports__area__report">
                         {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
