@@ -1,40 +1,58 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, Component} from 'react'
 import './Navbar.scss'
 import Items from '../Items/Items'
 import { Link } from 'react-router-dom'
+import BackDrop from '../BackDrop/BackDrop'
 
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
 
-
-const Navbar = () => {
-    if(smallDevice){
-        return(
-            <Fragment>
-                <div className="sidebar">
-                    <div className="sidebar__button">butao</div>
-                    <div className="sidebar__links">
-                        <Items/>
-                    </div>
-                </div>
-            </Fragment>
-        )
+class Navbar extends Component {
+    state = {
+        isOpen: false
     }
-    else{
 
-        return (
-            <Fragment>
-                <header className="navbar">
-                    <div className="navbar__name">
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <h1>Kalkuli</h1>
-                        </Link>
-                    </div>
-                    <nav className="navbar__navigation">
-                        <Items/>
-                    </nav>
-                </header>
-            </Fragment>
-        )
+    render(){
+        if(smallDevice){
+            let styleSidebar = ["sidebar"]
+            if(this.state.isOpen)
+                styleSidebar.push('Open')
+            else
+                styleSidebar.push('Close')
+            return(
+                <Fragment>
+                        <div className="sidebar__button" onClick={this.onClickMenuHandler}>
+                            <h1>Oi</h1>
+                        </div>
+                        <div className={styleSidebar.join(' ')}>
+                            <div className="sidebar__links">
+                                <Items/>
+                            </div>
+                        </div>
+                    <BackDrop show={this.state.isOpen} click={this.onClickMenuHandler}/>
+                </Fragment>
+            )
+        }
+        else{
+            return (
+                <Fragment>
+                    <header className="navbar">
+                        <div className="navbar__name">
+                            <Link to="/" style={{ textDecoration: 'none' }}>
+                                <h1>Kalkuli</h1>
+                            </Link>
+                        </div>
+                        <nav className="navbar__navigation">
+                            <Items/>
+                        </nav>
+                    </header>
+                </Fragment>
+            )
+        }
+    }
+
+    onClickMenuHandler = () => {
+        this.setState((prevState) => ({isOpen: !prevState.isOpen}))
+        console.log(this.state.isOpen)
     }
 }
 
