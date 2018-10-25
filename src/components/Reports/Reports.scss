@@ -4,30 +4,123 @@
     background-color: $color-white;
     height: 100vh;
     width: 100vw;
+    position: absolute;
     overflow-x: hidden;
+    
+    &__area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2%;
+        
+        &__content {
+            background-color: blue;
+            
+            
+            &__resumes {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-content: flex-start;
+                overflow-y: auto;
+            }
+        }
+
+        &__report {
+            background-color: green;
+        }
+
+    }
+
+    &__button {
+        float: right;
+        margin-right: 2%; 
+    }
 }
 
-.reports__area {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 4%;
-    padding-right: 4%;
-    padding-left: 4%;
-}
+@media (min-width:320px) {
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 100%;
+            }
+            &__report {
+                margin: auto;
 
-.reports__area__resumes {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90em;
-    justify-content: space-between;
-    align-content: flex-start;
-    height: 40em;
-    overflow-y: auto;
-    padding-top: 2em;
+            }
+        }
+    }
 }
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 100%;
+            }
+            &__report {
+                margin: auto;
 
-.reports__button {
-    display: flex;
-    float: right;
-    margin-right: 5.5em;
+            }
+        }
+    }  
+}
+@media (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 100%;
+            }
+            &__report {
+                margin: auto;
+
+            }
+        }
+    }  
+}
+@media (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 100%;
+            }
+            &__report {
+                margin: auto;
+
+            }
+        }
+    }  
+}
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 52%;
+            }
+        }
+    }  
+}
+@media (min-width:1281px) {
+    /* hi-res laptops and desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 61%;
+            }
+        }
+    }  
+}
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 70%;
+            }
+        }
+    }
 }

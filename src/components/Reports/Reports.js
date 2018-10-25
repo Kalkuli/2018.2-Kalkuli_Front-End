@@ -33,8 +33,8 @@ class Reports extends Component {
             <div className="reports">
                 <Navbar />
                 <div className="reports__area">
-                    <div>
-                        <div className="dashboard__content__datepicker">
+                    <div className="reports__area__content">
+                        <div className="report__area__content__datepicker datepicker">
                             <DateRangePicker
                                 startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                                 startDatePlaceholderText="Data Inicial"
@@ -49,8 +49,8 @@ class Reports extends Component {
                                 hideKeyboardShortcutsPanel={() => true}
                             />
                         </div>
-
-                        <div className="reports__area__resumes">
+                        
+                        <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
                                 let start = moment(data.date_from + " " + "GMT-0300").format('YYYY-MM-DD')
                                 let end = moment(data.date_to + " " + "GMT-0300").format('YYYY-MM-DD')
@@ -73,7 +73,9 @@ class Reports extends Component {
                         </div>
 
                     </div>
-                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"} />}
+                    <div className="reports__area__report">
+                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
+                    </div>
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
