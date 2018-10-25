@@ -7,9 +7,46 @@ form {
 }
 input{
     display: block;
+    width: 20em;
+    height: 2em;
+    border: none;
+    border-bottom: 0.1em solid $color-black;
+    font-family: $montserrat;
+    font-size: 1em;
+    color: $color-black;
+    font-weight: 400;   
+    margin-top: .7em;
+    margin-bottom: 1em;   
+    background-color: $color-white;
+}
+
+input:focus{
+    outline: 2em;
+    border-color: $color-dark-blue;
+    font-family: $montserrat;
+    background-color: white;
+    color: $color-black;
+
+}
+
+label{
+    font-family: $montserrat;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: $color-black;
+
+}
+
+h2 {
+    margin: 2em 0em 2em 0em;
 }
 
 .register{
     display: flex !important;
     flex-direction: column;
+    padding: 1em;
+}
+
+.register--space {
+    margin-right: 10em;
 }

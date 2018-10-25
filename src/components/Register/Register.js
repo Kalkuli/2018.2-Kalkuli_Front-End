@@ -13,9 +13,9 @@ class Register extends Component {
                     <h1>Pronto para ter melhor gerenciamento das suas notas?!</h1>
                     <h2>Empresa:</h2>
                     <form>
-                        <div>
+                        <div className='register--space'>
                             <label for='propertyName'> 
-                                Razão social da Empresa:    
+                                Razão social da Empresa: 
                                 <input id='propertyName'></input>
                             </label>
                             <label for='companyEmail'> 
@@ -52,7 +52,7 @@ class Register extends Component {
                     </form>
                     <h2>Administrador:</h2>
                     <form>
-                        <div> 
+                        <div className='register--space'> 
                             <label for='admName'> 
                                 Nome do Administrador:    
                                 <input id='admName'></input>

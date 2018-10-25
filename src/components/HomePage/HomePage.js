@@ -17,7 +17,7 @@ import Register from '../Register/Register'
 class HomePage extends Component{
 
   state = {
-    newCompany: false 
+    newCompany: true 
   }
 
   showRegister = () =>{
