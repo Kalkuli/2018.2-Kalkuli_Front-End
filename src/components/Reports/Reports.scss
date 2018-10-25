@@ -14,8 +14,6 @@
         padding: 2%;
         
         &__content {
-            background-color: blue;
-            
             
             &__resumes {
                 display: flex;
@@ -27,8 +25,6 @@
         }
 
         &__report {
-            background-color: green;
-
             &__button {
                 margin-top: 5%;
                 float: right; 
@@ -101,6 +97,9 @@
             &__content {
                 width: 52%;
             }
+            &__report {
+                margin: 0;
+            }
         }
     }  
 }
@@ -111,6 +110,9 @@
             &__content {
                 width: 61%;
             }
+            &__report {
+                margin: 0;
+            }
         }
     }  
 }
@@ -120,6 +122,9 @@
         &__area{
             &__content {
                 width: 70%;
+            }
+            &__report {
+                margin: 0;
             }
         }
     }

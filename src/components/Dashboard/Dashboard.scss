@@ -6,20 +6,123 @@
     width: 100vw;
     position: absolute;
     overflow-x: hidden;
-
-    &__content {
+    
+    &__area {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding-top: 2%;
-        padding-left: 2%;
-        padding-right: 2%;
+        padding: 2%;
 
-        &__report-area {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+        &__content {
+
+        }
+    
+        &__report {
+
         }
     }
 
+}
+
+@media (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 100%;
+            }
+        }
+    }
+}
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 100%;
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 100%;
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 100%;
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 52%;
+            }
+
+            &__report {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media (min-width:1281px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 61%;
+            }
+
+            &__report {
+                margin: 0;
+            }
+        }
+    }
+}
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 70%;
+            }
+
+            &__report {
+                margin: 0;
+            }
+        }
+    }
 }
