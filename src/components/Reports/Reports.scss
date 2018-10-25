@@ -28,14 +28,15 @@
 
         &__report {
             background-color: green;
+
+            &__button {
+                margin-top: 5%;
+                float: right; 
+            }
         }
 
     }
 
-    &__button {
-        float: right;
-        margin-right: 2%; 
-    }
 }
 
 @media (min-width:320px) {
@@ -47,7 +48,6 @@
             }
             &__report {
                 margin: auto;
-
             }
         }
     }
