@@ -6,26 +6,20 @@
     width: 100vw;
     position: absolute;
     overflow-x: hidden;
-    
 
     &__content {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
+        padding-top: 2%;
+        padding-left: 2%;
+        padding-right: 2%;
 
         &__report-area {
-            width: 50em;
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-end;
-            padding-top: 5%;
-            padding-right: 4%;
-            padding-left: 5%;
         }
     }
 
-}
-
-.datepicker{
-    margin-top: 6.5em !important;
-    margin-left: 4em !important;
 }
