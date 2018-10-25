@@ -13,6 +13,7 @@ var type = "no-background";
 var comeco = null;
 var fim = null;
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const smallDatePicker = window.matchMedia('(max-width: 450px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 var type = 'no-background'
 
@@ -20,7 +21,7 @@ class Reports extends Component {
 
     state = {
         position: null,
-        reports: null,
+        reports: fakedata,
         receipts: null,
         sum: null,
         reportCase: null,
@@ -37,7 +38,6 @@ class Reports extends Component {
                 <Navbar />
                 <div className="reports__area">
                     <div className="reports__area__content">
-                        <div className="report__area__content__datepicker datepicker">
                             <DateRangePicker
                                 startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                                 startDatePlaceholderText="Data Inicial"
@@ -51,7 +51,7 @@ class Reports extends Component {
                                 isOutsideRange={() => false}
                                 hideKeyboardShortcutsPanel={() => true}
                             />
-                        </div>
+                        
                         
                         <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
@@ -69,8 +69,10 @@ class Reports extends Component {
                                 else{
                                     type = "no-background";
                                 }
-                                return (
-                                    <BaseButton size="medium" type={type} click={() => { this.onReportSelect(index, start, end) }} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                return(
+                                    <div className="reports__area__content__resumes__button">
+                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                    </div>
                                 )
                             })}
                         </div>

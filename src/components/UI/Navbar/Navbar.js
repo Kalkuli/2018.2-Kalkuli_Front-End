@@ -17,6 +17,7 @@ class Navbar extends Component {
         isOpen: false
     }
 
+
     render(){
         if(smallDevice){
             let styleSidebar = ["sidebar"]
