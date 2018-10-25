@@ -15,29 +15,29 @@ class Register extends Component {
                     <form>
                         <div>
                             <label for='propertyName'> 
-                                Razão social:    
+                                Razão social da Empresa:    
                                 <input id='propertyName'></input>
                             </label>
                             <label for='companyEmail'> 
-                                email da empresa:
+                                Email da Empresa:
                                 <input type='email' id='companyEmail'></input>
                             </label>
                             <label for='companyName'> 
-                                Nome Fantasia:
+                                Nome Fantasia da Empresa:
                                 <input id='companyName'></input>
                             </label>
                             <label for='companyPhone'> 
-                                Telefone da empresa:
+                                Telefone Empresarial:
                                 <input id='companyPhone'></input>
                             </label>
                         </div>
                         <div>
                             <label for='CNPJ'> 
-                                CNPJ:
+                                CNPJ da Empresa:
                                 <input id='CNPJ'></input>
                             </label>
                             <label for='CEP'> 
-                                CEP:      
+                                CEP da Empresa:      
                                 <input id='CEP'></input>
                             </label>
                             <label for='city'> 
@@ -50,7 +50,29 @@ class Register extends Component {
                             </label>
                         </div>
                     </form>
-                    <h2>Administrador</h2>
+                    <h2>Administrador:</h2>
+                    <form>
+                        <div> 
+                            <label for='admName'> 
+                                Nome do Administrador:    
+                                <input id='admName'></input>
+                            </label>
+                            <label for='admEmail'> 
+                                Email do Administrador:
+                                <input type='email' id='admEmail'></input>
+                            </label>
+                        </div>
+                        <div>
+                            <label for='admPassword'> 
+                                Senha do Administrador:
+                                <input type='password' id='admPassword'></input>
+                            </label>
+                            <label for='confPassword'> 
+                                Confirmar Senha:
+                                <input type='password' id='confPassword'></input>
+                            </label>
+                        </div>
+                    </form>
                 </div>
             </Modal>
         )
