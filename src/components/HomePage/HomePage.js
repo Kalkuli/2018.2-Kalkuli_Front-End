@@ -20,21 +20,6 @@ class HomePage extends Component{
     newCompany: true 
   }
 
-  showRegister = () =>{
-    return (
-      <Fragment>
-          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
-          <Register show={this.state.newCompany}/>
-      </Fragment>
-    )
-  }
-
-  onCloseRegister = () => { this.setState({newCompany: false}) }
-
-  registerClick = ()=>{
-    this.setState(prevState => ({newCompany: !prevState.newCompany}))
-  }
-
   render(){
     return (
       <Fragment>
@@ -104,6 +89,21 @@ class HomePage extends Component{
         </footer>
       </Fragment>
     )
+  }
+
+  showRegister = () =>{
+    return (
+      <Fragment>
+          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
+          <Register show={this.state.newCompany}/>
+      </Fragment>
+    )
+  }
+  
+  onCloseRegister = () => { this.setState({newCompany: false}) }
+  
+  registerClick = ()=>{
+    this.setState(prevState => ({newCompany: !prevState.newCompany}))
   }
 }
 
