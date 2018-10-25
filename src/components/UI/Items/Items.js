@@ -3,6 +3,9 @@ import './Items.scss'
 import { Link } from 'react-router-dom'
 
 const Items = () => (
+
+    //criar estilo diferente para a sidenav
+
     <Fragment>
         <Link to="/dashboard" className="links">Dados</Link>
         <Link to="/list-all-receipts" className="links">Notas</Link>
