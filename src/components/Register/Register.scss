@@ -1,0 +1,15 @@
+@import "../../assets/sass/main.scss";
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+input{
+    display: block;
+}
+
+.register{
+    display: flex !important;
+    flex-direction: column;
+}
