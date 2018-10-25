@@ -6,6 +6,12 @@ import BackDrop from '../BackDrop/BackDrop'
 
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
 
+const linkKalkuli = (
+    <Link to="/" style={{ textDecoration: 'none' }}>
+        <h1>Kalkuli</h1>
+    </Link>
+)
+
 class Navbar extends Component {
     state = {
         isOpen: false
@@ -20,8 +26,9 @@ class Navbar extends Component {
                 styleSidebar.push('Close')
             return(
                 <Fragment>
-                        <div className="sidebar__button" onClick={this.onClickMenuHandler}>
-                            <h1>Oi</h1>
+                        <div className="navbar" >
+                            {linkKalkuli}
+                            <h1 onClick={this.onClickMenuHandler}>butao</h1>
                         </div>
                         <div className={styleSidebar.join(' ')}>
                             <div className="sidebar__links">
@@ -37,9 +44,7 @@ class Navbar extends Component {
                 <Fragment>
                     <header className="navbar">
                         <div className="navbar__name">
-                            <Link to="/" style={{ textDecoration: 'none' }}>
-                                <h1>Kalkuli</h1>
-                            </Link>
+                            {linkKalkuli}
                         </div>
                         <nav className="navbar__navigation">
                             <Items/>
