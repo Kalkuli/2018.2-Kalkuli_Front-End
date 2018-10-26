@@ -1,0 +1,51 @@
+const registerInputs = {
+    admName: {
+        name: 'Nome do Administrador:',
+        value: '',
+        type: 'text',
+        valid: false,
+        touched: false,
+        validation: {
+            required: true,
+            minLength: 5,
+            maxLength: 10
+        }
+    },
+    admEmail: {
+        name: 'Email do Administrador:',
+        value: '',
+        type: 'text',
+        valid: false,
+        touched: false,
+        validation: {
+            required: true,
+            minLength: 5,
+            maxLength: 10
+        }
+    },
+    admPassword: {
+        name: 'Senha do Administrador:',
+        value: '',
+        type: 'text',
+        valid: false,
+        touched: false,
+        validation: {
+            required: true,
+            minLength: 5,
+            maxLength: 10
+        }
+    },
+    confPassword: {
+        name: 'Confirmar Senha:',
+        value: '',
+        type: 'text',
+        valid: false,
+        touched: false,
+        validation: {
+            required: true,
+            minLength: 5,
+            maxLength: 10
+        }
+    }
+}
+export default registerInputs;
