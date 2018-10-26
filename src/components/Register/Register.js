@@ -10,17 +10,29 @@ import Input from '../UI/Input/InputFild'
 
 class Register extends Component {
     state = {
+        registerInput: [{
+            registerInputCompany: registerInputsCompany,
+            registerInputAdm: registerInputsAdm
+        }],
         registerInputCompany: registerInputsCompany,
         registerInputAdm: registerInputsAdm
+        
+        
 
     }
+
+   
 
     render(){
         let {registerInputCompany} = this.state
         let {registerInputAdm} = this.state
 
-
+        const changeInputColor = {
+            color: '#0F8891' 
+        }
+        
         return(
+            
             <Modal show={this.props.show}>
                 <div className='register'>
                     <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
@@ -41,14 +53,20 @@ class Register extends Component {
                     <h2>Administrador:</h2>
                     <form>
                         {Object.keys(registerInputAdm).map(key =>(
-                            <label key={key} for={registerInputAdm[key].id}>
+                            <label key={key} for={registerInputAdm[key].id}
+                            onFocus={() => this.focus(key, registerInputAdm)}
+                            onBlur={()=>this.blur(key)}
+                            style={registerInputAdm[key].touched ? changeInputColor : null}
+                            >
                                 {registerInputAdm[key].name}
                                 <Input 	value={registerInputAdm[key].value}
                                         valid={registerInputAdm[key].valid}
                                         touched={registerInputAdm[key].touched}
                                         id={registerInputAdm[key].id}
                                         type={registerInputAdm[key].type}
-                                        onChangeHandler={(event) => this.onChangeHandlerAdm(event, key)}/>
+                                        onChangeHandler={(event) => this.onChangeHandlerAdm(event, key)}
+                                        
+                                        />
                             </label>
                         ))}
                     </form>
@@ -59,6 +77,30 @@ class Register extends Component {
             </Modal>
         )
     }
+
+    focus = (inputKey, registerInputAdm) =>{
+        console.log('focus')
+        let inputState = {...this.state.registerInputAdm}
+        let inputElement = {...inputState[inputKey]}
+
+        inputElement.touched = !inputElement.touched
+
+        inputState[inputKey] = inputElement
+
+        this.setState({registerInputAdm: inputState})
+
+    }
+    blur = (inputKey) =>{
+        console.log('blur')
+        let inputState = {...this.state.registerInputAdm}
+        let inputElement = {...inputState[inputKey]}
+
+        inputElement.touched = !inputElement.touched
+
+        inputState[inputKey] = inputElement
+
+        this.setState({registerInputAdm: inputState})
+   }
 
     onChangeHandlerAdm = (event, inputKey) => {
 		let inputState = {...this.state.registerInputAdm}

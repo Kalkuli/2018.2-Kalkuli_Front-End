@@ -7,7 +7,7 @@ const InputFild = (props) => {
                 type={props.type}
                 onChange={props.onChangeHandler}
                 id={props.id}
-                />
+                onClick={props.click}/>
   )
 }
 
