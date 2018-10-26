@@ -18,20 +18,23 @@ class Register extends Component {
     render(){
         let {registerInputCompany} = this.state
         let {registerInputAdm} = this.state
+
+
         return(
             <Modal show={this.props.show}>
                 <div className='register'>
-                    <div className='register__form'>
                     <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                     <h2>Empresa:</h2>
                     <form>
                         {Object.keys(registerInputCompany).map(key =>(
-                            <label key={key} for={registerInputCompany[key].id}>
+                            <label  key={key} for={registerInputCompany[key].id}>
                             {registerInputCompany[key].name}
                             <Input 	value={registerInputCompany[key].value}
-                                        valid={registerInputCompany[key].valid}
-                                        touched={registerInputCompany[key].touched}
-                                        id={registerInputCompany[key].id}/>
+                                    valid={registerInputCompany[key].valid}
+                                    touched={registerInputCompany[key].touched}
+                                    id={registerInputCompany[key].id}
+                                    type={registerInputCompany[key].type}
+                                    onChangeHandler={(event) => this.onChangeHandlerCompany(event, key)}/>
                             </label>
                         ))}
                     </form>
@@ -43,16 +46,48 @@ class Register extends Component {
                                 <Input 	value={registerInputAdm[key].value}
                                         valid={registerInputAdm[key].valid}
                                         touched={registerInputAdm[key].touched}
-                                        id={registerInputAdm[key].id}/>
+                                        id={registerInputAdm[key].id}
+                                        type={registerInputAdm[key].type}
+                                        onChangeHandler={(event) => this.onChangeHandlerAdm(event, key)}/>
                             </label>
                         ))}
                     </form>
+                    <div className='register__button'>
+                        <Button type='confirm' >Confirmar</Button>
                     </div>
-                    <Button type='confirm'>Confirmar</Button>
                 </div>
             </Modal>
         )
     }
+
+    onChangeHandlerAdm = (event, inputKey) => {
+		let inputState = {...this.state.registerInputAdm}
+		let inputElement = {...inputState[inputKey]}
+		inputElement.value = event.target.value
+		//inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+		inputState[inputKey] = inputElement
+
+		/* let receiptIsValid = true
+		for(let inputKey in inputState) {
+			receiptIsValid = inputState[inputKey].valid && receiptIsValid
+		} */
+		this.setState({registerInputAdm: inputState})
+    }
+
+    onChangeHandlerCompany = (event, inputKey) => {
+		let inputState = {...this.state.registerInputCompany}
+		let inputElement = {...inputState[inputKey]}
+		inputElement.value = event.target.value
+		//inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+        inputState[inputKey] = inputElement
+
+		/* let receiptIsValid = true
+		for(let inputKey in inputState) {
+			receiptIsValid = inputState[inputKey].valid && receiptIsValid
+		} */
+		this.setState({registerInputCompany: inputState})
+    }
+    
 }
 
 export default Register;

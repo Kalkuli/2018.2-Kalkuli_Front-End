@@ -15,7 +15,7 @@ const registerInputs = {
     admEmail: {
         name: 'Email do Administrador:',
         value: '',
-        type: 'text',
+        type: 'email',
         valid: false,
         touched: false,
         validation: {
@@ -27,7 +27,7 @@ const registerInputs = {
     admPassword: {
         name: 'Senha do Administrador:',
         value: '',
-        type: 'text',
+        type: 'password',
         valid: false,
         touched: false,
         validation: {
@@ -39,7 +39,7 @@ const registerInputs = {
     confPassword: {
         name: 'Confirmar Senha:',
         value: '',
-        type: 'text',
+        type: 'password',
         valid: false,
         touched: false,
         validation: {

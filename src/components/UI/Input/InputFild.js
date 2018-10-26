@@ -2,11 +2,12 @@ import React from 'react'
 
 const InputFild = (props) => {
     return (
-        <input  className={props.s} 
+        <input  className={props.style} 
                 value={props.value} 
-                type={props.type ? props.type : "text" }
+                type={props.type}
                 onChange={props.onChangeHandler}
-                id={props.id}/>
+                id={props.id}
+                />
   )
 }
 

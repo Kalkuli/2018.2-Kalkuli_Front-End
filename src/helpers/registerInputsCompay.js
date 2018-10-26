@@ -14,7 +14,7 @@ const registerInputsCompany = {
     companyEmail: {
         name: 'Email da Empresa:',
         value: '',
-        type: 'text',
+        type: 'email',
         valid: false,
         touched: false,
         validation: {
@@ -38,7 +38,7 @@ const registerInputsCompany = {
     companyPhone: {
         name: 'Telefone Empresarial:',
         value: '',
-        type: 'text',
+        type: 'tel',
         valid: false,
         touched: false,
         validation: {

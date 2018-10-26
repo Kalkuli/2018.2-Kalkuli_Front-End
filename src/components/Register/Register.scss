@@ -17,7 +17,7 @@ input {
     color: $color-black;
     font-weight: 400;
     font-size: 1em;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.8em;
     background-color: $color-white;
 }
 
@@ -40,6 +40,7 @@ label {
 h2 {
     margin: 1em 0em 1em 0em;
     font-size: 1.7em;
+    
 }
 
 h1 {
@@ -49,6 +50,15 @@ h1 {
 .register{
     width: 90em;
 }
+
+.register__button{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 1em;
+}
+
 /*
 .register__form {
     display: flex !important;
@@ -61,12 +71,6 @@ h1 {
     flex-direction: column;
 }
 
-.register__buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
 
 .register__form__local input {
     width: 5em;
