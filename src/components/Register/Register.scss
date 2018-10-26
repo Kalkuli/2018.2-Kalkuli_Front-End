@@ -2,10 +2,11 @@
 
 form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
-input{
+
+input {
     display: block;
     width: 20em;
     height: 2em;
@@ -13,13 +14,13 @@ input{
     border-bottom: 0.1em solid $color-black;
     font-family: $montserrat;
     color: $color-black;
-    font-weight: 400;  
-    font-size: 1em; 
-    margin-bottom: 1em;   
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 1.5em;
     background-color: $color-white;
 }
 
-input:focus{
+input:focus {
     outline: 2em;
     border-color: $color-dark-blue;
     font-family: $montserrat;
@@ -27,41 +28,67 @@ input:focus{
     color: $color-black;
 }
 
-label{
+label {
     font-family: $montserrat;
     font-weight: 600;
     font-size: 1.5em;
     color: $color-black;
-
 }
 
 h2 {
     margin: 1em 0em 1em 0em;
+    font-size: 1.7em;
 }
 
 h1 {
-    color: $color-dark-blue;
     text-align: center;
 }
-.register__form{
+
+.register__form {
     display: flex !important;
     flex-direction: column;
     padding: 1em;
 }
 
-.register__form--space {
-    margin-right: 10em;
-}
-
-.register{
+.register {
     display: flex;
     flex-direction: column;
 }
 
-.register__buttons{
+.register__buttons {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-top: 2em;
+   
+}
+
+.register__form__local input {
+    width: 5em;
+}
+
+.register__form__local__cidade input {
+    width: 12em;
+}
+
+.register__form__local {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.register__form--company {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.register__form__company input {
+    width: 50em;
+}
+
+.register__form--adm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
