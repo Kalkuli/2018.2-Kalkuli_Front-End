@@ -2,13 +2,14 @@
 
 form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
 input {
     display: block;
-    width: 20em;
+    width: 25em;
     height: 2em;
     border: none;
     border-bottom: 0.1em solid $color-black;
@@ -33,6 +34,7 @@ label {
     font-weight: 600;
     font-size: 1.5em;
     color: $color-black;
+    
 }
 
 h2 {
@@ -44,6 +46,10 @@ h1 {
     text-align: center;
 }
 
+.register{
+    width: 90em;
+}
+/*
 .register__form {
     display: flex !important;
     flex-direction: column;
@@ -94,4 +100,4 @@ h1 {
 
 label{
     color: red;
-}
+}*/

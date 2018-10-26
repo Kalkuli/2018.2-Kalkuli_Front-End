@@ -2,6 +2,7 @@ const registerInputs = {
     admName: {
         name: 'Nome do Administrador:',
         value: '',
+        id:'admName',
         type: 'text',
         valid: false,
         touched: false,

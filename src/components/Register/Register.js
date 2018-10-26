@@ -4,33 +4,51 @@ import './Register.scss'
 import Modal from '../UI/Modal/Modal'
 import Button from '../UI/Button/BaseButton/BaseButton'
 import registerInputsCompany from '../../helpers/registerInputsCompay'
-import registerInputAdm from '../../helpers/registerInputsAdm'
+import registerInputsAdm from '../../helpers/registerInputsAdm'
 import Input from '../UI/Input/InputFild'
 
 
 class Register extends Component {
     state = {
-        registerInputCompany: registerInputsCompany
+        registerInputCompany: registerInputsCompany,
+        registerInputAdm: registerInputsAdm
+
     }
 
     render(){
         let {registerInputCompany} = this.state
+        let {registerInputAdm} = this.state
         return(
             <Modal show={this.props.show}>
                 <div className='register'>
                     <div className='register__form'>
                     <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
-                    {Object.keys(registerInputCompany).map(key =>(
-                        <form key={key}>
-                           <Input 	value={registerInputCompany[key].value}
-                                    valid={registerInputCompany[key].valid}
-                                    touched={registerInputCompany[key].touched}>{registerInputCompany[key].name}</Input>
-                        </form>
-                    ))}
+                    <h2>Empresa:</h2>
+                    <form>
+                        {Object.keys(registerInputCompany).map(key =>(
+                            <label key={key} for={registerInputCompany[key].id}>
+                            {registerInputCompany[key].name}
+                            <Input 	value={registerInputCompany[key].value}
+                                        valid={registerInputCompany[key].valid}
+                                        touched={registerInputCompany[key].touched}
+                                        id={registerInputCompany[key].id}/>
+                            </label>
+                        ))}
+                    </form>
+                    <h2>Administrador:</h2>
+                    <form>
+                        {Object.keys(registerInputAdm).map(key =>(
+                            <label key={key} for={registerInputAdm[key].id}>
+                                {registerInputAdm[key].name}
+                                <Input 	value={registerInputAdm[key].value}
+                                        valid={registerInputAdm[key].valid}
+                                        touched={registerInputAdm[key].touched}
+                                        id={registerInputAdm[key].id}/>
+                            </label>
+                        ))}
+                    </form>
                     </div>
-                    <div className='register__buttons'>
-                        <Button type='confirm'>Confirmar</Button>
-                    </div>
+                    <Button type='confirm'>Confirmar</Button>
                 </div>
             </Modal>
         )
