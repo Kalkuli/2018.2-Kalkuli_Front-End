@@ -27,7 +27,7 @@
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .container-receipts {
         &__receipt-data {
-            margin-top: 2.5rem;
+            margin-top: 0;
             height: 165px;
         }
     }
@@ -46,7 +46,7 @@
     /* smartphones, Android phones, landscape iPhone */ 
     .container-receipts {
         &__receipt-data {
-            margin-top: 2.5rem;
+            margin-top: 0rem;
             height: 264px;
         }
     }
@@ -65,7 +65,7 @@
     /* tablet, landscape iPad, lo-res laptops ands desktops */ 
     .container-receipts {
         &__receipt-data {
-            margin-top: 2.5rem;
+            margin-top: 0rem;
             height: 365px;
         }
     }
@@ -84,7 +84,7 @@
     /* big landscape tablets, laptops, and desktops */ 
     .container-receipts {
         &__receipt-data {
-            margin-top: 2.5rem;
+            margin-top: 0rem;
             height: 365px;
         }
     }
@@ -96,6 +96,13 @@
 
         &__input {
             font-size: 100%;
+        }
+    }
+}
+@media (min-width:1600px) {
+    .data {
+        &__input {
+            font-size: 110%;
         }
     }
 }

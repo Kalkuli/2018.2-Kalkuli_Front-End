@@ -3,6 +3,7 @@ import './Navbar.scss'
 import Items from '../Items/Items'
 import { Link } from 'react-router-dom'
 import BackDrop from '../BackDrop/BackDrop'
+import Sandwich from '../../../assets/img/sandwich.svg'
 
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
 
@@ -29,7 +30,7 @@ class Navbar extends Component {
                 <Fragment>
                         <div className="navbar" >
                             {linkKalkuli}
-                            <h1 onClick={this.onClickMenuHandler}>butao</h1>
+                            <img onClick={this.onClickMenuHandler} src={Sandwich}></img>
                         </div>
                         <div className={styleSidebar.join(' ')}>
                             <div className="sidebar__links">

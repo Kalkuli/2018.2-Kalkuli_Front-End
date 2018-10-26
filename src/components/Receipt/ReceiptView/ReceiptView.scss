@@ -47,7 +47,11 @@
         margin-left: 0rem;
         margin-right: 0rem;
         margin-top: 2em;
+        justify-content: space-around;
 
+        &__change-buttons {
+            height: 17em;
+        }
     }
 
     .receipt-area {
@@ -72,6 +76,10 @@
         margin-right: 0;
         margin-top: 2em;
         justify-content: space-between;
+
+        &__change-buttons {
+            height: 18em;
+        }
     }
 
     .receipt-area {
