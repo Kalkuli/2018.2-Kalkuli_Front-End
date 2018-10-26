@@ -10,25 +10,16 @@ import Input from '../UI/Input/InputFild'
 
 class Register extends Component {
     state = {
-        registerInput: [{
-            registerInputCompany: registerInputsCompany,
-            registerInputAdm: registerInputsAdm
-        }],
         registerInputCompany: registerInputsCompany,
         registerInputAdm: registerInputsAdm
-        
-        
-
     }
-
-   
 
     render(){
         let {registerInputCompany} = this.state
         let {registerInputAdm} = this.state
 
         const changeInputColor = {
-            color: '#0F8891' 
+            color: '#0F8891'
         }
         
         return(
@@ -39,7 +30,12 @@ class Register extends Component {
                     <h2>Empresa:</h2>
                     <form>
                         {Object.keys(registerInputCompany).map(key =>(
-                            <label  key={key} for={registerInputCompany[key].id}>
+                            <label  key={key} 
+                                    for={registerInputCompany[key].id}
+                                    onFocus={() => this.focusCompany(key)}
+                                    onBlur={()=>this.blurCompany(key)}
+                                    style={registerInputCompany[key].touched ? changeInputColor : null}>
+
                             {registerInputCompany[key].name}
                             <Input 	value={registerInputCompany[key].value}
                                     valid={registerInputCompany[key].valid}
@@ -53,12 +49,15 @@ class Register extends Component {
                     <h2>Administrador:</h2>
                     <form>
                         {Object.keys(registerInputAdm).map(key =>(
-                            <label key={key} for={registerInputAdm[key].id}
-                            onFocus={() => this.focus(key, registerInputAdm)}
-                            onBlur={()=>this.blur(key)}
-                            style={registerInputAdm[key].touched ? changeInputColor : null}
-                            >
+                            <label  key={key} 
+                                    for={registerInputAdm[key].id}
+                                    onFocus={() => this.focusAdm(key)}
+                                    onBlur={()=>this.blurAdm(key)}
+                                    style={registerInputAdm[key].touched ? changeInputColor : null}>
+
+                                
                                 {registerInputAdm[key].name}
+                                
                                 <Input 	value={registerInputAdm[key].value}
                                         valid={registerInputAdm[key].valid}
                                         touched={registerInputAdm[key].touched}
@@ -78,29 +77,42 @@ class Register extends Component {
         )
     }
 
-    focus = (inputKey, registerInputAdm) =>{
+    focusAdm = (inputKey) =>{
         console.log('focus')
         let inputState = {...this.state.registerInputAdm}
         let inputElement = {...inputState[inputKey]}
-
         inputElement.touched = !inputElement.touched
-
+        console.log(inputElement.value)
         inputState[inputKey] = inputElement
-
         this.setState({registerInputAdm: inputState})
-
     }
-    blur = (inputKey) =>{
+
+    blurAdm = (inputKey) =>{
         console.log('blur')
         let inputState = {...this.state.registerInputAdm}
         let inputElement = {...inputState[inputKey]}
-
         inputElement.touched = !inputElement.touched
-
         inputState[inputKey] = inputElement
-
         this.setState({registerInputAdm: inputState})
-   }
+    }
+
+    focusCompany = (inputKey) =>{
+        console.log('focus')
+        let inputState = {...this.state.registerInputCompany}
+        let inputElement = {...inputState[inputKey]}
+        inputElement.touched = !inputElement.touched
+        inputState[inputKey] = inputElement
+        this.setState({registerInputCompany: inputState})
+    }  
+
+    blurCompany = (inputKey) =>{
+        console.log('blur')
+        let inputState = {...this.state.registerInputCompany}
+        let inputElement = {...inputState[inputKey]}
+        inputElement.touched = !inputElement.touched
+        inputState[inputKey] = inputElement
+        this.setState({registerInputCompany: inputState})
+    }
 
     onChangeHandlerAdm = (event, inputKey) => {
 		let inputState = {...this.state.registerInputAdm}
@@ -108,7 +120,6 @@ class Register extends Component {
 		inputElement.value = event.target.value
 		//inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
 		inputState[inputKey] = inputElement
-
 		/* let receiptIsValid = true
 		for(let inputKey in inputState) {
 			receiptIsValid = inputState[inputKey].valid && receiptIsValid
@@ -133,71 +144,3 @@ class Register extends Component {
 }
 
 export default Register;
-
-{/* <h1>Pronto para ter melhor gerenciamento das suas notas?!</h1>
-<h2>Empresa:</h2>
-<form>
-    <label for='propertyName' className='register__form__company' onClick={this.t}> 
-        Razão social da Empresa: 
-        <input id='propertyName' ></input>
-    </label>
-    <div className='register__form--company'>  
-        <div >
-            <label for='companyEmail'> 
-                Email da Empresa:
-                <input type='email' id='companyEmail'></input>
-            </label>
-            <label for='companyName'> 
-                Nome Fantasia da Empresa:
-                <input id='companyName'></input>
-            </label>
-            <label for='companyPhone'> 
-                Telefone Empresarial:
-                <input id='companyPhone'></input>
-            </label>
-        </div>
-        <div>
-            <label for='CNPJ'> 
-                CNPJ da Empresa:
-                <input id='CNPJ'></input>
-            </label>
-            <label for='CEP'> 
-                CEP da Empresa:      
-                <input id='CEP'></input>
-            </label>
-            <div className='register__form__local'>
-                <label for='city' className='register__form__local__cidade'> 
-                    Cidade:
-                    <input id='city'></input>
-                </label>
-                <label for='state'> 
-                    Estado:
-                    <input id='state'></input>
-                </label>
-            </div>
-        </div>
-    </div>
-</form>
-<h2>Administrador:</h2>
-<form className='register__form--adm'>
-    <div> 
-        <label for='admName'> 
-            Nome do Administrador:    
-            <input id='admName'></input>
-        </label>
-        <label for='admEmail'> 
-            Email do Administrador:
-            <input type='email' id='admEmail'></input>
-        </label>
-    </div>
-    <div>
-        <label for='admPassword'> 
-            Senha do Administrador:
-            <input type='password' id='admPassword'></input>
-        </label>
-        <label for='confPassword'> 
-            Confirmar Senha:
-            <input type='password' id='confPassword'></input>
-        </label>
-    </div>
-</form> */}
