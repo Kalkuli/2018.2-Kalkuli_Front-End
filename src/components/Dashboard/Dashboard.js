@@ -27,12 +27,12 @@ class Dashboard extends Component {
             endDate: null,
             isEndDate: false,
             focusedInput: null,
-            receipts: fakeData,
-            sum: fakesum,
+            receipts: null,
+            sum: null,
             date_from: null,
             date_to: null,
             isValid: true,
-            reportCase: 'reports'
+            reportCase: null
         }
     }
 
@@ -43,27 +43,31 @@ class Dashboard extends Component {
                 <Navbar/>
                 <div className="dashboard__area">
                     <div className="dashboard__area__content">
-                        <div className="dashboard__area__content__datepicker datepicker">
-                            <DateRangePicker 
-                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                            startDatePlaceholderText="Data Inicial"
-                            endDatePlaceholderText="Data Final"
-                            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                            endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                            onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
-                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                            isOutsideRange={() => false}
-                            hideKeyboardShortcutsPanel = {true}
-                            orientation={orientation}
-                            />
+                        <DateRangePicker 
+                        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                        startDatePlaceholderText="Data Inicial"
+                        endDatePlaceholderText="Data Final"
+                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                        onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
+                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                        isOutsideRange={() => false}
+                        hideKeyboardShortcutsPanel = {true}
+                        orientation={orientation}
+                        />
+
+                        <div className="dashboard__area__content__graphs">
+
                         </div>
                     </div>
 
                     <div className="dashboard__area__report">
                         {this.state.receipts ? <Report reportCase={this.state.reportCase} receipts={this.state.receipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
-                        {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        <div className="dashboard__area__report__button">
+                            {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        </div>
                     </div>
                     
                 </div>
