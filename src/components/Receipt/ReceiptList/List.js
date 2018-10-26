@@ -34,10 +34,10 @@ class ReceiptList extends React.Component {
 					delete receipt.company_id
 					return (
 						<Receipt key={+receiptId} size="small" onClickHandler={this.onOpenPopup.bind(this, [receipt, receiptId])}>
-							<div className='container-receipts__receipt-data receipt-font'>
+							<div className='container-receipts__receipt-data '>
 								<div key={"title"} className="data">
-										<p className="data__input"><b>{receiptInput["title"].name}:</b></p>
-										<p className="data__input">{receipt["title"]}</p>
+										<p className="data__input receipt-font"><b>{receiptInput["title"].name}:</b></p>
+										<p className="data__input receipt-font">{receipt["title"]}</p>
 								</div>	
 								{this.props.isSmall ? null :
 									Object.keys(receipt).map(data => {
@@ -45,13 +45,13 @@ class ReceiptList extends React.Component {
 										return null
 									return (
 										<div key={data} className="data">
-											<p className="data__input"><b>{receiptInput[data].name}:</b></p>
-											<p className="data__input">{receipt[data]}</p>
+											<p className="data__input receipt-font"><b>{receiptInput[data].name}:</b></p>
+											<p className="data__input receipt-font">{receipt[data]}</p>
 										</div>	
 								)})}
 								<div key={"description"} className="data">
-										<p className="data__input"><b>{receiptInput["description"].name}:</b></p>
-										<p className="data__input">{receipt["description"]}</p>
+										<p className="data__input receipt-font"><b>{receiptInput["description"].name}:</b></p>
+										<p className="data__input receipt-font">{receipt["description"]}</p>
 								</div>	
 							</div>
 						</Receipt>
