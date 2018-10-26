@@ -9,6 +9,8 @@ import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import getAllReceipts from '../../../services/getAllReceipts'
 
+const smallDevice = window.matchMedia('(max-width: 800px)').matches
+
 export class ReceiptList extends Component {
 
     state = {  
@@ -28,7 +30,8 @@ export class ReceiptList extends Component {
                 <Navbar/>
                 { this.state.newReceipt ? this.renderReceiptAdder() : null }
                 { this.state.loaded && <List    receipts={this.props.receipts} 
-                                                onGetAllReceipts={this.fetchReceipts} /> }
+                                                onGetAllReceipts={this.fetchReceipts}
+                                                isSmall={smallDevice} /> }
                 <MenuButton     rotate={this.state.rotate} 
                                 clickedMenuButton={this.state.clickedMenuButton}
                                 onClickMenuButton={this.onClickMenuButton} 
