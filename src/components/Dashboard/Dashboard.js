@@ -12,6 +12,10 @@ import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import './DatePicker.scss'
+import * as screenSize from '../../helpers/screenSize'
+
+const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
 class Dashboard extends Component {
     constructor(props) {
@@ -23,12 +27,12 @@ class Dashboard extends Component {
             endDate: null,
             isEndDate: false,
             focusedInput: null,
-            receipts: null,
-            sum: null,
+            receipts: fakeData,
+            sum: fakesum,
             date_from: null,
             date_to: null,
             isValid: true,
-            reportCase: null
+            reportCase: 'reports'
         }
     }
 
@@ -52,6 +56,7 @@ class Dashboard extends Component {
                             onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                             isOutsideRange={() => false}
                             hideKeyboardShortcutsPanel = {true}
+                            orientation={orientation}
                             />
                         </div>
                     </div>

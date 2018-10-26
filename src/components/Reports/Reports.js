@@ -13,7 +13,6 @@ var type = "no-background";
 var comeco = null;
 var fim = null;
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
-const smallDatePicker = window.matchMedia('(max-width: 450px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 var type = 'no-background'
 
@@ -21,7 +20,7 @@ class Reports extends Component {
 
     state = {
         position: null,
-        reports: fakedata,
+        reports: null,
         receipts: null,
         sum: null,
         reportCase: null,
