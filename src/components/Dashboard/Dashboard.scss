@@ -23,6 +23,10 @@
 
         &__content {
 
+            &__datepicker {
+                width: 302px;
+            }
+
             &__graphs {
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -40,6 +44,10 @@
 
             &__content {
                 width: 100%;
+
+                &__datepicker {
+                    margin: auto;
+                }
 
                 &__graphs {
                     height: 40em;
@@ -60,6 +68,10 @@
             &__content {
                 width: 100%;
 
+                &__datepicker {
+                    margin: auto;
+                }
+
                 &__graphs {
                     height: 50em;
                 }
@@ -78,6 +90,10 @@
 
             &__content {
                 width: 100%;
+
+                &__datepicker {
+                    margin: auto;
+                }
 
                 &__graphs {
                     height: 50em;
@@ -98,6 +114,10 @@
             &__content {
                 width: 100%;
 
+                &__datepicker {
+                    margin: auto;
+                }
+
                 &__graphs {
                     height: 50em;
                 }
@@ -116,6 +136,10 @@
 
             &__content {
                 width: 52%;
+                
+                &__datepicker {
+                    margin: 0;
+                }
 
                 &__graphs {
                     height: 50em;
@@ -137,6 +161,10 @@
             &__content {
                 width: 61%;
 
+                &__datepicker {
+                    margin: 0;
+                }
+
                 &__graphs {
                     height: 50em;
                 }
@@ -155,6 +183,10 @@
 
             &__content {
                 width: 70%;
+
+                &__datepicker {
+                    margin: 0;
+                }
 
                 &__graphs {
                     height: 50em;

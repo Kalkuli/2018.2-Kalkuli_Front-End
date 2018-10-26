@@ -43,20 +43,22 @@ class Dashboard extends Component {
                 <Navbar/>
                 <div className="dashboard__area">
                     <div className="dashboard__area__content">
-                        <DateRangePicker 
-                        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                        startDatePlaceholderText="Data Inicial"
-                        endDatePlaceholderText="Data Final"
-                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                        onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
-                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                        isOutsideRange={() => false}
-                        hideKeyboardShortcutsPanel = {true}
-                        orientation={orientation}
-                        />
+                        <div className="dashboard__area__content__datepicker">
+                            <DateRangePicker 
+                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                            startDatePlaceholderText="Data Inicial"
+                            endDatePlaceholderText="Data Final"
+                            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                            endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                            onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
+                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                            isOutsideRange={() => false}
+                            hideKeyboardShortcutsPanel = {true}
+                            orientation={orientation}
+                            />
+                        </div>
 
                         <div className="dashboard__area__content__graphs">
 
