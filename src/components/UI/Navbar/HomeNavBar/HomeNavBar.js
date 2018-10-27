@@ -3,14 +3,13 @@ import './HomeNavBar.scss'
 import Scrollchor from 'react-scrollchor';
 import SignUp from '../../Button/SignUp/SignUp'
 import {Link} from 'react-router-dom'
-const smallDevice = window.matchMedia('(max-width: 720px)').matches
 
 class HomeNavBar extends Component {
-
+  
   state = {
     isTop: true,
   };
-
+  
   componentDidMount() {
     document.addEventListener('scroll', () => {
       let isTop = window.scrollY < 250;
@@ -19,9 +18,10 @@ class HomeNavBar extends Component {
       }
     })
   }
-
+  
   render() {
-
+    
+    const smallDevice = window.matchMedia('(max-width: 720px)').matches
     let styles = ["nav"]
     if(this.state.isTop)
       styles.push("transparent")

@@ -6,7 +6,6 @@ import BackDrop from '../BackDrop/BackDrop'
 import Sandwich from '../../../assets/img/sandwich.svg'
 
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
-
 const linkKalkuli = (
     <Link to="/" style={{ textDecoration: 'none' }}>
         <h1>Kalkuli</h1>
