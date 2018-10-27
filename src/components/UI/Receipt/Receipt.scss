@@ -61,19 +61,8 @@
         }
     }
 }
+
 @media (min-width:801px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
-    .receipt {
-        &--small {
-            width: 180px;
-            height: 365px;
-            background-size: 180px;
-            margin-top: 5rem;
-            margin-left: 1.5rem;
-        }
-    }
-}
-@media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */ 
     .receipt {
         &--small {
