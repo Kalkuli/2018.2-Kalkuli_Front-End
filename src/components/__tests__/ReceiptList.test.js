@@ -1,3 +1,4 @@
+import '../../services/__mocks__/matchMedia'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -20,8 +21,11 @@ describe("Testing <ReceiptList/>", () => {
       push: spyHistoryPush
     }
   }
-
+  
   beforeEach(() => {
+    window.matchMedia = jest.fn(query => ({ 
+      matches: query.indexOf('(min-width: 800px)') !== -1, 
+    })); 
     wrapper = shallow(<ReceiptList {...props}/>)
   })
 
