@@ -9,7 +9,7 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class ReceiptAdder extends Component {
@@ -52,43 +52,43 @@ class ReceiptAdder extends Component {
         <Loader />
       )
     }
-  } 
-
-  onConfirmButton = (receipt) => {
-    axios.post('http://172.23.0.1:5008/api/v1/receipt', {
-			"receipt": {
-				...receipt,
-				company_id: 1
-			}
-    })
-    .then(() => {
-      this.setState({
-        completed: true
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
   }
 
   onConfirmButton = (receipt) => {
-    axios.post('https://kalkuli-gateway.herokuapp.com/api/v1/receipt', {
+    axios.post('https://172.23.0.1:5008/api/v1/receipt', {
       "receipt": {
         ...receipt,
         company_id: 1
       }
     })
-    .then(() => {
-      this.setState({
-        completed: true
+      .then(() => {
+        this.setState({
+          completed: true
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
-  onConfirmOk = () => { this.props.history.push({pathname: '/list-all-receipts'}) }
+  onConfirmButton = (receipt) => {
+    axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/receipt', {
+      "receipt": {
+        ...receipt,
+        company_id: 1
+      }
+    })
+      .then(() => {
+        this.setState({
+          completed: true
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  onConfirmOk = () => { this.props.history.push({ pathname: '/list-all-receipts' }) }
 
   onConfirmHandler = () => {
     this.setState({
@@ -96,7 +96,7 @@ class ReceiptAdder extends Component {
     })
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
-    axios.post('http://172.23.0.1:5008/api/v1/extract_data', formData, {
+    axios.post('https://172.23.0.1:5008/api/v1/extract_data', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
