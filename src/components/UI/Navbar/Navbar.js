@@ -14,10 +14,10 @@ const linkKalkuli = (
 )
 
 class Navbar extends Component {
+
     state = {
         isOpen: false
     }
-
 
     render(){
         if(smallDevice){

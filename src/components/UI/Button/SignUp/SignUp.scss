@@ -45,3 +45,18 @@
 .small {
   margin-left: 1.5rem;
 }
+@media (max-width:480px) { 
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+  .small {
+    font-size: 1.1rem;
+    width: 16rem;
+    margin-left: .4rem;
+  }
+}
+@media (min-width:480px) and (max-width:720px) { 
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+  .small {
+    font-size: 1.4rem;
+    width: 20rem;
+  }
+}
