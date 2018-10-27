@@ -30,13 +30,13 @@
     padding: 1rem;
     &__text {
       width: 15rem;
-      height: 10rem;
-      font-size: .9rem;
+      height: 13rem;
+      font-size: 1rem;
     }
     &__img {
-      width: 12rem;
-      height: 12rem;
-      background-size: 12rem;
+      width: 14rem;
+      height: 14rem;
+      background-size: 14rem;
     }
   } 
 }
@@ -44,7 +44,7 @@
   /* smartphones, Android phones, landscape iPhone */ 
   .about {
     &__text {
-      width: 20rem;
+      width: 22rem;
       height: 16rem;
       font-size: 1.3em;
     }
