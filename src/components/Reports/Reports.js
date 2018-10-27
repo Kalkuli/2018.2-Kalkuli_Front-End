@@ -37,6 +37,7 @@ class Reports extends Component {
                 <Navbar />
                 <div className="reports__area">
                     <div className="reports__area__content">
+                        <div className="reports__area__content__datepicker">
                             <DateRangePicker
                                 startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                                 startDatePlaceholderText="Data Inicial"
@@ -50,6 +51,7 @@ class Reports extends Component {
                                 isOutsideRange={() => false}
                                 hideKeyboardShortcutsPanel={() => true}
                             />
+                        </div>
                         
                         
                         <div className="reports__area__content__resumes">
