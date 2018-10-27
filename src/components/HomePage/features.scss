@@ -1,6 +1,7 @@
 @import '../../assets/sass/main.scss';
 
 .feature {
+  margin: auto;
   height: 80rem;
   display: flex;
   flex-flow: column;
@@ -9,16 +10,14 @@
     font-size: 4rem;
     margin-top: 6rem;
   }
-
   &__container {
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
     width: 100%;
     height: 85rem;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-evenly;
-    
     &__element {
       padding: 2rem;
       text-align: center;
@@ -35,7 +34,6 @@
       );
       border-radius: 2rem;
       box-shadow: 0 .5rem 1rem rgba($color-black, .4);
-      
       &__border {
         background-color: $color-white;
         display: flex;
@@ -47,12 +45,10 @@
         border-radius: 10rem;
         box-shadow: 0px 0px 1rem rgba($color-black, .2);
       }
-
       &__img {
         width: 10rem;
         height: 10rem;
       }
-
       &__p {
         color: $color-white;
         font-size: 2.8rem;
@@ -64,14 +60,14 @@
 @media (min-width:320px) { 
   /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
   .feature {
-    height: 50rem;
+    width: 92%;
+    height: 52rem;
     &__h1 {
       font-size: 1.65rem;
       margin-top: 3rem;
     }
     &__container {
       &__element {
-        justify-content: space-around;
         height: 20rem;
         width: 13rem;
         &__border {
@@ -80,8 +76,8 @@
           width: 7rem; 
         }
         &__img {
-          width: 3rem;
-          height: 3rem;
+          width: 4rem;
+          height: 4rem;
         }
         &__p {
           font-size: 1.1rem;
@@ -90,11 +86,139 @@
     }
   }
 }
-@media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ }
-@media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
-@media (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
-@media (min-width:1281px) { 
+@media (min-width:480px) { 
+  /* smartphones, Android phones, landscape iPhone */ 
+  .feature {
+    width: 80%;
+    height: 67rem;
+    &__h1 {
+      margin-top: 4.4rem;
+      font-size: 2rem;
+    }
+    &__container {
+      &__element {
+        height: 24rem;
+        width: 17rem;
+        &__border {
+          border: 1.8px solid $color-light-blue;
+          height: 9rem;
+          width: 9rem; 
+        }
+        &__img {
+          width: 5.2rem;
+          height: 5.2rem;
+        }
+        &__p {
+          font-size: 1.55rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width:600px) {  
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+  .feature {
+    height: 80rem;
+    width: 78%;
+    &__h1 {
+      font-size: 2.2rem;
+    }
+    &__container {
+      &__element {
+        height: 30rem;
+        width: 21rem;
+        &__border {
+          border: 2px solid $color-light-blue;
+          height: 11rem;
+          width: 11rem; 
+        }
+        &__img {
+          width: 7rem;
+          height: 7rem;
+        }
+        &__p {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width:801px) { 
+  /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  .feature {
+    height: 86rem;
+    width: 64%;
+    &__h1 {
+      font-size: 2.7rem;
+    }
+    &__container {
+      &__element {
+        height: 32rem;
+        width: 22rem;
+        &__border {
+          height: 12rem;
+          width: 12rem; 
+        }
+        &__img {
+          width: 7.5rem;
+          height: 7.5rem;
+        }
+        &__p {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width:1025px) { 
+  /* big landscape tablets, laptops, and desktops */ 
+  .feature {
+    margin-top: 2.5rem;
+    height: 55rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    &__h1 {
+      font-size: 2.8rem;
+    }
+    &__container {
+      &__element {
+        height: 36rem;
+        width: 22rem;
+        &__border {
+          height: 13rem;
+          width: 13rem; 
+        }
+        &__img {
+          width: 8rem;
+          height: 8rem;
+        }
+        &__p {
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width:1550px) { 
   /* hi-res laptops and desktops */ 
-
+  .feature {
+    height: 60rem;
+    width: 90%;
+    &__h1 {
+      font-size: 3.1rem;
+    }
+    &__container {
+      &__element {
+        height: 39rem;
+        width: 24rem;
+        &__img {
+          width: 8rem;
+          height: 8rem;
+        }
+        &__p {
+          font-size: 2.3rem;
+        }
+      }
+    }
+  }
 }
