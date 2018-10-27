@@ -60,49 +60,26 @@ p {
     font-weight: 400;
     font-size: 1em;
 }
-/*
-.register__form {
-    display: flex !important;
-    flex-direction: column;
-    padding: 1em;
-}
 
-.register {
+.description{
     display: flex;
-    flex-direction: column;
-}
-
-
-.register__form__local input {
-    width: 5em;
-}
-
-.register__form__local__cidade input {
-    width: 12em;
-}
-
-.register__form__local {
-    display: flex;
-    flex-direction: row;
+    width: inherit;
     justify-content: space-between;
 }
 
-.register__form--company {
+.description__quetion{
+    background-color: $color-dark-blue;
+    width: 1em;
+    height: 1em;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: .5em;
+    color: white; 
+    justify-content: flex-end;
+    margin: 0;
+    padding: .2em;
+    cursor: pointer;
 
-.register__form__company input {
-    width: 50em;
 }
-
-.register__form--adm {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-label{
-    color: red;
-}*/

@@ -10,7 +10,10 @@ class Form extends Component {
     state = {
         registerInputCompany: registerInputsCompany,
         registerInputAdm: registerInputsAdm,
-        password: ''
+        password: '',
+        validComapany: false,
+        validAdm: false,
+        valid: false 
     }
 
     render(){
@@ -20,17 +23,13 @@ class Form extends Component {
         const changeInputColor = {
             color: '#0F8891',
         }
-
-        const inputClasses = []
-
-        if(this.state.registerInputAdm.value === '' ){
-            
-        }
         
         return(
             <Fragment>
                 <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                 <h2>Empresa:</h2>
+
+                
                 <form>
                     {Object.keys(registerInputCompany).map(key =>(
                         <label  key={key} 
@@ -40,7 +39,13 @@ class Form extends Component {
                                 style={registerInputCompany[key].touched ? changeInputColor : null}
                                 style={registerInputCompany[key].value ? changeInputColor : null}>
 
-                        {registerInputCompany[key].name}
+                        
+                        <div className='description'>
+                            {registerInputCompany[key].name}
+                            {registerInputCompany[key].validation ? 
+                            <div className='description__quetion'>?</div> : null}
+                        </div>
+
                         <Input 	value={registerInputCompany[key].value}
                                 valid={registerInputCompany[key].valid}
                                 touched={registerInputCompany[key].touched}
@@ -61,7 +66,12 @@ class Form extends Component {
                                 style={registerInputAdm[key].value ? changeInputColor : null}>
 
                             
+                            <div className='description'>
                             {registerInputAdm[key].name}
+                            {registerInputAdm[key].validation ? 
+                            <div className='description__quetion'>?</div> : null}
+                        </div>
+
                             
                             <Input 	value={registerInputAdm[key].value}
                                     valid={registerInputAdm[key].valid}
@@ -112,29 +122,42 @@ class Form extends Component {
 
     onChangeHandlerAdm = (event, inputKey) => {
 		let inputState = {...this.state.registerInputAdm}
-		let inputElement = {...inputState[inputKey]}
+        let inputElement = {...inputState[inputKey]}
+        
         inputElement.value = event.target.value
-		inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
-		inputState[inputKey] = inputElement
-		/* let receiptIsValid = true
+
+        if(inputElement.validation)
+		    inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+        
+        inputState[inputKey] = inputElement
+        
+		let receiptIsValid = true
 		for(let inputKey in inputState) {
 			receiptIsValid = inputState[inputKey].valid && receiptIsValid
-		} */
-		this.setState({registerInputAdm: inputState})
+        }
+        console.log(this.state.validAdm)
+        console.log(this.state.valid)
+		this.setState({registerInputAdm: inputState, validAdm: receiptIsValid})
     }
 
     onChangeHandlerCompany = (event, inputKey) => {
 		let inputState = {...this.state.registerInputCompany}
-		let inputElement = {...inputState[inputKey]}
-		inputElement.value = event.target.value
-		//inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+        let inputElement = {...inputState[inputKey]}
+        
+        inputElement.value = event.target.value
+
+        if(inputElement.validation)
+            inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+            
         inputState[inputKey] = inputElement
 
-		/* let receiptIsValid = true
+		let companyIsValid = true
 		for(let inputKey in inputState) {
-			receiptIsValid = inputState[inputKey].valid && receiptIsValid
-		} */
-		this.setState({registerInputCompany: inputState})
+			companyIsValid = (inputState[inputKey].valid && companyIsValid)
+        } 
+        console.log(this.state.validComapany)
+        console.log(this.state.valid)
+        this.setState({registerInputCompany: inputState, validComapany: companyIsValid}) 
     }
     checkValidity = (value, rules) => {
         let isValid = false
@@ -154,10 +177,14 @@ class Form extends Component {
         if(rules.confPass)
             isValid = this.state.password === value
 
-        console.log(isValid)
-
 		return isValid
-	}
+    }
+    
+    onValid = (validComapany, validAdm) =>{
+        let valid = validComapany && validAdm
+
+        this.setState({valid: valid})
+    }
 }
 
 export default Form;

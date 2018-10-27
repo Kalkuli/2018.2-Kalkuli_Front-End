@@ -20,7 +20,9 @@ const registerInputs = {
         touched: false,
         validation: {
             required: true,
-            aroba: '@'
+            aroba: '@',
+            minLength: 5,
+            maxLength: 20
         }
     },
     admPassword: {
