@@ -56,10 +56,10 @@ class ReceiptAdder extends Component {
 
   onConfirmButton = (receipt) => {
     axios.post('https://172.23.0.1:5008/api/v1/receipt', {
-      "receipt": {
-        ...receipt,
-        company_id: 1
-      }
+			"receipt": {
+				...receipt,
+				company_id: 1
+			}
     })
       .then(() => {
         this.setState({
