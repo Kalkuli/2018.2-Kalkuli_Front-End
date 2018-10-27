@@ -86,7 +86,9 @@ class Dashboard extends Component {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/report', {  
+            this.setState({ date_from: date_from, date_to: date_to })
+
+            axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/report', {
                 "period": {
                     date_from: date_from,
                     date_to: date_to
