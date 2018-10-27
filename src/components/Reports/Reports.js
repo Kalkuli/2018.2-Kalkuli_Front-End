@@ -135,7 +135,9 @@ class Reports extends Component {
         }).then((response) => {
             FileDownload(response.data, 'report.csv')
         })
-        console.log(date_from, date_to)
+        .catch((error) => {
+            console.log(error)
+        })
     }
 }
 
