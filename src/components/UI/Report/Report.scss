@@ -4,7 +4,7 @@
     border: solid 1px $color-dark-blue;
     position: relative;
     border-radius: 5px;
-    padding: 3em;
+    padding: 5%;
     padding-top: 2em;
 
     &__warning {
@@ -54,7 +54,7 @@
      /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
         .report {
             height: 35em;
-            width: 25em;
+            width: 28em;
         }
     }
 @media (min-width:480px) {
