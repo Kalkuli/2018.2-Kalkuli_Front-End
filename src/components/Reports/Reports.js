@@ -9,6 +9,8 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 
 var type = "cancel";
+var comeco = null;
+var fim = null;
 
 class Reports extends Component {
 
@@ -17,7 +19,8 @@ class Reports extends Component {
         reports: null,
         receipts: null,
         sum: null,
-        reportCase: null
+        reportCase: null,
+        file: null
     }
 
     componentDidMount() {
@@ -56,6 +59,8 @@ class Reports extends Component {
 
                                 if (this.state.position === index) {
                                     type = "confirm";
+                                    comeco = start;
+                                    fim = end;
                                 }
                                 else {
                                     type = "cancel";
@@ -71,7 +76,7 @@ class Reports extends Component {
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
-                    <BaseButton size="small" type="confirm" >Export</BaseButton>
+                    <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
                 </div>
             </div>
         )
@@ -118,6 +123,22 @@ class Reports extends Component {
 
     onDeleteHandler = () => {
 
+    }
+
+    onExportHandler = (date_from, date_to) => {
+        Axios.post('http://172.25.0.1:5008/api/v1/export', {
+            "period": {
+                date_from: date_from,
+                date_to: date_to
+            }
+        }).then((response) => {
+            var blob = new Blob([response.data], {
+                type: 'application/csv'
+            })
+            var url = window.URL.createObjectURL(blob)
+            window.open(url);
+        })
+        console.log(date_from, date_to)
     }
 }
 
