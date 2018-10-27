@@ -71,6 +71,7 @@ class Reports extends Component {
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                    <BaseButton size="small" type="confirm" >Export</BaseButton>
                 </div>
             </div>
         )
