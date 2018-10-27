@@ -61,7 +61,7 @@
                 }
 
                 &__resumes {
-                    height: 40em;
+                    max-height: 40em;
 
                     &__button {
                         margin-top: 5%;
@@ -80,6 +80,8 @@
     /* smartphones, Android phones, landscape iPhone */ 
     .reports {
         &__area{
+            padding: 0;
+
             &__content {
                 width: 100%;
 
@@ -88,7 +90,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -106,6 +108,7 @@
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
     .reports {
         &__area{
+            padding: 0;
             &__content {
                 width: 100%;
 
@@ -114,7 +117,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -140,7 +143,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -166,7 +169,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -191,7 +194,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -216,7 +219,7 @@
                 }
 
                 &__resumes {
-                    height: 50em;
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
