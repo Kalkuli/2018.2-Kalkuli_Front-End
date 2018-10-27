@@ -97,3 +97,25 @@
   display: none;
 }
 
+@media (max-width: 720px) {
+  .menubutton {
+    width: 6.5rem;
+    height: 6.5rem;
+    bottom: 3rem;
+    right: 4rem;
+  }
+  .options {
+    height: 13rem;
+    bottom: 10.5rem;
+    right: 4.9rem;
+    &__element {
+      &--text {
+        font-size: 1.2rem;
+      }
+      &--circle {
+        height: 5rem;
+        width: 5rem;
+      }
+    }
+  }
+}
