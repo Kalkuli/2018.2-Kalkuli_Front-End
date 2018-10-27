@@ -1,26 +1,24 @@
 const registerInputsCompany = {
     propertyName: {
-        name: 'Razão social da Empresa:',
+        name: '*Razão social da Empresa:',
         value: '',
         type: 'text',
         valid: false,
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 10
         }
     },
     companyEmail: {
-        name: 'Email da Empresa:',
+        name: '*Email da Empresa:',
         value: '',
         type: 'email',
         valid: false,
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 10
+            aroba: '@',
+            doitCom: '.com'
         }
     },
     companyName: {
@@ -29,11 +27,6 @@ const registerInputsCompany = {
         type: 'text',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     },
     companyPhone: {
         name: 'Telefone Empresarial:',
@@ -41,11 +34,6 @@ const registerInputsCompany = {
         type: 'tel',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     },
     CNPJ: {
         name: 'CNPJ da Empresa:',
@@ -53,11 +41,6 @@ const registerInputsCompany = {
         type: 'text',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     },
     CEP: {
         name: 'CEP da Empresa:',
@@ -65,11 +48,6 @@ const registerInputsCompany = {
         type: 'text',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     },
     city: {
         name: 'Cidade:',
@@ -77,11 +55,6 @@ const registerInputsCompany = {
         type: 'text',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     },
     state: {
         name: 'Estado:',
@@ -89,11 +62,6 @@ const registerInputsCompany = {
         type: 'text',
         valid: false,
         touched: false,
-        validation: {
-            required: true,
-            minLength: 5,
-            maxLength: 10
-        }
     }
 }
 export default registerInputsCompany;

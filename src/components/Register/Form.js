@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 
-import './Register.scss'
+import classes from './Register.scss'
 import registerInputsCompany from '../../helpers/registerInputsCompay'
 import registerInputsAdm from '../../helpers/registerInputsAdm'
 import Input from '../UI/Input/InputFild'
@@ -9,7 +9,8 @@ import Input from '../UI/Input/InputFild'
 class Form extends Component {
     state = {
         registerInputCompany: registerInputsCompany,
-        registerInputAdm: registerInputsAdm
+        registerInputAdm: registerInputsAdm,
+        password: ''
     }
 
     render(){
@@ -17,7 +18,13 @@ class Form extends Component {
         let {registerInputAdm} = this.state
 
         const changeInputColor = {
-            color: '#0F8891'
+            color: '#0F8891',
+        }
+
+        const inputClasses = []
+
+        if(this.state.registerInputAdm.value === '' ){
+            
         }
         
         return(
@@ -30,7 +37,8 @@ class Form extends Component {
                                 for={registerInputCompany[key].id}
                                 onFocus={() => this.focusCompany(key)}
                                 onBlur={()=>this.blurCompany(key)}
-                                style={registerInputCompany[key].touched ? changeInputColor : null}>
+                                style={registerInputCompany[key].touched ? changeInputColor : null}
+                                style={registerInputCompany[key].value ? changeInputColor : null}>
 
                         {registerInputCompany[key].name}
                         <Input 	value={registerInputCompany[key].value}
@@ -49,7 +57,8 @@ class Form extends Component {
                                 for={registerInputAdm[key].id}
                                 onFocus={() => this.focusAdm(key)}
                                 onBlur={()=>this.blurAdm(key)}
-                                style={registerInputAdm[key].touched ? changeInputColor : null}>
+                                style={registerInputAdm[key].touched ? changeInputColor : null}
+                                style={registerInputAdm[key].value ? changeInputColor : null}>
 
                             
                             {registerInputAdm[key].name}
@@ -60,7 +69,6 @@ class Form extends Component {
                                     id={registerInputAdm[key].id}
                                     type={registerInputAdm[key].type}
                                     onChangeHandler={(event) => this.onChangeHandlerAdm(event, key)}
-                                    
                                     />
                         </label>
                     ))}
@@ -70,7 +78,6 @@ class Form extends Component {
     }
 
     focusAdm = (inputKey) =>{
-        console.log('focus')
         let inputState = {...this.state.registerInputAdm}
         let inputElement = {...inputState[inputKey]}
         inputElement.touched = !inputElement.touched
@@ -80,7 +87,6 @@ class Form extends Component {
     }
 
     blurAdm = (inputKey) =>{
-        console.log('blur')
         let inputState = {...this.state.registerInputAdm}
         let inputElement = {...inputState[inputKey]}
         inputElement.touched = !inputElement.touched
@@ -89,7 +95,6 @@ class Form extends Component {
     }
 
     focusCompany = (inputKey) =>{
-        console.log('focus')
         let inputState = {...this.state.registerInputCompany}
         let inputElement = {...inputState[inputKey]}
         inputElement.touched = !inputElement.touched
@@ -98,7 +103,6 @@ class Form extends Component {
     }  
 
     blurCompany = (inputKey) =>{
-        console.log('blur')
         let inputState = {...this.state.registerInputCompany}
         let inputElement = {...inputState[inputKey]}
         inputElement.touched = !inputElement.touched
@@ -109,8 +113,8 @@ class Form extends Component {
     onChangeHandlerAdm = (event, inputKey) => {
 		let inputState = {...this.state.registerInputAdm}
 		let inputElement = {...inputState[inputKey]}
-		inputElement.value = event.target.value
-		//inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+        inputElement.value = event.target.value
+		inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
 		inputState[inputKey] = inputElement
 		/* let receiptIsValid = true
 		for(let inputKey in inputState) {
@@ -132,7 +136,28 @@ class Form extends Component {
 		} */
 		this.setState({registerInputCompany: inputState})
     }
-    
+    checkValidity = (value, rules) => {
+        let isValid = false
+        
+		if(rules.required)
+			isValid = value.trim() !== ''
+		
+		if(rules.minLength)
+            isValid = value.length >= rules.minLength
+
+        if(rules.aroba)
+            isValid = value.indexOf("@") !== -1
+
+        if(rules.pass)
+            this.setState({password: value})
+
+        if(rules.confPass)
+            isValid = this.state.password === value
+
+        console.log(isValid)
+
+		return isValid
+	}
 }
 
 export default Form;

@@ -15,7 +15,7 @@ class Register extends Component {
                 <div className='register'>
                     <Form/>
                     <div className='register__button'>
-                        <Button type='confirm' >Confirmar</Button>
+                        <Button type='confirm'>Confirmar</Button>
                     </div>
                 </div>
             </Modal>

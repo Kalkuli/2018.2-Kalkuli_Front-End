@@ -1,6 +1,6 @@
 const registerInputs = {
     admName: {
-        name: 'Nome do Administrador:',
+        name: '*Nome do Administrador:',
         value: '',
         id:'admName',
         type: 'text',
@@ -9,43 +9,42 @@ const registerInputs = {
         validation: {
             required: true,
             minLength: 5,
-            maxLength: 10
+            maxLength: 20
         }
     },
     admEmail: {
-        name: 'Email do Administrador:',
+        name: '*Email do Administrador:',
         value: '',
         type: 'email',
         valid: false,
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 10
+            aroba: '@'
         }
     },
     admPassword: {
-        name: 'Senha do Administrador:',
+        name: '*Senha do Administrador:',
         value: '',
         type: 'password',
         valid: false,
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 10
+            minLength: 8,
+            maxLength: 16,
+            pass: true
         }
     },
     confPassword: {
-        name: 'Confirmar Senha:',
+        name: '*Confirmar Senha:',
         value: '',
         type: 'password',
         valid: false,
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 10
+            confPass: true 
         }
     }
 }
