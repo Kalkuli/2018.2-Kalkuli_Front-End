@@ -5,10 +5,11 @@ import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report'
 import Axios from 'axios'
 import { DateRangePicker } from 'react-dates';
+import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-var type = "cancel";
+var type = "no-background";
 var comeco = null;
 var fim = null;
 
@@ -62,8 +63,8 @@ class Reports extends Component {
                                     comeco = start;
                                     fim = end;
                                 }
-                                else {
-                                    type = "cancel";
+                                else{
+                                    type = "no-background";
                                 }
                                 return (
                                     <BaseButton size="medium" type={type} click={() => { this.onReportSelect(index, start, end) }} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
@@ -132,11 +133,7 @@ class Reports extends Component {
                 date_to: date_to
             }
         }).then((response) => {
-            var blob = new Blob([response.data], {
-                type: 'application/csv'
-            })
-            var url = window.URL.createObjectURL(blob)
-            window.open(url);
+            FileDownload(response.data, 'report.csv')
         })
         console.log(date_from, date_to)
     }
