@@ -14,7 +14,6 @@
         padding: 2%;
         
         &__content {
-
             &__datepicker {
                 width: 302px;
             }
@@ -29,7 +28,6 @@
                 overflow-y: auto;
 
                 &__button {
-                    margin: 5em;
                 }
             }
 
@@ -85,7 +83,8 @@
             padding: 0;
 
             &__content {
-                width: 100%;
+                margin-top: 2rem;
+                width: 80%;
 
                 &__datepicker {
                     margin: auto;
@@ -119,7 +118,6 @@
                 }
 
                 &__resumes {
-                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -196,7 +194,6 @@
                 }
 
                 &__resumes {
-                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -204,12 +201,12 @@
                 }
             }
             &__report {
-                padding-top: 0;
+                padding: 3rem 3rem 0 0;
             }
         }
     }  
 }
-@media (min-width:1600px) {
+@media (min-width:1500px) {
     /* hi-res laptops and desktops */ 
     .reports {
         &__area{

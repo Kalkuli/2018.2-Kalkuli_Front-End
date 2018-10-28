@@ -51,6 +51,7 @@ class Reports extends Component {
                                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                                 isOutsideRange={() => false}
                                 hideKeyboardShortcutsPanel={() => true}
+                                orientation={orientation}
                             />
                         </div>
                         
