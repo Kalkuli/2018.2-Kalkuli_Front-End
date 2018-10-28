@@ -37,8 +37,10 @@
 
         &__report {
             &__button {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-evenly;
                 margin-top: 5%;
-                float: right; 
             }
         }
 

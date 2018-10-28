@@ -8,6 +8,7 @@ import { DateRangePicker } from 'react-dates';
 import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import * as screenSize from '../../helpers/screenSize'
 
 var type = "no-background";
 var comeco = null;
@@ -83,13 +84,10 @@ class Reports extends Component {
                         {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
                         <div className="reports__area__report__button">
                             <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                            <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
                         </div>
                     </div>
                     
-                </div>
-                <div className="reports__button">
-                    <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
-                    <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
                 </div>
             </div>
         )
