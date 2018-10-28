@@ -5,10 +5,13 @@ import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report'
 import Axios from 'axios'
 import { DateRangePicker } from 'react-dates';
+import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-var type = "cancel";
+var type = "no-background";
+var comeco = null;
+var fim = null;
 
 class Reports extends Component {
 
@@ -17,7 +20,8 @@ class Reports extends Component {
         reports: null,
         receipts: null,
         sum: null,
-        reportCase: null
+        reportCase: null,
+        file: null
     }
 
     componentDidMount() {
@@ -56,9 +60,11 @@ class Reports extends Component {
 
                                 if (this.state.position === index) {
                                     type = "confirm";
+                                    comeco = start;
+                                    fim = end;
                                 }
-                                else {
-                                    type = "cancel";
+                                else{
+                                    type = "no-background";
                                 }
                                 return (
                                     <BaseButton size="medium" type={type} click={() => { this.onReportSelect(index, start, end) }} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
@@ -71,6 +77,7 @@ class Reports extends Component {
                 </div>
                 <div className="reports__button">
                     <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                    <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
                 </div>
             </div>
         )
@@ -117,6 +124,20 @@ class Reports extends Component {
 
     onDeleteHandler = () => {
 
+    }
+
+    onExportHandler = (date_from, date_to) => {
+        Axios.post('http://172.25.0.1:5008/api/v1/export', {
+            "period": {
+                date_from: date_from,
+                date_to: date_to
+            }
+        }).then((response) => {
+            FileDownload(response.data, 'report.csv')
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
 }
 
