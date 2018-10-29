@@ -28,17 +28,22 @@
                 overflow-y: auto;
 
                 &__button {
+                    margin: 0;
                 }
             }
 
         }
 
         &__report {
-            &__button {
+            &__buttons {
                 display: flex;
                 flex-flow: row wrap;
                 justify-content: space-evenly;
                 margin-top: 5%;
+
+                &__button {
+                    margin: 3%;
+                }
             }
         }
 
@@ -83,10 +88,10 @@
             padding: 0;
 
             &__content {
-                margin-top: 2rem;
                 width: 80%;
 
                 &__datepicker {
+                    padding-top: 5%;
                     margin: auto;
                 }
 
@@ -111,13 +116,14 @@
         &__area{
             padding: 0;
             &__content {
-                width: 100%;
+                width: 90%;
 
                 &__datepicker {
                     margin: auto;
                 }
 
                 &__resumes {
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -136,10 +142,10 @@
     .reports {
         &__area{
             &__content {
-                width: 100%;
+                width: 90%;
 
                 &__datepicker {
-                    margin: auto;
+                    margin: 0;
                 }
 
                 &__resumes {
@@ -162,7 +168,7 @@
     .reports {
         &__area{
             &__content {
-                width: 100%;
+                width: 90%;
 
                 &__datepicker {
                     margin: 0;
@@ -182,18 +188,23 @@
         }
     }  
 }
-@media (min-width:1281px) {
+@media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .reports {
         &__area{
+            padding: 3%;
+
             &__content {
-                width: 60%;
+                width: 55%;
+                margin: 0;
 
                 &__datepicker {
+                    padding-top: 0;
                     margin: 0;
                 }
 
                 &__resumes {
+                    max-height: 50em;
 
                     &__button {
                         margin-top: 5%;
@@ -201,7 +212,7 @@
                 }
             }
             &__report {
-                padding: 3rem 3rem 0 0;
+                padding: 0;
             }
         }
     }  
@@ -221,7 +232,8 @@
                     max-height: 50em;
 
                     &__button {
-                        margin-top: 5%;
+                        margin: 0;
+                        margin-top: 2%;
                     }
                 }
             }

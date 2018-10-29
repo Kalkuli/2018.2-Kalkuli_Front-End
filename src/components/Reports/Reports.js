@@ -13,7 +13,7 @@ import * as screenSize from '../../helpers/screenSize'
 var type = "no-background";
 var comeco = null;
 var fim = null;
-const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 var type = 'no-background'
 
@@ -52,6 +52,7 @@ class Reports extends Component {
                                 isOutsideRange={() => false}
                                 hideKeyboardShortcutsPanel={() => true}
                                 orientation={orientation}
+                                small={smallDevice}
                             />
                         </div>
                         
@@ -83,9 +84,13 @@ class Reports extends Component {
 
                     <div className="reports__area__report">
                         {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
-                        <div className="reports__area__report__button">
-                            <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
-                            <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
+                        <div className="reports__area__report__buttons">
+                            <div className="reports__area__report__buttons__button">
+                                <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                            </div>
+                            <div className="reports__area__report__buttons__button">
+                                <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
+                            </div>
                         </div>
                     </div>
                     
