@@ -1,30 +1,27 @@
 @import "../../../assets/sass/main";
 
+.receipt-modal-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .area-buttons{
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: space-between;
-    height: 47rem;
-    margin-left: 5.5rem;
-    margin-right: 3rem;
+
     &__change-buttons{
         display: flex;
         flex-flow: column;
-        justify-content: space-around;    
-        height: 30%;    
+        justify-content: space-around;  
     }
+
 }
 
 .receipt-area{
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-    font-size: 2rem;
-    width: 80%;
-    font-size: 1.7rem;
-    margin-top: 4rem;
-    margin-left: 2.2rem;
 
     &__content{
         display: flex;
@@ -34,5 +31,62 @@
             padding-bottom: 1em;
             color: $color-black;
         }
+    }
+}
+
+@media (min-width:320px) {
+    /* smartphones, Android phones, landscape iPhone */
+    .receipt-modal-area {
+        width: 26em;
+        height: 44em;
+        overflow: scroll;
+        justify-content: center;
+    }
+    .area-buttons{
+        height: 22rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        margin-top: 2em;
+        justify-content: space-around;
+
+        &__change-buttons {
+            height: 17em;
+        }
+    }
+
+    .receipt-area {
+        font-size: 2rem;
+        width: 80%;
+        font-size: 1.7rem;
+        margin-top: 4rem;
+        margin-left: 2.2rem;
+        justify-content: flex-start;
+    }
+}
+@media (min-width:645px) {
+    .receipt-modal-area {
+        width: 55em;
+        height: 51rem;
+        overflow: hidden;
+        justify-content: space-around;
+    }
+    .area-buttons{
+        height: 47rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 2em;
+        justify-content: space-between;
+
+        &__change-buttons {
+            height: 18em;
+        }
+    }
+
+    .receipt-area {
+        font-size: 2rem;
+        width: 80%;
+        font-size: 1.7rem;
+        margin-top: 4rem;
+        margin-left: 2.2rem;
     }
 }

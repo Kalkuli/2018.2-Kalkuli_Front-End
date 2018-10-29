@@ -12,6 +12,10 @@ import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import './DatePicker.scss'
+import * as screenSize from '../../helpers/screenSize'
+
+const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
 class Dashboard extends Component {
     constructor(props) {
@@ -36,10 +40,11 @@ class Dashboard extends Component {
         moment.locale('pt-br')
         return (
             <div className="dashboard">
-                <Navbar />
-                <div className="dashboard__content">
-                    <div className="dashboard__content__datepicker datepicker">
-                        <DateRangePicker
+                <Navbar/>
+                <div className="dashboard__area">
+                    <div className="dashboard__area__content">
+                        <div className="dashboard__area__content__datepicker">
+                            <DateRangePicker 
                             startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                             startDatePlaceholderText="Data Inicial"
                             endDatePlaceholderText="Data Final"
@@ -50,13 +55,23 @@ class Dashboard extends Component {
                             focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                             onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                             isOutsideRange={() => false}
-                            hideKeyboardShortcutsPanel={true}
-                        />
+                            hideKeyboardShortcutsPanel = {true}
+                            orientation={orientation}
+                            />
+                        </div>
+
+                        <div className="dashboard__area__content__graphs">
+
+                        </div>
                     </div>
-                    <div className="dashboard__content__report-area">
+
+                    <div className="dashboard__area__report">
                         {this.state.receipts ? <Report reportCase={this.state.reportCase} receipts={this.state.receipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
-                        {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        <div className="dashboard__area__report__button">
+                            {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         )

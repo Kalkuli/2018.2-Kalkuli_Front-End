@@ -8,10 +8,14 @@ import { DateRangePicker } from 'react-dates';
 import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import * as screenSize from '../../helpers/screenSize'
 
 var type = "no-background";
 var comeco = null;
 var fim = null;
+const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
+var type = 'no-background'
 
 class Reports extends Component {
 
@@ -33,8 +37,8 @@ class Reports extends Component {
             <div className="reports">
                 <Navbar />
                 <div className="reports__area">
-                    <div>
-                        <div className="dashboard__content__datepicker">
+                    <div className="reports__area__content">
+                        <div className="reports__area__content__datepicker">
                             <DateRangePicker
                                 startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                                 startDatePlaceholderText="Data Inicial"
@@ -47,10 +51,12 @@ class Reports extends Component {
                                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                                 isOutsideRange={() => false}
                                 hideKeyboardShortcutsPanel={() => true}
+                                orientation={orientation}
                             />
                         </div>
-
-                        <div className="reports__area__resumes">
+                        
+                        
+                        <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
                                 let start = moment(data.date_from + " " + "GMT-0300").format('YYYY-MM-DD')
                                 let end = moment(data.date_to + " " + "GMT-0300").format('YYYY-MM-DD')
@@ -66,18 +72,23 @@ class Reports extends Component {
                                 else{
                                     type = "no-background";
                                 }
-                                return (
-                                    <BaseButton size="medium" type={type} click={() => { this.onReportSelect(index, start, end) }} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                return(
+                                    <div className="reports__area__content__resumes__button">
+                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                    </div>
                                 )
                             })}
                         </div>
-
                     </div>
-                    {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"} />}
-                </div>
-                <div className="reports__button">
-                    <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
-                    <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
+
+                    <div className="reports__area__report">
+                        {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
+                        <div className="reports__area__report__button">
+                            <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                            <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         )
