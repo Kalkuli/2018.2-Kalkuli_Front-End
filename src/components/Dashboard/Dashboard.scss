@@ -14,6 +14,7 @@
         padding: 2%;
 
         &__report {
+            padding-bottom: 5%;
 
             &__button {
                 margin-top: 5%;
@@ -41,9 +42,11 @@
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .dashboard {
         &__area {
+            padding: 5%;
 
             &__content {
                 width: 100%;
+                margin: auto;
 
                 &__datepicker {
                     margin: auto;
@@ -64,11 +67,13 @@
     /* smartphones, Android phones, landscape iPhone */ 
     .dashboard {
         &__area {
+            padding: 0;
 
             &__content {
-                width: 100%;
+                width: 80%;
 
                 &__datepicker {
+                    padding-top: 5%;
                     margin: auto;
                 }
 
@@ -87,9 +92,10 @@
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
     .dashboard {
         &__area {
+            padding: 0;
 
             &__content {
-                width: 100%;
+                width: 90%;
 
                 &__datepicker {
                     margin: auto;
@@ -112,10 +118,10 @@
         &__area {
 
             &__content {
-                width: 100%;
+                width: 90%;
 
                 &__datepicker {
-                    margin: auto;
+                    margin: 0;
                 }
 
                 &__graphs {
@@ -135,7 +141,7 @@
         &__area {
 
             &__content {
-                width: 52%;
+                width: 90%;
                 
                 &__datepicker {
                     margin: 0;
@@ -147,21 +153,24 @@
             }
 
             &__report {
-                margin: 0;
+                margin: auto;
             }
         }
     }
 }
 
-@media (min-width:1281px) {
+@media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
         &__area {
+            padding: 3%;
 
             &__content {
-                width: 61%;
+                width: 55%;
+                margin: 0;
 
                 &__datepicker {
+                    padding-top: 0;
                     margin: 0;
                 }
 
@@ -171,18 +180,18 @@
             }
 
             &__report {
-                margin: 0;
+                padding: 0;
             }
         }
     }
 }
-@media (min-width:1600px) {
+@media (min-width:1500px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
         &__area {
 
             &__content {
-                width: 70%;
+                width: 67%;
 
                 &__datepicker {
                     margin: 0;

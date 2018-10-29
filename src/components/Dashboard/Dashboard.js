@@ -14,7 +14,7 @@ import 'moment/locale/pt-br'
 import './DatePicker.scss'
 import * as screenSize from '../../helpers/screenSize'
 
-const smallDevice = window.matchMedia('(max-width: 650px)').matches
+const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
 class Dashboard extends Component {
@@ -57,6 +57,7 @@ class Dashboard extends Component {
                             isOutsideRange={() => false}
                             hideKeyboardShortcutsPanel = {true}
                             orientation={orientation}
+                            small={smallDevice}
                             />
                         </div>
 
