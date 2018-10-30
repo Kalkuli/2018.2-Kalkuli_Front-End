@@ -15,7 +15,10 @@ input {
     border-bottom: 0.1em solid $color-black;
     margin-bottom: 0.8em;
     background-color: $color-white;
-    
+    font-family: $montserrat;
+    font-size: .9em;
+    color: $color-black;
+
 }
 
 input:focus {
@@ -29,17 +32,14 @@ label {
     font-family: $montserrat;
     font-weight: 600;
     font-size: 1.5em;
-    color: $color-black;    
-}
-
-h2 {
-    margin: 1em 0em 1em 0em;
-    font-size: 1.7em;
-    
+    color: $color-black; 
+    margin: .5em 0 .5em 0;  
 }
 
 h1 {
     text-align: center;
+    margin: 0em 0em 1.5em 0em;
+
 }
 
 .register{
@@ -69,8 +69,8 @@ p {
 
 .description__quetion{
     background-color: $color-dark-blue;
-    width: 1em;
-    height: 1em;
+    width: 1.2em;
+    height: 1.2em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +79,7 @@ p {
     color: white; 
     justify-content: flex-end;
     margin: 0;
-    padding: .2em;
+    padding: .3em;
     cursor: pointer;
 
 }

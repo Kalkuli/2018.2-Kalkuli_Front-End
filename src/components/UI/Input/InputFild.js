@@ -2,7 +2,7 @@ import React from 'react'
 
 const InputFild = (props) => {
     return (
-        <input  className={props.class} 
+        <input  className={props.classe} 
                 value={props.value} 
                 type={props.type}
                 onChange={props.onChangeHandler}

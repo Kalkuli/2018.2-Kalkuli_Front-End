@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import './Register.scss'
 import Modal from '../UI/Modal/Modal'
 import Button from '../UI/Button/BaseButton/BaseButton'
-import Form from './Form'
+import Forms from './RegisterForm'
 
 
 class Register extends Component {
@@ -13,7 +13,7 @@ class Register extends Component {
             
             <Modal show={this.props.show}>
                 <div className='register'>
-                    <Form/>
+                    <Forms/>
                     <div className='register__button'>
                         <Button type='confirm'>Confirmar</Button>
                     </div>
