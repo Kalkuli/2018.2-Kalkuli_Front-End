@@ -1,13 +1,13 @@
 @import "../../assets/sass/main.scss";
 
-form {
+.register form {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-input {
+.register input {
     display: block;
     width: 25em;
     height: 2em;
@@ -21,24 +21,25 @@ input {
 
 }
 
-input:focus {
+.register input:focus {
     outline: 2em;
     border-color: $color-dark-blue;
     font-family: $montserrat;
     color: $color-black;
 }
 
-label {
+.register label {
     font-family: $montserrat;
     font-weight: 600;
     font-size: 1.5em;
     color: $color-black; 
-    margin: .5em 0 .5em 0;  
+    margin: .3em 0 .3em 0;  
 }
 
-h1 {
+.register h1 {
     text-align: center;
     margin: 0em 0em 1.5em 0em;
+    font-size: 2.5em;
 
 }
 
@@ -54,7 +55,7 @@ h1 {
     margin-top: 1em;
 }
 
-p {
+.register p {
     font-family: $montserrat;
     color: $color-black;
     font-weight: 400;
@@ -75,11 +76,50 @@ p {
     align-items: center;
     justify-content: center;
     align-content: center;
-    border-radius: .5em;
+    border-radius: 1em;
     color: white; 
     justify-content: flex-end;
     margin: 0;
     padding: .3em;
+    font-size: 1.5em;
+    font-weight: 700;
     cursor: pointer;
-
+    margin-left: 21.35em;
 }
+
+.t {
+    display: none;
+}
+.a{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.a:hover .t{
+    display: block;
+}
+
+.a:hover .description__quetion{
+    background-color: $color-dark-blue;
+    width: 1.2em;
+    height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1em;
+    color: white; 
+    justify-content: flex-end;
+    margin: 0;
+    padding: .3em;
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.register__form{
+    display: flex;
+    flex-direction: column;
+}
+

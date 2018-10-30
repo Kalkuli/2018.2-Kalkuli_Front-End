@@ -24,23 +24,31 @@ class Form extends Component {
                 <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                 <form>
                     {Object.keys(registerInput).map(key =>(
-                        <label  key={key} 
-                                for={registerInput[key].id}
-                                onFocus={() => this.focusHandler(key)}
-                                onBlur={()=>this.blurHandler(key)}
-                                style={registerInput[key].touched || registerInput[key].value ? changeInputColorValid : null}>
-                            <div className='description'>
-                                {registerInput[key].name}
-                                {registerInput[key].validation ? 
-                                <div className='description__quetion'>?</div> : null}
+                        <div className='register__form'>
+                            {registerInput[key].validation ? 
+                            <div className='a'>
+                                <p className='t'>ooooooooooooi</p>
+                                <div className='description__quetion'>?</div> 
                             </div>
-                            <Input 	value={registerInput[key].value}
-                                    valid={registerInput[key].valid}
-                                    touched={registerInput[key].touched}
-                                    id={registerInput[key].id}
-                                    type={registerInput[key].type}
-                                    onChangeHandler={(event) => this.onChangeHandler(event, key)}/>
-                        </label>
+                            : null}
+
+                            <label  key={key} 
+                                    for={registerInput[key].id}
+                                    onFocus={() => this.focusHandler(key)}
+                                    onBlur={()=>this.blurHandler(key)}
+                                    style={registerInput[key].touched || registerInput[key].value ? changeInputColorValid : null}>
+                                <div className='description'>
+
+                                    {registerInput[key].name}
+                                </div>
+                                <Input 	value={registerInput[key].value}
+                                        valid={registerInput[key].valid}
+                                        touched={registerInput[key].touched}
+                                        id={registerInput[key].id}
+                                        type={registerInput[key].type}
+                                        onChangeHandler={(event) => this.onChangeHandler(event, key)}/>
+                            </label>
+                        </div>
                     ))}
                 </form>
             </Fragment>
