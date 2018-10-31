@@ -17,7 +17,7 @@ import Register from '../Register/RegisterForm'
 class HomePage extends Component{
 
   state = {
-    newCompany: true 
+    newCompany: false 
   }
 
   render(){

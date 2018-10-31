@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react'
+import axios from 'axios'
 
 import './Register.scss'
 import Modal from '../UI/Modal/Modal'
@@ -51,11 +52,40 @@ class Form extends Component {
                         </form>
                     </Fragment>
                     <div className='register__button'>
-                        <Button type={ this.state.valid ? 'confirm' : 'disable'} >Confirmar</Button>
+                        <Button type={ this.state.valid ? 'confirm' : 'disable'} click={this.state.valid ? this.submiteInputs : null}>Confirmar</Button>
                     </div>
                 </div>
             </Modal>
         )
+    }
+
+    submiteInputs = () => {
+        const companyAdmInputs = {
+            company: {
+                company_name: this.state.registerInput.propertyName.value,
+                cnpj: this.state.registerInput.CNPJ.value,
+                company_email: this.state.registerInput.companyEmail.value,
+                fantasy_name: this.state.registerInput.companyName.value,
+                cep: this.state.registerInput.CEP.value,
+                city: this.state.registerInput.city.value,
+                state: this.state.registerInput.state.value,
+                company_phone: this.state.registerInput.companyPhone.value
+            },
+            user: {
+                name: this.state.registerInput.admName.value,
+                email: this.state.registerInput.admEmail.value,
+                password: this.state.registerInput.admPassword.value
+            }
+           } 
+
+        axios.post('http://kalkuli-gateway.herokuapp.com/api/v1/company', companyAdmInputs)
+             .then(
+                 ()=>(
+                     <div>
+                         <p>oooi</p>
+                     </div>
+                 )
+             )
     }
 
     focusHandler = (inputKey) =>{
