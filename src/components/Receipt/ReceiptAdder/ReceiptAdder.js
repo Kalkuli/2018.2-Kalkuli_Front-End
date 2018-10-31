@@ -24,7 +24,7 @@ class ReceiptAdder extends Component {
     if (this.state.fileSent && !this.state.completed) {
       content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} />
     } else if (this.state.completed) {
-      content = <Confirmation onConfirmOk={this.props.onConfirmOk} />
+      content = <Confirmation content={'Nota adicionada com sucesso'} onConfirmOk={this.onConfirmOk} />
     }
     return (
       <Modal show={this.props.show}>

@@ -6,37 +6,54 @@ import Modal from '../UI/Modal/Modal'
 import registerInputs from '../../helpers/registerInputs'
 import Input from '../UI/Input/InputFild'
 import Button from '../UI/Button/BaseButton/BaseButton'
+import Confirmation from '../UI/Confirmation/Confirmation';
 
+let changeInputColorValid = {
+    color: '#0F8891'
+}
+
+let changeInputColorInvalid = {
+    color: 'red'
+}
 
 class Form extends Component {
     state = {
         registerInput: registerInputs,
-        valid: false 
+        valid: false,
+        isRegistered: false
     }
 
     render(){
-        let {registerInput} = this.state
+        let content = this.chooseContent()
 
-        const changeInputColorValid = {
-            color: '#0F8891'
-        }
-        
-        console.log(this.state.registerInput.propertyName.value)
         return(
             <Modal show={this.props.show}>
-                
-                <div className='register'>
+                {content}
+            </Modal>
+        )
+    }
 
-                    <Fragment>
+    chooseContent = () => {
+        if(this.state.isRegistered){
+            return(
+                <Confirmation content={'Empresa adicionada com sucesso'} onConfirmOK={this.onConfirmOk}/>
+            )
+        }
+        else {
+            let {registerInput} = this.state
+            
+            return(
+                <div className='register'>
                         <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                         <form>
                             {Object.keys(registerInput).map(key =>(
                                 <div className='register__form'>
                                     <label  key={key} 
-                                            for={registerInput[key].id}
-                                            onFocus={() => this.focusHandler(key)}
+                                            htmlFor={registerInput[key].id}
+                                            onFocus={() =>this.focusHandler(key)}
                                             onBlur={()=>this.blurHandler(key)}
-                                            style={registerInput[key].touched || registerInput[key].value ? changeInputColorValid : null}>
+                                            style ={this.chooseStyle(registerInput, key)}
+                                            >
                                         <div className='description'>
                                             {registerInput[key].name}
                                         </div>
@@ -50,14 +67,27 @@ class Form extends Component {
                                 </div>
                             ))} 
                         </form>
-                    </Fragment>
                     <div className='register__button'>
                         <Button type={ this.state.valid ? 'confirm' : 'disable'} click={this.state.valid ? this.submiteInputs : null}>Confirmar</Button>
                     </div>
                 </div>
-            </Modal>
-        )
+            )
+        }
     }
+
+    chooseStyle = (registerInput, key) => {
+        if(!registerInput[key].value && !registerInput[key].touched){
+            return null
+        }
+        else if(registerInput[key].value && registerInput[key].valid){
+            return changeInputColorValid
+        }
+        else{
+            return changeInputColorInvalid
+        }
+    }
+
+    onConfirmOk = () => { this.props.router.push( '/list-all-receipts') }
 
     submiteInputs = () => {
         const companyAdmInputs = {
@@ -78,14 +108,11 @@ class Form extends Component {
             }
            } 
 
-        axios.post('http://kalkuli-gateway.herokuapp.com/api/v1/company', companyAdmInputs)
-             .then(
-                 ()=>(
-                     <div>
-                         <p>oooi</p>
-                     </div>
-                 )
-             )
+        axios.post('http://172.21.0.1:5008/api/v1/company', companyAdmInputs)
+        .then(()=>{
+            this.setState({isRegistered: true})
+        })
+        .catch(()=>{})
     }
 
     focusHandler = (inputKey) =>{
