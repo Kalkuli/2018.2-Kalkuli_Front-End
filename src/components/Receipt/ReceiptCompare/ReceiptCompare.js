@@ -118,7 +118,6 @@ export class ReceiptCompare extends Component {
 		return isValid
 	}
 
-<<<<<<< edfedb9e6966daad6f94ff5ab7e34c86fc91bfba
 	initInputs = () => {
 		if(this.props.fileExtracted){
 			let inputs = { ...this.state.receiptInput}
@@ -129,10 +128,9 @@ export class ReceiptCompare extends Component {
 			inputs.total_price.value = this.props.fileExtracted.total_price
 			this.setState({receiptInput: inputs})
 		}
-=======
+	}
 	onDropDownHandler = () => {
 		this.setState(prevState => ({ showItems: !prevState.showItems }))
->>>>>>> Add needed structure for creating a custom DropDown
 	}
 }
 

@@ -1,0 +1,61 @@
+.select-box {
+  width: 180px;
+  height: 10px;
+  background-color: red;
+
+  &--container {
+    height: 30px;
+    border: 1px solid #aaa;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  &--arrow {
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    background: #aaa;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  &--selected-item {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 4px 12px;
+    vertical-align: middle;
+  }
+  &--arrow-down {
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #fff;
+  }
+  
+  &--arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #fff;
+  }
+}
+
+.select-box--items div {
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 6px;
+  padding-left: 20px;
+}
+
+.select-box--items div:hover {
+  background-color: #eee;
+}

@@ -16,7 +16,7 @@ export class ReceiptList extends Component {
     state = {  
         loaded: false,
         rotate: false,
-        newReceipt: false,
+        newReceipt: true,
         clickedMenuButton: false
     }
 
