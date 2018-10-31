@@ -9,7 +9,7 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class ReceiptAdder extends Component {
@@ -52,23 +52,6 @@ class ReceiptAdder extends Component {
         <Loader />
       )
     }
-  } 
-
-  onConfirmButton = (receipt) => {
-    axios.post('http://172.23.0.1:5008/api/v1/receipt', {
-			"receipt": {
-				...receipt,
-				company_id: 1
-			}
-    })
-    .then(() => {
-      this.setState({
-        completed: true
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
   }
 
   onConfirmButton = (receipt) => {
@@ -78,35 +61,46 @@ class ReceiptAdder extends Component {
         company_id: 1
       }
     })
-    .then(() => {
-      this.setState({
-        completed: true
+      .then(() => {
+        this.setState({
+          completed: true
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
-  onConfirmOk = () => { this.props.history.push({pathname: '/list-all-receipts'}) }
+  onConfirmOk = () => { this.props.history.push({ pathname: '/list-all-receipts' }) }
 
   onConfirmHandler = () => {
     this.setState({
       loading: true
     })
-    let formData = new FormData();
-    formData.append("file", this.state.file[0]);
-    axios.post('http://172.23.0.1:5008/api/v1/extract_data', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(response => {
-        this.props.onFileExtractedAdded(response.data.receipt)
-        this.setState({
-          fileSent: true,
-          loading: false
-        })
+    // let formData = new FormData();
+    // formData.append("file", this.state.file[0]);
+    // axios.post('http://172.23.0.1:5008/api/v1/extract_data', formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }
+    // })
+    //   .then(response => {
+    //     this.props.onFileExtractedAdded(response.data.receipt)
+    //     this.setState({
+    //       fileSent: true,
+    //       loading: false
+    //     })
+    //   })
+    axios.post('http://172.23.0.1:5008/aaa')
+      .then((response) => {
+        console.log(response);
+        let status_route = 'http://172.23.0.1:5008' + response.data.location;
+        setInterval(() => {
+          axios.get(status_route)
+            .then((status) => {
+              console.log(status);
+            });
+        }, 3000);
       })
   }
 
