@@ -5,12 +5,20 @@ import Input from '../../UI/Input/Input'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
+import DropDown from '../../UI/DropDown/DropDown'
 
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
 		receiptIsValid: false,
-		receipt: null
+		receipt: null,
+		showItems: false,
+		selectedTag: null,
+		items: [
+			{id: 1, value: 'Alimentação'},
+			{id: 2, value: 'Transporte'}, 
+			{id: 3, value: 'Eletrônicos'}
+		]
 	}
 
 	componentDidMount() {
@@ -54,6 +62,8 @@ export class ReceiptCompare extends Component {
 						<div className="compare-area__tag-area">
 							<div className="compare-area__tag-area__line"></div>
 							<p className="receipt-font compare-area__tag-area__title"><b>Categoria</b></p>
+							<DropDown items={this.state.items}
+												onDropDownHandler={this.onDropDownHandler}/>
 						</div>
 					</Receipt>
 				</div>
@@ -108,6 +118,7 @@ export class ReceiptCompare extends Component {
 		return isValid
 	}
 
+<<<<<<< edfedb9e6966daad6f94ff5ab7e34c86fc91bfba
 	initInputs = () => {
 		if(this.props.fileExtracted){
 			let inputs = { ...this.state.receiptInput}
@@ -118,6 +129,10 @@ export class ReceiptCompare extends Component {
 			inputs.total_price.value = this.props.fileExtracted.total_price
 			this.setState({receiptInput: inputs})
 		}
+=======
+	onDropDownHandler = () => {
+		this.setState(prevState => ({ showItems: !prevState.showItems }))
+>>>>>>> Add needed structure for creating a custom DropDown
 	}
 }
 
