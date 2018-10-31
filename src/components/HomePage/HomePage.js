@@ -11,7 +11,7 @@ import imgResult from '../../assets/img/result.svg'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
-import Register from '../Register/Register'
+import Register from '../Register/RegisterForm'
 
 
 class HomePage extends Component{

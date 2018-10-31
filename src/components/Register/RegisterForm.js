@@ -1,14 +1,15 @@
 import React, {Component, Fragment} from 'react'
 
-import classe from './Register.scss'
+import './Register.scss'
+import Modal from '../UI/Modal/Modal'
 import registerInputs from '../../helpers/registerInputs'
 import Input from '../UI/Input/InputFild'
+import Button from '../UI/Button/BaseButton/BaseButton'
 
 
 class Form extends Component {
     state = {
         registerInput: registerInputs,
-        password: '',
         valid: false 
     }
 
@@ -19,39 +20,41 @@ class Form extends Component {
             color: '#0F8891'
         }
         
+        console.log(this.state.registerInput.propertyName.value)
         return(
-            <Fragment>
-                <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
-                <form>
-                    {Object.keys(registerInput).map(key =>(
-                        <div className='register__form'>
-                            {registerInput[key].validation ? 
-                            <div className='a'>
-                                <p className='t'>ooooooooooooi</p>
-                                <div className='description__quetion'>?</div> 
-                            </div>
-                            : null}
+            <Modal show={this.props.show}>
+                
+                <div className='register'>
 
-                            <label  key={key} 
-                                    for={registerInput[key].id}
-                                    onFocus={() => this.focusHandler(key)}
-                                    onBlur={()=>this.blurHandler(key)}
-                                    style={registerInput[key].touched || registerInput[key].value ? changeInputColorValid : null}>
-                                <div className='description'>
-
-                                    {registerInput[key].name}
+                    <Fragment>
+                        <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
+                        <form>
+                            {Object.keys(registerInput).map(key =>(
+                                <div className='register__form'>
+                                    <label  key={key} 
+                                            for={registerInput[key].id}
+                                            onFocus={() => this.focusHandler(key)}
+                                            onBlur={()=>this.blurHandler(key)}
+                                            style={registerInput[key].touched || registerInput[key].value ? changeInputColorValid : null}>
+                                        <div className='description'>
+                                            {registerInput[key].name}
+                                        </div>
+                                        <Input 	value={registerInput[key].value}
+                                                valid={registerInput[key].valid}
+                                                touched={registerInput[key].touched}
+                                                id={registerInput[key].id}
+                                                type={registerInput[key].type}
+                                                onChangeHandler={(event) => this.onChangeHandler(event, key)}/>
+                                    </label>
                                 </div>
-                                <Input 	value={registerInput[key].value}
-                                        valid={registerInput[key].valid}
-                                        touched={registerInput[key].touched}
-                                        id={registerInput[key].id}
-                                        type={registerInput[key].type}
-                                        onChangeHandler={(event) => this.onChangeHandler(event, key)}/>
-                            </label>
-                        </div>
-                    ))}
-                </form>
-            </Fragment>
+                            ))} 
+                        </form>
+                    </Fragment>
+                    <div className='register__button'>
+                        <Button type={ this.state.valid ? 'confirm' : 'disable'} >Confirmar</Button>
+                    </div>
+                </div>
+            </Modal>
         )
     }
 
@@ -80,12 +83,13 @@ class Form extends Component {
             inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
             
         inputState[inputKey] = inputElement
+
 		let isValid = true
 		for(let inputKey in inputState) {
 			isValid = (inputState[inputKey].valid && isValid)
         } 
         console.log(inputElement.valid)
-        this.setState({registerInput: inputState, validComapany: isValid}) 
+        this.setState({registerInput: inputState, valid: isValid}) 
     }
 
     checkValidity = (value, rules) => {

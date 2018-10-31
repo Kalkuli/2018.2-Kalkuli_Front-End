@@ -8,8 +8,10 @@ const registerInputs = {
         touched: false,
         validation: {
             required: true,
-            minLength: 5,
-            maxLength: 20
+            minLength: 2,
+            maxLength: 20,
+            sms: 'Campo não pode estar vazio',
+            onMause: false 
         }
     },
     admEmail: {
@@ -22,7 +24,9 @@ const registerInputs = {
             required: true,
             aroba: '@',
             minLength: 5,
-            maxLength: 20
+            maxLength: 20,
+            sms: 'Campo deve ter um email válido',
+            onMause: false 
         }
     },
     admPassword: {
@@ -35,7 +39,9 @@ const registerInputs = {
             required: true,
             minLength: 8,
             maxLength: 16,
-            pass: true
+            pass: true,
+            sms: 'Campo deve ter entre 8 a 16 dígitos',
+            onMause: false 
         }
     },
     confPassword: {
@@ -46,7 +52,9 @@ const registerInputs = {
         touched: false,
         validation: {
             required: true,
-            confPass: true 
+            confPass: true,
+            sms: 'Campo deve ser identico ao Senha',
+            onMause: false 
         }
     },
     propertyName: {
@@ -58,7 +66,9 @@ const registerInputs = {
         validation: {
             required: true,
             minLength: 5,
-            maxLength: 20
+            maxLength: 20,
+            sms: 'Campo não pode estar vazio',
+            onMause: false 
         }
     },
     companyEmail: {
@@ -70,8 +80,10 @@ const registerInputs = {
         validation: {
             required: true,
             aroba: '@',
-            minLength: 5,
-            maxLength: 20
+            minLength: 8,
+            maxLength: 16,
+            sms: 'Campo deve ter entre 8 a 16 dígitos',
+            onMause: true 
         }
     },
     companyName: {
