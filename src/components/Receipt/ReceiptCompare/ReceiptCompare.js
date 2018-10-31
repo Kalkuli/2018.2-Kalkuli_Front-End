@@ -36,7 +36,6 @@ export class ReceiptCompare extends Component {
 
 					<Receipt size="large">
 						<div className="compare-area__content">
-
 							{Object.keys(receiptInput).map(key => (
 								<div key={key} className="compare-area__content__labels"> 
 									<p className="receipt-font compare-area__content__labels__label">
@@ -50,6 +49,11 @@ export class ReceiptCompare extends Component {
 													editable={receiptInput[key].editable} />
 								</div>
 							))}
+						</div>
+						
+						<div className="compare-area__tag-area">
+							<div className="compare-area__tag-area__line"></div>
+							<p className="receipt-font compare-area__tag-area__title"><b>Categoria</b></p>
 						</div>
 					</Receipt>
 				</div>
