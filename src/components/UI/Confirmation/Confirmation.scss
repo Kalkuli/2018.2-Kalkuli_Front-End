@@ -2,26 +2,89 @@
 
 .confirm-area {
     text-align: center;
-    width: 60rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-}
-
-.confirm-icon {
-    width: 20rem;
-    margin-bottom: 3rem;
-    transform: scale(0.9)
 }
 
 .confirm-message {
-    font-size: 3rem;
     color: $color-dark-blue;
-    margin-bottom: 5rem;
 }
 
 .error {
     color: $color-red;
+}
+
+@media (min-width:320px) {
+    .confirm-area {
+        width: 25rem;
+        padding: 2rem;
+    }
+
+    .confirm-icon {
+        width: 20rem;
+        margin-top: -5rem;
+        margin-bottom: -2rem;
+        transform: scale(0.5)
+    }
+
+    .confirm-message {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+@media (min-width:480px) {
+    .confirm-area {
+        width: 40rem;
+        padding: 2rem;
+    }
+
+    .confirm-icon {
+        width: 20rem;
+        margin-top: -5rem;
+        margin-bottom: -2rem;
+        transform: scale(0.5)
+    }
+
+    .confirm-message {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+@media (min-width:600px) {
+    .confirm-area {
+        width: 50rem;
+        padding: 2rem;
+    }
+
+    .confirm-icon {
+        width: 20rem;
+        margin-top: -5rem;
+        margin-bottom: -2rem;
+        transform: scale(0.6)
+    }
+
+    .confirm-message {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+@media (min-width:1025px) {
+    .confirm-area {
+        width: 60rem;
+        padding: 2rem;
+    }
+
+    .confirm-icon {
+        width: 20rem;
+        margin-top: 0;
+        margin-bottom: 3rem;
+        transform: scale(0.9)
+    }
+
+    .confirm-message {
+        font-size: 3rem;
+        margin-bottom: 5rem;
+    }
 }
