@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import { ReceiptCompare, mapStateToProps } from '../Receipt/ReceiptCompare/ReceiptCompare'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import receiptInputs from '../../helpers/receiptInputs'
-
+jest.mock('../../services/getAllTags')
 configure({adapter: new Adapter()})
 
 describe('Testing <ReceiptCompare/>', () => {
@@ -30,6 +30,10 @@ describe('Testing <ReceiptCompare/>', () => {
     }
     expect(mapStateToProps(initialState).filePDF).toEqual(null)
     expect(mapStateToProps(initialState).fileExtracted).toEqual(null)
+  })
+
+  it('should test getAllTags', (done) => {
+    done()
   })
 
   it('should call onConfirmHandler and trigger spyOnConfirmButton', () => {

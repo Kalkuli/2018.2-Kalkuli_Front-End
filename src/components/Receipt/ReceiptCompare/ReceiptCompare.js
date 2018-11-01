@@ -86,7 +86,6 @@ export class ReceiptCompare extends Component {
 
 	fetchTags = async() => {
 		const tags = await getAllTags()
-		console.log(tags)
 		this.setState({ tags })
 	}
 
