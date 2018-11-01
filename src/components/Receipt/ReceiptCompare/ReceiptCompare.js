@@ -31,7 +31,6 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
-		console.log(this.state.items)
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
@@ -137,6 +136,8 @@ export class ReceiptCompare extends Component {
 	onDropDownHandler = () => {
 		this.setState(prevState => ({ showItems: !prevState.showItems }))
 	}
+
+	onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
 }
 
 export const mapStateToProps = state => {

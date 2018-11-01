@@ -1,3 +1,4 @@
+@import "../../../assets/sass/main";
 .select-box {
   width: 180px;
   display: flex;
@@ -5,10 +6,41 @@
   align-items: center;
   &--container {
     height: 30px;
-    border: 1px solid #aaa;
+    border: 1px solid $color-black;
     width: 100%;
     margin: 0px;
     padding: 0px;
+  }
+  &--selected-item {
+    text-align: center;
+    background-color: $color-white;
+    color: $color-black;
+    font-size: 1.5rem;
+    user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 4px 12px;
+    vertical-align: middle;
+  }
+  &--items {
+    z-index: 300;
+    font-size: 1.5rem;
+    box-shadow: 0px 4px 1rem rgba($color-black, .4);
+  }
+  &--items div {
+    user-select: none;
+    cursor: pointer;
+    width: 180px;
+    background-color: $color-white;
+    border-bottom: 1px solid $color-black;
+    border-left: 1px solid $color-black;
+    border-right: 1px solid $color-black;
+    padding: 8px;
+    &:hover {
+      background-color: #eee;
+    }
   }
   &--arrow {
     width: 30px;
@@ -17,15 +49,6 @@
     padding: 0px;
     display: inline-block;
     background: #aaa;
-  }
-  &--selected-item {
-    user-select: none;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    padding: 4px 12px;
-    vertical-align: middle;
   }
   &--arrow-down {
     width: 0; 
@@ -40,18 +63,6 @@
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 10px solid #fff;
-  }
-  &--items div {
-    user-select: none;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    padding: 6px;
-    padding-left: 20px;
-  }
-  &--items div:hover {
-    background-color: #eee;
   }
 }
 
