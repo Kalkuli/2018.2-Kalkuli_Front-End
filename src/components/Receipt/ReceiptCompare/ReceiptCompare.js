@@ -6,7 +6,7 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
-import Axios from 'axios';
+import getAllTags from '../../../services/getAllTags'
 
 export class ReceiptCompare extends Component {
 	state = {
@@ -21,13 +21,13 @@ export class ReceiptCompare extends Component {
 			{id: 3, value: 'Eletrônicos'}
 		],
 		selectedTag: {},
-		items: [],
+		tags: [],
 	}
 
 	componentDidMount() {
 		this.setState({ receipt: this.props.fileExtracted })
 		this.initInputs()
-		Axios.get('http://172.21.0.1:5008/api/v1/tags').then(response => this.setState({items: response.data.data.tags}))
+		this.fetchTags()
 	}
 	
 	render() {
@@ -66,8 +66,11 @@ export class ReceiptCompare extends Component {
 						<div className="compare-area__tag-area">
 							<div className="compare-area__tag-area__line"></div>
 							<p className="receipt-font compare-area__tag-area__title"><b>Categoria</b></p>
-							<DropDown items={this.state.items}
-												onDropDownHandler={this.onDropDownHandler}/>
+							<DropDown items={this.state.tags}
+												onDropDownHandler={this.onDropDownHandler}
+												onSelectedTagHandler={this.onSelectedTagHandler}
+												selectedTag={this.state.selectedTag}
+												showItems={this.state.showItems}/>
 						</div>
 					</Receipt>
 				</div>
@@ -79,6 +82,12 @@ export class ReceiptCompare extends Component {
 				</div>
 			</div>
 		)
+	}
+
+	fetchTags = async() => {
+		const tags = await getAllTags()
+		console.log(tags)
+		this.setState({ tags })
 	}
 
 	onConfirmHandler = () => {
