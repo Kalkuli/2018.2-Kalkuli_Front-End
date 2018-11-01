@@ -98,7 +98,7 @@
         overflow: scroll;
 
         &__button {
-            justify-content: flex-end;
+            justify-content: center;
         }
     }
 
@@ -116,8 +116,8 @@
 }
 @media (min-width:600px) {
     .register {
-        width: 22em;
-        height: 40em;
+        width: 45em;
+        height: 55em;
         overflow: scroll;
 
         &__button {
@@ -130,79 +130,62 @@
     }
 
     .register input {
-        width: 15em;
+        width: 25em;
     }
     
     .description {
-        width: 13em;
-    }
-}
-@media (min-width:801px) {
-    .register {
-        width: 22em;
-        height: 40em;
-        overflow: scroll;
-
-        &__button {
-            justify-content: center;
-        }
-    }
-
-    .register h1 {
-        font-size: 2em;
-    }
-
-    .register input {
-        width: 15em;
-    }
-    
-    .description {
-        width: 13em;
+        width: 20em;
     }
 }
 @media (min-width:1025px) {
     .register {
-        width: 22em;
-        height: 40em;
+        width: 80em;
+        height: 50em;
         overflow: scroll;
 
         &__button {
-            justify-content: center;
+            margin-top: 2em;
+            width: 77em;
+            justify-content: flex-end;
         }
     }
 
     .register h1 {
-        font-size: 2em;
+        font-size: 2.5em;
+        margin-bottom: 2em;
     }
 
     .register input {
-        width: 15em;
+        width: 25em;
     }
     
     .description {
-        width: 13em;
+        width: 20em;
     }
 }
 @media (min-width:1281px) {
     .register {
-        width: 22em;
-        height: 40em;
+        width: 90em;
+        height: 50em;
         overflow: scroll;
 
         &__button {
-            justify-content: center;
+            margin-top: 2em;
+            width: 84em;
+            justify-content: flex-end;
         }
     }
 
     .register h1 {
-        font-size: 2em;
+        font-size: 2.5em;
+        margin-bottom: 2em;
     }
 
     .register input {
-        width: 15em;
+        width: 25em;
     }
     
     .description {
-        width: 13em;
-    }   
+        width: 20em;
+    }  
 }

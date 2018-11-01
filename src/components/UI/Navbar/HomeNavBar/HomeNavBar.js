@@ -33,7 +33,7 @@ class HomeNavBar extends Component {
           <a><h1 className="nav__logo">Kalkuli</h1></a>
           <nav className="nav__end">
             <Link to="/" className="nav__link" href="">Log in</Link>
-            <SignUp size="small"/>
+            <SignUp size="small" click={this.props.click}/>
           </nav>
         </div>
       )
@@ -46,7 +46,7 @@ class HomeNavBar extends Component {
             <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
             <div className="nav__bar"></div>
             <Link to="/" className="nav__link" href="">Log in</Link>
-            <SignUp size="small"/>
+            <SignUp size="small" click={this.props.click}/>
           </nav>
         </div>
       )
