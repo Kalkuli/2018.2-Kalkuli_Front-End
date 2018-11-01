@@ -16,11 +16,13 @@ let changeInputColorInvalid = {
     color: 'red'
 }
 
+let textContent
+
 class Form extends Component {
     state = {
         registerInput: registerInputs,
         valid: false,
-        isRegistered: false
+        registration: 'fail'
     }
 
     render(){
@@ -34,9 +36,18 @@ class Form extends Component {
     }
 
     chooseContent = () => {
-        if(this.state.isRegistered){
+        let onOk
+        if(this.state.registration === 'fail'){
+            onOk = this.onFailOK
+            textContent = 'Não conseguimos salvar sua empresa nos nossos sistemas'
+        }
+        else {
+            onOk = this.props.OKfunc
+            textContent = 'Empresa adicionada com sucesso'
+        }
+        if(this.state.registration === 'done' || this.state.registration === 'fail'){
             return(
-                <Confirmation content={'Empresa adicionada com sucesso'} onConfirmOk={this.props.OKfunc}/>
+                <Confirmation content={textContent} onConfirmOk={onOk} valid={this.state.registration} />
             )
         }
         else {
@@ -86,8 +97,8 @@ class Form extends Component {
             return changeInputColorInvalid
         }
     }
-
-    onConfirmOk = () => { this.props.history.push({pathname: '/dashboard'}) }
+    
+    onFailOK = () => {this.setState(prevState => ({registration: prevState.value}))}
 
     submitInputs = () => {
         const companyAdmInputs = {
@@ -110,9 +121,11 @@ class Form extends Component {
 
         axios.post('http://172.21.0.1:5008/api/v1/company', companyAdmInputs)
         .then(()=>{
-            this.setState({isRegistered: true})
+            this.setState({registration: 'done'})
         })
-        .catch(()=>{
+        .catch((response)=>{
+            this.setState({registration: 'fail'})
+            textContent = response.message
         })
     }
 
