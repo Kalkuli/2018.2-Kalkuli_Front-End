@@ -5,7 +5,7 @@ const DropDown = (props) => {
   return (
     <div className="select-box">
       <div className="select-box--container" onClick={props.onDropDownHandler}>
-        <div className="select-box--selected-item receipt-font">
+        <div className="select-box--selected-item">
           { props.selectedTag.category }
         </div>
         {/* <div className="select-box--arrow" onClick={props.onDropDownHandler}>
@@ -13,7 +13,7 @@ const DropDown = (props) => {
         </div> */}
       </div>
         
-      <div className="select-box--items receipt-font" style={{display: props.showItems ? 'block' : 'none'}}>
+      <div className="select-box--items" style={{display: props.showItems ? 'flex' : 'none'}}>
         {props.items.map(item => (
           <div key={item.id} onClick={() => props.onSelectedTagHandler(item)}>
             {item.category}

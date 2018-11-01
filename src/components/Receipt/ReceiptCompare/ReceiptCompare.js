@@ -66,11 +66,7 @@ export class ReceiptCompare extends Component {
 						<div className="compare-area__tag-area">
 							<div className="compare-area__tag-area__line"></div>
 							<p className="receipt-font compare-area__tag-area__title"><b>Categoria</b></p>
-							<DropDown items={this.state.tags}
-												onDropDownHandler={this.onDropDownHandler}
-												onSelectedTagHandler={this.onSelectedTagHandler}
-												selectedTag={this.state.selectedTag}
-												showItems={this.state.showItems}/>
+							{ this.handleExceptionDropDown() }
 						</div>
 					</Receipt>
 				</div>
@@ -86,6 +82,7 @@ export class ReceiptCompare extends Component {
 
 	fetchTags = async() => {
 		const tags = await getAllTags()
+		console.log(tags)
 		this.setState({ tags })
 	}
 
@@ -146,6 +143,20 @@ export class ReceiptCompare extends Component {
 	}
 
 	onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
+
+	handleExceptionDropDown = () => {
+		let items = null
+		if(this.state.tags)
+			items = this.state.tags
+		else 
+			items = [{"id": 0, "category": "erro"}]		
+		
+			return <DropDown 	items={items}
+												onDropDownHandler={this.onDropDownHandler}
+												onSelectedTagHandler={this.onSelectedTagHandler}
+												selectedTag={this.state.selectedTag}
+												showItems={this.state.showItems}/>
+	}
 }
 
 export const mapStateToProps = state => {
