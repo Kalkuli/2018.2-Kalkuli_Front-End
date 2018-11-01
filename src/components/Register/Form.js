@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import axios from 'axios'
 
 import './Register.scss'
@@ -36,7 +36,7 @@ class Form extends Component {
     chooseContent = () => {
         if(this.state.isRegistered){
             return(
-                <Confirmation content={'Empresa adicionada com sucesso'} onConfirmOK={this.onConfirmOk}/>
+                <Confirmation content={'Empresa adicionada com sucesso'} onConfirmOk={this.props.OKfunc}/>
             )
         }
         else {
@@ -44,7 +44,7 @@ class Form extends Component {
             
             return(
                 <div className='register'>
-                        <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
+                    <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                         <form>
                             {Object.keys(registerInput).map(key =>(
                                 <div className='register__form'>
@@ -68,7 +68,7 @@ class Form extends Component {
                             ))} 
                         </form>
                     <div className='register__button'>
-                        <Button type={ this.state.valid ? 'confirm' : 'disable'} click={this.state.valid ? this.submiteInputs : null}>Confirmar</Button>
+                        <Button type={ this.state.valid ? 'confirm' : 'disable'} click={this.state.valid ? this.submitInputs : null}>Confirmar</Button>
                     </div>
                 </div>
             )
@@ -87,9 +87,9 @@ class Form extends Component {
         }
     }
 
-    onConfirmOk = () => { this.props.router.push( '/list-all-receipts') }
+    onConfirmOk = () => { this.props.history.push({pathname: '/dashboard'}) }
 
-    submiteInputs = () => {
+    submitInputs = () => {
         const companyAdmInputs = {
             company: {
                 company_name: this.state.registerInput.propertyName.value,
@@ -112,7 +112,8 @@ class Form extends Component {
         .then(()=>{
             this.setState({isRegistered: true})
         })
-        .catch(()=>{})
+        .catch(()=>{
+        })
     }
 
     focusHandler = (inputKey) =>{
@@ -145,7 +146,6 @@ class Form extends Component {
 		for(let inputKey in inputState) {
 			isValid = (inputState[inputKey].valid && isValid)
         } 
-        console.log(inputElement.valid)
         this.setState({registerInput: inputState, valid: isValid}) 
     }
 

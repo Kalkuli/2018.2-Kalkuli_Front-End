@@ -11,7 +11,7 @@ import imgResult from '../../assets/img/result.svg'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
-import Register from '../Register/RegisterForm'
+import Register from '../Register/Form'
 
 
 class HomePage extends Component{
@@ -91,11 +91,13 @@ class HomePage extends Component{
     )
   }
 
+  onConfirmOk = () => { this.props.history.push({pathname: '/dashboard'}) }
+
   showRegister = () =>{
     return (
       <Fragment>
           <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
-          <Register show={this.state.newCompany}/>
+          <Register show={this.state.newCompany} OKfunc={this.onConfirmOk}/>
       </Fragment>
     )
   }
