@@ -1,0 +1,208 @@
+@import "../../assets/sass/main.scss";
+
+.register form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.register input {
+    display: block;
+    width: 25em;
+    height: 2em;
+    border: none;
+    border-bottom: 0.1em solid $color-black;
+    margin-bottom: 0.8em;
+    background-color: $color-white;
+    font-family: $montserrat;
+    font-size: .9em;
+    color: $color-black;
+
+}
+
+.register input:focus {
+    outline: 2em;
+    border-color: $color-dark-blue;
+    font-family: $montserrat;
+    color: $color-black;
+}
+
+.register label {
+    font-family: $montserrat;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: $color-black; 
+    margin: .3em 0 .3em 0;  
+}
+
+.register h1 {
+    text-align: center;
+    margin: 0em 0em 1.5em 0em;
+    font-size: 2.5em;
+
+}
+
+.register{
+    width: 90em;
+}
+
+.register__button{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 1em;
+}
+
+.register p {
+    font-family: $montserrat;
+    color: $color-black;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.description{
+    display: flex;
+    width: inherit;
+    justify-content: space-between;
+}
+
+@media (min-width:320px) {
+    .register {
+        width: 22em;
+        height: 40em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: center;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 15em;
+    }
+    
+    .description {
+        width: 13em;
+    }
+}
+@media (min-width:480px) {
+    .register {
+        width: 35em;
+        height: 50em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: flex-end;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 22em;
+    }
+    
+    .description {
+        width: 20em;
+    }
+}
+@media (min-width:600px) {
+    .register {
+        width: 22em;
+        height: 40em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: center;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 15em;
+    }
+    
+    .description {
+        width: 13em;
+    }
+}
+@media (min-width:801px) {
+    .register {
+        width: 22em;
+        height: 40em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: center;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 15em;
+    }
+    
+    .description {
+        width: 13em;
+    }
+}
+@media (min-width:1025px) {
+    .register {
+        width: 22em;
+        height: 40em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: center;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 15em;
+    }
+    
+    .description {
+        width: 13em;
+    }
+}
+@media (min-width:1281px) {
+    .register {
+        width: 22em;
+        height: 40em;
+        overflow: scroll;
+
+        &__button {
+            justify-content: center;
+        }
+    }
+
+    .register h1 {
+        font-size: 2em;
+    }
+
+    .register input {
+        width: 15em;
+    }
+    
+    .description {
+        width: 13em;
+    }   
+}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-import './Register.scss'
+import './Form.scss'
 import Modal from '../UI/Modal/Modal'
 import registerInputs from '../../helpers/registerInputs'
 import Input from '../UI/Input/InputFild'
@@ -22,7 +22,7 @@ class Form extends Component {
     state = {
         registerInput: registerInputs,
         valid: false,
-        registration: 'fail'
+        registration: 'doing'
     }
 
     render(){
@@ -87,7 +87,7 @@ class Form extends Component {
     }
 
     chooseStyle = (registerInput, key) => {
-        if(!registerInput[key].value && !registerInput[key].touched){
+        if(!registerInput[key].value){
             return null
         }
         else if(registerInput[key].value && registerInput[key].valid){

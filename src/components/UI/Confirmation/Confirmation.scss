@@ -2,17 +2,18 @@
 
 .confirm-area {
     text-align: center;
-    height: 50rem;
     width: 60rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
 }
 
 .confirm-icon {
     width: 20rem;
-    margin: 2rem;
+    margin-bottom: 3rem;
+    transform: scale(0.9)
 }
 
 .confirm-message {
