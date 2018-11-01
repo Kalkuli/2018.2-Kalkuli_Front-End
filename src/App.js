@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path='/compare' component={ReceiptAdder} />
           <Route path='/' exact component={HomePage}/> 
           <Route path='/list-all-receipts'component={ReceiptList} />
           <Route path='/dashboard' component={Dashboard} />

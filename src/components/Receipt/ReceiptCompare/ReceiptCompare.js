@@ -6,6 +6,7 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
+import Axios from 'axios';
 
 export class ReceiptCompare extends Component {
 	state = {
@@ -18,15 +19,19 @@ export class ReceiptCompare extends Component {
 			{id: 1, value: 'Alimentação'},
 			{id: 2, value: 'Transporte'}, 
 			{id: 3, value: 'Eletrônicos'}
-		]
+		],
+		selectedTag: {},
+		items: [],
 	}
 
 	componentDidMount() {
 		this.setState({ receipt: this.props.fileExtracted })
 		this.initInputs()
+		Axios.get('http://172.21.0.1:5008/api/v1/tags').then(response => this.setState({items: response.data.data.tags}))
 	}
-
+	
 	render() {
+		console.log(this.state.items)
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />

@@ -1,22 +1,22 @@
 import React from 'react'
-
+import './DropDown.scss'
 const DropDown = (props) => {
 
   return (
     <div className="select-box">
-      <div className="select-box--container">
+      <div className="select-box--container" onClick={props.onDropDownHandler}>
         <div className="select-box--selected-item">
           { props.selectedTag.value }
         </div>
-        <div className="select-box--arrow" onClick={props.onDropDownHandler}>
+        {/* <div className="select-box--arrow" onClick={props.onDropDownHandler}>
           <span className={props.showItems ? 'select-box--arrow-up' : 'select-box--arrow-down'}/>
-        </div>
+        </div> */}
       </div>
         
-      <div className="select-box--items" style={{display: !props.showItems ? 'block' : 'none'}}>
+      <div className="select-box--items" style={{display: props.showItems ? 'block' : 'none'}}>
         {props.items.map(item => (
           <div key={item.id} onClick={() => props.onSelectedTagHandler(item)}>
-            {item.value}
+            {item.category}
           </div>
         ))}
       </div>
