@@ -93,15 +93,27 @@ class ReceiptAdder extends Component {
     //   })
     axios.post('http://172.23.0.1:5008/aaa')
       .then((response) => {
-        console.log(response);
-        let status_route = 'http://172.23.0.1:5008' + response.data.location;
-        setInterval(() => {
-          axios.get(status_route)
-            .then((status) => {
-              console.log(status);
-            });
-        }, 3000);
+        let statusUrl = 'http://172.23.0.1:5008' + response.data.location;
+        this.checkStatus(statusUrl)
       })
+  }
+
+  checkStatus = (statusUrl) => {
+    axios.get(statusUrl)
+      .then((status) => {
+        if(status.data.state === 'SUCCESS'){
+          this.props.onFileExtractedAdded(status.data.receipt)
+          this.setState({
+            fileSent: true,
+            loading: false
+          })
+        }
+        else {
+          setTimeout(() => {
+            this.checkStatus(statusUrl)
+          }, 3000);
+        }
+      });
   }
 
   onDropHandler = (file, rejectedFiles) => {
