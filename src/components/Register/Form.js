@@ -22,7 +22,7 @@ class Form extends Component {
     state = {
         registerInput: registerInputs,
         valid: false,
-        registration: 'done'
+        registration: 'doing'
     }
 
     render(){
