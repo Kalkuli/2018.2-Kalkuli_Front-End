@@ -55,24 +55,25 @@ class ReceiptAdder extends Component {
 
   }
 
-  onConfirmButton = (receipt) => {
-    axios.post('https://172.23.0.1:5008/api/v1/receipt', {
-      "receipt": {
-        ...receipt,
-        company_id: 1
-      }
-    })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+  // onConfirmButton = (receipt) => {
+  //   axios.post('https://172.23.0.1:5008/api/v1/receipt', {
+  //     "receipt": {
+  //       ...receipt,
+  //       company_id: 1
+  //     }
+  //   })
+  //     .then(() => {
+  //       this.setState({
+  //         completed: true
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
 
   onConfirmButton = (receipt) => {
+    console.log(receipt);
     axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/receipt', {
       "receipt": {
         ...receipt,
@@ -95,23 +96,16 @@ class ReceiptAdder extends Component {
     this.setState({
       loading: true
     })
-    // let formData = new FormData();
-    // formData.append("file", this.state.file[0]);
-    // axios.post('http://172.23.0.1:5008/api/v1/extract_data', formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // })
-    //   .then(response => {
-    //     this.props.onFileExtractedAdded(response.data.receipt)
-    //     this.setState({
-    //       fileSent: true,
-    //       loading: false
-    //     })
-    //   })
-    axios.post('http://172.23.0.1:5008/aaa')
+    let formData = new FormData();
+    formData.append("file", this.state.file[0]);
+
+    axios.post('http://172.21.0.1:5001/extract', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then((response) => {
-        let statusUrl = 'http://172.23.0.1:5008' + response.data.location;
+        let statusUrl = 'http://172.21.0.1:5001' + response.data.location;
         this.checkStatus(statusUrl)
       })
   }
@@ -120,16 +114,19 @@ class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          this.props.onFileExtractedAdded(status.data.receipt)
-          this.setState({
-            fileSent: true,
-            loading: false
-          })
+          axios.post('http://172.25.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
+            .then((response) => {
+              this.props.onFileExtractedAdded(response.data.receipt)
+              this.setState({
+                fileSent: true,
+                loading: false
+              })
+            })
         }
-        else {
+        else if (status.data.state === 'PENDING') {
           setTimeout(() => {
             this.checkStatus(statusUrl)
-          }, 3000);
+          }, 2000);
         }
       });
   }

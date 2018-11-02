@@ -105,13 +105,15 @@ export class ReceiptCompare extends Component {
 	}
 
 	initInputs = () => {
-		let inputs = { ...this.state.receiptInput}
-		inputs.cnpj.value = this.props.fileExtracted.cnpj
-		inputs.emission_date.value = this.props.fileExtracted.emission_date
-		inputs.emission_place.value = this.props.fileExtracted.emission_place
-		inputs.tax_value.value = this.props.fileExtracted.tax_value
-		inputs.total_price.value = this.props.fileExtracted.total_price
-		this.setState({receiptInput: inputs})
+		if(this.props.fileExtracted){
+			let inputs = { ...this.state.receiptInput}
+			inputs.cnpj.value = this.props.fileExtracted.cnpj
+			inputs.emission_date.value = this.props.fileExtracted.emission_date
+			inputs.emission_place.value = this.props.fileExtracted.emission_place
+			inputs.tax_value.value = this.props.fileExtracted.tax_value
+			inputs.total_price.value = this.props.fileExtracted.total_price
+			this.setState({receiptInput: inputs})
+		}
 	}
 }
 
