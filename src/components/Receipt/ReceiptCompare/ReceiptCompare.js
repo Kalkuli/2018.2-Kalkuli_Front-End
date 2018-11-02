@@ -149,7 +149,7 @@ export class ReceiptCompare extends Component {
 		if(this.state.tags)
 			items = this.state.tags
 		else 
-			items = [{"id": 0, "category": "erro"}]		
+			items = [{"id": 0, "category": "erro", "color": "#424242"}]		
 		
 			return <DropDown 	items={items}
 												onDropDownHandler={this.onDropDownHandler}
