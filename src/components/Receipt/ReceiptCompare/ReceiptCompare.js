@@ -37,7 +37,6 @@ export class ReceiptCompare extends Component {
 		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
-
 		let { receiptInput } = this.state
 		return (
 			<div className="compare-area">
@@ -45,7 +44,6 @@ export class ReceiptCompare extends Component {
 					<div className="compare-area__comparing__preview">
 						{preview}
 					</div>
-
 					<Receipt size="large">
 						<div className="compare-area__content">
 							{Object.keys(receiptInput).map(key => (
@@ -62,7 +60,6 @@ export class ReceiptCompare extends Component {
 								</div>
 							))}
 						</div>
-						
 						<div className="compare-area__tag-area">
 							<div className="compare-area__tag-area__line"></div>
 							<p className="receipt-font compare-area__tag-area__title"><b>Categoria</b></p>
@@ -70,7 +67,6 @@ export class ReceiptCompare extends Component {
 						</div>
 					</Receipt>
 				</div>
-				
 				<div className="compare-area__buttons">
 					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
 					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
@@ -89,6 +85,7 @@ export class ReceiptCompare extends Component {
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		this.props.onConfirmButton(this.state.receipt)
+		console.log(this.state.receiptInput)
 	}
 
 	onClickHandler = (inputKey) => {
