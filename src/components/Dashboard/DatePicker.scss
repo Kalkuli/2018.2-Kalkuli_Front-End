@@ -179,12 +179,12 @@
 	color: #cacccd
   }
   .CalendarDay__highlighted_calendar {
-	background: #ffe8bc;
+	background: $color-light-blue;
 	color: #484848
   }
   .CalendarDay__highlighted_calendar:active,
   .CalendarDay__highlighted_calendar:hover {
-	background: #ffce71;
+	background: $color-light-blue;
 	color: #484848
   }
   .CalendarDay__selected_span {
@@ -348,16 +348,6 @@
   .DayPickerNavigation_rightButton__horizontalDefault {
 	right: 22px
   }
-  .DayPickerNavigation_button__verticalDefault {
-	padding: 5px;
-	background: $color-white;;
-	box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	height: 100%;
-	width: 50%
-  }
   .DayPickerNavigation_nextButton__verticalDefault {
 	border-left: 0
   }
@@ -408,16 +398,16 @@
 	border-radius: 3px
   }
   .DateInput {
-	margin: 0;
+	margin: 0px;
 	padding: 0;
 	position: relative;
 	display: inline-block;
-	width: 130px;
-	vertical-align: middle
-  }
+	vertical-align: middle;
+	width: 138px;
+	}
   .DateInput_input {
 	font-family: $montserrat;
-	font-weight: 200;
+	font-weight: 100;
 	font-size: 19px;
 	line-height: 24px;
 	color: $color-dark-blue;
@@ -495,4 +485,79 @@
 	background-color: transparent;
 	position: absolute
 	}
-	
+	.CalendarMonth_verticalSpacing {
+		border-collapse: separate
+	}
+	.CalendarMonth_caption__verticalScrollable {
+		padding-top: 12px;
+		padding-bottom: 7px
+	}
+	.CalendarMonthGrid__vertical {
+		margin: 0 auto
+	}
+	.CalendarMonthGrid__vertical_scrollable {
+		margin: 0 auto;
+		overflow-y: scroll
+	}
+	.DayPickerNavigation__verticalDefault {
+		position: absolute;
+		width: 100%;
+		height: 32px;
+		bottom: 0;
+		left: 0
+	}
+	.DayPickerNavigation__verticalScrollableDefault {
+		position: relative
+	}
+	.DayPickerNavigation_button__verticalDefault {
+		padding: 5px;
+		background: $color-white;
+		box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
+		position: relative;
+		display: inline-block;
+		text-align: center;
+		height: 100%;
+		width: 50%
+	}
+	.DayPickerNavigation_nextButton__verticalDefault {
+		border-left: 0
+	}
+	.DayPickerNavigation_nextButton__verticalScrollableDefault {
+		width: 100%
+	}
+	.DayPickerNavigation_svg__vertical {
+		height: 22px;
+		width: 22px;
+		fill: $color-dark-blue
+	}
+	.DayPicker__verticalScrollable {
+		height: 100%
+	}
+	.DayPicker_portal__vertical {
+		position: initial
+	}
+	.DayPicker_weekHeader__vertical {
+		left: 50%
+	}
+	.DayPicker_weekHeader__verticalScrollable {
+		top: 0;
+		display: table-row;
+		background: #fff;
+		margin-left: 0;
+		left: 0;
+		width: 100%;
+		text-align: center
+	}
+	.DayPicker_transitionContainer__vertical {
+		width: 100%
+	}
+	.DayPicker_transitionContainer__verticalScrollable {
+		padding-top: 20px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		overflow-y: scroll
+	}

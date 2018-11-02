@@ -7,25 +7,204 @@
     position: absolute;
     overflow-x: hidden;
     
-
-    &__content {
+    &__area {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
+        padding: 2%;
 
-        &__report-area {
-            width: 50em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            padding-top: 5%;
-            padding-right: 4%;
-            padding-left: 5%;
+        &__report {
+            padding-bottom: 5%;
+
+            &__button {
+                margin-top: 5%;
+                float: right; 
+            }
+        }
+
+        &__content {
+
+            &__datepicker {
+                width: 302px;
+            }
+
+            &__graphs {
+                margin-top: 5%;
+                margin-bottom: 5%;
+                overflow-y: auto;
+            }
         }
     }
 
 }
 
-.datepicker{
-    margin-top: 6.5em !important;
-    margin-left: 4em !important;
+@media (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .dashboard {
+        &__area {
+            padding: 5%;
+
+            &__content {
+                width: 100%;
+                margin: auto;
+
+                &__datepicker {
+                    margin: auto;
+                }
+
+                &__graphs {
+                    max-height: 40em;
+                }
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .dashboard {
+        &__area {
+            padding: 0;
+
+            &__content {
+                width: 80%;
+
+                &__datepicker {
+                    padding-top: 5%;
+                    margin: auto;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+    .dashboard {
+        &__area {
+            padding: 0;
+
+            &__content {
+                width: 90%;
+
+                &__datepicker {
+                    margin: auto;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 90%;
+
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 90%;
+                
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+
+@media (min-width:1100px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+            padding: 3%;
+
+            &__content {
+                width: 55%;
+                margin: 0;
+
+                &__datepicker {
+                    padding-top: 0;
+                    margin: 0;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                padding: 0;
+            }
+        }
+    }
+}
+@media (min-width:1500px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+                width: 67%;
+
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__graphs {
+                    max-height: 50em;
+                }
+            }
+
+            &__report {
+                margin: 0;
+            }
+        }
+    }
 }

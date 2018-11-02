@@ -4,11 +4,6 @@
     background-position: center;
     transition: all .5s;
     &--small {
-        width: 220px;
-        height: 365px;
-        background-size: 220px;
-        margin-top: 5rem;
-        margin-left: 1.5rem;
         cursor: pointer;
         &:hover {
             transform: translateY(-1rem);
@@ -18,11 +13,64 @@
         width: 29rem;
         height: 50rem;
         background-size:100%;
-    
-       /*  @media screen and (min-width: 1400px) {
-            width: 40rem;
-            height: 60rem;
-            background-size: 90% auto;
-        } */
+    }
+}
+
+@media (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .receipt {
+        &--small {
+            width: 100px;
+            height: 165px;
+            background-size: 100px;
+            margin-top: 2rem;
+            margin-left: 1rem;
+        }
+
+        &--large {
+            width: 25rem;
+            height: 43rem;
+            background-size:100%;
+        }
+    }
+}
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .receipt {
+        &--small {
+            width: 160px;
+            height: 264px;
+            background-size: 160px;
+            margin-top: 5rem;
+            margin-left: 1.5rem;
+        }
+
+        &--large {
+            width: 25rem;
+            height: 43rem;
+            background-size:100%;
+        }
+    }
+}
+@media (min-width:645px) {
+    .receipt {
+        &--large {
+            width: 29rem;
+            height: 50rem;
+            background-size:100%;
+        }
+    }
+}
+
+@media (min-width:801px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .receipt {
+        &--small {
+            width: 220px;
+            height: 365px;
+            background-size: 220px;
+            margin-top: 5rem;
+            margin-left: 1.5rem;
+        }
     }
 }

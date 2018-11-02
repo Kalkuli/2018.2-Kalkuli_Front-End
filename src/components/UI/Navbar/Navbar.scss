@@ -18,17 +18,42 @@
         width: 45rem;
         display: flex;
         justify-content: space-around;
-        
-        &__links {
-            color: $color-black;
-            text-decoration: none;
-            transition: all .2s;
-            &:hover {
-                transform: scale(1.05);
-            }
-            &:active {
-                transform: scale(.99);
-            }
         }
-    }
 }
+
+.sidebar {
+    position: fixed;
+    width: 50%;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    background-color: $color-white;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+    float: right;
+
+    &__links {
+        font-size: 2rem;
+        display: flex;
+        flex-flow: column wrap;
+        height: 25rem;
+        justify-content: space-around;
+        align-items: center;
+    }
+  }
+  
+  .Open {
+    transform: translateX(100%);
+  }
+  
+  .Close {
+    transform: translateX(200%);
+  }
+  
+  .Logo {
+    height: 15%;
+    margin-bottom: 32px;
+  }

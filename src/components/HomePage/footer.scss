@@ -6,7 +6,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.7em;
+    font-size: 1.4em;
     color: $color-white;
     padding: 5rem;
 }
@@ -16,4 +16,10 @@ footer{
     background-position: center;
     background-size: 10rem;
     height: 1em;
+}
+
+@media (max-width:800px) {
+    footer {
+        font-size: 1.2em;
+    }
 }

@@ -1,0 +1,13 @@
+@import "../../../assets/sass/main";
+
+.links {
+    color: $color-black;
+    text-decoration: none;
+    transition: all .2s;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:active {
+        transform: scale(.99);
+    }
+}
