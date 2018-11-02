@@ -5,6 +5,8 @@ import imgReceipt from '../../../../assets/img/receiptWhite.svg'
 import ReceiptAdder from '../../../Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../BackDrop/BackDrop'
 import { withRouter } from 'react-router-dom'
+import getAllReceipts from '../../../../services/getAllReceipts'
+import { connect } from 'react-redux'
 export class MenuButton extends React.Component {
     state = {
         rotate: false,
@@ -47,6 +49,12 @@ export class MenuButton extends React.Component {
         )
     }
 
+    onConfirmOk = async () => {
+        this.setState({ newReceipt: false})
+        const receipts = await getAllReceipts()
+        this.props.onReceiptsAdded(receipts)
+    }
+
     onClickMenuButton = () => { 
         !this.state.clickedMenuButton ? this.setState({clickedMenuButton: true}) : null
         this.setState(prevState => ({rotate: !prevState.rotate}))
@@ -62,12 +70,18 @@ export class MenuButton extends React.Component {
         return (
             <Fragment>
                 <Backdrop show={this.state.newReceipt} click={this.onToggleNewReceipt} />
-                <ReceiptAdder onCancelHandler={this.onCloseReceiptAdder} show={this.state.newReceipt}/>
+                <ReceiptAdder   onCancelHandler={this.onCloseReceiptAdder} 
+                                show={this.state.newReceipt} 
+                                onConfirmOk={this.onConfirmOk}/>
             </Fragment>
         )
     }
 
     onCloseReceiptAdder = () => { this.setState({newReceipt: false}) }
 }
-
-export default withRouter(MenuButton)
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => dispatch({type: 'ADD_RECEIPTS', receipts: receipts}) 
+    }
+}
+export default withRouter(connect(null, mapDispatchToProps)(MenuButton))

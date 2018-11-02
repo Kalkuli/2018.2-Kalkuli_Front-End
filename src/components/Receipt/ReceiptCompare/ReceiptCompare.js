@@ -15,11 +15,7 @@ export class ReceiptCompare extends Component {
 		receipt: null,
 		showItems: false,
 		selectedTag: null,
-		items: [
-			{id: 1, value: 'Alimentação'},
-			{id: 2, value: 'Transporte'}, 
-			{id: 3, value: 'Eletrônicos'}
-		],
+		items: [],
 		selectedTag: {},
 		tags: [],
 	}

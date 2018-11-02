@@ -9,7 +9,6 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-import getAllReceipts from '../../../services/getAllReceipts'
 
 class ReceiptAdder extends Component {
   state = {
@@ -25,7 +24,7 @@ class ReceiptAdder extends Component {
     if (this.state.fileSent && !this.state.completed) {
       content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} />
     } else if (this.state.completed) {
-      content = <Confirmation onConfirmOk={this.onConfirmOk} />
+      content = <Confirmation onConfirmOk={this.props.onConfirmOk} />
     }
     return (
       <Modal show={this.props.show}>
@@ -69,11 +68,6 @@ class ReceiptAdder extends Component {
       .catch((error) => {
         console.log(error)
       })
-  }
-
-  onConfirmOk = () => {
-    alert('oioioi')
-    this.setState({ fileSent: false, fileSelected: false })
   }
 
   onConfirmHandler = () => {
