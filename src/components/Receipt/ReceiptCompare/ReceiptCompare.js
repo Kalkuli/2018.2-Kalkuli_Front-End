@@ -71,7 +71,7 @@ export class ReceiptCompare extends Component {
 
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
-		//this.props.onConfirmButton(this.state.receipt)
+		this.props.onConfirmButton(this.state.receipt)
 		console.log(this.state.receiptInput)
 	}
 
