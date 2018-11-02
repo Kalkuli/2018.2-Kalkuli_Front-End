@@ -13,8 +13,8 @@
   &--selected-item {
     border: 1px solid gray;
     text-align: center;
-    background-color: pink;
-    color: $color-black;
+    background-color: $color-black;
+    color: $color-white;
     font-size: 1.5rem;
     user-select: none;
     cursor: pointer;
@@ -22,30 +22,17 @@
     height: 100%;
     width: 100%;
     padding: 4px 12px;
-    font-weight: 600;
+    font-weight: 800;
+    text-shadow: 0 1px .5rem $color-black;
   }
   &--items {
+    width: 99%;
     overflow-y: auto;
     z-index: 300;
     height: 20rem;
-    display: flex;
-    flex-flow: column wrap;
     justify-content: space-around;
-    font-size: 1.5rem;
-    background-color: $color-light-blue;
-    box-shadow: 0px 4px 1rem rgba($color-black, .4);
-  }
-  &--items div {
-    user-select: none;
-    cursor: pointer;
-    width: 180px;
-    font-weight: 600;
-    border-bottom: 1px solid $color-black;
     background-color: $color-white;
-    padding: 10px;
-    &:hover {
-      background-color: #eee;
-    }
+    box-shadow: 0px 4px 1rem rgba($color-black, .4);
   }
   &--arrow {
     width: 30px;
