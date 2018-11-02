@@ -14,12 +14,8 @@ describe("Testing <ReceiptList/>", () => {
 
   const spyComponentDidMount = jest.spyOn(ReceiptList.prototype, 'componentDidMount')  
   const spyOnReceiptsAdded = jest.fn()
-  const spyHistoryPush = jest.fn()
   const props = {
     onReceiptsAdded: spyOnReceiptsAdded,
-    history: {
-      push: spyHistoryPush
-    }
   }
   
   beforeEach(() => {
@@ -46,11 +42,6 @@ describe("Testing <ReceiptList/>", () => {
     expect(spyOnReceiptsAdded).toHaveBeenCalled()
   })
 
-  it('should call history.push', () => {
-    wrapper.instance().onNewReportHandler()
-    expect(spyHistoryPush).toHaveBeenCalled()
-  })
-
   it('should test mapStateToProps', () => {
     const initialState = {
       receipts: ["test"]
@@ -71,40 +62,5 @@ describe("Testing <ReceiptList/>", () => {
   it('should find MenuButton', () => {
     expect(wrapper.find(MenuButton).exists()).toBe(true)
   })
-  
-  it('should set newReceipt state to false', () => {
-    wrapper.setState({newReceipt: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('newReceipt')).toBe(false)
-    instance.onCloseReceiptAdder()
-    expect(wrapper.state('newReceipt')).toBe(false)
-  })
 
-  it('should toggle newReceipt', () => {
-    wrapper.setState({newReceipt: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('newReceipt')).toBe(false)
-    instance.onToggleNewReceipt()
-    expect(wrapper.state('newReceipt')).toBe(true)
-    instance.onToggleNewReceipt()
-    expect(wrapper.state('newReceipt')).toBe(false)
-  })
-
-  it('should set clickedMenuButton state to true', () => {
-    wrapper.setState({clickedMenuButton: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('clickedMenuButton')).toBe(false)
-    instance.onClickMenuButton()
-    expect(wrapper.state('clickedMenuButton')).toBe(true)
-  })
-
-  it('should toggle rotate state', () => {
-    wrapper.setState({rotate: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('rotate')).toBe(false)
-    instance.onClickMenuButton()
-    expect(wrapper.state('rotate')).toBe(true)
-    instance.onClickMenuButton()
-    expect(wrapper.state('rotate')).toBe(false)
-  }) 
 }) 
