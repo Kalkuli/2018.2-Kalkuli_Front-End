@@ -11,7 +11,7 @@ import getAllTags from '../../../services/getAllTags'
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
-		receiptIsValid: false,
+		receiptIsValid: true,
 		receipt: null,
 		showItems: false,
 		selectedTag: null,
@@ -65,14 +65,24 @@ export class ReceiptCompare extends Component {
 
 	fetchTags = async() => {
 		const tags = await getAllTags()
-		console.log(tags)
 		this.setState({ tags })
 	}
 
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
-		this.props.onConfirmButton(this.state.receipt)
-		console.log(this.state.receiptInput)
+		let receipt = {
+			"company_id": 123,
+			"emission_date": "2018-09-22",
+			"emission_place": "aqqqqqq",
+			"tax_value": 20.20,
+			"total_price": 123.12,
+			"title": "oi",
+			"description": "teste",
+			"cnpj": "320490234-002",
+			"products": [],
+			"tag_id": this.state.selectedTag.id
+		}
+		this.props.onConfirmButton(receipt)
 	}
 
 	generateInputs = () => {

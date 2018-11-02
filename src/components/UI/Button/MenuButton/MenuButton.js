@@ -5,7 +5,7 @@ import imgReceipt from '../../../../assets/img/receiptWhite.svg'
 import ReceiptAdder from '../../../Receipt/ReceiptAdder/ReceiptAdder'
 import Backdrop from '../../BackDrop/BackDrop'
 import { withRouter } from 'react-router-dom'
-class MenuButton extends React.Component {
+export class MenuButton extends React.Component {
     state = {
         rotate: false,
         newReceipt: false,

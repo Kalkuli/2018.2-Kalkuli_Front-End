@@ -9,15 +9,14 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-import { withRouter } from 'react-router-dom'
-
+import getAllReceipts from '../../../services/getAllReceipts'
 
 class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
-    fileSent: true,
     fileSelected: false,
+    fileSent: true,
     completed: false
   }
 
@@ -52,25 +51,7 @@ class ReceiptAdder extends Component {
         <Loader />
       )
     }
-
   }
-
-  // onConfirmButton = (receipt) => {
-  //   axios.post('https://172.23.0.1:5008/api/v1/receipt', {
-  //     "receipt": {
-  //       ...receipt,
-  //       company_id: 1
-  //     }
-  //   })
-  //     .then(() => {
-  //       this.setState({
-  //         completed: true
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
 
   onConfirmButton = (receipt) => {
     console.log(receipt);
@@ -90,7 +71,10 @@ class ReceiptAdder extends Component {
       })
   }
 
-  onConfirmOk = () => { this.props.history.push({ pathname: '/list-all-receipts' }) }
+  onConfirmOk = () => {
+    alert('oioioi')
+    this.setState({ fileSent: false, fileSelected: false })
+  }
 
   onConfirmHandler = () => {
     this.setState({
@@ -153,8 +137,9 @@ class ReceiptAdder extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
-    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted })
+    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted }),
+    onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ReceiptAdder))
+export default connect(null, mapDispatchToProps)(ReceiptAdder)
