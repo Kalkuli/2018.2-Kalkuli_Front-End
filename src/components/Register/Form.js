@@ -58,13 +58,11 @@ class Form extends Component {
                     <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
                         <form>
                             {Object.keys(registerInput).map(key =>(
-                                <div className='register__form'>
-                                    <label  key={key} 
-                                            htmlFor={registerInput[key].id}
-                                            onFocus={() =>this.focusHandler(key)}
-                                            onBlur={()=>this.blurHandler(key)}
-                                            style ={this.chooseStyle(registerInput, key)}
-                                            >
+                                <div className='register__form' key={key}>
+                                    <label  htmlFor={registerInput[key].id}
+                                            onFocus={this.focusHandler.bind(this, key)}
+                                            onBlur={this.blurHandler.bind(this, key)}
+                                            style ={this.chooseStyle(registerInput, key)}>
                                         <div className='description'>
                                             {registerInput[key].name}
                                         </div>
@@ -117,7 +115,7 @@ class Form extends Component {
                 email: this.state.registerInput.admEmail.value,
                 password: this.state.registerInput.admPassword.value
             }
-           } 
+        } 
 
         axios.post('http://172.21.0.1:5008/api/v1/company', companyAdmInputs)
         .then(()=>{
