@@ -19,7 +19,7 @@ const BaseButton = (props) => {
     styles.push('base-button--medium')
 
   return (
-    <a className={styles.join(' ')} onClick={!props.type === 'disable' ? props.click : null}>
+    <a className={styles.join(' ')} onClick={props.type !== 'disable' ? props.click : null}>
       {props.children}
     </a>
   )

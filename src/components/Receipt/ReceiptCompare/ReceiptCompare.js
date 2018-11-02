@@ -37,7 +37,6 @@ export class ReceiptCompare extends Component {
 		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
-		let { receiptInput } = this.state
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -46,19 +45,7 @@ export class ReceiptCompare extends Component {
 					</div>
 					<Receipt size="large">
 						<div className="compare-area__content">
-							{Object.keys(receiptInput).map(key => (
-								<div key={key} className="compare-area__content__labels"> 
-									<p className="receipt-font compare-area__content__labels__label">
-										<b>{receiptInput[key].name}:</b>
-									</p>
-									<Input 	value={receiptInput[key].value}
-													valid={receiptInput[key].valid}
-													touched={receiptInput[key].touched}
-													onChangeHandler={(event) => this.onChangeHandler(event, key)}
-													onClickHandler={this.onClickHandler.bind(this, key)}
-													editable={receiptInput[key].editable} />
-								</div>
-							))}
+							{this.generateInputs()}
 						</div>
 						<div className="compare-area__tag-area">
 							<div className="compare-area__tag-area__line"></div>
@@ -84,8 +71,29 @@ export class ReceiptCompare extends Component {
 
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
-		this.props.onConfirmButton(this.state.receipt)
+		//this.props.onConfirmButton(this.state.receipt)
 		console.log(this.state.receiptInput)
+	}
+
+	generateInputs = () => {
+		let { receiptInput } = this.state
+		return (
+			<React.Fragment>
+			{Object.keys(receiptInput).map(key => (
+				<div key={key} className="compare-area__content__labels"> 
+					<p className="receipt-font compare-area__content__labels__label">
+						<b>{receiptInput[key].name}:</b>
+					</p>
+					<Input 	value={receiptInput[key].value}
+									valid={receiptInput[key].valid}
+									touched={receiptInput[key].touched}
+									onChangeHandler={(event) => this.onChangeHandler(event, key)}
+									onClickHandler={this.onClickHandler.bind(this, key)}
+									editable={receiptInput[key].editable} />
+				</div>
+			))}
+			</React.Fragment>
+		)
 	}
 
 	onClickHandler = (inputKey) => {
@@ -135,9 +143,8 @@ export class ReceiptCompare extends Component {
 			this.setState({receiptInput: inputs})
 		}
 	}
-	onDropDownHandler = () => {
-		this.setState(prevState => ({ showItems: !prevState.showItems }))
-	}
+
+	onDropDownHandler = (teste) => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
 
 	onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
 
