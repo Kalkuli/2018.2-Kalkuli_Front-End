@@ -7,15 +7,14 @@ import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessag
 import BackDrop from '../../UI/BackDrop/BackDrop'
 import deleteReceipt from '../../../services/deleteReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
-
+import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 const smallDevice = window.matchMedia('(max-width: 645px)').matches
 var size;
-if(smallDevice) {
+if(smallDevice) 
   size = 'medium'
-}
-else {
+else 
   size = 'small'
-}
+
 
 class ReceiptView extends Component {
 
@@ -30,24 +29,27 @@ class ReceiptView extends Component {
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <div className="receipt-modal-area">
           <Receipt size='large'>
-            <div className='receipt-area receipt-font'>
-              <div key={'title'} className='receipt-area__content'>
-                <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
-                <p className='receipt-font'>{receipt['title']}</p>
+            <div className="receipt-container">
+              <div className='receipt-area receipt-font'>
+                <div key={'title'} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
+                  <p className='receipt-font'>{receipt['title']}</p>
+                </div>
+                {Object.keys(receipt).map(data => {
+                  if(data === 'title' || data === 'description' || data === 'tag_id')
+                    return null
+                  return (
+                    <div key={data} className='receipt-area__content'>
+                      <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
+                      <p className='receipt-font'>{receipt[data]}</p>
+                    </div>
+                )})}
+                <div key={'description'} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
+                  <p className='receipt-font'>{receipt['description']}</p>
+                </div>
               </div>
-              {Object.keys(receipt).map(data => {
-                if(data === 'title' || data === 'description' || data === 'tag_id')
-                  return null
-                return (
-                  <div key={data} className='receipt-area__content'>
-                    <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
-                    <p className='receipt-font'>{receipt[data]}</p>
-                  </div>
-              )})}
-              <div key={'description'} className='receipt-area__content'>
-                <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
-                <p className='receipt-font'>{receipt['description']}</p>
-              </div>
+              <SavedTagItem name="Alimentação" color="#8E8DBE"/>
             </div>
           </Receipt>
 
