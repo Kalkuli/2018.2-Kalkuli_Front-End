@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
 import getAllTags from '../../../services/getAllTags'
-
+import * as actionTypes from '../../../store/actions/actions'
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
@@ -17,7 +17,6 @@ export class ReceiptCompare extends Component {
 		selectedTag: null,
 		items: [],
 		selectedTag: {},
-		tags: [],
 	}
 
 	componentDidMount() {
@@ -62,6 +61,7 @@ export class ReceiptCompare extends Component {
 	fetchTags = async() => {
 		const tags = await getAllTags()
 		this.setState({ tags })
+		this.props.onTagsAdded(tags)
 	}
 
 	onConfirmHandler = () => {
@@ -157,8 +157,8 @@ export class ReceiptCompare extends Component {
 
 	handleExceptionDropDown = () => {
 		let items = null
-		if(this.state.tags)
-			items = this.state.tags
+		if(this.props.tags)
+			items = this.props.tags
 		else 
 			items = [{"id": 0, "category": "erro", "color": "#424242"}]		
 		
@@ -173,8 +173,15 @@ export class ReceiptCompare extends Component {
 export const mapStateToProps = state => {
 	return {
 		filePDF: state.filePDF,
-		fileExtracted: state.fileExtracted
+		fileExtracted: state.fileExtracted,
+		tags: state.tags
 	}
 }
 
-export default connect(mapStateToProps)(ReceiptCompare)
+export const mapDispatchToProps = dispatch => {
+	return {
+		onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }),
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptCompare)
