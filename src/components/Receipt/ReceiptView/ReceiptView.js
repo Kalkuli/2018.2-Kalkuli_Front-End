@@ -8,6 +8,7 @@ import BackDrop from '../../UI/BackDrop/BackDrop'
 import deleteReceipt from '../../../services/deleteReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+import { connect } from 'react-redux'
 const smallDevice = window.matchMedia('(max-width: 645px)').matches
 var size;
 if(smallDevice) 
@@ -49,7 +50,7 @@ class ReceiptView extends Component {
                   <p className='receipt-font'>{receipt['description']}</p>
                 </div>
               </div>
-              <SavedTagItem name="Alimentação" color="#8E8DBE"/>
+              <SavedTagItem name={this.getTagName()} color={this.getTagColor()}/>
             </div>
           </Receipt>
 
@@ -67,6 +68,10 @@ class ReceiptView extends Component {
       </Modal>
     )
   }
+
+  getTagName = () => { return this.props.tags[this.props.receipt.tag_id - 1].category }
+
+  getTagColor = () => { return this.props.tags[this.props.receipt.tag_id - 1].color }
 
   onDeleteHandler = async() => {
     let receipt_id = this.props.receiptId
@@ -95,5 +100,9 @@ class ReceiptView extends Component {
     this.setState({confirmation: true})
   }
 }
-
-export default ReceiptView
+export const mapStateToProps = state => {
+	return {
+		tags: state.tags
+	}
+}
+export default connect(mapStateToProps)(ReceiptView)

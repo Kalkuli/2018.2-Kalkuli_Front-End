@@ -169,7 +169,6 @@ export class ReceiptCompare extends Component {
 												showItems={this.state.showItems}/>
 	}
 }
-
 export const mapStateToProps = state => {
 	return {
 		filePDF: state.filePDF,
@@ -177,7 +176,6 @@ export const mapStateToProps = state => {
 		tags: state.tags
 	}
 }
-
 export const mapDispatchToProps = dispatch => {
 	return {
 		onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }),
