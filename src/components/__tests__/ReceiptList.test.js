@@ -6,6 +6,7 @@ import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/Rec
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
+jest.mock('../../services/getAllTags.js')
 configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptList/>", () => {
@@ -14,8 +15,10 @@ describe("Testing <ReceiptList/>", () => {
 
   const spyComponentDidMount = jest.spyOn(ReceiptList.prototype, 'componentDidMount')  
   const spyOnReceiptsAdded = jest.fn()
+  const spyOnTagsAdded = jest.fn()
   const props = {
     onReceiptsAdded: spyOnReceiptsAdded,
+    onTagsAdded: spyOnTagsAdded
   }
   
   beforeEach(() => {
@@ -35,11 +38,21 @@ describe("Testing <ReceiptList/>", () => {
   })
 
   it('should test getAllReceipts', (done) => {
+    wrapper.instance().fetchReceipts()
+    done()
+  })
+
+  it('should test getAllTags', (done) => {
+    wrapper.instance().fetchTags()
     done()
   })
 
   it('should call dispatch for saving the receipts', () => {
     expect(spyOnReceiptsAdded).toHaveBeenCalled()
+  })
+
+  it('should call dispatch for saving the tags', () => {
+    expect(spyOnTagsAdded).toHaveBeenCalled()
   })
 
   it('should test mapStateToProps', () => {
@@ -49,10 +62,16 @@ describe("Testing <ReceiptList/>", () => {
     expect(mapStateToProps(initialState).receipts).toEqual(["test"])
   })
 
-  it('should test mapDispatchToProps', () => {
+  it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
     const dispatch = jest.fn()
     mapDispatchToProps(dispatch).onReceiptsAdded()
     expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_RECEIPTS'})
+  })
+
+  it('should test mapDispatchToProps for dispatching onTagsAdded', () => {
+    const dispatch = jest.fn()
+    mapDispatchToProps(dispatch).onTagsAdded()
+    expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_TAGS'})
   })
 
   it('should find NavBar', () => {

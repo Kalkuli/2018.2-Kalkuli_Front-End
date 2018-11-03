@@ -6,7 +6,7 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
-class ReceiptList extends React.Component {
+export class List extends React.Component {
 
 	state = {
 		showModal: false,
@@ -78,7 +78,6 @@ class ReceiptList extends React.Component {
 			return '#424242'
 	}
 	onOpenPopup = (receipt) => {
-		console.log(receipt[0])
 		this.setState({
 			showModal: true,
 			selectedReceipt: receipt[0],
@@ -98,5 +97,5 @@ export const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(ReceiptList)
+export default connect(mapStateToProps)(List)
 
