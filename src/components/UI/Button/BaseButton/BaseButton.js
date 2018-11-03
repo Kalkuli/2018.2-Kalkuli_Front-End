@@ -12,7 +12,6 @@ const BaseButton = (props) => {
     styles.push('no-background')
   else if(props.type === 'disable')
     styles.push('disable')
-
     
   if(props.size === 'small')
     styles.push('base-button--small')
@@ -20,7 +19,7 @@ const BaseButton = (props) => {
     styles.push('base-button--medium')
 
   return (
-    <a className={styles.join(' ')} onClick={props.click}>
+    <a className={styles.join(' ')} onClick={props.type !== 'disable' ? props.click : null}>
       {props.children}
     </a>
   )

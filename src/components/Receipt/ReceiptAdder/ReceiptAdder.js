@@ -9,15 +9,13 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
-import { withRouter } from 'react-router-dom'
-
 
 class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
-    fileSent: false,
     fileSelected: false,
+    fileSent: true,
     completed: false
   }
 
@@ -26,7 +24,7 @@ class ReceiptAdder extends Component {
     if (this.state.fileSent && !this.state.completed) {
       content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} />
     } else if (this.state.completed) {
-      content = <Confirmation onConfirmOk={this.onConfirmOk} />
+      content = <Confirmation onConfirmOk={this.props.onConfirmOk} />
     }
     return (
       <Modal show={this.props.show}>
@@ -55,7 +53,8 @@ class ReceiptAdder extends Component {
   }
 
   onConfirmButton = (receipt) => {
-    axios.post('https://172.23.0.1:5008/api/v1/receipt', {
+    console.log(receipt)
+    axios.post('http://172.21.0.1:5008/api/v1/receipt', {
       "receipt": {
         ...receipt,
         company_id: 1
@@ -70,25 +69,6 @@ class ReceiptAdder extends Component {
         console.log(error)
       })
   }
-
-  onConfirmButton = (receipt) => {
-    axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/receipt', {
-      "receipt": {
-        ...receipt,
-        company_id: 1
-      }
-    })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
-  onConfirmOk = () => { this.props.history.push({ pathname: '/list-all-receipts' }) }
 
   onConfirmHandler = () => {
     this.setState({
@@ -96,18 +76,37 @@ class ReceiptAdder extends Component {
     })
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
-    axios.post('https://172.23.0.1:5008/api/v1/extract_data', formData, {
+
+    axios.post('http://172.21.0.1:5001/extract', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
-      .then(response => {
-        this.props.onFileExtractedAdded(response.data.receipt)
-        this.setState({
-          fileSent: true,
-          loading: false
-        })
+      .then((response) => {
+        let statusUrl = 'http://172.21.0.1:5001' + response.data.location;
+        this.checkStatus(statusUrl)
       })
+  }
+
+  checkStatus = (statusUrl) => {
+    axios.get(statusUrl)
+      .then((status) => {
+        if (status.data.state === 'SUCCESS') {
+          axios.post('http://172.25.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
+            .then((response) => {
+              this.props.onFileExtractedAdded(response.data.receipt)
+              this.setState({
+                fileSent: true,
+                loading: false
+              })
+            })
+        }
+        else if (status.data.state === 'PENDING') {
+          setTimeout(() => {
+            this.checkStatus(statusUrl)
+          }, 2000);
+        }
+      });
   }
 
   onDropHandler = (file, rejectedFiles) => {
@@ -132,8 +131,9 @@ class ReceiptAdder extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
-    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted })
+    onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted }),
+    onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ReceiptAdder))
+export default connect(null, mapDispatchToProps)(ReceiptAdder)

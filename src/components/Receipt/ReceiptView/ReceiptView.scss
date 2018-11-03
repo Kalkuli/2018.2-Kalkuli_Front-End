@@ -4,7 +4,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-
 .area-buttons{
     display: flex;
     flex-flow: column;
@@ -18,15 +17,20 @@
 
 }
 
+.receipt-container {
+    height: 88%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
 .receipt-area{
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-
     &__content{
         display: flex;
         justify-content: space-between;
-
         &__label{
             padding-bottom: 1em;
             color: $color-black;

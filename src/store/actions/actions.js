@@ -1,3 +1,4 @@
 export const ADD_PDF_FILE = 'ADD_PDF_FILE'
 export const ADD_EXTRACTED_DATA = 'ADD_EXTRACTED_DATA'
 export const ADD_RECEIPTS = 'ADD_RECEIPTS'
+export const ADD_TAGS = 'ADD_TAGS'

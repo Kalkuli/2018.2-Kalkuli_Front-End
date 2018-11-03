@@ -6,6 +6,7 @@ import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/Rec
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
+jest.mock('../../services/getAllTags.js')
 configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptList/>", () => {
@@ -14,12 +15,10 @@ describe("Testing <ReceiptList/>", () => {
 
   const spyComponentDidMount = jest.spyOn(ReceiptList.prototype, 'componentDidMount')  
   const spyOnReceiptsAdded = jest.fn()
-  const spyHistoryPush = jest.fn()
+  const spyOnTagsAdded = jest.fn()
   const props = {
     onReceiptsAdded: spyOnReceiptsAdded,
-    history: {
-      push: spyHistoryPush
-    }
+    onTagsAdded: spyOnTagsAdded
   }
   
   beforeEach(() => {
@@ -39,6 +38,12 @@ describe("Testing <ReceiptList/>", () => {
   })
 
   it('should test getAllReceipts', (done) => {
+    wrapper.instance().fetchReceipts()
+    done()
+  })
+
+  it('should test getAllTags', (done) => {
+    wrapper.instance().fetchTags()
     done()
   })
 
@@ -46,9 +51,8 @@ describe("Testing <ReceiptList/>", () => {
     expect(spyOnReceiptsAdded).toHaveBeenCalled()
   })
 
-  it('should call history.push', () => {
-    wrapper.instance().onNewReportHandler()
-    expect(spyHistoryPush).toHaveBeenCalled()
+  it('should call dispatch for saving the tags', () => {
+    expect(spyOnTagsAdded).toHaveBeenCalled()
   })
 
   it('should test mapStateToProps', () => {
@@ -58,10 +62,16 @@ describe("Testing <ReceiptList/>", () => {
     expect(mapStateToProps(initialState).receipts).toEqual(["test"])
   })
 
-  it('should test mapDispatchToProps', () => {
+  it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
     const dispatch = jest.fn()
     mapDispatchToProps(dispatch).onReceiptsAdded()
     expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_RECEIPTS'})
+  })
+
+  it('should test mapDispatchToProps for dispatching onTagsAdded', () => {
+    const dispatch = jest.fn()
+    mapDispatchToProps(dispatch).onTagsAdded()
+    expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_TAGS'})
   })
 
   it('should find NavBar', () => {
@@ -71,40 +81,5 @@ describe("Testing <ReceiptList/>", () => {
   it('should find MenuButton', () => {
     expect(wrapper.find(MenuButton).exists()).toBe(true)
   })
-  
-  it('should set newReceipt state to false', () => {
-    wrapper.setState({newReceipt: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('newReceipt')).toBe(false)
-    instance.onCloseReceiptAdder()
-    expect(wrapper.state('newReceipt')).toBe(false)
-  })
 
-  it('should toggle newReceipt', () => {
-    wrapper.setState({newReceipt: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('newReceipt')).toBe(false)
-    instance.onToggleNewReceipt()
-    expect(wrapper.state('newReceipt')).toBe(true)
-    instance.onToggleNewReceipt()
-    expect(wrapper.state('newReceipt')).toBe(false)
-  })
-
-  it('should set clickedMenuButton state to true', () => {
-    wrapper.setState({clickedMenuButton: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('clickedMenuButton')).toBe(false)
-    instance.onClickMenuButton()
-    expect(wrapper.state('clickedMenuButton')).toBe(true)
-  })
-
-  it('should toggle rotate state', () => {
-    wrapper.setState({rotate: false})
-    const instance = wrapper.instance()
-    expect(wrapper.state('rotate')).toBe(false)
-    instance.onClickMenuButton()
-    expect(wrapper.state('rotate')).toBe(true)
-    instance.onClickMenuButton()
-    expect(wrapper.state('rotate')).toBe(false)
-  }) 
 }) 
