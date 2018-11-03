@@ -2,13 +2,14 @@ import React,{Component} from 'react'
 import './HomeNavBar.scss'
 import Scrollchor from 'react-scrollchor';
 import SignUp from '../../Button/SignUp/SignUp'
-import LogIn from '../../../LogIn/LogIn'
+import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
 class HomeNavBar extends Component {
   
   state = {
     isTop: true,
-    showLogIn: false
+    showLogin: false,
+    inputsAreValid: false
   }
   
   componentDidMount() {
@@ -34,8 +35,8 @@ class HomeNavBar extends Component {
           <a><h1 className="nav__logo">Kalkuli</h1></a>
           <nav className="nav__end">
             <SignUp size="small" click={this.props.click}/>
-            <a to="/" className="nav__link" href="">Log in</a>
-            {this.showLogIn()}
+            <a onClick={(event) => this.handleLogIn(event)} className="nav__link" href="">Log in</a>
+            {this.showLogin()}
             <SignUp size="small"/>
           </nav>
         </div>
@@ -49,8 +50,8 @@ class HomeNavBar extends Component {
             <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
             <div className="nav__bar"></div>
             <SignUp size="small" click={this.props.click}/>
-            <a onClick={(event) => this.handleLogIn(event)} to="/" className="nav__link" href="">Log in</a>
-            {this.showLogIn()}
+            <a onClick={(event) => this.handleLogin(event)} className="nav__link" href="">Log in</a>
+            {this.showLogin()}
             <SignUp size="small"/>
           </nav>
         </div>
@@ -58,24 +59,27 @@ class HomeNavBar extends Component {
     }
   }
 
-  showLogIn = () => {
-    console.log(this.state.showLogIn)
-    if(this.state.showLogIn){
+  showLogin = () => {
+    if(this.state.showLogin){
       return (
         <React.Fragment>
-          <LogIn />
-          <BackDrop show click={this.onCloseLogIn}/>
+          <Login inputsAreValid={this.state.inputsAreValid} onConfirm={this.onConfirmLoginHandler}/>
+          <BackDrop show click={this.onCloseLogin}/>
         </React.Fragment> 
       )
     }
   }
 
-  handleLogIn = (event) => {
+  handleLogin = (event) => {
     event.preventDefault()
-    this.setState({showLogIn: true})
+    this.setState({showLogin: true})
   }
 
-  onCloseLogIn = () => {this.setState({showLogIn: false})}
+  onConfirmLoginHandler = () => {
+    alert('iae')
+  }
+
+  onCloseLogin = () => {this.setState({showLogin: false})}
 }
 
 export default HomeNavBar
