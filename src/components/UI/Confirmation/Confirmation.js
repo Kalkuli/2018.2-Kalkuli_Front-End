@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Confirmation.scss'
 import confirm from '../../../assets/img/confirm.svg'
 import Modal from '../Modal/Modal'

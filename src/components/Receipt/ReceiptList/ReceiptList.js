@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import List from './List'
 import Navbar from '../../UI/Navbar/Navbar'
 import './ReceiptList.scss'

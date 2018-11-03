@@ -12,7 +12,6 @@ export class ReceiptCompare extends Component {
 		receiptIsValid: true,
 		receipt: null,
 		showItems: false,
-		selectedTag: null,
 		items: [],
 		selectedTag: {},
 	}
