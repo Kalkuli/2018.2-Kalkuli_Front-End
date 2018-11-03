@@ -34,10 +34,9 @@ class HomeNavBar extends Component {
         <div className={styles.join(' ')}>
           <a><h1 className="nav__logo">Kalkuli</h1></a>
           <nav className="nav__end">
-            <SignUp size="small" click={this.props.click}/>
             <a onClick={(event) => this.handleLogIn(event)} className="nav__link" href="">Log in</a>
             {this.showLogin()}
-            <SignUp size="small"/>
+            <SignUp size="small" click={this.props.click}/>
           </nav>
         </div>
       )
@@ -49,10 +48,9 @@ class HomeNavBar extends Component {
             <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
             <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
             <div className="nav__bar"></div>
-            <SignUp size="small" click={this.props.click}/>
             <a onClick={(event) => this.handleLogin(event)} className="nav__link" href="">Log in</a>
             {this.showLogin()}
-            <SignUp size="small"/>
+            <SignUp size="small" click={this.props.click}/>
           </nav>
         </div>
       )
