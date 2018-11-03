@@ -27,7 +27,6 @@ class Form extends Component {
 
     render(){
         let content = this.chooseContent()
-
         return(
             <Modal show={this.props.show}>
                 {content}
@@ -52,7 +51,6 @@ class Form extends Component {
         }
         else {
             let {registerInput} = this.state
-            
             return(
                 <div className='register'>
                     <h1>Pronto para ter o melhor gerenciamento das suas notas?!</h1>
@@ -117,7 +115,7 @@ class Form extends Component {
             }
         } 
 
-        axios.post('http://172.21.0.1:5008/api/v1/company', companyAdmInputs)
+        axios.post('http://172.23.0.1:5008/api/v1/company', companyAdmInputs)
         .then(()=>{
             this.setState({registration: 'done'})
         })
@@ -146,13 +144,10 @@ class Form extends Component {
     onChangeHandler = (event, inputKey) => {
 		let inputState = {...this.state.registerInput}
         let inputElement = {...inputState[inputKey]}
-        
         inputElement.value = event.target.value
         if(inputElement.validation)
             inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
-            
         inputState[inputKey] = inputElement
-
 		let isValid = true
 		for(let inputKey in inputState) {
 			isValid = (inputState[inputKey].valid && isValid)
@@ -162,22 +157,16 @@ class Form extends Component {
 
     checkValidity = (value, rules) => {
         let isValid = false
-        
 		if(rules.required)
 			isValid = value.trim() !== ''
-		
 		if(rules.minLength)
             isValid = value.length >= rules.minLength
-
         if(rules.aroba)
             isValid = value.indexOf("@") !== -1
-            
         if(rules.pass)
             this.setState({password: value})
-
         if(rules.confPass)
             isValid = this.state.password === value
-
 		return isValid
     }
 }
