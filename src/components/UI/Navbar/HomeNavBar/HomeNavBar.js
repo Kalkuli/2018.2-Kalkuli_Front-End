@@ -4,15 +4,19 @@ import Scrollchor from 'react-scrollchor';
 import SignUp from '../../Button/SignUp/SignUp'
 import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
+import loginInputs from '../../../../helpers/loginInputs'
+
 class HomeNavBar extends Component {
   
   state = {
     isTop: true,
     showLogin: false,
-    inputsAreValid: false
+    inputsAreValid: false,
+    inputs: loginInputs
   }
   
   componentDidMount() {
+    console.log(this.state.inputs)
     document.addEventListener('scroll', () => {
       let isTop = window.scrollY < 250;
       if (isTop !== this.state.isTop) {
@@ -61,7 +65,9 @@ class HomeNavBar extends Component {
     if(this.state.showLogin){
       return (
         <React.Fragment>
-          <Login inputsAreValid={this.state.inputsAreValid} onConfirm={this.onConfirmLoginHandler}/>
+          <Login  inputs={this.state.inputs} 
+                  inputsAreValid={this.state.inputsAreValid} 
+                  onConfirm={this.onConfirmLoginHandler}/>
           <BackDrop show click={this.onCloseLogin}/>
         </React.Fragment> 
       )

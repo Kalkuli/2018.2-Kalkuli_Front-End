@@ -13,7 +13,6 @@ import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Form'
 
-
 class HomePage extends Component{
 
   state = {

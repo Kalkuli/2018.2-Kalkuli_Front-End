@@ -10,7 +10,7 @@ const Confirmation = (props) => {
     let styleText = ["confirm-message"]
     let buttonType
     let image
-    if(props.valid == 'done'){
+    if(props.valid === 'done'){
         image = confirm
         buttonType = 'confirm'
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputFild = (props) => {
+const InputField = (props) => {
     return (
         <input  className={props.classe} 
                 value={props.value} 
@@ -11,4 +11,4 @@ const InputFild = (props) => {
   )
 }
 
-export default InputFild;
+export default InputField

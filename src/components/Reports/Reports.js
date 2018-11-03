@@ -9,13 +9,11 @@ import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import * as screenSize from '../../helpers/screenSize'
-
-var type = "no-background";
+var type = "no-background"
 var comeco = null;
 var fim = null;
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
-var type = 'no-background'
 
 class Reports extends Component {
 

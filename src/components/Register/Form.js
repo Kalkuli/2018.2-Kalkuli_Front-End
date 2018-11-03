@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-
 import './Form.scss'
 import Modal from '../UI/Modal/Modal'
 import registerInputs from '../../helpers/registerInputs'
-import Input from '../UI/Input/InputFild'
+import Input from '../UI/Input/InputField'
 import Button from '../UI/Button/BaseButton/BaseButton'
 import Confirmation from '../UI/Confirmation/Confirmation';
 
