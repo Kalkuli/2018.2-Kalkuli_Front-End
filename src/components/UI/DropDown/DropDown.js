@@ -14,7 +14,7 @@ const DropDown = (props) => {
         <SearchBar />
         {props.items.map(item => (
           <TagItem  key={item.id} 
-                    onClickHandler={() => props.onSelectedTagHandler(item)} 
+                    onClickHandler={props.onSelectedTagHandler.bind(this, item)} 
                     name={item.category}
                     color={item.color}/>
         ))}
