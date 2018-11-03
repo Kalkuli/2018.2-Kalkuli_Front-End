@@ -4,7 +4,8 @@ import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
-
+import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+import { connect } from 'react-redux'
 class ReceiptList extends React.Component {
 
 	state = {
@@ -19,7 +20,10 @@ class ReceiptList extends React.Component {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
 																	receipt={this.state.selectedReceipt}
 																	receiptId={this.state.selectedReceiptId}
-																	onGetAllReceipts={this.props.onGetAllReceipts} />
+																	onGetAllReceipts={this.props.onGetAllReceipts} 
+																	/* tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
+																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)} */
+																/>
 		}
 
 		let receipts = JSON.parse(JSON.stringify(this.props.receipts))
@@ -53,6 +57,8 @@ class ReceiptList extends React.Component {
 										<p className="data__input receipt-font"><b>{receiptInput["description"].name}:</b></p>
 										<p className="data__input receipt-font">{receipt["description"]}</p>
 								</div>	
+								<SavedTagItem 	name={this.getTagName(receipt.tag_id)} 
+																color={this.getTagColor(receipt.tag_id)}/>
 							</div>
 						</Receipt>
 				)})}
@@ -60,7 +66,21 @@ class ReceiptList extends React.Component {
 		)
 	}
 
+	getTagName = (tagId) => { 
+		if(this.props.tags)
+			return this.props.tags[tagId - 1].category 
+		else
+			return 'carregando...'
+	}
+
+	getTagColor = (tagId) => { 
+		if(this.props.tags)
+			return this.props.tags[tagId - 1].color 
+		else
+			return '#424242'
+	}
 	onOpenPopup = (receipt) => {
+		console.log(receipt[0])
 		this.setState({
 			showModal: true,
 			selectedReceipt: receipt[0],
@@ -74,6 +94,11 @@ class ReceiptList extends React.Component {
 		})
 	}
 }
+export const mapStateToProps = state => {
+	return {
+		tags: state.tags
+	}
+}
 
-export default ReceiptList
+export default connect(mapStateToProps)(ReceiptList)
 

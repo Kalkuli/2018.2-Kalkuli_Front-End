@@ -6,8 +6,6 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
-import getAllTags from '../../../services/getAllTags'
-import * as actionTypes from '../../../store/actions/actions'
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
@@ -22,7 +20,6 @@ export class ReceiptCompare extends Component {
 	componentDidMount() {
 		this.setState({ receipt: this.props.fileExtracted })
 		this.initInputs()
-		this.fetchTags()
 	}
 	
 	render() {
@@ -56,12 +53,6 @@ export class ReceiptCompare extends Component {
 				</div>
 			</div>
 		)
-	}
-
-	fetchTags = async() => {
-		const tags = await getAllTags()
-		this.setState({ tags })
-		this.props.onTagsAdded(tags)
 	}
 
 	onConfirmHandler = () => {
@@ -151,7 +142,7 @@ export class ReceiptCompare extends Component {
 		}
 	}
 
-	onDropDownHandler = (teste) => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
+	onDropDownHandler = () => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
 
 	onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
 
@@ -176,10 +167,5 @@ export const mapStateToProps = state => {
 		tags: state.tags
 	}
 }
-export const mapDispatchToProps = dispatch => {
-	return {
-		onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }),
-	}
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceiptCompare)
+export default connect(mapStateToProps)(ReceiptCompare)
