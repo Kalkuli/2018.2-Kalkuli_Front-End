@@ -19,7 +19,7 @@ const Input = (props) => {
     <div className="input-area">
       <input  className={styles.join(' ')} 
               value={props.value} 
-              type="text"
+              type={props.type ? props.type : "text" }
               onChange={props.onChangeHandler} 
               disabled={!props.editable}/>
       <img onClick={props.onClickHandler} className="input-area__edit-image" src={editImage} alt="edit" />

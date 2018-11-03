@@ -59,11 +59,11 @@ class Reports extends Component {
                         
                         <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
-                                let start = moment(data.date_from + " " + "GMT-0300").format('YYYY-MM-DD')
-                                let end = moment(data.date_to + " " + "GMT-0300").format('YYYY-MM-DD')
+                                let start = moment(data.date_from + " GMT-0300").format('YYYY-MM-DD')
+                                let end = moment(data.date_to + " GMT-0300").format('YYYY-MM-DD')
 
-                                let startDisplayReport = new Date(start + " " + "GMT-0300").toLocaleDateString()
-                                let endDisplayReport = new Date(end + " " + "GMT-0300").toLocaleDateString()
+                                let startDisplayReport = new Date(start + " GMT-0300").toLocaleDateString()
+                                let endDisplayReport = new Date(end + " GMT-0300").toLocaleDateString()
 
                                 if (this.state.position === index) {
                                     type = "confirm";

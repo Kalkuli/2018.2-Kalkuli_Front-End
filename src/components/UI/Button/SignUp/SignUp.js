@@ -8,7 +8,7 @@ const SignUp = (props) => {
   else if(props.size === "small")
     styles.push("small")
   return (
-    <div className={styles.join(' ')}>Cadastre sua empresa</div>
+    <div onClick={props.click} className={styles.join(' ')} >Cadastre sua empresa</div>
   )
 }
 
