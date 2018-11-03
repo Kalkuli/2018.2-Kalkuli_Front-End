@@ -66,15 +66,16 @@ export class ReceiptCompare extends Component {
 
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
+		let { receiptInput } = this.state
+		
 		let receipt = {
-			"company_id": 123,
-			"emission_date": "2018-09-22",
-			"emission_place": "aqqqqqq",
-			"tax_value": 20.20,
-			"total_price": 123.12,
-			"title": "oi",
-			"description": "teste",
-			"cnpj": "320490234-002",
+			"emission_date": receiptInput['emission_date'].value,
+			"emission_place": receiptInput['emission_place'].value,
+			"tax_value": receiptInput['tax_value'].value,
+			"total_price": receiptInput['total_price'].value,
+			"title": receiptInput['title'].value,
+			"description": receiptInput['description'].value,
+			"cnpj": receiptInput['cnpj'].value,
 			"products": [],
 			"tag_id": this.state.selectedTag.id
 		}

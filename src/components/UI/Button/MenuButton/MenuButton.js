@@ -7,6 +7,7 @@ import Backdrop from '../../BackDrop/BackDrop'
 import { withRouter } from 'react-router-dom'
 import getAllReceipts from '../../../../services/getAllReceipts'
 import { connect } from 'react-redux'
+import * as actionTypes from '../../../../store/actions/actions'
 export class MenuButton extends React.Component {
     state = {
         rotate: false,
@@ -81,7 +82,7 @@ export class MenuButton extends React.Component {
 }
 export const mapDispatchToProps = dispatch => {
     return {
-        onReceiptsAdded: (receipts) => dispatch({type: 'ADD_RECEIPTS', receipts: receipts}) 
+        onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
     }
 }
 export default withRouter(connect(null, mapDispatchToProps)(MenuButton))

@@ -41,7 +41,7 @@ class ReceiptList extends React.Component {
 								</div>	
 								{this.props.isSmall ? null :
 									Object.keys(receipt).map(data => {
-									if(data === 'title' || data === 'description')
+									if(data === 'title' || data === 'description' || data === 'tag_id')
 										return null
 									return (
 										<div key={data} className="data">

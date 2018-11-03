@@ -28,6 +28,7 @@ export class ReceiptList extends Component {
 
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
+        console.log(receipts)
         this.setState({ loaded: true })
         this.props.onReceiptsAdded(receipts)
     }

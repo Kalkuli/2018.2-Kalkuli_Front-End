@@ -36,7 +36,7 @@ class ReceiptView extends Component {
                 <p className='receipt-font'>{receipt['title']}</p>
               </div>
               {Object.keys(receipt).map(data => {
-                if(data === 'title' || data === 'description')
+                if(data === 'title' || data === 'description' || data === 'tag_id')
                   return null
                 return (
                   <div key={data} className='receipt-area__content'>
