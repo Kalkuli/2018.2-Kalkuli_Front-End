@@ -1,2 +1,31 @@
 @import '../../assets/sass/main.scss';
 
+.login {
+  width: 50rem;
+  height: 50rem;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  &__title {
+    color: $color-light-blue;
+    font-size: 3rem;
+  }
+  &__form {
+
+    &__input {
+      width: 25em;
+      height: 2em;
+      border: none;
+      border-bottom: 0.1em solid $color-black;
+      margin-bottom: 0.8em;
+      background-color: $color-white;
+      font-family: $montserrat;
+      font-size: .9em;
+      color: $color-black;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}

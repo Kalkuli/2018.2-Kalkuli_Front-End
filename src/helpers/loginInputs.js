@@ -6,6 +6,7 @@ const loginInputs = {
     valid: false,
     touched: false,
     validation: {
+      aroba: '@',
       required: true,
       minLength: 5,
       maxLength: 30

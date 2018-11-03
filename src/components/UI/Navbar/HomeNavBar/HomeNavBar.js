@@ -10,7 +10,7 @@ class HomeNavBar extends Component {
   
   state = {
     isTop: true,
-    showLogin: false,
+    showLogin: true,
     inputsAreValid: false,
     inputs: loginInputs
   }
@@ -67,11 +67,37 @@ class HomeNavBar extends Component {
         <React.Fragment>
           <Login  inputs={this.state.inputs} 
                   inputsAreValid={this.state.inputsAreValid} 
-                  onConfirm={this.onConfirmLoginHandler}/>
+                  onConfirm={this.onConfirmLoginHandler}
+                  onChangeHandler={this.onChangeHandler}/>
           <BackDrop show click={this.onCloseLogin}/>
         </React.Fragment> 
       )
     }
+  }
+
+  onChangeHandler = (event, inputKey) => {
+		let inputState = {...this.state.inputs}
+    let inputElement = {...inputState[inputKey]}
+    inputElement.value = event.target.value
+    if(inputElement.validation)
+      inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+    inputState[inputKey] = inputElement
+		let isValid = true
+		for(let inputKey in inputState) {
+			isValid = (inputState[inputKey].valid && isValid)
+    } 
+    this.setState({inputs: inputState, inputsAreValid: isValid}) 
+  }
+
+  checkValidity = (value, rules) => {
+		let isValid = false
+		if(rules.required)
+			isValid = value.trim() !== ''
+    if(rules.aroba)
+      isValid = value.indexOf("@") !== -1
+		if(rules.minLength)
+			isValid = value.length >= rules.minLength
+		return isValid
   }
 
   handleLogin = (event) => {
