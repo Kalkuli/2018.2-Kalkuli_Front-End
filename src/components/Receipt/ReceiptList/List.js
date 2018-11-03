@@ -21,9 +21,8 @@ class ReceiptList extends React.Component {
 																	receipt={this.state.selectedReceipt}
 																	receiptId={this.state.selectedReceiptId}
 																	onGetAllReceipts={this.props.onGetAllReceipts} 
-																	/* tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
-																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)} */
-																/>
+																	tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
+																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
 		}
 
 		let receipts = JSON.parse(JSON.stringify(this.props.receipts))
@@ -57,8 +56,7 @@ class ReceiptList extends React.Component {
 										<p className="data__input receipt-font"><b>{receiptInput["description"].name}:</b></p>
 										<p className="data__input receipt-font">{receipt["description"]}</p>
 								</div>	
-								<SavedTagItem 	name={this.getTagName(receipt.tag_id)} 
-																color={this.getTagColor(receipt.tag_id)}/>
+								<SavedTagItem size="small" name={this.getTagName(receipt.tag_id)} color={this.getTagColor(receipt.tag_id)}/>
 							</div>
 						</Receipt>
 				)})}

@@ -17,4 +17,20 @@
     font-size: 1.8rem;
     font-weight: 600;
   }
+  &--small {
+    margin-top: 3rem;
+    width: 18rem;
+    height: 4.5rem;
+  }
+}
+
+@media (max-width:800px) {
+  .saved-tag-item--small {
+    margin-top: 11rem;
+    width: 10rem;
+    height: 4rem;
+  }
+  .saved-tag-item__name {
+    font-size: 1.3rem;
+  }
 }

@@ -48,7 +48,7 @@ class ReceiptView extends Component {
                   <p className='receipt-font'>{receipt['description']}</p>
                 </div>
               </div>
-              <SavedTagItem name={this.props.tagName} color={this.props.TagColor}/>
+              <SavedTagItem name={this.props.tagName} color={this.props.tagColor}/>
             </div>
           </Receipt>
 
