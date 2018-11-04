@@ -12,7 +12,7 @@ class HomeNavBar extends Component {
     isTop: true,
     showLogin: true,
     inputsAreValid: false,
-    inputs: loginInputs
+    inputs: loginInputs,
   }
   
   componentDidMount() {
@@ -68,11 +68,24 @@ class HomeNavBar extends Component {
           <Login  inputs={this.state.inputs} 
                   inputsAreValid={this.state.inputsAreValid} 
                   onConfirm={this.onConfirmLoginHandler}
-                  onChangeHandler={this.onChangeHandler}/>
+                  onChangeHandler={this.onChangeHandler}
+                  togglePass={this.onTogglePasswordType}/>
           <BackDrop show click={this.onCloseLogin}/>
         </React.Fragment> 
       )
     }
+  }
+
+  onTogglePasswordType = () => {
+    let passwordInput = {...this.state.inputs['password']}
+    let passwordType = passwordInput.type
+    let newPasswordType = null
+    passwordType === 'password' ? newPasswordType = 'text' : newPasswordType = 'password'
+    passwordInput['type'] = newPasswordType
+
+    let inputState = {...this.state.inputs}
+    inputState['password'] = passwordInput
+    this.setState({inputs: inputState})
   }
 
   onChangeHandler = (event, inputKey) => {
@@ -81,7 +94,20 @@ class HomeNavBar extends Component {
     inputElement.value = event.target.value
     if(inputElement.validation)
       inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+    if(inputElement.value !== '')
+      inputElement.touched = true
+    else
+      inputElement.touched = false
+
+    if(inputElement.valid)
+      inputElement.color = '#5DA8C1'
+    else if(!inputElement.valid && !inputElement.touched)
+      inputElement.color = '#353535'
+    else
+      inputElement.color ='red'
+
     inputState[inputKey] = inputElement
+
 		let isValid = true
 		for(let inputKey in inputState) {
 			isValid = (inputState[inputKey].valid && isValid)
@@ -93,10 +119,10 @@ class HomeNavBar extends Component {
 		let isValid = false
 		if(rules.required)
 			isValid = value.trim() !== ''
+    if(rules.minLength)
+			isValid = value.length >= rules.minLength
     if(rules.aroba)
       isValid = value.indexOf("@") !== -1
-		if(rules.minLength)
-			isValid = value.length >= rules.minLength
 		return isValid
   }
 

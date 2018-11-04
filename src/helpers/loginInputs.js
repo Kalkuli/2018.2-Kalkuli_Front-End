@@ -5,6 +5,7 @@ const loginInputs = {
     type: 'email',
     valid: false,
     touched: false,
+    color: '#353535',
     validation: {
       aroba: '@',
       required: true,
@@ -18,6 +19,7 @@ const loginInputs = {
     type: 'password',
     valid: false,
     touched: false,
+    color: '#353535',
     validation: {
       required: true,
       minLength: 8,

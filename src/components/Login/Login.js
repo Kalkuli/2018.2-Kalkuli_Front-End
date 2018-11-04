@@ -3,8 +3,10 @@ import Modal from '../UI/Modal/Modal'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import './Login.scss'
 import InputField from '../UI/Input/InputField'
+import eyeImg from '../../assets/img/eye-open.svg'
 const Login = (props) => {
   let {inputs} = props
+  console.log(inputs)
   return(
     <Modal show click={props.onCloseLogIn}>
       <div className="login">
@@ -14,9 +16,12 @@ const Login = (props) => {
           {Object.keys(inputs).map(key => (
             <div className="login__form__inputs" key={key}>
               <label  htmlFor={inputs[key].name}
-                      style ={(inputs[key].valid && inputs[key].touched) ? {color: 'green'} : {color: '$353535'}}>
+                      style ={{color: inputs[key].color}}>
                       <div className='description'>
                           {inputs[key].name}
+                          {inputs[key].name === 'Senha' ?
+                            <img src={eyeImg} onClick={props.togglePass} className="see-password"/> : null
+                          }
                       </div>
                       <InputField 	classe="login__form__input"
                                     value={inputs[key].value}
