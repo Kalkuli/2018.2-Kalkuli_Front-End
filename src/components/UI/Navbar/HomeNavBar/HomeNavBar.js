@@ -16,7 +16,6 @@ class HomeNavBar extends Component {
   }
   
   componentDidMount() {
-    console.log(this.state.inputs)
     document.addEventListener('scroll', () => {
       let isTop = window.scrollY < 250;
       if (isTop !== this.state.isTop) {
@@ -89,6 +88,7 @@ class HomeNavBar extends Component {
   }
 
   onChangeHandler = (event, inputKey) => {
+    console.log(this.state.inputs)
 		let inputState = {...this.state.inputs}
     let inputElement = {...inputState[inputKey]}
     inputElement.value = event.target.value
@@ -132,7 +132,11 @@ class HomeNavBar extends Component {
   }
 
   onConfirmLoginHandler = () => {
-    alert('iae')
+    let user = {
+      'email': this.state.inputs['email'].value,
+      'password': this.state.inputs['password'].value,
+    }
+    console.log(user)
   }
 
   onCloseLogin = () => {this.setState({showLogin: false})}

@@ -6,7 +6,6 @@ import InputField from '../UI/Input/InputField'
 import eyeImg from '../../assets/img/eye-open.svg'
 const Login = (props) => {
   let {inputs} = props
-  console.log(inputs)
   return(
     <Modal show click={props.onCloseLogIn}>
       <div className="login">
