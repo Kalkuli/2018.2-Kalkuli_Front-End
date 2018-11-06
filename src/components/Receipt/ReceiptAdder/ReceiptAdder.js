@@ -16,15 +16,20 @@ class ReceiptAdder extends Component {
     loading: false,
     fileSelected: false,
     fileSent: true,
-    completed: false
+    completed: false,
+    creatingCategory: false
   }
 
   render() {
     let content = this.ChooseScreen()
-    if (this.state.fileSent && !this.state.completed) {
-      content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} />
-    } else if (this.state.completed) {
+    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) {
+      content = <ReceiptCompare onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
+    } 
+    else if (this.state.completed && !this.state.creatingCategory) {
       content = <Confirmation content={'Nota adicionada com sucesso'} onConfirmOk={this.onConfirmOk} />
+    }
+    else if (this.state.creatingCategory){
+      content = <div>aaaaaaa</div>
     }
     return (
       <Modal show={this.props.show}>
@@ -50,6 +55,10 @@ class ReceiptAdder extends Component {
         <Loader />
       )
     }
+  }
+
+  createCategory = () => {
+    this.setState({creatingCategory: true})
   }
 
   onConfirmButton = (receipt) => {
