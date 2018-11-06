@@ -156,7 +156,8 @@ export class ReceiptCompare extends Component {
 								onDropDownHandler={this.onDropDownHandler}
 								onSelectedTagHandler={this.onSelectedTagHandler}
 								selectedTag={this.state.selectedTag}
-								showItems={this.state.showItems}/>
+								showItems={this.state.showItems}
+								createCategory={this.props.createCategory} />
 	}
 }
 export const mapStateToProps = state => {
