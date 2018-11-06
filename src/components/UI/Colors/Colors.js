@@ -54,11 +54,16 @@ class Colors extends Component {
                     }
                 </div>
                 <div className='create-category__buttons'>
-                    <BaseButton type={'delete'} size={'small'}>Cancelar</BaseButton>
-                    <BaseButton type={'confirm'} size={'small'}>Confirmar</BaseButton>
+                    <BaseButton type={'delete'} size={'small'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
+                    <BaseButton type={'confirm'} size={'small'} click={this.onConfirmHandler} >Confirmar</BaseButton>
                 </div>
             </div>
         )
+    }
+
+    onConfirmHandler = () => {
+        //insira o axios aqui
+        this.props.onConfirmHandler()
     }
 
     clickColor = (index) => {
