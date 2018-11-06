@@ -10,19 +10,19 @@ import getAllTags from '../../../services/getAllTags'
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 export class ReceiptList extends Component {
     state = {  
-        loaded: false,
+        receiptsLoaded: false,
+        tagsLoaded: false,
     }
     componentDidMount() {
-        this.fetchReceipts()
         this.fetchTags()
+        this.fetchReceipts()
     }
     render() {
         return (
             <div >
                 <Navbar/>
-                { this.state.loaded && <List    receipts={this.props.receipts} 
-                                                onGetAllReceipts={this.fetchReceipts}
-                                                isSmall={smallDevice} /> }
+                { this.state.receiptsLoaded && <List    onGetAllReceipts={this.fetchReceipts}
+                                                        isSmall={smallDevice}/>}
                 <MenuButton /> 
             </div>
         )
@@ -30,21 +30,17 @@ export class ReceiptList extends Component {
 
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
-        this.setState({ loaded: true })
         this.props.onReceiptsAdded(receipts)
+        this.setState({ receiptsLoaded: true })
     }
 
     fetchTags = async() => {
-		const tags = await getAllTags()
-        this.setState({ tags })
-		this.props.onTagsAdded(tags)
+        const tags = await getAllTags()
+        this.props.onTagsAdded(tags)
+        this.setState({ tagsLoaded: true })
 	}
 }
-export const mapStateToProps = state => {
-    return {
-        receipts: state.receipts
-    }
-}
+
 export const mapDispatchToProps = dispatch => {
     return {
         onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}),
@@ -52,4 +48,4 @@ export const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)
+export default connect(null, mapDispatchToProps)(ReceiptList)

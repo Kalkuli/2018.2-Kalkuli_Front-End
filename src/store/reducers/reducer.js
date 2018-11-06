@@ -4,7 +4,7 @@ const initialState = {
   filePDF: null,
   fileExtracted: null,
   receipts: [],
-  tags: null
+  tags: []
 }
 
 const reducer = (state = initialState, action) => {
