@@ -9,6 +9,7 @@ import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
+import Colors from '../../UI/Colors/Colors'
 
 class ReceiptAdder extends Component {
   state = {
@@ -17,7 +18,7 @@ class ReceiptAdder extends Component {
     fileSelected: false,
     fileSent: true,
     completed: false,
-    creatingCategory: false
+    creatingCategory: true
   }
 
   render() {
@@ -29,7 +30,7 @@ class ReceiptAdder extends Component {
       content = <Confirmation content={'Nota adicionada com sucesso'} onConfirmOk={this.onConfirmOk} />
     }
     else if (this.state.creatingCategory){
-      content = <div>aaaaaaa</div>
+      content = <Colors/>
     }
     return (
       <Modal show={this.props.show}>
