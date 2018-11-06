@@ -30,7 +30,7 @@ class ReceiptAdder extends Component {
       content = <Confirmation content={'Nota adicionada com sucesso'} onConfirmOk={this.onConfirmOk} />
     }
     else if (this.state.creatingCategory){
-      content = <Colors/>
+      content = <Colors onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
     }
     return (
       <Modal show={this.props.show}>
@@ -78,6 +78,10 @@ class ReceiptAdder extends Component {
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  onConfirmCategoryHandler = () => {
+    this.setState({creatingCategory: false})
   }
 
   onConfirmHandler = () => {
@@ -135,7 +139,14 @@ class ReceiptAdder extends Component {
     }
   }
 
-  onCancelHandler = () => { this.setState({ fileSent: false, fileSelected: false }) }
+  onCancelHandler = () => {
+    if(this.state.creatingCategory){
+      this.setState({creatingCategory: false})
+    }
+    else {
+      this.setState({ fileSent: false, fileSelected: false }) 
+    }
+  }
 }
 
 const mapDispatchToProps = dispatch => {
