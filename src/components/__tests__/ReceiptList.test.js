@@ -51,13 +51,6 @@ describe("Testing <ReceiptList/>", () => {
     expect(spyOnTagsAdded).toHaveBeenCalled()
   })
 
-  it('should test mapStateToProps', () => {
-    const initialState = {
-      receipts: ["test"]
-    }
-    expect(mapStateToProps(initialState).receipts).toEqual(["test"])
-  })
-
   it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
     const dispatch = jest.fn()
     mapDispatchToProps(dispatch).onReceiptsAdded()
