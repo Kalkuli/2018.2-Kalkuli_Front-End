@@ -20,7 +20,7 @@ const Confirmation = (props) => {
         styleText.push('error')
     }
     return(
-        <Modal>
+        <Modal show>
             <div className="confirm-area">
             <img className="confirm-icon" src={image} alt="Confirmation Icon"/>
             <p className={styleText.join(' ')} >{props.content}</p>
