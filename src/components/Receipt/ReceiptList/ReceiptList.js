@@ -12,20 +12,34 @@ export class ReceiptList extends Component {
     state = {  
         receiptsLoaded: false,
         tagsLoaded: false,
+        loaded: false,
+        search: ''
     }
     componentDidMount() {
         this.fetchTags()
         this.fetchReceipts()
     }
     render() {
+        let filteredReceipts = this.props.receipts.filter((receipt) => {
+            if(receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                return receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+            else if(receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                return receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        })
         return (
             <div >
                 <Navbar/>
-                { this.state.receiptsLoaded && <List    onGetAllReceipts={this.fetchReceipts}
-                                                        isSmall={smallDevice}/>}
+                <input className='search-receipts' value={this.state.search} onChange={this.updateSearch} ></input>
+                { this.state.loaded && <List    receipts={filteredReceipts} 
+                                                onGetAllReceipts={this.fetchReceipts}
+                                                isSmall={smallDevice} /> }
                 <MenuButton /> 
             </div>
         )
+    }
+
+    updateSearch = (event) => {
+        this.setState({search: event.target.value})
     }
 
     fetchReceipts = async() => {
