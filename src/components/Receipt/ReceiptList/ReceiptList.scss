@@ -99,6 +99,21 @@
         padding-right: 5px;
         padding-top: 20px;
     }
+    .receipts {
+        &__search-receipts {
+            margin-right: 2em;
+            margin-bottom: 1em;
+            margin-top: 3em;
+
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 250px;
+                }
+            }
+        }
+    }
 }
 @media (min-width:480px) {
     /* smartphones, Android phones, landscape iPhone */ 
@@ -128,6 +143,22 @@
             font-size: 100%;
         }
     }
+
+    .receipts {
+        &__search-receipts {
+            margin-right: 4em;
+            margin-bottom: 1em;
+            margin-top: 3em;
+
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 250px;
+                }
+            }
+        }
+    }
 }
 @media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */ 
@@ -147,11 +178,34 @@
             font-size: 100%;
         }
     }
+    .receipts {
+        &__search-receipts {
+            margin-right: 5em;
+            margin-bottom: 1em;
+            margin-top: 3em;
+
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 400px;
+                }
+            }
+        }
+    }
 }
 @media (min-width:1600px) {
     .data {
         &__input {
             font-size: 103%;
+        }
+    }
+    .receipts {
+        &__search-receipts {
+            margin-right: 10em;
+            margin-bottom: 2em;
+            margin-top: 5em;
+            margin-left: 10em;
         }
     }
 }
