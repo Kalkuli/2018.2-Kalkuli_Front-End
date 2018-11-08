@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import getAllReceipts from '../../../services/getAllReceipts'
 import getAllTags from '../../../services/getAllTags'
+import searchIcon from '../../../assets/img/search.png'
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 export class ReceiptList extends Component {
     state = {  
@@ -27,9 +28,11 @@ export class ReceiptList extends Component {
                 return receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
         })
         return (
-            <div >
+            <div className='receipts'>
                 <Navbar/>
-                <input className='search-receipts' value={this.state.search} onChange={this.updateSearch} ></input>
+                <div className='receipts__search-receipts'>
+                    <input className='receipts__search-receipts__input' value={this.state.search} onChange={this.updateSearch} type='text' placeholder='Procurando algo?'></input><img className='receipts__search-receipts__input-button' src={searchIcon} type='submit'></img>
+                </div>
                 { this.state.loaded && <List    receipts={filteredReceipts} 
                                                 onGetAllReceipts={this.fetchReceipts}
                                                 isSmall={smallDevice} /> }
