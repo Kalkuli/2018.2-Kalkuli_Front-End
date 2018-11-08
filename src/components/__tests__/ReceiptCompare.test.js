@@ -33,6 +33,11 @@ describe('Testing <ReceiptCompare/>', () => {
   })
 
   it('should call onConfirmHandler and trigger spyOnConfirmButton', () => {
+    wrapper.setState({selectedTag:{
+      id: 1,
+      category: 'Pipoca',
+      color: '#000000'
+    }})
     wrapper.instance().onConfirmHandler()
     expect(spyOnConfirmButton).toHaveBeenCalled()
   })

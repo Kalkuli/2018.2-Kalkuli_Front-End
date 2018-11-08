@@ -54,7 +54,7 @@ class Colors extends Component {
                     {colors.map( (color, index) => {
                         var colorClass = index === this.state.selected ? 'create-category__colors__color2' : 'create-category__colors__color'
                         return(
-                            <div key={index} className={colorClass} onClick={() => this.clickColor(index)} style={{backgroundColor: color.color}}></div>
+                            <div key={index} className={colorClass} onClick={this.clickColor.bind(this, index)} style={{backgroundColor: color.color}}></div>
                             )
                         }, )
                     }
@@ -76,11 +76,11 @@ class Colors extends Component {
             "category": this.state.value,
             "color": colors[this.state.selected].color
         }
-        this.props.onNewTagHandler(tag)
         let response = await newTag(tag)
-        console.log(response)
-        if(response == 'success')
+        if(response == 'success'){
             this.props.onConfirmHandler()
+            this.props.onNewTagHandler(tag)
+        }
         else
             this.setState({fail: response})
     }
