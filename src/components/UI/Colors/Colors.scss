@@ -66,3 +66,49 @@
         justify-content: space-between
     }
 }
+
+@media (max-width: 460px){
+    .create-category {
+        width: 25em;
+
+        &__phrase {
+            margin-left: 0;
+            text-align: center;
+        }
+
+        &__input {
+            margin: 0;
+            margin: auto;
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        &__colors {
+            margin-top: 1em;
+            width: 100%;
+            justify-content: center;
+
+            &__color {
+                width: 4em;
+                height: 4em;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+
+            &__color2 {
+                width: 4em;
+                height: 4em;
+                border-radius: 8px;
+                margin: 0.5em;
+                transition: 0.2s all;
+                transform: scale(1.2)
+            }
+        }
+
+        &__buttons {
+            width: 100%;
+        }
+    }
+}
