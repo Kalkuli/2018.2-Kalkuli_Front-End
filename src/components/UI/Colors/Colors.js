@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './Colors.scss'
 import BaseButton from '../Button/BaseButton/BaseButton';
-import axios from 'axios';
+import newTag from '../../../services/newTag'
 import Confirmation from '../Confirmation/Confirmation';
 
 const colors = [{
@@ -71,21 +71,18 @@ class Colors extends Component {
         this.setState({fail:''})
     }
 
-    onConfirmHandler = () => {
+    onConfirmHandler = async () => {
         const tag = {
             "category": this.state.value,
             "color": colors[this.state.selected].color
         }
         this.props.onNewTagHandler(tag)
-        axios.post('http://172.21.0.1:5008/api/v1/create_tag', {
-            "tag": tag 
-        })
-        .then(() => {
+        let response = await newTag(tag)
+        console.log(response)
+        if(response == 'success')
             this.props.onConfirmHandler()
-        })
-        .catch((error) => {
-            this.setState({fail: error.response.data.message})
-        })
+        else
+            this.setState({fail: response})
     }
 
     clickColor = (index) => {
