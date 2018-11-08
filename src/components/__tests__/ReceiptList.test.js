@@ -2,7 +2,7 @@ import '../../services/__mocks__/matchMedia'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
+import { ReceiptList, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
@@ -53,13 +53,6 @@ describe("Testing <ReceiptList/>", () => {
 
   it('should call dispatch for saving the tags', () => {
     expect(spyOnTagsAdded).toHaveBeenCalled()
-  })
-
-  it('should test mapStateToProps', () => {
-    const initialState = {
-      receipts: ["test"]
-    }
-    expect(mapStateToProps(initialState).receipts).toEqual(["test"])
   })
 
   it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
