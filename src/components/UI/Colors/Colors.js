@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import './Colors.scss'
 import BaseButton from '../Button/BaseButton/BaseButton';
+import axios from 'axios';
+import Confirmation from '../Confirmation/Confirmation';
 
 const colors = [{
     color: '#FF4F78'
@@ -36,12 +38,15 @@ const colors = [{
 class Colors extends Component {
     state = {
         value: '',
-        selected: null
+        selected: null,
+        fail: ''
     }
     render(){
+        let content = this.state.fail ? <Confirmation content={this.state.fail} valid={'error'}/> : null
         return(
             <div className='create-category'>
                 <p className='create-category__phrase'>Nome:</p>
+                {content}
                 <input className='create-category__input' value={this.state.value} onChange={this.handleChange} />
                 <p className='create-category__phrase'>Selecione uma cor:</p>
                 <div className='create-category__colors'>
@@ -62,8 +67,18 @@ class Colors extends Component {
     }
 
     onConfirmHandler = () => {
-        //insira o axios aqui
-        this.props.onConfirmHandler()
+        axios.post('http://172.21.0.1:5008/api/v1/create_tag', {
+            "tag": {
+                category: this.state.value,
+                color: colors[this.state.selected].color
+            }
+        })
+        .then(() => {
+            this.props.onConfirmHandler()
+        })
+        .catch((error) => {
+            this.setState({fail: error.response.data.message})
+        })
     }
 
     clickColor = (index) => {

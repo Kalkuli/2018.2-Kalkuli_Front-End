@@ -10,6 +10,7 @@ import Confirmation from '../../UI/Confirmation/Confirmation'
 import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
+import getAllTags from '../../../services/getAllTags'
 
 class ReceiptAdder extends Component {
   state = {
@@ -18,7 +19,7 @@ class ReceiptAdder extends Component {
     fileSelected: false,
     fileSent: true,
     completed: false,
-    creatingCategory: true
+    creatingCategory: false
   }
 
   render() {
@@ -80,7 +81,9 @@ class ReceiptAdder extends Component {
       })
   }
 
-  onConfirmCategoryHandler = () => {
+  onConfirmCategoryHandler = async() => {
+    const tags = await getAllTags()
+    this.props.onTagsAdded(tags)
     this.setState({creatingCategory: false})
   }
 
@@ -153,7 +156,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
     onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted }),
-    onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}) 
+    onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}),
+    onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags })
   }
 }
 
