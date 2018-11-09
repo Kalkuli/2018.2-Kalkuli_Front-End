@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
         tags: action.tags
       }
     case actionTypes.ADD_AUTH_TOKEN: {
+      console.log(action.auth_token)
       return {
         ...state,
         auth_token: action.auth_token

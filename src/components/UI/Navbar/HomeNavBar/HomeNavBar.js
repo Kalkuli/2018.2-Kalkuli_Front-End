@@ -146,6 +146,7 @@ export class HomeNavBar extends Component {
       this.setState({registration: 'done'})
       this.props.onAddAuthToken(response)
       this.props.onConfirmOk()
+      localStorage.setItem('auth_token', response)
     } else {
       this.setState({registration: 'fail'})
     }

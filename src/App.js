@@ -6,9 +6,16 @@ import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 import HomePage from './components/HomePage/HomePage'
 import { connect } from 'react-redux'
 import {  BrowserRouter,Route, Switch, Redirect } from 'react-router-dom'
+import * as actionTypes from './store/actions/actions'
 
 class App extends Component {
   
+  componentWillMount() {
+    let token = localStorage.getItem('auth_token')
+    console.log(token)
+    this.props.onAddAuthToken(token)
+  }
+
   render() {
     this.props.auth_token ? console.log('logado') : console.log('tchau')
     return (
@@ -37,4 +44,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddAuthToken: (token) => dispatch({ type: actionTypes.ADD_AUTH_TOKEN, auth_token: token})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
