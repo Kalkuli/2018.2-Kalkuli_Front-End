@@ -5,7 +5,7 @@ import SignUp from '../../Button/SignUp/SignUp'
 import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
 import loginInputs from '../../../../helpers/loginInputs'
-import axios from 'axios'
+import logUserIn from '../../../../services/logUserIn'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../../store/actions/actions'
 export class HomeNavBar extends Component {
@@ -136,21 +136,20 @@ export class HomeNavBar extends Component {
     this.setState({showLogin: true})
   }
 
-  onConfirmLoginHandler = () => {
+  onConfirmLoginHandler = async () => {
     let user = {
       'email': this.state.inputs['email'].value,
       'password': this.state.inputs['password'].value,
     }
-    axios.post('http://172.21.0.1:5008/api/v1/auth/login', user)
-    .then(response => {
-      console.log(response.data.auth_token)
+
+    let response = await logUserIn(user)
+    if(response !== 'error') {
       this.setState({registration: 'done'})
-      this.props.onAddAuthToken('teste-token')
+      this.props.onAddAuthToken(response)
       this.props.onConfirmOk()
-    })
-    .catch(err => {
+    } else {
       this.setState({registration: 'fail'})
-    })
+    }
   }
 
   onCloseErrorMessage = () => {this.setState({registration: ''})}
