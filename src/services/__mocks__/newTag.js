@@ -7,6 +7,6 @@
         else {
             return await new Promise(resolve => {
                 resolve('error')
-              }) 
+              })
         }
   }

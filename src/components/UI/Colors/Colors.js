@@ -31,10 +31,19 @@ class Colors extends Component {
                 </div>
                 <div className='create-category__buttons'>
                     <BaseButton type={'delete'} size={'small'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
-                    <BaseButton type={'confirm'} size={'small'} click={this.onConfirmHandler} >Confirmar</BaseButton>
+                    <BaseButton type={'confirm'} size={'small'} click={this.state.value && this.state.selected ? this.onConfirmHandler : this.showError} >Confirmar</BaseButton>
                 </div>
             </div>
         )
+    }
+
+    showError = () => {
+        if(!this.state.value){
+            this.setState({fail: 'Não é possível adicionar uma categoria sem nome'})
+        }
+        else{
+            this.setState({fail: 'Não é possível adicionar uma categoria sem cor'})
+        }
     }
 
     errorOK = () => {
