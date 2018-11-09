@@ -55,6 +55,7 @@ export class ReceiptList extends Component {
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
         this.props.onReceiptsAdded(receipts)
+        console.log(receipts)
         this.setState({ receiptsLoaded: true })
     }
 
@@ -67,7 +68,7 @@ export class ReceiptList extends Component {
 
 export const mapDispatchToProps = dispatch => {
     return {
-        onReceiptsAdded: (receipts) => dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts}),
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
         onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
     }
 }

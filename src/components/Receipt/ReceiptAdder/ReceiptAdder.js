@@ -114,7 +114,7 @@ class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post('http://172.25.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post('http://172.21.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({

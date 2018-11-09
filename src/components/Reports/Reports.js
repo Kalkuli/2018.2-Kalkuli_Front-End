@@ -141,7 +141,7 @@ class Reports extends Component {
     }
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post('http://172.25.0.1:5008/api/v1/export', {
+        Axios.post('http://172.21.0.1:5008/api/v1/export', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
