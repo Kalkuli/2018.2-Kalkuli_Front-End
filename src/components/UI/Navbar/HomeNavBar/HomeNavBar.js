@@ -6,8 +6,9 @@ import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
 import loginInputs from '../../../../helpers/loginInputs'
 import axios from 'axios'
-
-class HomeNavBar extends Component {
+import { connect } from 'react-redux'
+import * as actionTypes from '../../../../store/actions/actions'
+export class HomeNavBar extends Component {
   
   state = {
     isTop: true,
@@ -144,6 +145,7 @@ class HomeNavBar extends Component {
     .then(response => {
       console.log(response.data.auth_token)
       this.setState({registration: 'done'})
+      this.props.onAddAuthToken('teste-token')
       this.props.onConfirmOk()
     })
     .catch(err => {
@@ -156,4 +158,10 @@ class HomeNavBar extends Component {
   onCloseLogin = () => {this.setState({showLogin: false})}
 }
 
-export default HomeNavBar
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddAuthToken: (token) => dispatch({ type: actionTypes.ADD_AUTH_TOKEN, auth_token: token})
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomeNavBar)
