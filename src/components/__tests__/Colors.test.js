@@ -2,6 +2,7 @@ import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Colors from '../UI/Colors/Colors'
+import { doesNotReject } from 'assert';
 jest.mock('../../services/newTag')
 configure({adapter: new Adapter()})
 
@@ -26,31 +27,29 @@ describe('Testing <Colors/>', () => {
         expect(wrapper.state('fail')).toMatch('')
     })
 
-    it('should call this.props.onNewTagHandler passing valid value', () => {
-        wrapper.setState({
-            value: 'Pipoca',
-            selected: 2
-        })
-        instance.onConfirmHandler()
-        expect(spyOnNewTagHandler).toHaveBeenCalled()
-    })
-
-    it('should call this.props.onNewTagHandler passing invalid value', () => {
-        wrapper.setState({
-            value: '',
-            selected: 2
-        })
-        instance.onConfirmHandler()
-        expect(spyOnNewTagHandler).toHaveBeenCalled()
-    })
-
     it('should set selected state', () => {
         wrapper.setState({selected: null})
         instance.clickColor(2)
         expect(wrapper.state('selected')).toEqual(2)
     })
 
-    it('should', () => {
+    it('should test if this.state.value is written', () => {
+        wrapper.setState({
+            selected: 2
+        })
+        instance.showError()
+        expect(wrapper.state('fail')).toMatch('Não é possível adicionar uma categoria sem nome')
+    })
+
+    it('should test if this.state.selected is clicked', () => {
+        wrapper.setState({
+            value: 'Banana'
+        })
+        instance.showError()
+        expect(wrapper.state('fail')).toMatch('Não é possível adicionar uma categoria sem cor')
+    })
+
+    it('should test if this.state.value is being written', () => {
         const event = {
             target: {
                 value: 'Banana'
@@ -60,6 +59,27 @@ describe('Testing <Colors/>', () => {
         expect(wrapper.state('value')).toMatch('')
         instance.handleChange(event)
         expect(wrapper.state('value')).toMatch('Banana')
+    })
+
+    it('should test if onConfirmHandler is working', () => {
+        wrapper.setState({
+            fail: '',
+            value: 'Pipoca',
+            selected: 2
+        })
+        instance.onConfirmHandler().then(() => {
+            expect(spyOnNewTagHandler).toHaveBeenCalled()
+        })
+    })
+
+    it('should test if onConfirmHandler is not working', () => {
+        wrapper.setState({
+            fail: '',
+            selected: 2
+        })
+        instance.onConfirmHandler().then(() => {
+            expect(wrapper.state('fail')).toMatch('error')
+        })
     })
     
 })
