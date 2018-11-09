@@ -11,7 +11,7 @@ export class List extends Component {
 	state = {
 		showModal: false,
 		selectedReceipt: null,
-		selectedReceiptId: null
+		selectedReceiptId: null,
 	}
 
 	render() {
@@ -24,7 +24,8 @@ export class List extends Component {
 																	tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
 																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
 		}
-		let filteredReceipts = this.filterReceipts(this.props.receipts)
+
+		let filteredReceipts = this.filterReceipts(this.props.receipts) 
 		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
 		
 		return (
@@ -32,7 +33,7 @@ export class List extends Component {
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 				{receiptView}
 
-				{receipts.map(receipt => {
+				{receipts ? receipts.map(receipt => {
 					let receiptId = receipt.id
 					delete receipt.id
 					delete receipt.company_id
@@ -60,7 +61,7 @@ export class List extends Component {
 								<SavedTagItem size="small" name={this.getTagName(receipt.tag_id)} color={this.getTagColor(receipt.tag_id)}/>
 							</div>
 						</Receipt>
-				)})}
+				)}): null}
 			</div>
 		)
 	}
@@ -70,7 +71,7 @@ export class List extends Component {
             let filteredReceipts = receipts.filter((receipt) => {
                 if(receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
                     return receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
-                else if(receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
+                else
                     return receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
             })
             return filteredReceipts
@@ -78,14 +79,14 @@ export class List extends Component {
 	}
 
 	getTagName = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length == 0))
-			return this.props.tags[tagId - 1].category 
+		if(this.props.tags !== undefined && this.props.tags.length !== 0)
+			return this.props.tags[tagId - 1].category
 		else
 			return 'carregando...'
 	}
 
 	getTagColor = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length == 0))
+		if(this.props.tags !== undefined && this.props.tags.length !== 0)
 			return this.props.tags[tagId - 1].color 
 		else
 			return '#424242'

@@ -5,11 +5,11 @@ import BackDrop from '../UI/BackDrop/BackDrop'
 
 describe("Testing <List />", () => {
   let wrapper = null
-  const tags = [
+  let tags = [
     {'id': 0, 'category': 'Limpeza', 'color': '#424242'}, 
     {'id': 1, 'category': 'Alimentação', 'color': '#fff'}
   ]
-  const receipt = {
+  let receipt = {
     "emission_date": "2018-09-22",
     "emission_place": "aqqqqqq",
     "tax_value": 20.20,
@@ -18,16 +18,18 @@ describe("Testing <List />", () => {
     "description": "teste",
     "cnpj": "320490234-002",
   }
-  const props = {
+  let props = {
     receipts: [{...receipt}],
+    search: 'oi',
   }
 
   beforeEach(() => {
     wrapper = shallow(<List {...props}/>)
   })
 
-  it('should get tag name', () => {
-    wrapper.instance().getTagName(2)
+  it('should test filterReceipts finding a receipt by its title', () => {
+    wrapper.instance().filterReceipts(props.receipts)
+    expect(wrapper.find('.container-receipts__receipt-data').exists()).toBeTruthy()
   })
 
   it('should find ReceiptView when selecting a receipt from List', () => {
@@ -64,4 +66,60 @@ describe("Testing <List />", () => {
     expect(mapStateToProps(initialState).tags).toEqual(tags)
   })
   
+})
+
+describe("Testing <List /> searching teste", () => {
+  let wrapper = null
+  let tags = [
+    {'id': 0, 'category': 'Limpeza', 'color': '#424242'}, 
+    {'id': 1, 'category': 'Alimentação', 'color': '#fff'}
+  ]
+  let receipt = {
+    "emission_date": "2018-09-22",
+    "emission_place": "aqqqqqq",
+    "tax_value": 20.20,
+    "total_price": 123.12,
+    "title": "oi",
+    "description": "teste",
+    "cnpj": "320490234-002",
+  }
+  let props = {
+    receipts: [{...receipt}],
+    search: 'teste'
+  }
+
+  beforeEach(() => {
+    wrapper = shallow(<List {...props}/>)
+  })
+
+  it('should test filterReceipts finding a receipt by its description', () => {
+    wrapper.instance().filterReceipts(props.receipts)
+    expect(wrapper.find('.container-receipts__receipt-data').exists()).toBeTruthy()
+  })
+})
+
+describe("Testing <List /> searching invalid title", () => {
+  let wrapper = null
+  let receipt = {
+    "emission_date": "2018-09-22",
+    "emission_place": "aqqqqqq",
+    "tax_value": 20.20,
+    "total_price": 123.12,
+    "title": "oi",
+    "description": "teste",
+    "cnpj": "320490234-002",
+  }
+  let props = {
+    receipts: [{...receipt}],
+    search: 'oi123'
+  }
+
+  beforeEach(() => {
+    wrapper = shallow(<List {...props}/>)
+  })
+
+  it('should test filterReceipts not finding a receipt by its title', () => {
+    wrapper.instance().filterReceipts(props.receipts)
+    expect(wrapper.find('.container-receipts__receipt-data').exists()).toBe(false)
+  })
 })
