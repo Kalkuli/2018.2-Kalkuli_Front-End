@@ -7,6 +7,7 @@ import BackDrop from '../../BackDrop/BackDrop'
 import loginInputs from '../../../../helpers/loginInputs'
 import logUserIn from '../../../../services/logUserIn'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import * as actionTypes from '../../../../store/actions/actions'
 export class HomeNavBar extends Component {
   
@@ -38,7 +39,7 @@ export class HomeNavBar extends Component {
     if(smallDevice) {
       return(
         <div className={styles.join(' ')}>
-          <a><h1 className="nav__logo">Kalkuli</h1></a>
+          <Link style={{ textDecoration: 'none' }} to='/'><h1 className="nav__logo">Kalkuli</h1></Link>
           <nav className="nav__end">
             <a onClick={(event) => this.handleLogIn(event)} className="nav__link" href="">Log in</a>
             {this.showLogin()}
@@ -49,7 +50,7 @@ export class HomeNavBar extends Component {
     } else {
       return(
         <div className={styles.join(' ')}>
-          <a><h1 className="nav__logo">Kalkuli</h1></a>
+          <Link style={{ textDecoration: 'none' }} to='/'><h1 className="nav__logo">Kalkuli</h1></Link>
           <nav className="nav__end">
             <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
             <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
@@ -132,7 +133,10 @@ export class HomeNavBar extends Component {
 
   handleLogin = (event) => {
     event.preventDefault()
-    this.setState({showLogin: true})
+    if(this.props.auth_token)
+      this.props.onConfirmOk()
+    else
+      this.setState({showLogin: true})
   }
 
   onConfirmLoginHandler = async () => {
@@ -157,10 +161,15 @@ export class HomeNavBar extends Component {
   onCloseLogin = () => {this.setState({showLogin: false})}
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapStateToProps = state => {
+  return {
+    auth_token: state.auth_token
+  }
+}
+export const mapDispatchToProps = dispatch => {
   return {
     onAddAuthToken: (token) => dispatch({ type: actionTypes.ADD_AUTH_TOKEN, auth_token: token})
   }
 }
 
-export default connect(null, mapDispatchToProps)(HomeNavBar)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavBar)

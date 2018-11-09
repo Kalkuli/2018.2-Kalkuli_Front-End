@@ -12,12 +12,10 @@ class App extends Component {
   
   componentWillMount() {
     let token = localStorage.getItem('auth_token')
-    console.log(token)
     this.props.onAddAuthToken(token)
   }
 
   render() {
-    this.props.auth_token ? console.log('logado') : console.log('tchau')
     return (
       <BrowserRouter>
        <Switch>
