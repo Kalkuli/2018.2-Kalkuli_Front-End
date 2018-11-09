@@ -95,8 +95,8 @@ class HomePage extends Component{
   showRegister = () =>{
     return (
       <Fragment>
-          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
           <Register show={this.state.newCompany} OKfunc={this.onConfirmOk}/>
+          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
       </Fragment>
     )
   }
