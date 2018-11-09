@@ -18,7 +18,7 @@ describe("Testing <ReceiptList/>", () => {
   const spyOnTagsAdded = jest.fn()
   const props = {
     onReceiptsAdded: spyOnReceiptsAdded,
-    onTagsAdded: spyOnTagsAdded
+    onTagsAdded: spyOnTagsAdded,
   }
   
   beforeEach(() => {
@@ -80,6 +80,50 @@ describe("Testing <ReceiptList/>", () => {
 
   it('should find MenuButton', () => {
     expect(wrapper.find(MenuButton).exists()).toBe(true)
+  })
+
+  it('should test updateSearch', () => {
+    const event = {
+      target: {
+        value: 'Pipoca'
+      }
+    }
+    wrapper.instance().updateSearch(event)
+    expect(wrapper.state('search')).toMatch('Pipoca')
+  })
+
+  it('should test filterReceipts with existing receipts and match title', () => {
+    const receipts = [{
+      title: 'Banana',
+      description: 'Fruta'
+    },
+    {
+      title: 'Pipoca',
+      description: 'Derivado de milho'
+    }]
+    const object = [{
+      title: 'Banana',
+      description: 'Fruta'
+    }]
+    wrapper.setState({search: 'Banana'})
+    expect(wrapper.instance().filterReceipts(receipts)).toMatchObject(object)
+  })
+
+  it('should test filterReceipts with existing receipts and match description', () => {
+    const receipts = [{
+      title: 'Banana',
+      description: 'Fruta'
+    },
+    {
+      title: 'Pipoca',
+      description: 'Derivado de milho'
+    }]
+    const object = [{
+      title: 'Banana',
+      description: 'Fruta'
+    }]
+    wrapper.setState({search: 'Fruta'})
+    expect(wrapper.instance().filterReceipts(receipts)).toMatchObject(object)
   })
 
 }) 

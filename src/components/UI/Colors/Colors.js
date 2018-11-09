@@ -3,37 +3,7 @@ import './Colors.scss'
 import BaseButton from '../Button/BaseButton/BaseButton';
 import newTag from '../../../services/newTag'
 import Confirmation from '../Confirmation/Confirmation';
-
-const colors = [{
-    color: '#FF4F78'
-},
-{
-    color: '#8037FF'
-},
-{
-    color: '#00DF6B'
-},
-{
-    color: '#E045C1'
-},
-{
-    color: '#00CFDA'
-},
-{
-    color: '#FFA312'
-},
-{
-    color: '#005D27'
-},
-{
-    color: '#451259'
-},
-{
-    color: '#d8bd22'
-},
-{
-    color: '#3951b2'
-}]
+import colors from '../../../helpers/colors.json'
 
 class Colors extends Component {
     state = {
