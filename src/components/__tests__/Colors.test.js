@@ -5,38 +5,6 @@ import Colors from '../UI/Colors/Colors'
 jest.mock('../../services/newTag')
 configure({adapter: new Adapter()})
 
-const colors = [{
-    color: '#FF4F78'
-},
-{
-    color: '#8037FF'
-},
-{
-    color: '#00DF6B'
-},
-{
-    color: '#E045C1'
-},
-{
-    color: '#00CFDA'
-},
-{
-    color: '#FFA312'
-},
-{
-    color: '#005D27'
-},
-{
-    color: '#451259'
-},
-{
-    color: '#d8bd22'
-},
-{
-    color: '#3951b2'
-}]
- 
-
 describe('Testing <Colors/>', () => {
     let wrapper = null
     let instance = null

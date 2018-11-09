@@ -21,12 +21,7 @@ export class ReceiptList extends Component {
         this.fetchReceipts()
     }
     render() {
-        let filteredReceipts = this.props.receipts.filter((receipt) => {
-            if(receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                return receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-            else if(receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                return receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-        })
+        let filteredReceipts = this.filterReceipts(this.props.receipts)
         return (
             <div className='receipts'>
                 <Navbar/>
@@ -39,6 +34,18 @@ export class ReceiptList extends Component {
                 <MenuButton /> 
             </div>
         )
+    }
+
+    filterReceipts = (receipts) => {
+        if(receipts){
+            let filteredReceipts = receipts.filter((receipt) => {
+                if(receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                    return receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                else if(receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                    return receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+            })
+            return filteredReceipts
+        }
     }
 
     updateSearch = (event) => {
