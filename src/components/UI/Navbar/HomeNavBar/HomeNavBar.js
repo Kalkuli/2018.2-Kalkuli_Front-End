@@ -5,12 +5,13 @@ import SignUp from '../../Button/SignUp/SignUp'
 import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
 import loginInputs from '../../../../helpers/loginInputs'
+import axios from 'axios'
 
 class HomeNavBar extends Component {
   
   state = {
     isTop: true,
-    showLogin: true,
+    showLogin: false,
     inputsAreValid: false,
     inputs: loginInputs,
   }
@@ -136,7 +137,14 @@ class HomeNavBar extends Component {
       'email': this.state.inputs['email'].value,
       'password': this.state.inputs['password'].value,
     }
-    console.log(user)
+    axios.post('http://172.21.0.1:5008/api/v1/auth/login', user)
+    .then(response => {
+      console.log(response)
+      
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
   }
 
   onCloseLogin = () => {this.setState({showLogin: false})}
