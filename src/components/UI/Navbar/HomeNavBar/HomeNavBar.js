@@ -14,6 +14,7 @@ class HomeNavBar extends Component {
     showLogin: false,
     inputsAreValid: false,
     inputs: loginInputs,
+    registration: ''
   }
   
   componentDidMount() {
@@ -65,7 +66,9 @@ class HomeNavBar extends Component {
     if(this.state.showLogin){
       return (
         <React.Fragment>
-          <Login  inputs={this.state.inputs} 
+          <Login  registration={this.state.registration}
+                  onConfirmOk={this.onCloseErrorMessage}
+                  inputs={this.state.inputs} 
                   inputsAreValid={this.state.inputsAreValid} 
                   onConfirm={this.onConfirmLoginHandler}
                   onChangeHandler={this.onChangeHandler}
@@ -139,13 +142,16 @@ class HomeNavBar extends Component {
     }
     axios.post('http://172.21.0.1:5008/api/v1/auth/login', user)
     .then(response => {
-      console.log(response)
-      
+      console.log(response.data.auth_token)
+      this.setState({registration: 'done'})
+      this.props.onConfirmOk()
     })
     .catch(err => {
-      console.log(err.response)
+      this.setState({registration: 'fail'})
     })
   }
+
+  onCloseErrorMessage = () => {this.setState({registration: ''})}
 
   onCloseLogin = () => {this.setState({showLogin: false})}
 }

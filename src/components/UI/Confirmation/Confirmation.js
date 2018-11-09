@@ -5,7 +5,6 @@ import Modal from '../Modal/Modal'
 import BaseButton from '../Button/BaseButton/BaseButton'
 import error from '../../../assets/img/error.svg'
 
-
 const Confirmation = (props) => {
     let styleText = ["confirm-message"]
     let buttonType

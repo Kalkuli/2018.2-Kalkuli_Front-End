@@ -115,12 +115,9 @@ class Form extends Component {
         axios.post('http://172.21.0.1:5008/api/v1/auth/register', registerData)
         .then(response =>{
             this.setState({registration: 'done'})
-            console.log(response)
         })
-        .catch((error)=>{
+        .catch(err =>{
             this.setState({registration: 'fail'})
-            textContent = error.message
-            console.log(error.response)
         })
     }
 

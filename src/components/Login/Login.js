@@ -4,12 +4,19 @@ import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import './Login.scss'
 import InputField from '../UI/Input/InputField'
 import eyeImg from '../../assets/img/eye-open.svg'
+import Confirmation from '../UI/Confirmation/Confirmation'
+
 const Login = (props) => {
+
+  if(props.registration === 'fail')
+    return <Confirmation  content="Não foi possível logar, confira seus dados" 
+                          onConfirmOk={props.onConfirmOk} 
+                          valid={props.registration} />
+    
   let {inputs} = props
   return(
     <Modal show click={props.onCloseLogIn}>
       <div className="login">
-        {/* <div className="closeX"></div> */}
         <h1 className="login__title">Login</h1>
         <div className="login__form">
           {Object.keys(inputs).map(key => (

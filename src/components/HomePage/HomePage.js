@@ -16,13 +16,13 @@ import Register from '../Register/Form'
 class HomePage extends Component{
 
   state = {
-    newCompany: false 
+    newCompany: false
   }
 
   render(){
     return (
       <Fragment>
-        <HomeNavBar click={this.registerClick}/>
+        <HomeNavBar onConfirmOk={this.onConfirmOk} click={this.registerClick}/>
         {this.state.newCompany ? this.showRegister() : null}
         <section className="header">
           <div className="header__container">
