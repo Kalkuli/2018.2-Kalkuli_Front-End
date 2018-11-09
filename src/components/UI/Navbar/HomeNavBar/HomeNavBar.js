@@ -93,7 +93,6 @@ export class HomeNavBar extends Component {
   }
 
   onChangeHandler = (event, inputKey) => {
-    console.log(this.state.inputs)
 		let inputState = {...this.state.inputs}
     let inputElement = {...inputState[inputKey]}
     inputElement.value = event.target.value
