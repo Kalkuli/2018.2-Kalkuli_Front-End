@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
@@ -6,7 +6,7 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
-export class List extends React.Component {
+export class List extends Component {
 
 	state = {
 		showModal: false,
@@ -24,8 +24,9 @@ export class List extends React.Component {
 																	tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
 																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
 		}
-
-		let receipts = JSON.parse(JSON.stringify(this.props.receipts))
+		let filteredReceipts = this.filterReceipts(this.props.receipts)
+		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
+		
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
@@ -62,6 +63,18 @@ export class List extends React.Component {
 				)})}
 			</div>
 		)
+	}
+
+	filterReceipts = (receipts) => {
+		if(receipts){
+            let filteredReceipts = receipts.filter((receipt) => {
+                if(receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
+                    return receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+                else if(receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
+                    return receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+            })
+            return filteredReceipts
+        }
 	}
 
 	getTagName = (tagId) => { 

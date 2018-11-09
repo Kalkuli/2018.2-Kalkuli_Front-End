@@ -13,7 +13,6 @@ export class ReceiptList extends Component {
     state = {  
         receiptsLoaded: false,
         tagsLoaded: false,
-        loaded: false,
         search: ''
     }
     componentDidMount() {
@@ -21,31 +20,18 @@ export class ReceiptList extends Component {
         this.fetchReceipts()
     }
     render() {
-        let filteredReceipts = this.filterReceipts(this.props.receipts)
         return (
             <div className='receipts'>
                 <Navbar/>
                 <div className='receipts__search-receipts'>
                     <input className='receipts__search-receipts__input' value={this.state.search} onChange={this.updateSearch} type='text' placeholder='Procurando algo?'></input><img className='receipts__search-receipts__input-button' src={searchIcon} type='submit'></img>
                 </div>
-                { this.state.loaded && <List    receipts={filteredReceipts} 
+                { this.state.receiptsLoaded && <List search = {this.state.search}
                                                 onGetAllReceipts={this.fetchReceipts}
                                                 isSmall={smallDevice} /> }
                 <MenuButton /> 
             </div>
         )
-    }
-
-    filterReceipts = (receipts) => {
-        if(receipts){
-            let filteredReceipts = receipts.filter((receipt) => {
-                if(receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                    return receipt.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-                else if(receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                    return receipt.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-            })
-            return filteredReceipts
-        }
     }
 
     updateSearch = (event) => {
@@ -55,7 +41,6 @@ export class ReceiptList extends Component {
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
         this.props.onReceiptsAdded(receipts)
-        console.log(receipts)
         this.setState({ receiptsLoaded: true })
     }
 
