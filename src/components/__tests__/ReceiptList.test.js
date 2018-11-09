@@ -81,38 +81,4 @@ describe("Testing <ReceiptList/>", () => {
     expect(wrapper.state('search')).toMatch('Pipoca')
   })
 
-  it('should test filterReceipts with existing receipts and match title', () => {
-    const receipts = [{
-      title: 'Banana',
-      description: 'Fruta'
-    },
-    {
-      title: 'Pipoca',
-      description: 'Derivado de milho'
-    }]
-    const object = [{
-      title: 'Banana',
-      description: 'Fruta'
-    }]
-    wrapper.setState({search: 'Banana'})
-    expect(wrapper.instance().filterReceipts(receipts)).toMatchObject(object)
-  })
-
-  it('should test filterReceipts with existing receipts and match description', () => {
-    const receipts = [{
-      title: 'Banana',
-      description: 'Fruta'
-    },
-    {
-      title: 'Pipoca',
-      description: 'Derivado de milho'
-    }]
-    const object = [{
-      title: 'Banana',
-      description: 'Fruta'
-    }]
-    wrapper.setState({search: 'Fruta'})
-    expect(wrapper.instance().filterReceipts(receipts)).toMatchObject(object)
-  })
-
 }) 
