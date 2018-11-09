@@ -4,20 +4,21 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 import HomePage from './components/HomePage/HomePage'
-import ReceiptAdder from './components/Receipt/ReceiptAdder/ReceiptAdder'
-
-import {  BrowserRouter,Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import {  BrowserRouter,Route, Switch, Redirect } from 'react-router-dom'
 
 class App extends Component {
+  
   render() {
+    this.props.auth_token ? console.log('logado') : console.log('tchau')
     return (
       <BrowserRouter>
-        <Switch>
+       <Switch>
           <Route path='/' exact component={HomePage}/> 
-          <Route path='/list-all-receipts'component={ReceiptList} />
-          <Route path='/dashboard' component={Dashboard} />
-          <Route path='/reports' component={Reports} />
-          <Route path='/receipt' component={ReceiptView} />
+          <PrivateRoute token={this.props.auth_token} path='/list-all-receipts'component={ReceiptList} />
+          <PrivateRoute token={this.props.auth_token} path='/dashboard' component={Dashboard} />
+          <PrivateRoute token={this.props.auth_token} path='/reports' component={Reports} />
+          <PrivateRoute token={this.props.auth_token} path='/receipt' component={ReceiptView} />
           <Route render={() => <h1>Not found</h1>} />
         </Switch>
       </BrowserRouter>
@@ -25,4 +26,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const PrivateRoute = ({ component: Component, token: token, ...rest}) => (
+  <Route {...rest} render={(props) => (
+    token ? <Component {...props}/> : <Redirect to='/'/>)} />
+)
+
+const mapStateToProps = state => {
+  return {
+    auth_token: state.auth_token
+  }
+}
+
+export default connect(mapStateToProps)(App);
