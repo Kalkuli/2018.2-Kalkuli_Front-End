@@ -20,10 +20,9 @@ describe('Testing <HomeNavBar />', () => {
     onConfirmOk: spyOnConfirmOk,
     onAddAuthToken: spyOnAddAuthToken
   }
-
   const event = {
-    taget: {
-      value: ''
+    target: {
+      value: 'youssef'
     },
     preventDefault: spyPreventDefault
   }
@@ -129,4 +128,21 @@ describe('Testing <HomeNavBar />', () => {
     expect(wrapper.state('showLogin')).toBe(true)
   })
 
+  it('should render a transparent navbar', () => {
+    wrapper.setState({isTop: false})
+    expect(wrapper.instance().getNavBarStyles()).toMatch('nav color')
+  })
+
+  it('should test onChangeHandler with a valid key', () => {
+    const spyCheckValidity = jest.fn()
+    wrapper.setState({checkValidity: spyCheckValidity})
+    wrapper.instance().onChangeHandler(event, 'password')
+  })
+
+  it('should test onChangeHandler with a invalid key', () => {
+    const spyCheckValidity = jest.fn()
+    wrapper.setState({checkValidity: spyCheckValidity})
+    const event = { target: { value: '' } }
+    wrapper.instance().onChangeHandler(event, 'password')
+  })
 })
