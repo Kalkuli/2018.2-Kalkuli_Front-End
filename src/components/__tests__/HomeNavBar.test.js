@@ -1,9 +1,12 @@
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {HomeNavBar, mapDispatchToProps} from '../UI/Navbar/HomeNavBar/HomeNavBar'
+import {HomeNavBar, mapStateToProps, mapDispatchToProps} from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import Login from '../../components/Login/Login'
 configure({adapter: new Adapter()})
+jest.mock('../../services/logUserIn.js')
+import localStorage from '../../setupTests';
+window.localStorage = localStorage;
 
 describe('Testing <HomeNavBar />', () => {
   const validation = {
@@ -12,12 +15,21 @@ describe('Testing <HomeNavBar />', () => {
     minLength: 5,
     maxLength: 30
   }
+  
+  const spyOnConfirmOk = jest.fn()
+  const spyOnAddAuthToken = jest.fn()
+  const props = {
+    onConfirmOk: spyOnConfirmOk,
+    onAddAuthToken: spyOnAddAuthToken
+  }
+
   let wrapper = null
   beforeEach(() => {
-      window.matchMedia = jest.fn(query => ({ 
-        matches: query.indexOf('(min-width: 800px)') !== -1, 
-      })); 
-      wrapper = shallow(<HomeNavBar />)
+
+    window.matchMedia = jest.fn(query => ({ 
+      matches: query.indexOf('(min-width: 800px)') !== -1, 
+    }))
+    wrapper = shallow(<HomeNavBar {...props}/>)
   })
 
   it('should call showLogin()', () => {
@@ -42,6 +54,13 @@ describe('Testing <HomeNavBar />', () => {
     expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_AUTH_TOKEN'})
   })
 
+  it('should test mapStateToProps for retrieving auth_token', () => {
+    const initialState = {
+      auth_token: 'token'
+    }
+    expect(mapStateToProps(initialState).auth_token).toMatch('token')
+  })
+
   it('should showLogin', () => {
     wrapper.setState({showLogin: true})
     expect(wrapper.find(Login).exists()).toBe(true)
@@ -60,4 +79,37 @@ describe('Testing <HomeNavBar />', () => {
     wrapper.instance().onCloseLogin()
     expect(wrapper.state(('showLogin'))).toBe(false)
   })
+
+  it('should log a valid user', () => {
+    wrapper.setState({inputs: {
+      'email': {
+        'value': 'youssef@gmail.com'
+      },
+      'password': {
+        'value': 'asdfasdf'
+      }
+    }})
+    wrapper.instance().onConfirmLoginHandler()
+    //expect(spyOnAddAuthToken).toHaveBeenCalled()
+    //expect(spyOnConfirmOk).toHaveBeenCalled()
+    localStorage.setItem('auth_token', 'token')
+    expect(localStorage.store).toEqual({ auth_token: 'token'})
+  })
+
+  it('should not log a invalid user', () => {
+    wrapper.setState({
+      inputs: {
+        'email': {
+          'value': 'youssef@gmail.com'
+        },
+        'password': {
+          'value': null
+        }
+      },
+      registration: ''
+    })
+    expect(wrapper.state('registration')).toMatch('')
+    wrapper.instance().onConfirmLoginHandler()
+  })
+
 })

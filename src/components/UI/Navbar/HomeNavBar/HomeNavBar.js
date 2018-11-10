@@ -29,7 +29,6 @@ export class HomeNavBar extends Component {
   }
   
   render() {
-    
     const smallDevice = window.matchMedia('(max-width: 720px)').matches
     let styles = ["nav"]
     if(this.state.isTop)
@@ -146,6 +145,7 @@ export class HomeNavBar extends Component {
     }
 
     let response = await logUserIn(user)
+    console.log(response)
     if(response !== 'error') {
       this.setState({registration: 'done'})
       this.props.onAddAuthToken(response)
