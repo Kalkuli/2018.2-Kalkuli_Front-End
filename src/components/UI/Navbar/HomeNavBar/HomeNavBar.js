@@ -1,14 +1,13 @@
 import React,{Component} from 'react'
 import './HomeNavBar.scss'
-import Scrollchor from 'react-scrollchor';
-import SignUp from '../../Button/SignUp/SignUp'
 import Login from '../../../Login/Login'
 import BackDrop from '../../BackDrop/BackDrop'
 import loginInputs from '../../../../helpers/loginInputs'
 import logUserIn from '../../../../services/logUserIn'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import * as actionTypes from '../../../../store/actions/actions'
+import HomeNavBarLinks from './HomeNavBarLinks'
+
 export class HomeNavBar extends Component {
   
   state = {
@@ -30,37 +29,19 @@ export class HomeNavBar extends Component {
   
   render() {
     const smallDevice = window.matchMedia('(max-width: 720px)').matches
-    let styles = ["nav"]
-    if(this.state.isTop)
-      styles.push("transparent")
-    else
-      styles.push("color")
-    if(smallDevice) {
-      return(
-        <div className={styles.join(' ')}>
-          <Link style={{ textDecoration: 'none' }} to='/'><h1 className="nav__logo">Kalkuli</h1></Link>
-          <nav className="nav__end">
-            <a onClick={(event) => this.handleLogIn(event)} className="nav__link" href="">Log in</a>
-            {this.showLogin()}
-            <SignUp size="small" click={this.props.click}/>
-          </nav>
-        </div>
-      )
-    } else {
-      return(
-        <div className={styles.join(' ')}>
-          <Link style={{ textDecoration: 'none' }} to='/'><h1 className="nav__logo">Kalkuli</h1></Link>
-          <nav className="nav__end">
-            <Scrollchor to="#about" className="nav__link">Sobre</Scrollchor>
-            <Scrollchor to="#features" className="nav__link">Funcionalidades</Scrollchor>
-            <div className="nav__bar"></div>
-            <a onClick={(event) => this.handleLogin(event)} className="nav__link" href="">Log in</a>
-            {this.showLogin()}
-            <SignUp size="small" click={this.props.click}/>
-          </nav>
-        </div>
-      )
-    }
+    let styles = this.getNavBarStyles()
+    let size = smallDevice ? 'small' : 'large'
+
+    return (
+      <React.Fragment>
+        {this.showLogin()}
+        <HomeNavBarLinks  style={styles} 
+                          size={size} 
+                          handleLogin={(event) => this.handleLogin(event)}
+                          onSingUpHandler={this.props.click}/>
+      </React.Fragment>
+
+    )
   }
 
   showLogin = () => {
@@ -132,10 +113,13 @@ export class HomeNavBar extends Component {
 
   handleLogin = (event) => {
     event.preventDefault()
+    console.log(this.props.auth_token)
+
     if(this.props.auth_token)
       this.props.onConfirmOk()
     else
       this.setState({showLogin: true})
+
   }
 
   onConfirmLoginHandler = async () => {
@@ -145,7 +129,6 @@ export class HomeNavBar extends Component {
     }
 
     let response = await logUserIn(user)
-    console.log(response)
     if(response !== 'error') {
       this.setState({registration: 'done'})
       this.props.onAddAuthToken(response)
@@ -159,6 +142,13 @@ export class HomeNavBar extends Component {
   onCloseErrorMessage = () => {this.setState({registration: ''})}
 
   onCloseLogin = () => {this.setState({showLogin: false})}
+
+  getNavBarStyles = () => {
+    if(this.state.isTop)
+      return "nav transparent"
+    else
+      return "nav color"
+  }
 }
 
 export const mapStateToProps = state => {
