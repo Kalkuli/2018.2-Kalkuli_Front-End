@@ -1,11 +1,7 @@
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { ReceiptCompare, mapStateToProps } from '../Receipt/ReceiptCompare/ReceiptCompare'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import receiptInputs from '../../helpers/receiptInputs'
 jest.mock('../../services/getAllTags')
-configure({adapter: new Adapter()})
 
 describe('Testing <ReceiptCompare/>', () => {
   let wrapper = null

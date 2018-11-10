@@ -1,13 +1,9 @@
 import '../../services/__mocks__/matchMedia'
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
 jest.mock('../../services/getAllTags.js')
-configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptList/>", () => {
   

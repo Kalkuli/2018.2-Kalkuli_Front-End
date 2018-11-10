@@ -1,12 +1,7 @@
 import '../../services/__mocks__/matchMedia'
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { List, mapStateToProps } from '../Receipt/ReceiptList/List'
 import ReceiptView from '../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../UI/BackDrop/BackDrop'
-
-configure({adapter: new Adapter()})
 
 describe("Testing <List />", () => {
   let wrapper = null

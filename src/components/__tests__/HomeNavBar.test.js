@@ -1,12 +1,9 @@
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import {HomeNavBar, mapStateToProps, mapDispatchToProps} from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import Login from '../../components/Login/Login'
-configure({adapter: new Adapter()})
+import localStorage from '../../services/__mocks__/localStorage'
+
 jest.mock('../../services/logUserIn.js')
-import localStorage from '../../setupTests';
-window.localStorage = localStorage;
+window.localStorage = localStorage
 
 describe('Testing <HomeNavBar />', () => {
   const validation = {
