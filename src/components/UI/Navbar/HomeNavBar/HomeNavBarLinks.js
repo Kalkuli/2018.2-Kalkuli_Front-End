@@ -15,12 +15,10 @@ const HomeNavBarLinks = ({style, size, handleLogin, onSingUpHandler}) => (
           <div className="nav__bar"></div>
         </React.Fragment> : null
       }
-      <a onClick={handleLogin} className="nav__link" href="">Log in</a>
+      <a onClick={(event) => handleLogin(event)} className="nav__link" href="">Log in</a>
       <SignUp size="small" click={onSingUpHandler}/>
     </nav>
   </div>
 )
-
-
 
 export default HomeNavBarLinks

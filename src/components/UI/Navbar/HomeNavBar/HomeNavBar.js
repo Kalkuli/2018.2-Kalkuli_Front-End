@@ -37,7 +37,7 @@ export class HomeNavBar extends Component {
         {this.showLogin()}
         <HomeNavBarLinks  style={styles} 
                           size={size} 
-                          handleLogin={(event) => this.handleLogin(event)}
+                          handleLogin={this.handleLogin}
                           onSingUpHandler={this.props.click}/>
       </React.Fragment>
 

@@ -15,14 +15,21 @@ describe('Testing <HomeNavBar />', () => {
   
   const spyOnConfirmOk = jest.fn()
   const spyOnAddAuthToken = jest.fn()
+  const spyPreventDefault = jest.fn()
   const props = {
     onConfirmOk: spyOnConfirmOk,
     onAddAuthToken: spyOnAddAuthToken
   }
 
+  const event = {
+    taget: {
+      value: ''
+    },
+    preventDefault: spyPreventDefault
+  }
+
   let wrapper = null
   beforeEach(() => {
-
     window.matchMedia = jest.fn(query => ({ 
       matches: query.indexOf('(min-width: 800px)') !== -1, 
     }))
@@ -87,8 +94,6 @@ describe('Testing <HomeNavBar />', () => {
       }
     }})
     wrapper.instance().onConfirmLoginHandler()
-    //expect(spyOnAddAuthToken).toHaveBeenCalled()
-    //expect(spyOnConfirmOk).toHaveBeenCalled()
     localStorage.setItem('auth_token', 'token')
     expect(localStorage.store).toEqual({ auth_token: 'token'})
   })
@@ -107,6 +112,21 @@ describe('Testing <HomeNavBar />', () => {
     })
     expect(wrapper.state('registration')).toMatch('')
     wrapper.instance().onConfirmLoginHandler()
+  })
+
+  it('should persist an user by not asking his login again while there is auth_token in localStorage', () => {
+    wrapper = shallow(<HomeNavBar {...props} auth_token='token'/>)
+    wrapper.instance().handleLogin(event)
+    expect(spyPreventDefault).toHaveBeenCalled()
+    expect(spyOnConfirmOk).toHaveBeenCalled()
+  })
+
+  it('should show login box when there is not a saved auth_token', () => {
+    wrapper.setProps({auth_token: null})
+    wrapper.setState({showLogin: false})
+    expect(wrapper.state('showLogin')).toBe(false)
+    wrapper.instance().handleLogin(event)
+    expect(wrapper.state('showLogin')).toBe(true)
   })
 
 })
