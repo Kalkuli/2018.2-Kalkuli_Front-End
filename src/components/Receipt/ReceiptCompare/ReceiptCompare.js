@@ -22,6 +22,7 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
+		console.log(this.state.selectedTag)
 		if(!this.state.selectedTag.hasOwnProperty('id'))
 			this.createIdForSelectedTag()
 		
@@ -61,8 +62,6 @@ export class ReceiptCompare extends Component {
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
-	
-		console.log(receipt)
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
 			"emission_place": receiptInput['emission_place'].value,
@@ -74,7 +73,6 @@ export class ReceiptCompare extends Component {
 			"products": [],
 			"tag_id": this.state.selectedTag.id
 		}
-		console.log(receipt)
 		this.props.onConfirmButton(receipt)
 	}
 
@@ -103,7 +101,6 @@ export class ReceiptCompare extends Component {
 		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
 		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
 		this.setState({selectedTag: newSelectedTag})
-		console.log(this.state.selectedTag) 
 	}
 
 	onClickHandler = (inputKey) => {

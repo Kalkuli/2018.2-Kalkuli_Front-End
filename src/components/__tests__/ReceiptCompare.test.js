@@ -8,13 +8,20 @@ describe('Testing <ReceiptCompare/>', () => {
 
   const spyOnConfirmButton = jest.fn()
   const props = {
-    onConfirmButton: spyOnConfirmButton
+    onConfirmButton: spyOnConfirmButton,
+    tags: [{}],
   }
-
+  
   beforeEach(() => {
+    Array.prototype.findIndex = jest.fn()
+    Object.prototype.hasOwnProperty = jest.fn(key => false)
     wrapper = shallow(<ReceiptCompare {...props} />)
+    wrapper.setState({selectedTag: {
+      'category': 'food',
+      'color': 'red',
+    }})
   })
-
+  
   it('should find BaseButton', () => {
     expect(wrapper.find(BaseButton).exists()).toBe(true)
   })
