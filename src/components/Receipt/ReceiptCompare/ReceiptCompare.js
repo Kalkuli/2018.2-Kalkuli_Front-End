@@ -17,17 +17,21 @@ export class ReceiptCompare extends Component {
 	}
 
 	componentDidMount() {
-		this.initInputs()
 		this.setState({selectedTag: this.props.selectedTag, receipt: this.props.fileExtracted})
+		this.initInputs()
 	}
 	
 	render() {
+		if(!this.state.selectedTag.hasOwnProperty('id'))
+			this.createIdForSelectedTag()
+		
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
 		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
+		
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -57,7 +61,8 @@ export class ReceiptCompare extends Component {
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
-		
+	
+		console.log(receipt)
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
 			"emission_place": receiptInput['emission_place'].value,
@@ -69,6 +74,7 @@ export class ReceiptCompare extends Component {
 			"products": [],
 			"tag_id": this.state.selectedTag.id
 		}
+		console.log(receipt)
 		this.props.onConfirmButton(receipt)
 	}
 
@@ -93,6 +99,13 @@ export class ReceiptCompare extends Component {
 		)
 	}
 
+	createIdForSelectedTag = () => {
+		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
+		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
+		this.setState({selectedTag: newSelectedTag})
+		console.log(this.state.selectedTag) 
+	}
+
 	onClickHandler = (inputKey) => {
 		let inputState = {...this.state.receiptInput}
 		let inputElement = {...inputState[inputKey]}
@@ -114,7 +127,6 @@ export class ReceiptCompare extends Component {
 		for(let inputKey in inputState) {
 			receiptIsValid = inputState[inputKey].valid && receiptIsValid
 		}
-
 		this.setState({receiptInput: inputState, receiptIsValid: receiptIsValid})
 	}
 
