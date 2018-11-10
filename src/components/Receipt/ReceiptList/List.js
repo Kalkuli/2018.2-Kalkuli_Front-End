@@ -79,14 +79,14 @@ export class List extends Component {
 	}
 
 	getTagName = (tagId) => { 
-		if(this.props.tags !== undefined && this.props.tags.length !== 0)
+		if(!(this.props.tags === undefined || this.props.tags.length == 0))
 			return this.props.tags[tagId - 1].category
 		else
 			return 'carregando...'
 	}
 
 	getTagColor = (tagId) => { 
-		if(this.props.tags !== undefined && this.props.tags.length !== 0)
+		if(!(this.props.tags === undefined || this.props.tags.length == 0))
 			return this.props.tags[tagId - 1].color 
 		else
 			return '#424242'

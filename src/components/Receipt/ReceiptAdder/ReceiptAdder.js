@@ -29,7 +29,7 @@ class ReceiptAdder extends Component {
       content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
     } 
     else if (this.state.completed && !this.state.creatingCategory) {
-      content = <Confirmation content={'Nota adicionada com sucesso'} onConfirmOk={this.onConfirmOk} />
+      content = <Confirmation valid="done" content={'Nota adicionada com sucesso'} onConfirmOk={this.props.onConfirmOk} />
     }
     else if (this.state.creatingCategory){
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>

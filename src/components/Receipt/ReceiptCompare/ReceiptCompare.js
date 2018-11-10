@@ -17,9 +17,8 @@ export class ReceiptCompare extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ receipt: this.props.fileExtracted })
 		this.initInputs()
-		this.setState({selectedTag: this.props.selectedTag})
+		this.setState({selectedTag: this.props.selectedTag, receipt: this.props.fileExtracted})
 	}
 	
 	render() {

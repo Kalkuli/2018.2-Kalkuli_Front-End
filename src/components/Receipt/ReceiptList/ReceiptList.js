@@ -26,9 +26,9 @@ export class ReceiptList extends Component {
                 <div className='receipts__search-receipts'>
                     <input className='receipts__search-receipts__input' value={this.state.search} onChange={this.updateSearch} type='text' placeholder='Procurando algo?'></input><img className='receipts__search-receipts__input-button' src={searchIcon} type='submit'></img>
                 </div>
-                { this.state.receiptsLoaded && <List search = {this.state.search}
-                                                onGetAllReceipts={this.fetchReceipts}
-                                                isSmall={smallDevice} /> }
+                { this.state.receiptsLoaded && <List    search={this.state.search}
+                                                        onGetAllReceipts={this.fetchReceipts}
+                                                        isSmall={smallDevice} /> }
                 <MenuButton /> 
             </div>
         )
