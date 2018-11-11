@@ -1,4 +1,3 @@
-import Adapter from 'enzyme-adapter-react-16'
 import Receipt from '../UI/Receipt/Receipt'
 
 describe('Testing <Receipt />', () => {

@@ -1,10 +1,5 @@
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import Colors from '../UI/Colors/Colors'
-import { doesNotReject } from 'assert';
 jest.mock('../../services/newTag')
-configure({adapter: new Adapter()})
 
 describe('Testing <Colors/>', () => {
     let wrapper = null

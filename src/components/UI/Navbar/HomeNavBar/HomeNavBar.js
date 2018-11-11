@@ -113,13 +113,10 @@ export class HomeNavBar extends Component {
 
   handleLogin = (event) => {
     event.preventDefault()
-    console.log(this.props.auth_token)
-
     if(this.props.auth_token)
       this.props.onConfirmOk()
     else
       this.setState({showLogin: true})
-
   }
 
   onConfirmLoginHandler = async () => {
@@ -131,7 +128,7 @@ export class HomeNavBar extends Component {
     let response = await logUserIn(user)
     if(response !== 'error') {
       this.setState({registration: 'done'})
-      this.props.onAddAuthToken(response)
+      this.props.onAddAuthToken('token')
       this.props.onConfirmOk()
       localStorage.setItem('auth_token', response)
     } else {
