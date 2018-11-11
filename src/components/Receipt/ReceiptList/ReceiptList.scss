@@ -1,102 +1,212 @@
 @import "../../../assets/sass/main";
-
 .container-receipts {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
     width: 90%;
+    height: 70vh;
+    overflow: auto;
     margin: auto;
     &__receipt-data {
         font-size: 1.3rem;
         display: flex;
         flex-direction: column;
-        margin-top: 2.5rem;
-        margin-left: 1.4rem;
-        width: 19rem;
+        width: 100%;
         height: 20rem;
+        padding: .2rem;
+    }
+}
+.data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-all;
+}
+
+.receipts {
+
+    &__search-receipts {
+        margin-right: 10em;
+        margin-bottom: 2em;
+        margin-top: 5em;
+        margin-left: 10em;
+        display: inline-block;
+        position: relative;
+        height: 60px;
+        float: right;
+        padding: 0;
+        position: relative;
+    
+        &__input {
+            transition: all .5s;
+            height: 35px;
+            font-size: 25px;
+            display: inline-block;
+            font-family: $montserrat;
+            border: none;
+            outline: none;
+            color: $color-dark-blue;
+            padding: 3px;
+            padding-right: 60px;
+            width: 0px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            z-index: 3;
+            transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+            cursor: pointer;
+    
+            &:focus:hover {
+                border-bottom: 1px solid $color-dark-blue;
+            }
+    
+            &:focus {
+                width: 400px;
+                z-index: 1;
+                border-bottom: 1px solid $color-dark-blue;
+                cursor: text;
+            }
+        }
+    
+        &__input-button {
+            height: 30px;
+            width: 30px;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            cursor: pointer;
+            transition: opacity .4s ease;
+        }
     }
 }
 
-.data {
-    display: flex;
-    justify-content: space-between;
-    margin: .5rem 0;
+@media (min-width:320px) {
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .container-receipts {
+        &__receipt-data {
+            margin-top: 0;
+            height: 165px;
+        }
+    }
+    .data {
+        justify-content: center;
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 20px;
+    }
+    .receipts {
+        &__search-receipts {
+            margin-right: 2em;
+            margin-bottom: 1em;
+            margin-top: 3em;
+
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 250px;
+                }
+            }
+        }
+    }
 }
-
-.receiptplus{
-    background-color: $color-light-blue;
-    border-radius: 20em;
-    width: 90px;
-    height: 90px;
-    position: absolute;
-    bottom: 3em;
-    right: 3em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
-    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .container-receipts {
+        &__receipt-data {
+            margin-top: 0rem;
+            height: 264px;
+        }
+    }
+    .data {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 20px;
+    }
 }
+@media (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .container-receipts {
+        &__receipt-data {
+            margin-top: 0rem;
+            height: 365px;
+        }
+    }
+    .data {
+        justify-content: space-between;
+        &__input {
+            font-size: 100%;
+        }
+    }
 
+    .receipts {
+        &__search-receipts {
+            margin-right: 4em;
+            margin-bottom: 1em;
+            margin-top: 3em;
 
-.receipt__options{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 14em;
-    right: 3.5em;
-    width: auto;
-    align-items: center;
-    
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 250px;
+                }
+            }
+        }
+    }
 }
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .container-receipts {
+        &__receipt-data {
+            margin-top: 0rem;
+            height: 365px;
+        }
+    }
+    .data {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;
 
-.receipt__options--newReceipt{
-    background-color: $color-dark-blue;
-    border-radius: 20em;
-    background-repeat: no-repeat;
-    background-size: 60px;
-    width: 60px;
-    height: 60px;
-    margin: 1.5em;
-    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
-    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
-    
+        &__input {
+            font-size: 100%;
+        }
+    }
+    .receipts {
+        &__search-receipts {
+            margin-right: 5em;
+            margin-bottom: 1em;
+            margin-top: 3em;
+
+            &__input {
+                font-size: 20px;
+
+                &:focus {
+                    width: 400px;
+                }
+            }
+        }
+    }
 }
-
-.receipt__options--newReport{
-    background-color: $color-yellow;
-    border-radius: 20em;
-    background-repeat: no-repeat;
-    background-size: 60px;
-    width: 60px;
-    height: 60px;
-    -webkit-box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
-    box-shadow: 3px 3px 15px 0 rgb(53, 53, 53);
-    margin: 0;
-    
-}
-
-.receipt__img__container{
-    display: flex;
-    align-items: center;
-    height: 60px;
-    justify-content: center !important;
-    
-}
-
-
-.scalehover:hover{
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-.receipt__report__names{
-    position: absolute;
-    bottom: 0;
-    right: 8em; 
-    width: 11em;
-    margin-right: 1.5em;
-    text-align: end;
+@media (min-width:1600px) {
+    .data {
+        &__input {
+            font-size: 103%;
+        }
+    }
+    .receipts {
+        &__search-receipts {
+            margin-right: 10em;
+            margin-bottom: 2em;
+            margin-top: 5em;
+            margin-left: 10em;
+        }
+    }
 }

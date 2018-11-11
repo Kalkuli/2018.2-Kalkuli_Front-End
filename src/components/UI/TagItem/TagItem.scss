@@ -1,0 +1,29 @@
+@import "../../../assets/sass/main";
+.tag-item {
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-bottom: 1px solid rgba($color-light-blue, .8);
+  background-color: $color-white;
+  transition: .4s all;
+  &:hover {
+    background-color: rgba($color-light-blue, .2);
+  }
+  &__container {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    &__color-box {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 4px;
+    }
+    &__name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: .8rem;
+    }
+  }
+}

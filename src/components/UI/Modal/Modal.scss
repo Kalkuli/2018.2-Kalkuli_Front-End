@@ -8,12 +8,13 @@
     z-index: 500;
     background-color: $color-white;
     box-shadow: 1px 1px 10px $color-black;
-    padding: 2rem 4rem;
+    padding: 2rem;
     box-sizing: border-box;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: .5rem;
+    border: 2px solid $color-light-blue;
 }
 
 .show {

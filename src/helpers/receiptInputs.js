@@ -60,7 +60,7 @@ const receiptInputs = {
     touched: false,
     validation: {
       required: true,
-      minLength: 5,
+      minLength: 2,
       maxLength: 10
     }
   },

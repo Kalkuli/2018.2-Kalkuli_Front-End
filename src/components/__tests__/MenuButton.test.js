@@ -1,58 +1,58 @@
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import MenuButton from '../UI/Button/MenuButton/MenuButton'
-
-configure({adapter: new Adapter()})
+import {MenuButton} from '../UI/Button/MenuButton/MenuButton'
 
 describe('Testing <MenuButton/>', () => {
   
   let wrapper = null
+  let instance = null
+
+  const spyHistoryPush = jest.fn()
+  const props = {
+    history: {
+      push: spyHistoryPush
+    }
+  }
+
   beforeEach(() => {
-    wrapper = shallow(<MenuButton />)
+    wrapper = shallow(<MenuButton {...props}/>)
+    instance = wrapper.instance()
+  })
+  
+  it('it should setclickedMenuButton to true when clicking for the first time', () => {
+    wrapper.setState({clickedMenuButton: false})
+    expect(wrapper.state('clickedMenuButton')).toBe(false)
+    instance.onClickMenuButton()
+    expect(wrapper.state('clickedMenuButton')).toBe(true)
   })
 
-  it('should have find menubutton className just once', () => {
-    expect(wrapper.find('.menubutton')).toHaveLength(1)
+  it('it should not setclickedMenuButton to true when not clicking for the first time', () => {
+    wrapper.setState({clickedMenuButton: true})
+    expect(wrapper.state('clickedMenuButton')).toBe(true)
+    instance.onClickMenuButton()
+    expect(wrapper.state('clickedMenuButton')).toBe(true)
   })
 
-  it('should have find options className just once', () => {
-    expect(wrapper.find('.options')).toHaveLength(1)
+  it('should set newReceipt to true when calling onNewReceiptHandler', () => {
+    wrapper.setState({newReceipt: false})
+    instance.onNewReceiptHandler()
+    expect(wrapper.state('newReceipt')).toBe(true)
   })
 
-  it('should render the options elements', () => {
-    expect(wrapper.find('.options__element')).toHaveLength(2)
+  it('should toggle newReceipt when calling onToggleNewReceipt', () => {
+    wrapper.setState({newReceipt: false})
+    instance.onToggleNewReceipt()
+    expect(wrapper.state('newReceipt')).toBe(true)
+    instance.onToggleNewReceipt()
+    expect(wrapper.state('newReceipt')).toBe(false)
   })
 
-  it('should rotate when clicked', () => {
-    wrapper.setProps({rotate: true})
-    expect(wrapper.find('.rotate')).toHaveLength(1)
+  it('should push the route when calling onNewReportHandler', () => {
+    instance.onNewReportHandler()
+    expect(spyHistoryPush).toHaveBeenCalled()
   })
 
-  it('should return to the initial angle', () => {
-    wrapper.setProps({rotate: false})
-    expect(wrapper.find('.rotate').exists()).toBe(false)
+  it('should set newReceipt to false when calling onCloseReceiptAdder', () => {
+    wrapper.setState({newReceipt: true})
+    instance.onCloseReceiptAdder()
+    expect(wrapper.state('newReceipt')).toBe(false)
   })
-
-  it('should be able to show the options', () => {
-    wrapper.setProps({clickedMenuButton: true})
-    expect(wrapper.find('.firstTimeRunning').exists()).toBe(false)
-  })
-
-  it('should hide the options', () => {
-    wrapper.setProps({clickedMenuButton: false})
-    expect(wrapper.find('.firstTimeRunning')).toHaveLength(1)
-  })
-
-  it('should open the MenuButton options', () => {
-    wrapper.setProps({clickedMenuButton: true, rotate: true})
-    expect(wrapper.find('.open')).toHaveLength(1)
-  })
-
-  it('should close the MenuButton options', () => {
-    wrapper.setProps({clickedMenuButton: true, rotate: false})
-    expect(wrapper.find('.close')).toHaveLength(1)
-  })
-
- 
 })

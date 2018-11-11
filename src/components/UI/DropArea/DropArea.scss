@@ -2,7 +2,7 @@
 
 .drop-area {
   height: 45rem;
-  width: 65rem;
+  width: 55rem;
   display: flex;
   margin-top: 2.5rem;
   flex-flow: column;
@@ -12,36 +12,57 @@
   border: 6px dashed rgba($color-light-blue, .6);
   border-radius: 30px;
   transition: all 1s;
-
   &__title {
     font-size: 3rem;
     user-select: none;
     color: $color-light-blue;
   }
-
   &__p {
     font-family: 'Alfa Slab One', cursive;
     margin-top: 25px;
     font-size: 2rem;
     user-select: none;
   }
-
-  @media screen and (max-height: 760px) {
-    height: 40rem;
-  }
 }
-
 .accept {
   border: 6px solid $color-dark-blue;
   box-shadow: 0px 1px 3px $color-black;
 }
-
 .pdf {
   border: 2px solid black;
   height: 500px;
   width: 300px;
 }
-
 .pulsing-text { 
   animation: pulse 1s 2s infinite alternate backwards;
+}
+
+@media screen and (max-height: 760px) {
+  height: 40rem;
+}
+@media (max-width:480px) { 
+  .drop-area {
+    height: 23rem;
+    width: 23rem;
+    margin: auto;
+    &__title {
+      font-size: 2rem;
+    }
+    &__p {
+      font-size: 1.3rem;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width:800px) {
+  .drop-area {
+    height: 35rem;
+    width: 35rem;
+    margin: auto;
+    &__title {
+      font-size: 2.2rem;
+    }
+    &__p {
+      font-size: 1.6rem;
+    }
+  }
 }

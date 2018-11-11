@@ -4,29 +4,242 @@
     background-color: $color-white;
     height: 100vh;
     width: 100vw;
+    position: absolute;
     overflow-x: hidden;
+    
+    &__area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2%;
+        
+        &__content {
+            &__datepicker {
+                width: 302px;
+            }
+            
+            &__resumes {
+                margin-top: 5%;
+                margin-bottom: 5%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-content: flex-start;
+                overflow-y: auto;
+
+                &__button {
+                    margin: 0;
+                }
+            }
+
+        }
+
+        &__report {
+            &__buttons {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-evenly;
+                margin-top: 5%;
+
+                &__button {
+                    margin: 3%;
+                }
+            }
+        }
+
+    }
+
 }
 
-.reports__area {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 4%;
-    padding-right: 4%;
-    padding-left: 4%;
-}
+@media (min-width:320px) {
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .reports {
+        &__area{
+            padding: 5%;
 
-.reports__area__resumes {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90em;
-    justify-content: space-between;
-    align-content: flex-start;
-    height: 40em;
-    overflow-y: auto;
-    padding-top: 2em;
-}
+            &__content {
+                width: 100%;
+                margin: auto;
 
-.reports__button {
-    float: right;
-    margin-right: 5.5em;  
+                &__datepicker {
+                    margin: auto;
+                }
+
+                &__resumes {
+                    max-height: 40em;
+
+                    &__button {
+                        margin-top: 5%;
+                        margin: auto;
+                    }
+                }
+
+            }
+            &__report {
+                margin: auto;
+            }
+        }
+    }
+}
+@media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */ 
+    .reports {
+        &__area{
+            padding: 0;
+
+            &__content {
+                width: 80%;
+
+                &__datepicker {
+                    padding-top: 5%;
+                    margin: auto;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin-top: 5%;
+                    }
+                } 
+            }
+            &__report {
+                margin: auto;
+
+            }
+        }
+    }  
+}
+@media (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+    .reports {
+        &__area{
+            padding: 0;
+            &__content {
+                width: 90%;
+
+                &__datepicker {
+                    margin: auto;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin-top: 5%;
+                    }
+                }
+            }
+            &__report {
+                margin: auto;
+
+            }
+        }
+    }  
+}
+@media (min-width:801px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 90%;
+
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin-top: 5%;
+                    }
+                }
+            }
+            &__report {
+                margin: auto;
+
+            }
+        }
+    }  
+}
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 90%;
+
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin-top: 5%;
+                    }
+                }
+            }
+            &__report {
+                margin: auto;
+            }
+        }
+    }  
+}
+@media (min-width:1100px) {
+    /* hi-res laptops and desktops */ 
+    .reports {
+        &__area{
+            padding: 3%;
+
+            &__content {
+                width: 55%;
+                margin: 0;
+
+                &__datepicker {
+                    padding-top: 0;
+                    margin: 0;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin-top: 5%;
+                    }
+                }
+            }
+            &__report {
+                padding: 0;
+            }
+        }
+    }  
+}
+@media (min-width:1500px) {
+    /* hi-res laptops and desktops */ 
+    .reports {
+        &__area{
+            &__content {
+                width: 67%;
+
+                &__datepicker {
+                    margin: 0;
+                }
+
+                &__resumes {
+                    max-height: 50em;
+
+                    &__button {
+                        margin: 0;
+                        margin-top: 2%;
+                    }
+                }
+            }
+            &__report {
+                margin: 0;
+            }
+        }
+    }
 }

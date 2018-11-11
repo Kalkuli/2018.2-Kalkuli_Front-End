@@ -3,7 +3,9 @@ import * as actionTypes from '../actions/actions'
 const initialState = {
   filePDF: null,
   fileExtracted: null,
-  receipts: []
+  receipts: [],
+  tags: null,
+  auth_token: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +25,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         receipts: action.receipts
       }
+    case actionTypes.ADD_TAGS: 
+      return {
+        ...state,
+        tags: action.tags
+      }
+    case actionTypes.ADD_AUTH_TOKEN: {
+      return {
+        ...state,
+        auth_token: action.auth_token
+      }
+    }
     default:
       return state  
   }

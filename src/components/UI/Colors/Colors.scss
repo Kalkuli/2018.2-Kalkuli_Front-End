@@ -1,0 +1,114 @@
+@import "../../../assets/sass/main.scss";
+
+.create-category {
+    width: 40em;
+
+    &__phrase {
+        margin-left: 1.5em;
+        font-size: 2em;
+        color: $color-dark-blue;
+    }
+
+    &__input {
+        margin-top: 0.6em;
+        margin-left: 2.1em;
+        border: none;
+        background-color: $color-white;
+        border-bottom: 1px solid $color-dark-blue;
+        width: 22.5em;
+        height: 2em;
+        margin-bottom: 3em;
+        outline: none;
+        font-size: 1.5em;
+        font-family: $montserrat;
+        color: $color-dark-blue;
+
+        &:focus {
+            color: $color-light-blue;
+            border-bottom-color: $color-light-blue
+        }
+    }
+    
+    &__colors {
+        display: flex;
+        flex-wrap: wrap;
+        width: 35em;
+        margin: auto;
+        margin-bottom: 4em;
+    
+        &__color {
+            width: 6em;
+            height: 6em;
+            border-radius: 8px;
+            margin: 0.5em;
+            transition: 0.2s all;
+
+            &:hover {
+                transform: scale(1.2);
+                cursor: grab;
+            }
+        }
+
+        &__color2 {
+            width: 6em;
+            height: 6em;
+            border-radius: 8px;
+            margin: 0.5em;
+            transition: 0.2s all;
+            transform: scale(1.2)
+        }
+    }
+
+    &__buttons {
+        width: 34em;
+        margin: auto;
+        display: flex;
+        justify-content: space-between
+    }
+}
+
+@media (max-width: 460px){
+    .create-category {
+        width: 25em;
+
+        &__phrase {
+            margin-left: 0;
+            text-align: center;
+        }
+
+        &__input {
+            margin: 0;
+            margin: auto;
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        &__colors {
+            margin-top: 1em;
+            width: 100%;
+            justify-content: center;
+
+            &__color {
+                width: 4em;
+                height: 4em;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+
+            &__color2 {
+                width: 4em;
+                height: 4em;
+                border-radius: 8px;
+                margin: 0.5em;
+                transition: 0.2s all;
+                transform: scale(1.2)
+            }
+        }
+
+        &__buttons {
+            width: 100%;
+        }
+    }
+}

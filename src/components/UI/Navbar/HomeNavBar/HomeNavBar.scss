@@ -3,15 +3,13 @@
 .transparent {
   background-color: rgba(white, 0);
 }
-
 .color {
   background-image: linear-gradient(
     to right bottom, 
     $color-light-blue,
     $color-dark-blue
-  );
+  ); 
 }
-
 .nav {
   font-size: 1.5rem;
   transition: all .4s;
@@ -21,36 +19,49 @@
   margin: 0;
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 30;
   padding: 1.2rem 4rem;
-
   &__logo {
     color: $color-white;
   }
-
   &__link {
+    transition: all .2s;
     text-decoration: none;
     font-weight: 600;
     margin: .5rem;
     color: $color-white;
+    &:hover {
+      color: white;
+      text-shadow: 0 0px .5rem $color-black;
+    }
   }
-
-  &__button {
-    color: $color-dark-blue;
-    background-color: $color-white;
-    padding: 1rem;
-    border-radius: .5rem;
-  }
-
   &__bar {
     height: 3rem;
     background-color: $color-white;
     width: .2rem;
     margin: 0 1rem;
   }
-
   &__end {
     display: flex;
     align-items: center;
+  }
+}
+
+@media (max-width:480px) { 
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+  .nav {
+    padding: 1.8rem 1.2rem;
+    &__logo {
+      font-size: 2rem;
+    }
+    &__link {
+      font-size: 1.3rem;
+    }
+  }
+}
+@media (min-width:480px) and (max-width:720px) { 
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+  .nav {
+    font-size: 1.4rem;
   }
 }

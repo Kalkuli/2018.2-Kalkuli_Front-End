@@ -1,18 +1,15 @@
 @import "../../../assets/sass/main";
 
 .report {
-    min-width: 40em;
-    height: 50em;
     border: solid 1px $color-dark-blue;
     position: relative;
     border-radius: 5px;
-    float: right;
-    margin-bottom: 2em;
-    padding: 3em;
+    padding: 5%;
     padding-top: 2em;
 
     &__warning {
         padding-top: 58%;
+
         &__content{
             color: $color-dark-blue;
             margin: auto;
@@ -52,3 +49,46 @@
 .pulsing-text-report { 
     animation: pulse 0.7s 0.5s infinite alternate backwards;
 }
+
+@media (min-width:320px) {
+     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+        .report {
+            height: 35em;
+            width: 28em;
+        }
+    }
+@media (min-width:480px) {
+     /* smartphones, Android phones, landscape iPhone */ 
+        .report {
+            height: 60em;
+            width: 45em;
+        }
+    }
+@media (min-width:600px) {
+     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+        .report {
+            height: 60em;
+            width: 45em;
+        }
+    }
+@media (min-width:801px) {
+     /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+        .report {
+            height: 60em;
+            width: 45em;
+        }
+    }
+@media (min-width:1025px) {
+     /* big landscape tablets, laptops, and desktops */ 
+        .report {
+            height: 60em;
+            width: 45em;
+        }
+    }
+@media (min-width:1281px) {
+     /* hi-res laptops and desktops */ 
+        .report {
+            height: 60em;
+            width: 45em;
+        }
+    }

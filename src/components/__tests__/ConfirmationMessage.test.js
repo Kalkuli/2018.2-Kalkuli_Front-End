@@ -1,11 +1,6 @@
 import ConfirmationMessage from '../UI/ConfirmationMessage/ConfirmationMessage'
-import {configure, shallow} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import React from 'react'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Modal from '../UI/Modal/Modal'
-
-configure({adapter: new Adapter()})
 
 describe('Testing <ConfirmationMessage/>', () => {
 

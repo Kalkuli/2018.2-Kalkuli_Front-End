@@ -7,6 +7,13 @@ import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessag
 import BackDrop from '../../UI/BackDrop/BackDrop'
 import deleteReceipt from '../../../services/deleteReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
+import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+const smallDevice = window.matchMedia('(max-width: 645px)').matches
+var size;
+if(smallDevice) 
+  size = 'medium'
+else 
+  size = 'small'
 
 class ReceiptView extends Component {
 
@@ -19,40 +26,46 @@ class ReceiptView extends Component {
     return (
       <Modal>
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
-        <Receipt size='large'>
-          <div className='receipt-area receipt-font'>
-            <div key={'title'} className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
-              <p>{receipt['title']}</p>
-            </div>
-            {Object.keys(receipt).map(data => {
-              if(data === 'title' || data === 'description')
-                return null
-              return (
-                <div key={data} className='receipt-area__content'>
-                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
-                  <p>{receipt[data]}</p>
+        <div className="receipt-modal-area">
+          <Receipt size='large'>
+            <div className="receipt-container">
+              <div className='receipt-area receipt-font'>
+                <div key={'title'} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
+                  <p className='receipt-font'>{receipt['title']}</p>
                 </div>
-            )})}
-            <div key={'description'} className='receipt-area__content'>
-              <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
-              <p>{receipt['description']}</p>
+                {Object.keys(receipt).map(data => {
+                  if(data === 'title' || data === 'description' || data === 'tag_id')
+                    return null
+                  return (
+                    <div key={data} className='receipt-area__content'>
+                      <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
+                      <p className='receipt-font'>{receipt[data]}</p>
+                    </div>
+                )})}
+                <div key={'description'} className='receipt-area__content'>
+                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
+                  <p className='receipt-font'>{receipt['description']}</p>
+                </div>
+              </div>
+              <SavedTagItem name={this.props.tagName} color={this.props.tagColor}/>
+            </div>
+          </Receipt>
+
+          <div className='area-buttons'>
+            <div className='area-buttons__change-buttons'>
+              <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
+              <BaseButton type="no-background" click={this.onConfirmHandler} size={size}>Editar</BaseButton>
+              <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
+            </div>
+            <div className='area-buttons__confirm'>
+              <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>
             </div>
           </div>
-        </Receipt>
-
-        <div className='area-buttons'>
-          <div className='area-buttons__change-buttons'>
-            <BaseButton type="confirm" click={this.onConfirmHandler}>Exportar</BaseButton>
-            <BaseButton type="no-background" click={this.onConfirmHandler}>Editar</BaseButton>
-            <BaseButton type="delete" click={this.onConfirmationTrue}>Excluir</BaseButton>
-          </div>
-          <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup}>Confirmar</BaseButton>
         </div>
       </Modal>
     )
   }
-
   onDeleteHandler = async() => {
     let receipt_id = this.props.receiptId
     const response = await deleteReceipt(receipt_id)
@@ -60,11 +73,9 @@ class ReceiptView extends Component {
     this.props.onClosePopup()
     this.props.onGetAllReceipts()
   }
-  
   onCancelHandler = () => {
     this.setState({confirmation: false})
   }
-  
   renderConfirmationMessage = () => {
     return (
       <Fragment>
@@ -75,10 +86,7 @@ class ReceiptView extends Component {
       </Fragment>
     )
   }
-
-  onConfirmationTrue = () => {
-    this.setState({confirmation: true})
-  }
+  onConfirmationTrue = () => { this.setState({confirmation: true}) }
 }
 
 export default ReceiptView
