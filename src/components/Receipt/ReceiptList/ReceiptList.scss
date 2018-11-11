@@ -40,6 +40,7 @@
         position: relative;
     
         &__input {
+            transition: all .5s;
             height: 35px;
             font-size: 25px;
             display: inline-block;

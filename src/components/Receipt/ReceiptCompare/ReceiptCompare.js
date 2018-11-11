@@ -22,7 +22,6 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
-		console.log(this.state.selectedTag)
 		if(!this.state.selectedTag.hasOwnProperty('id'))
 			this.createIdForSelectedTag()
 		
@@ -79,7 +78,7 @@ export class ReceiptCompare extends Component {
 	generateInputs = () => {
 		let { receiptInput } = this.state
 		return (
-			<React.Fragment>
+			<div>
 			{Object.keys(receiptInput).map(key => (
 				<div key={key} className="compare-area__content__labels"> 
 					<p className="receipt-font compare-area__content__labels__label">
@@ -93,7 +92,7 @@ export class ReceiptCompare extends Component {
 									editable={receiptInput[key].editable} />
 				</div>
 			))}
-			</React.Fragment>
+			</div>
 		)
 	}
 

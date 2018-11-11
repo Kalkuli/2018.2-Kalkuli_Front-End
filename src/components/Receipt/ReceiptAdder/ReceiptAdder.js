@@ -35,7 +35,7 @@ class ReceiptAdder extends Component {
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
     }
     return (
-      <Modal show={this.props.show}>
+      <Modal show>
         {content}
       </Modal>
     )
