@@ -40,7 +40,7 @@
     text-align: center;
     margin: 0em 0em 1.5em 0em;
     font-size: 2.5em;
-
+    color: $color-light-blue;
 }
 
 .register{
@@ -85,10 +85,6 @@
 
     .register input {
         width: 15em;
-    }
-    
-    .description {
-        width: 13em;
     }
 }
 @media (min-width:480px) {

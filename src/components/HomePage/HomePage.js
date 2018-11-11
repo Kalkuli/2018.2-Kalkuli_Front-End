@@ -13,17 +13,16 @@ import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Form'
 
-
 class HomePage extends Component{
 
   state = {
-    newCompany: false 
+    newCompany: false
   }
 
   render(){
     return (
       <Fragment>
-        <HomeNavBar click={this.registerClick}/>
+        <HomeNavBar onConfirmOk={this.onConfirmOk} click={this.registerClick}/>
         {this.state.newCompany ? this.showRegister() : null}
         <section className="header">
           <div className="header__container">
@@ -96,8 +95,8 @@ class HomePage extends Component{
   showRegister = () =>{
     return (
       <Fragment>
-          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
           <Register show={this.state.newCompany} OKfunc={this.onConfirmOk}/>
+          <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
       </Fragment>
     )
   }

@@ -2,17 +2,22 @@
 .select-box {
   z-index: 500;
   width: 180px;
+
   &--container {
     transition: .4s all;
-    background-color: rgba($color-black, .2);
-    border: 1px solid $color-black;
+    background-color: rgba($color-black, .6);
+    
+    border-radius: 4px;
     width: 100%;
     user-select: none;
     cursor: pointer;
+
     &:hover {
       background-color: rgba($color-black, .3);
     }
+
   }
+
   &--selected-item {
     transition: .2s all;
     display: flex;
@@ -26,9 +31,11 @@
     font-weight: 800;
     text-shadow: 0 1px .5rem $color-black;
   }
+
   &--container:hover &--selected-item{
     color: white;
   }
+
   &--items {
     width: 99%;
     overflow-y: auto;
@@ -36,6 +43,8 @@
     justify-content: space-around;
     background-color: $color-white;
     box-shadow: 0px 4px 1rem rgba($color-black, .4);
+    border-radius: 4px;
+
     &__create-tag {
       user-select: none;
       cursor: pointer;

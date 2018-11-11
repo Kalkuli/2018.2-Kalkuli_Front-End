@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-
 import './Form.scss'
 import Modal from '../UI/Modal/Modal'
 import registerInputs from '../../helpers/registerInputs'
-import Input from '../UI/Input/InputFild'
+import Input from '../UI/Input/InputField'
 import Button from '../UI/Button/BaseButton/BaseButton'
 import Confirmation from '../UI/Confirmation/Confirmation';
 
@@ -97,31 +96,26 @@ class Form extends Component {
     onFailOK = () => {this.setState(prevState => ({registration: prevState.value}))}
 
     submitInputs = () => {
-        const companyAdmInputs = {
-            company: {
-                company_name: this.state.registerInput.propertyName.value,
-                cnpj: this.state.registerInput.CNPJ.value,
-                company_email: this.state.registerInput.companyEmail.value,
-                fantasy_name: this.state.registerInput.companyName.value,
-                cep: this.state.registerInput.CEP.value,
-                city: this.state.registerInput.city.value,
-                state: this.state.registerInput.state.value,
-                company_phone: this.state.registerInput.companyPhone.value
-            },
-            user: {
-                name: this.state.registerInput.admName.value,
-                email: this.state.registerInput.admEmail.value,
-                password: this.state.registerInput.admPassword.value
-            }
+        const registerData = {
+            "company_name": this.state.registerInput.propertyName.value,
+            "cnpj": this.state.registerInput.CNPJ.value,
+            "company_email": this.state.registerInput.companyEmail.value,
+            "fantasy_name": this.state.registerInput.companyName.value,
+            "cep": this.state.registerInput.CEP.value,
+            "city": this.state.registerInput.city.value,
+            "state": this.state.registerInput.state.value,
+            "company_phone": this.state.registerInput.companyPhone.value,
+            "username": this.state.registerInput.admName.value,
+            "email": this.state.registerInput.admEmail.value,
+            "password": this.state.registerInput.admPassword.value
         } 
 
-        axios.post('http://172.23.0.1:5008/api/v1/company', companyAdmInputs)
-        .then(()=>{
+        axios.post('http://172.21.0.1:5008/api/v1/auth/register', registerData)
+        .then(response =>{
             this.setState({registration: 'done'})
         })
-        .catch((response)=>{
+        .catch(err =>{
             this.setState({registration: 'fail'})
-            textContent = response.message
         })
     }
 

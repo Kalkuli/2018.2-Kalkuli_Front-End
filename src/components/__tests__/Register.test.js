@@ -1,13 +1,4 @@
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
 import Register from '../Register/Form'
-import registerInputs from '../../helpers/registerInputs'
-
-configure({
-    adapter: new Adapter()
-})
 
 describe('Testing <Register/>', () => {
     let wrapper = null

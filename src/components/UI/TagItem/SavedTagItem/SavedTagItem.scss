@@ -1,7 +1,6 @@
 @import "../../../../assets/sass/main";
 .saved-tag-item {
   user-select: none;
-  padding: 1rem;
   width: 20rem;
   height: 5rem;
   margin: 0 auto;
@@ -9,11 +8,11 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  box-shadow: 0 1px .5rem rgba($color-black, .5);
-  border: 1.5px solid $color-white;
+  //box-shadow: 0 1px .5rem rgba($color-black, .5);
+  //border: 1.5px solid $color-white;
   &__name {
     color: $color-white;
-    text-shadow: 0 1px 1rem $color-black;
+    //text-shadow: 0 1px 1rem $color-black;
     font-size: 1.8rem;
     font-weight: 600;
   }
@@ -27,10 +26,23 @@
 @media (max-width:800px) {
   .saved-tag-item--small {
     margin-top: 11rem;
-    width: 10rem;
+    width: 14rem;
     height: 4rem;
   }
   .saved-tag-item__name {
-    font-size: 1.3rem;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width:480px) {
+  .saved-tag-item--small {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 2px;
+  }
+  .saved-tag-item__name {
+    font-size: 0.8em;
   }
 }

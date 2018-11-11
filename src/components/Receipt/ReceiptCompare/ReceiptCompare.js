@@ -12,23 +12,26 @@ export class ReceiptCompare extends Component {
 		receiptIsValid: true,
 		receipt: null,
 		showItems: false,
-		selectedTag: null,
 		items: [],
 		selectedTag: {},
 	}
 
 	componentDidMount() {
-		this.setState({ receipt: this.props.fileExtracted })
+		this.setState({selectedTag: this.props.selectedTag, receipt: this.props.fileExtracted})
 		this.initInputs()
 	}
 	
 	render() {
+		if(!this.state.selectedTag.hasOwnProperty('id'))
+			this.createIdForSelectedTag()
+		
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
 		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
+		
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing">
@@ -58,7 +61,6 @@ export class ReceiptCompare extends Component {
 	onConfirmHandler = () => {
 		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
-		
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
 			"emission_place": receiptInput['emission_place'].value,
@@ -76,7 +78,7 @@ export class ReceiptCompare extends Component {
 	generateInputs = () => {
 		let { receiptInput } = this.state
 		return (
-			<React.Fragment>
+			<div>
 			{Object.keys(receiptInput).map(key => (
 				<div key={key} className="compare-area__content__labels"> 
 					<p className="receipt-font compare-area__content__labels__label">
@@ -90,8 +92,14 @@ export class ReceiptCompare extends Component {
 									editable={receiptInput[key].editable} />
 				</div>
 			))}
-			</React.Fragment>
+			</div>
 		)
+	}
+
+	createIdForSelectedTag = () => {
+		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
+		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
+		this.setState({selectedTag: newSelectedTag})
 	}
 
 	onClickHandler = (inputKey) => {
@@ -115,7 +123,6 @@ export class ReceiptCompare extends Component {
 		for(let inputKey in inputState) {
 			receiptIsValid = inputState[inputKey].valid && receiptIsValid
 		}
-
 		this.setState({receiptInput: inputState, receiptIsValid: receiptIsValid})
 	}
 
@@ -154,10 +161,11 @@ export class ReceiptCompare extends Component {
 			items = [{"id": 0, "category": "erro", "color": "#424242"}]		
 		
 			return <DropDown 	items={items}
-												onDropDownHandler={this.onDropDownHandler}
-												onSelectedTagHandler={this.onSelectedTagHandler}
-												selectedTag={this.state.selectedTag}
-												showItems={this.state.showItems}/>
+								onDropDownHandler={this.onDropDownHandler}
+								onSelectedTagHandler={this.onSelectedTagHandler}
+								selectedTag={this.state.selectedTag}
+								showItems={this.state.showItems}
+								createCategory={this.props.createCategory} />
 	}
 }
 export const mapStateToProps = state => {

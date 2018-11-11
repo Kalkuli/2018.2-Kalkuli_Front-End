@@ -1,12 +1,7 @@
 import '../../services/__mocks__/matchMedia'
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import HomePage from '../HomePage/HomePage'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
-
-configure({adapter: new Adapter()})
 
 describe('Testing <HomePage />', () => {
   

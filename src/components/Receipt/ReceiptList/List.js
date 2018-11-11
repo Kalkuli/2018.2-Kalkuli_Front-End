@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
@@ -6,12 +6,12 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
-export class List extends React.Component {
+export class List extends Component {
 
 	state = {
 		showModal: false,
 		selectedReceipt: null,
-		selectedReceiptId: null
+		selectedReceiptId: null,
 	}
 
 	render() {
@@ -25,13 +25,15 @@ export class List extends React.Component {
 																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
 		}
 
-		let receipts = JSON.parse(JSON.stringify(this.props.receipts))
+		let filteredReceipts = this.filterReceipts(this.props.receipts) 
+		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
+		
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 				{receiptView}
 
-				{receipts.map(receipt => {
+				{receipts ? receipts.map(receipt => {
 					let receiptId = receipt.id
 					delete receipt.id
 					delete receipt.company_id
@@ -59,20 +61,32 @@ export class List extends React.Component {
 								<SavedTagItem size="small" name={this.getTagName(receipt.tag_id)} color={this.getTagColor(receipt.tag_id)}/>
 							</div>
 						</Receipt>
-				)})}
+				)}): null}
 			</div>
 		)
 	}
 
+	filterReceipts = (receipts) => {
+		if(receipts){
+            let filteredReceipts = receipts.filter((receipt) => {
+                if(receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
+                    return receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+                else
+                    return receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+            })
+            return filteredReceipts
+        }
+	}
+
 	getTagName = (tagId) => { 
-		if(this.props.tags)
-			return this.props.tags[tagId - 1].category 
+		if(!(this.props.tags === undefined || this.props.tags.length == 0))
+			return this.props.tags[tagId - 1].category
 		else
 			return 'carregando...'
 	}
 
 	getTagColor = (tagId) => { 
-		if(this.props.tags)
+		if(!(this.props.tags === undefined || this.props.tags.length == 0))
 			return this.props.tags[tagId - 1].color 
 		else
 			return '#424242'
@@ -93,9 +107,9 @@ export class List extends React.Component {
 }
 export const mapStateToProps = state => {
 	return {
-		tags: state.tags
+		tags: state.tags,
+		receipts: state.receipts
 	}
 }
 
 export default connect(mapStateToProps)(List)
-

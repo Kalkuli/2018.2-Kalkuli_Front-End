@@ -9,13 +9,11 @@ import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import * as screenSize from '../../helpers/screenSize'
-
-var type = "no-background";
+var type = "no-background"
 var comeco = null;
 var fim = null;
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
-var type = 'no-background'
 
 class Reports extends Component {
 
@@ -93,14 +91,13 @@ class Reports extends Component {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         )
     }
 
     getAllReports = () => {
-        Axios.get('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/get_all_reports')
+        Axios.get('http://172.21.0.1:5008/api/v1/get_all_reports')
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -112,25 +109,26 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/report', {
+        Axios.post('http://172.21.0.1:5008/api/v1/report', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
             }
         })
-            .then((response) => {
-                this.setState({
-                    receipts: response.data.receipts,
-                    sum: response.data.total_cost,
-                    isEndDate: false,
-                    reportCase: 'reports'
-                })
+        .then((response) => {
+            console.log(response)
+            this.setState({
+                receipts: response.data.receipts,
+                sum: response.data.total_cost,
+                isEndDate: false,
+                reportCase: 'reports'
             })
-            .catch(() => {
-                this.setState({
-                    reportCase: 'do not exist'
-                })
+        })
+        .catch(() => {
+            this.setState({
+                reportCase: 'do not exist'
             })
+        })
     }
 
     onReportSelect = (index, date_from, date_to) => {
@@ -143,7 +141,7 @@ class Reports extends Component {
     }
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post('http://172.25.0.1:5008/api/v1/export', {
+        Axios.post('http://172.21.0.1:5008/api/v1/export', {
             "period": {
                 date_from: date_from,
                 date_to: date_to

@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Confirmation.scss'
 import confirm from '../../../assets/img/confirm.svg'
 import Modal from '../Modal/Modal'
 import BaseButton from '../Button/BaseButton/BaseButton'
 import error from '../../../assets/img/error.svg'
 
-
 const Confirmation = (props) => {
     let styleText = ["confirm-message"]
     let buttonType
     let image
-    if(props.valid == 'done'){
+    if(props.valid === 'done'){
         image = confirm
         buttonType = 'confirm'
     }

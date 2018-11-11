@@ -1,13 +1,9 @@
 import '../../services/__mocks__/matchMedia'
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 jest.mock('../../services/getAllReceipts')
 jest.mock('../../services/getAllTags.js')
-configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptList/>", () => {
   
@@ -18,7 +14,7 @@ describe("Testing <ReceiptList/>", () => {
   const spyOnTagsAdded = jest.fn()
   const props = {
     onReceiptsAdded: spyOnReceiptsAdded,
-    onTagsAdded: spyOnTagsAdded
+    onTagsAdded: spyOnTagsAdded,
   }
   
   beforeEach(() => {
@@ -55,13 +51,6 @@ describe("Testing <ReceiptList/>", () => {
     expect(spyOnTagsAdded).toHaveBeenCalled()
   })
 
-  it('should test mapStateToProps', () => {
-    const initialState = {
-      receipts: ["test"]
-    }
-    expect(mapStateToProps(initialState).receipts).toEqual(["test"])
-  })
-
   it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
     const dispatch = jest.fn()
     mapDispatchToProps(dispatch).onReceiptsAdded()
@@ -80,6 +69,16 @@ describe("Testing <ReceiptList/>", () => {
 
   it('should find MenuButton', () => {
     expect(wrapper.find(MenuButton).exists()).toBe(true)
+  })
+
+  it('should test updateSearch', () => {
+    const event = {
+      target: {
+        value: 'Pipoca'
+      }
+    }
+    wrapper.instance().updateSearch(event)
+    expect(wrapper.state('search')).toMatch('Pipoca')
   })
 
 }) 

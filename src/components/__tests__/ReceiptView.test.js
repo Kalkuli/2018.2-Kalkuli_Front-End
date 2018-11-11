@@ -1,12 +1,8 @@
 import '../../services/__mocks__/matchMedia'
-import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import ReceiptView from '../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../UI/BackDrop/BackDrop'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 jest.mock('../../services/deleteReceipt')
-configure({adapter: new Adapter()})
 
 describe("Testing <ReceiptView />", () => {
 

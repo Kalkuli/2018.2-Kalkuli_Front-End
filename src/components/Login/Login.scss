@@ -1,0 +1,56 @@
+@import '../../assets/sass/main.scss';
+
+.login {
+  font-size: 1.5rem;
+  width: 40rem;
+  height: 40rem;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  &__title {
+    color: $color-light-blue;
+    font-size: 3rem;
+  }
+  &__form {
+    height: 20rem;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    &__input {
+      width: 25em;
+      height: 2em;
+      border: none;
+      border-bottom: 0.1em solid $color-black;
+      margin-bottom: 0.8em;
+      background-color: $color-white;
+      font-family: $montserrat;
+      font-size: .9em;
+      color: $color-black;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}
+.see-password {
+  transition: all 0.2s;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width:480px) {
+  .login {
+    font-size: 1.1rem;
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .see-password {
+  }
+}

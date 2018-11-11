@@ -4,7 +4,8 @@ const initialState = {
   filePDF: null,
   fileExtracted: null,
   receipts: [],
-  tags: null
+  tags: null,
+  auth_token: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         tags: action.tags
       }
+    case actionTypes.ADD_AUTH_TOKEN: {
+      return {
+        ...state,
+        auth_token: action.auth_token
+      }
+    }
     default:
       return state  
   }
