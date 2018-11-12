@@ -110,7 +110,7 @@ class Form extends Component {
             "password": this.state.registerInput.admPassword.value
         } 
 
-        axios.post('http://172.21.0.1:5008/api/v1/auth/register', registerData)
+        axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/auth/register', registerData)
         .then(response =>{
             this.setState({registration: 'done'})
         })

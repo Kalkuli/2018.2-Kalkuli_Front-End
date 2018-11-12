@@ -17,7 +17,7 @@ class ReceiptAdder extends Component {
     file: null,
     loading: false,
     fileSelected: false,
-    fileSent: true,
+    fileSent: false,
     completed: false,
     creatingCategory: false,
     newTag: {}
@@ -70,7 +70,7 @@ class ReceiptAdder extends Component {
 
   onConfirmButton = (receipt) => {
     console.log(receipt)
-    axios.post('http://172.21.0.1:5008/api/v1/receipt', {
+    axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt', {
       "receipt": {
         ...receipt,
         company_id: 1
@@ -99,13 +99,13 @@ class ReceiptAdder extends Component {
     let formData = new FormData();
     formData.append("file", this.state.file[0]);
 
-    axios.post('http://172.21.0.1:5001/extract', formData, {
+    axios.post('https://kalkuli-extraction.herokuapp.com/extract', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
       .then((response) => {
-        let statusUrl = 'http://172.21.0.1:5001' + response.data.location;
+        let statusUrl = 'https://kalkuli-extraction.herokuapp.com' + response.data.location;
         this.checkStatus(statusUrl)
       })
   }
@@ -114,7 +114,7 @@ class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post('http://172.21.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({

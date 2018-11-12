@@ -4,7 +4,7 @@ const initialState = {
   filePDF: null,
   fileExtracted: null,
   receipts: [],
-  tags: null,
+  tags: [],
   auth_token: null
 }
 

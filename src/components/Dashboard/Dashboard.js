@@ -104,7 +104,7 @@ class Dashboard extends Component {
 
             this.setState({ date_from: date_from, date_to: date_to })
 
-            axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/report', {
+            axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
                 "period": {
                     date_from: date_from,
                     date_to: date_to
@@ -132,7 +132,7 @@ class Dashboard extends Component {
         this.setState({
             loading: true
         })
-        axios.post('https://30dp9sl1lj.execute-api.sa-east-1.amazonaws.com/dev/api/v1/save_report', {
+        axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/save_report', {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to
