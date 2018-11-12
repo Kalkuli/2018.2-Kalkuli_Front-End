@@ -12,6 +12,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 2%;
+        padding-bottom: 0 !important;
 
         &__report {
             padding-bottom: 5%;
@@ -181,6 +182,7 @@
 
             &__report {
                 padding: 0;
+                margin: 0;
             }
         }
     }
@@ -204,6 +206,7 @@
 
             &__report {
                 margin: 0;
+                padding: 0;
             }
         }
     }
