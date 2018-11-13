@@ -25,7 +25,7 @@ class ReceiptView extends Component {
     let { receipt } = this.props
     return (
       <Modal>
-        { this.state.confirmation ? this.renderConfirmationMessage() : null }
+        {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <div className="receipt-modal-area">
           <Receipt size='large'>
             <div className="receipt-container">
@@ -76,7 +76,6 @@ class ReceiptView extends Component {
   onCancelHandler = () => {
     this.setState({confirmation: false})
   }
-
   renderConfirmationMessage = () => {
     return (
       <Fragment>

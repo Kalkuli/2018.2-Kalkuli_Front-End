@@ -11,6 +11,8 @@ import 'moment/locale/pt-br'
 import * as screenSize from '../../helpers/screenSize'
 import ConfirmationMessage from '../../components/UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
+import deleteReport from '../../services/deleteReport'
+
 var type = "no-background"
 var comeco = null;
 var fim = null;
@@ -26,7 +28,8 @@ class Reports extends Component {
         sum: null,
         reportCase: null,
         file: null, 
-        confirmation: false
+        confirmation: false,
+        idReport: null
     }
 
     componentDidMount() {
@@ -88,7 +91,7 @@ class Reports extends Component {
                         {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
                         <div className="reports__area__report__buttons">
                             <div className="reports__area__report__buttons__button">
-                                <BaseButton size="small" type="delete" click={this.onConfirmationTrue}>Deletar</BaseButton>
+                                <BaseButton size="small" type={this.state.position === null ? 'disable' : 'delete'} click={this.onConfirmationTrue}>Deletar</BaseButton>
                             </div>
                             <div className="reports__area__report__buttons__button">
                                 <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
@@ -101,7 +104,7 @@ class Reports extends Component {
     }
 
     getAllReports = () => {
-        Axios.get('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/get_all_reports')
+        Axios.get('http://172.22.0.1:5008/api/v1/get_all_reports')
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -113,7 +116,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
+        Axios.post('http://172.22.0.1:5008/api/v1/report', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
@@ -136,20 +139,26 @@ class Reports extends Component {
     }
 
     onReportSelect = (index, date_from, date_to) => {
-        this.setState({ position: index });
+        this.setState({ position: index, idReport: index });
         this.getReportInfo(date_from, date_to)
     }
 
-    onDeleteHandler = () => {
-
-    }
+    onDeleteHandler = async() => {
+        console.log("adsfdgfhgjhk")
+        let report_id = this.state.idReport
+        const response = await deleteReport(report_id)
+        this.setState({ confirmation: false })
+        this.getAllReports()
+      }
 
     onCancelHandler = () => {
         this.setState({confirmation: false})
     }
+    
+    onConfirmationTrue = () => { this.setState({confirmation: true}) }  
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/export', {
+        Axios.post('http://172.22.0.1:5008/api/v1/export', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
@@ -173,7 +182,6 @@ class Reports extends Component {
         );
     }
 
-    onConfirmationTrue = () => { this.setState({confirmation: true}) }
 }
 
 export default Reports
