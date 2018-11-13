@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './Reports.scss'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Navbar from '../UI/Navbar/Navbar'
@@ -9,6 +9,8 @@ import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import * as screenSize from '../../helpers/screenSize'
+import ConfirmationMessage from '../../components/UI/ConfirmationMessage/ConfirmationMessage'
+import BackDrop from '../../components/UI/BackDrop/BackDrop'
 var type = "no-background"
 var comeco = null;
 var fim = null;
@@ -23,7 +25,8 @@ class Reports extends Component {
         receipts: null,
         sum: null,
         reportCase: null,
-        file: null
+        file: null, 
+        confirmation: false
     }
 
     componentDidMount() {
@@ -35,6 +38,7 @@ class Reports extends Component {
             <div className="reports">
                 <Navbar />
                 <div className="reports__area">
+                    {this.state.confirmation ? this.renderConfirmationMessage() : null}
                     <div className="reports__area__content">
                         <div className="reports__area__content__datepicker">
                             <DateRangePicker
@@ -84,7 +88,7 @@ class Reports extends Component {
                         {this.state.receipts ? <Report receipts={this.state.receipts} sum={this.state.sum} reportCase={this.state.reportCase} page={"reports"} /> : <Report receipts={false} sum={false} reportCase={this.state.reportCase} page={"reports"}/>}
                         <div className="reports__area__report__buttons">
                             <div className="reports__area__report__buttons__button">
-                                <BaseButton size="small" type="delete" click={this.onDeleteHandler}>Deletar</BaseButton>
+                                <BaseButton size="small" type="delete" click={this.onConfirmationTrue}>Deletar</BaseButton>
                             </div>
                             <div className="reports__area__report__buttons__button">
                                 <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
@@ -140,6 +144,10 @@ class Reports extends Component {
 
     }
 
+    onCancelHandler = () => {
+        this.setState({confirmation: false})
+    }
+
     onExportHandler = (date_from, date_to) => {
         Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/export', {
             "period": {
@@ -153,6 +161,19 @@ class Reports extends Component {
             console.log(error)
         })
     }
+
+    renderConfirmationMessage = () =>{
+        return(
+            <Fragment>
+                <ConfirmationMessage onDeleteHandler={this.onDeleteHandler}
+                                     onCancelHandler={this.onCancelHandler}
+                                     action='deletar'/>
+                <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
+            </Fragment>
+        );
+    }
+
+    onConfirmationTrue = () => { this.setState({confirmation: true}) }
 }
 
 export default Reports
