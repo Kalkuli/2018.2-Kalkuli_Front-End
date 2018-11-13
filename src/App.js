@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   render() {
-
     let routes = null
     if(this.props.auth_token) {
       routes = (

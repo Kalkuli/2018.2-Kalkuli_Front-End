@@ -90,12 +90,12 @@ class HomePage extends Component{
     )
   }
 
-  onConfirmOk = () => { this.props.history.push({pathname: '/dashboard'}) }
+  onConfirmOk = () => { this.props.history.push('/dashboard')}
 
   showRegister = () =>{
     return (
       <Fragment>
-          <Register show={this.state.newCompany} OKfunc={this.onConfirmOk}/>
+          <Register show={this.state.newCompany} OKfunc={this.onCloseRegister}/>
           <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
       </Fragment>
     )
