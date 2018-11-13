@@ -4,8 +4,9 @@
     border: solid 1px $color-dark-blue;
     position: relative;
     border-radius: 5px;
-    padding: 5%;
+    padding: 12%;
     padding-top: 2em;
+    margin-right: 0 !important;
 
     &__warning {
         padding-top: 58%;
@@ -85,10 +86,10 @@
             width: 45em;
         }
     }
-@media (min-width:1281px) {
+@media (min-width:1100px) {
      /* hi-res laptops and desktops */ 
         .report {
-            height: 60em;
+            height: 51em;
             width: 45em;
         }
     }
