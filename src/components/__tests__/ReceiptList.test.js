@@ -1,5 +1,5 @@
 import '../../services/__mocks__/matchMedia'
-import { ReceiptList, mapStateToProps } from '../Receipt/ReceiptList/ReceiptList'
+import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 
@@ -31,6 +31,12 @@ describe("Testing <ReceiptList/>", () => {
     expect(mapStateToProps(initialState).tags).toEqual([])
   })
 
+  it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
+    const dispatch = jest.fn()
+    mapDispatchToProps(dispatch).onReceiptsAdded()
+    expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_RECEIPTS'})
+  })
+
   it('should test updateSearch', () => {
     const event = {
       target: {
@@ -40,5 +46,4 @@ describe("Testing <ReceiptList/>", () => {
     wrapper.instance().updateSearch(event)
     expect(wrapper.state('search')).toMatch('Pipoca')
   })
-
 }) 

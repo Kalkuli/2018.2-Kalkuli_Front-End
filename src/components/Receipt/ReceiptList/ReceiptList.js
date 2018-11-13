@@ -5,6 +5,8 @@ import './ReceiptList.scss'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
 import { connect } from 'react-redux'
 import searchIcon from '../../../assets/img/search.png'
+import * as actionTypes from '../../../store/actions/actions'
+import getAllReceipts from '../../../services/getAllReceipts'
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 export class ReceiptList extends Component {
     state = {  
@@ -26,6 +28,8 @@ export class ReceiptList extends Component {
         )
     }
     updateSearch = (event) => { this.setState({search: event.target.value}) }
+
+    fetchReceipts = async() => { this.props.onReceiptsAdded(await getAllReceipts()) }
 }
 export const mapStateToProps = state => {
     return {
@@ -33,4 +37,9 @@ export const mapStateToProps = state => {
         tags: state.tags
     }
 }
-export default connect(mapStateToProps)(ReceiptList)
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})}
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptList)

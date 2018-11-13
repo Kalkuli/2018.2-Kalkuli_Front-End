@@ -149,15 +149,12 @@ class Dashboard extends Component {
     fetchReceipts = async() => {
         const receipts = await getAllReceipts()
         this.props.onReceiptsAdded(receipts)
-        this.setState({ receiptsLoaded: true })
     }
 
     fetchTags = async() => {
         const tags = await getAllTags()
         this.props.onTagsAdded(tags)
-        this.setState({ tagsLoaded: true })
 	}
-
 }
 
 export const mapDispatchToProps = dispatch => {
@@ -166,6 +163,5 @@ export const mapDispatchToProps = dispatch => {
         onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
     }
 }
-
 
 export default connect(null, mapDispatchToProps)(Dashboard)
