@@ -5,8 +5,7 @@ import Report from '../UI/Report/Report';
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import axios from 'axios';
 import Loader from '../UI/Loader/Loader'
-import * as actionTypes from '../../store/actions/actions'
-import { connect } from 'react-redux'
+import BarChart from '../UI/BarChart/BarChart';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
@@ -15,6 +14,8 @@ import './DatePicker.scss'
 import * as screenSize from '../../helpers/screenSize'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
+import { connect } from 'react-redux'
+import * as actionTypes from '../../store/actions/actions'
 import * as baseUrl from '../../helpers/baseUrl'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
@@ -67,7 +68,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-
+                        <BarChart />
                         </div>
                     </div>
 
@@ -164,5 +165,10 @@ export const mapDispatchToProps = dispatch => {
         onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
     }
 }
+// export const mapStateToProps = state => {
+// 	return {
+// 		receipts: state.receipts
+// 	}
+// }
 
 export default connect(null, mapDispatchToProps)(Dashboard)
