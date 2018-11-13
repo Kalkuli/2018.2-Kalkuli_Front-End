@@ -59,7 +59,6 @@ export class ReceiptCompare extends Component {
 	}
 
 	onConfirmHandler = () => {
-		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
@@ -130,21 +129,22 @@ export class ReceiptCompare extends Component {
 		let isValid = false
 		if(rules.required)
 			isValid = value.trim() !== ''
-		
 		if(rules.minLength)
 			isValid = value.length >= rules.minLength
-
 		return isValid
 	}
 
 	initInputs = () => {
 		if(this.props.fileExtracted){
 			let inputs = { ...this.state.receiptInput}
-			inputs.cnpj.value = this.props.fileExtracted.cnpj
-			inputs.emission_date.value = this.props.fileExtracted.emission_date
-			inputs.emission_place.value = this.props.fileExtracted.emission_place
-			inputs.tax_value.value = this.props.fileExtracted.tax_value
-			inputs.total_price.value = this.props.fileExtracted.total_price
+			const fileExtractedKeys = Object.keys(this.props.fileExtracted)
+			for(let i = 0; i < fileExtractedKeys.length; i++) {
+				let key = fileExtractedKeys[i]
+				if(key !== "products" && this.props.fileExtracted[key]) {
+					inputs[key].value = this.props.fileExtracted[key]
+					inputs[key].valid = true
+				}
+			} 
 			this.setState({receiptInput: inputs})
 		}
 	}

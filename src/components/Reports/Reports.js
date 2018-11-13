@@ -97,7 +97,7 @@ class Reports extends Component {
     }
 
     getAllReports = () => {
-        Axios.get('http://172.21.0.1:5008/api/v1/get_all_reports')
+        Axios.get('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/get_all_reports')
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -109,7 +109,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post('http://172.21.0.1:5008/api/v1/report', {
+        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
@@ -141,7 +141,7 @@ class Reports extends Component {
     }
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post('http://172.21.0.1:5008/api/v1/export', {
+        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/export', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
