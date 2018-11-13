@@ -19,6 +19,10 @@ class App extends Component {
     return (
       <BrowserRouter>
        <Switch>
+          {
+            this.props.auth_token ? <Route path='/reports' component={Reports} />  
+            : <Route path='/'exact component={HomePage}/>  
+          }
           <Route path='/' exact component={HomePage}/> 
           <PrivateRoute token={this.props.auth_token} path='/list-all-receipts'component={ReceiptList} />
           <PrivateRoute token={this.props.auth_token} path='/dashboard' component={Dashboard} />

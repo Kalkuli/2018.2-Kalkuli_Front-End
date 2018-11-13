@@ -27,7 +27,7 @@ export class List extends Component {
 
 		let filteredReceipts = this.filterReceipts(this.props.receipts) 
 		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
-		
+
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
@@ -68,14 +68,14 @@ export class List extends Component {
 
 	filterReceipts = (receipts) => {
 		if(receipts){
-            let filteredReceipts = receipts.filter((receipt) => {
-                if(receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
-                    return receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
-                else
-                    return receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
-            })
-            return filteredReceipts
-        }
+			let filteredReceipts = receipts.filter((receipt) => {
+				if(receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1)
+						return receipt.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+				else
+						return receipt.description.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1
+			})
+			return filteredReceipts
+		}
 	}
 
 	getTagName = (tagId) => { 
@@ -111,5 +111,4 @@ export const mapStateToProps = state => {
 		receipts: state.receipts
 	}
 }
-
 export default connect(mapStateToProps)(List)

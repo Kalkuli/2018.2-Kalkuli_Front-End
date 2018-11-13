@@ -59,7 +59,6 @@ export class ReceiptCompare extends Component {
 	}
 
 	onConfirmHandler = () => {
-		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
@@ -130,10 +129,8 @@ export class ReceiptCompare extends Component {
 		let isValid = false
 		if(rules.required)
 			isValid = value.trim() !== ''
-		
 		if(rules.minLength)
 			isValid = value.length >= rules.minLength
-
 		return isValid
 	}
 

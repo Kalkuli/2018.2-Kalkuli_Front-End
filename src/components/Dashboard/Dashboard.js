@@ -5,35 +5,39 @@ import Report from '../UI/Report/Report';
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import axios from 'axios';
 import Loader from '../UI/Loader/Loader'
-
-
+import * as actionTypes from '../../store/actions/actions'
+import { connect } from 'react-redux'
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import './DatePicker.scss'
 import * as screenSize from '../../helpers/screenSize'
+import getAllReceipts from '../../services/getAllReceipts'
+import getAllTags from '../../services/getAllTags'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            loading: false,
-            startDate: null,
-            endDate: null,
-            isEndDate: false,
-            focusedInput: null,
-            receipts: null,
-            sum: null,
-            date_from: null,
-            date_to: null,
-            isValid: true,
-            reportCase: null
-        }
+    state = {
+        loading: false,
+        startDate: null,
+        endDate: null,
+        isEndDate: false,
+        focusedInput: null,
+        receipts: null,
+        sum: null,
+        date_from: null,
+        date_to: null,
+        isValid: true,
+        reportCase: null
+    }
+
+    componentDidMount() {
+        this.fetchTags()
+        this.fetchReceipts()
     }
 
     render() {
@@ -77,20 +81,14 @@ class Dashboard extends Component {
             </div>
         )
     }
-    onConfirmHandler = () => {
-        this.props.history.push('/confirmation')
-    }
+    onConfirmHandler = () => { this.props.history.push('/confirmation') }
 
     chooseButton = (loading, isValid, receipts) => {
         if (loading && isValid) {
-            return (
-                <Loader type="loader_reports" />
-            )
+            return <Loader type="loader_reports" />
         }
         else if (receipts && isValid) {
-            return (
-                <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
-            )
+            return <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
         }
     }
 
@@ -110,20 +108,20 @@ class Dashboard extends Component {
                     date_to: date_to
                 }
             })
-                .then((response) => {
-                    console.log(response);
-                    this.setState({
-                        receipts: response.data.receipts,
-                        sum: response.data.total_cost,
-                        isEndDate: false,
-                        reportCase: 'reports'
-                    })
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    receipts: response.data.receipts,
+                    sum: response.data.total_cost,
+                    isEndDate: false,
+                    reportCase: 'reports'
                 })
-                .catch(() => {
-                    this.setState({
-                        reportCase: 'do not exist'
-                    })
+            })
+            .catch(() => {
+                this.setState({
+                    reportCase: 'do not exist'
                 })
+            })
         }
     }
 
@@ -138,16 +136,36 @@ class Dashboard extends Component {
                 date_to: this.state.date_to
             }
         })
-            .then(() => {
-                this.setState({
-                    loading: false
-                })
+        .then(() => {
+            this.setState({
+                loading: false
             })
-            .catch((error) => {
-                console.log(error)
-            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
+
+    fetchReceipts = async() => {
+        const receipts = await getAllReceipts()
+        this.props.onReceiptsAdded(receipts)
+        this.setState({ receiptsLoaded: true })
+    }
+
+    fetchTags = async() => {
+        const tags = await getAllTags()
+        this.props.onTagsAdded(tags)
+        this.setState({ tagsLoaded: true })
+	}
 
 }
 
-export default Dashboard
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
+        onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(Dashboard)
