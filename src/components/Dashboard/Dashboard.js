@@ -35,18 +35,62 @@ class Dashboard extends Component {
         date_to: null,
         isValid: true,
         reportCase: null,
-        prices: [],
-        dates: [],
-        filteredReceipts: null
+        series: [{
+            data: []
+        }],
+        filteredReceipts: null,
+        options: {
+            chart: {
+              id: "basic-bar",
+              fontFamily: "Montserrat, sans-serif",
+              foreColor: '#353535',
+            },
+            plotOptions: {
+              bar: {
+                horizontal: false,
+              }
+            },
+            colors: "#0F8891",
+            xaxis: {
+              categories: []
+            },
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: true,
+    
+            },
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                plotOptions: {
+                  bar: {
+                    horizontal: true
+                  }
+                }
+              }
+            }]
+          }
     }
 
     componentDidMount() {
         this.fetchTags()
         this.fetchReceipts()
-        this.setState({prices: [], dates: []})
+        this.setState({
+            series: [{
+                data: []
+            }],
+            options: {
+                xaxis: {
+                    categories: []
+                }
+            }
+        })
     }
     
     render() {
+        console.log(this.state.series)
         moment.locale('pt-br')
         if(this.props.receipts.length > 0){
             this.organizeData(this.props.receipts)
@@ -75,7 +119,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-                            {this.state.dates.length === 0 ? null : <BarChart dates={this.state.dates} prices={this.state.prices} /> }
+                            <BarChart options={this.state.options} series={this.state.series} />
                         </div>
                     </div>
 
@@ -103,7 +147,7 @@ class Dashboard extends Component {
         var i 
         var dates = [], prices = []
         for ( i = 0; i < receipts.length; i++){
-            if(receipts[i+1] && receipts[i+1].emission_date == receipts[i].emission_date){
+            if(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
                 dates.push(receipts[i].emission_date)
                 prices.push(receipts[i].total_price + receipts[i+1].total_price)
                 i++
@@ -114,8 +158,14 @@ class Dashboard extends Component {
             }
         }
         this.setState({
-            dates: dates,
-            prices: prices
+            series: [{
+                data: prices
+            }],
+            options: {
+                xaxis: {
+                    categories: dates
+                }
+            }
         })
     }
 

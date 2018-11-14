@@ -6,54 +6,13 @@ const smallDevice = window.matchMedia('(max-width: 480px)').matches
 
 class BarChart extends Component {
 
-    state = {
-      options: {
-        chart: {
-          id: "basic-bar",
-          fontFamily: "Montserrat, sans-serif",
-          foreColor: '#353535',
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-          }
-        },
-        colors: "#0F8891",
-        xaxis: {
-          categories: this.props.dates
-        },
-        dataLabels: {
-          enabled: false
-        },
-        tooltip: {
-          enabled: true,
-
-        },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            plotOptions: {
-              bar: {
-                horizontal: true
-              }
-            }
-          }
-        }]
-      },
-      series: [
-        {
-          data: this.props.prices
-        }
-      ]
-    };
-
   render() {
-    var height = smallDevice ? `${(5 * this.state.options.xaxis.categories.length)+100}%` : null
+    var height = smallDevice ? `${(5 * this.props.options.xaxis.categories.length)+100}%` : null
     if(!height){
       return (
         <Chart
-          options={this.state.options}
-          series={this.state.series}
+          options={this.props.options}
+          series={this.props.series}
           type="bar"
           width="85%"
         />
@@ -62,8 +21,8 @@ class BarChart extends Component {
     else {
       return (
         <Chart
-          options={this.state.options}
-          series={this.state.series}
+          options={this.props.options}
+          series={this.props.series}
           type="bar"
           width="85%"
           height={height}
