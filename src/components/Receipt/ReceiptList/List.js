@@ -6,6 +6,7 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
+import { mapDispatchToProps } from './ReceiptList';
 export class List extends Component {
 
 	state = {
@@ -111,4 +112,4 @@ export const mapStateToProps = state => {
 		receipts: state.receipts
 	}
 }
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List)

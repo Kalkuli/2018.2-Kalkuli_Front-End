@@ -41,7 +41,7 @@ class Dashboard extends Component {
         this.fetchTags()
         this.fetchReceipts()
     }
-
+    
     render() {
         moment.locale('pt-br')
         return (
@@ -68,7 +68,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-                        <BarChart />
+                            <BarChart className="chart"/>
                         </div>
                     </div>
 
@@ -165,10 +165,11 @@ export const mapDispatchToProps = dispatch => {
         onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
     }
 }
-// export const mapStateToProps = state => {
-// 	return {
-// 		receipts: state.receipts
-// 	}
-// }
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts,
+        tags: state.tags
+    }
+}
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

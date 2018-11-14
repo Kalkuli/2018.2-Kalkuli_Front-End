@@ -32,11 +32,11 @@
             &__graphs {
                 margin-top: 5%;
                 margin-bottom: 5%;
-                overflow-y: auto;
+                overflow-y: hidden;
+                margin-left: -1%;
             }
         }
     }
-
 }
 
 @media (min-width:320px) {
@@ -53,9 +53,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 40em;
-                }
             }
 
             &__report {
@@ -78,9 +75,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -102,9 +96,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -125,9 +116,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -148,9 +136,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -163,6 +148,7 @@
 @media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
+        overflow-y: hidden;
         &__area {
             padding: 3%;
 
@@ -175,9 +161,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -199,9 +182,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {

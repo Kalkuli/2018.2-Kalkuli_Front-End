@@ -82,11 +82,17 @@
 @media (min-width:1025px) {
      /* big landscape tablets, laptops, and desktops */ 
         .report {
-            height: 60em;
-            width: 45em;
+            height: 50em;
+            width: 37.5em;
         }
     }
-@media (min-width:1100px) {
+@media (min-width: 1100px) {
+    .report {
+        margin-top: 27%;
+    }
+}
+
+@media (min-width:1281px) {
      /* hi-res laptops and desktops */ 
         .report {
             height: 51em;
