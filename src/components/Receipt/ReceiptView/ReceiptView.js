@@ -31,7 +31,7 @@ class ReceiptView extends Component {
     return (
       <Modal>
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
-        {this.state.save ? this.renderConfirmationMessage() : null}
+        {this.state.save ? this.renderConfirmationMessageSave() : null}
         <div className="receipt-modal-area">
           <Receipt size='large'>
             <div className="receipt-container">
@@ -75,12 +75,13 @@ class ReceiptView extends Component {
                           size={size}>
                           {this.state.edit ? 'Cancelar' : 'Editar'}
               </BaseButton>
-              
-              
+
               <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
             </div>
             <div className='area-buttons__confirm'>
-              <BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>
+            {this.state.edit ? 
+              <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={size}>Salvar</BaseButton>
+              :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>}
             </div>
           </div>
         </div>
@@ -103,18 +104,32 @@ class ReceiptView extends Component {
     this.props.onGetAllReceipts()
   }
   onCancelHandler = () => {
-    this.setState({confirmation: false})
+    this.setState({confirmation: false, save: false})
   }
   renderConfirmationMessage = () => {
     return (
       <Fragment>
         <ConfirmationMessage  onDeleteHandler={this.onDeleteHandler}
                               onCancelHandler={this.onCancelHandler}   
-                              action='deletar' />
+                              action='deletar' 
+                              name={'Deletar'}/>
         <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
       </Fragment>
     )
   }
+
+  renderConfirmationMessageSave = () => {
+    return (
+      <Fragment>
+        <ConfirmationMessage  
+                              onCancelHandler={this.onCancelHandler}   
+                              action='editar' 
+                              name={'Editar'}/>
+        <BackDrop show={this.state.save} click={this.onCancelHandler}/>
+      </Fragment>
+    )
+  }
+
   onConfirmEdit = () =>{
     alert('GOO')
   }
