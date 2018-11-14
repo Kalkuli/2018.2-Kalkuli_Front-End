@@ -5,7 +5,7 @@ import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 import HomePage from './components/HomePage/HomePage'
 import { connect } from 'react-redux'
-import {  BrowserRouter,Route, Switch, Redirect } from 'react-router-dom'
+import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 import * as actionTypes from './store/actions/actions'
 
 export class App extends Component {

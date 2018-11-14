@@ -90,11 +90,7 @@ class Dashboard extends Component {
     }
     
     render() {
-        console.log(this.state.series)
         moment.locale('pt-br')
-        if(this.props.receipts.length > 0){
-            this.organizeData(this.props.receipts)
-        }
         return (
             <div className="dashboard">
                 <Navbar/>
@@ -136,18 +132,20 @@ class Dashboard extends Component {
     }
 
     organizeData = () => {
-        this.props.receipts.sort((a,b) => {
+        var copy = [...this.props.receipts]
+        copy.sort((a,b) => {
             a = new Date(a.emission_date);
             b = new Date(b.emission_date);
             return a < b ? -1 : a < b ? 1 : 0;
         })
+        this.setState({receipts: copy})
     }
 
     sumSameDate = (receipts) => {
         var i 
         var dates = [], prices = []
         for ( i = 0; i < receipts.length; i++){
-            if(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
+            if(receipts[i+1] && receipts[i+1].emission_date == receipts[i].emission_date){
                 dates.push(receipts[i].emission_date)
                 prices.push(receipts[i].total_price + receipts[i+1].total_price)
                 i++
@@ -192,12 +190,13 @@ class Dashboard extends Component {
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
+        this.organizeData()
 
         if (this.state.isEndDate) {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = this.props.receipts.filter((receipt) => {
+            var filteredReceipts = this.state.receipts.filter((receipt) => {
                 return date_from <= receipt.emission_date && date_to >= receipt.emission_date
             })
             this.setState({filteredReceipts: filteredReceipts})

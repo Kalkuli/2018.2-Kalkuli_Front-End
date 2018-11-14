@@ -30,10 +30,15 @@
             }
 
             &__graphs {
-                margin-top: 5%;
-                margin-bottom: 5%;
                 overflow-y: hidden;
-                margin-left: -1%;
+                margin-top: 4%;
+                margin-bottom: 5%;
+                margin-left: 0%;
+                box-sizing: border-box;
+                padding-top: 5%;
+                padding-left: 7%;
+                border: 1px solid $color-dark-blue;
+                border-radius: 5px;
             }
         }
     }
