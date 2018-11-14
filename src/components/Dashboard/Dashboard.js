@@ -48,9 +48,9 @@ class Dashboard extends Component {
     
     render() {
         moment.locale('pt-br')
-            if(this.props.receipts.length > 0){
-                this.organizeData(this.props.receipts)
-            }
+        if(this.props.receipts.length > 0){
+            this.organizeData(this.props.receipts)
+        }
         return (
             <div className="dashboard">
                 <Navbar/>
@@ -75,7 +75,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-                        {this.state.dates ? <BarChart dates={this.state.dates} prices={this.state.prices} /> : null}
+                            {this.state.dates.length === 0 ? null : <BarChart dates={this.state.dates} prices={this.state.prices} /> }
                         </div>
                     </div>
 
@@ -101,17 +101,22 @@ class Dashboard extends Component {
 
     sumSameDate = (receipts) => {
         var i 
+        var dates = [], prices = []
         for ( i = 0; i < receipts.length; i++){
             if(receipts[i+1] && receipts[i+1].emission_date == receipts[i].emission_date){
-                this.state.dates.push(receipts[i].emission_date)
-                this.state.prices.push(receipts[i].total_price + receipts[i+1].total_price)
+                dates.push(receipts[i].emission_date)
+                prices.push(receipts[i].total_price + receipts[i+1].total_price)
                 i++
             }
             else{
-                this.state.dates.push(receipts[i].emission_date)
-                this.state.prices.push(receipts[i].total_price)
+                dates.push(receipts[i].emission_date)
+                prices.push(receipts[i].total_price)
             }
         }
+        this.setState({
+            dates: dates,
+            prices: prices
+        })
     }
 
     

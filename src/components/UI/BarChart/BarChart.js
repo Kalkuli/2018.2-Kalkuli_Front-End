@@ -20,7 +20,7 @@ class BarChart extends Component {
         },
         colors: "#0F8891",
         xaxis: {
-          categories: [1,2]
+          categories: this.props.dates
         },
         dataLabels: {
           enabled: false
@@ -42,13 +42,12 @@ class BarChart extends Component {
       },
       series: [
         {
-          data: []
+          data: this.props.prices
         }
       ]
     };
 
   render() {
-    console.log(this.state.series)
     var height = smallDevice ? `${(5 * this.state.options.xaxis.categories.length)+100}%` : null
     if(!height){
       return (
