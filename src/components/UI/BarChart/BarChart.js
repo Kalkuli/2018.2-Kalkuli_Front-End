@@ -5,10 +5,8 @@ import './BarChart.scss'
 const smallDevice = window.matchMedia('(max-width: 480px)').matches
 
 class BarChart extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
+    state = {
       options: {
         chart: {
           id: "basic-bar",
@@ -22,7 +20,7 @@ class BarChart extends Component {
         },
         colors: "#0F8891",
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          categories: [1,2]
         },
         dataLabels: {
           enabled: false
@@ -44,16 +42,14 @@ class BarChart extends Component {
       },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
+          data: []
         }
       ]
     };
-  }
 
   render() {
+    console.log(this.state.series)
     var height = smallDevice ? `${(5 * this.state.options.xaxis.categories.length)+100}%` : null
-    console.log(height)
     if(!height){
       return (
         <Chart

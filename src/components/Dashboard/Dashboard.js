@@ -34,16 +34,23 @@ class Dashboard extends Component {
         date_from: null,
         date_to: null,
         isValid: true,
-        reportCase: null
+        reportCase: null,
+        prices: [],
+        dates: [],
+        filteredReceipts: null
     }
 
     componentDidMount() {
         this.fetchTags()
         this.fetchReceipts()
+        this.setState({prices: [], dates: []})
     }
     
     render() {
         moment.locale('pt-br')
+            if(this.props.receipts.length > 0){
+                this.organizeData(this.props.receipts)
+            }
         return (
             <div className="dashboard">
                 <Navbar/>
@@ -68,7 +75,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-                            <BarChart className="chart"/>
+                        {this.state.dates ? <BarChart dates={this.state.dates} prices={this.state.prices} /> : null}
                         </div>
                     </div>
 
@@ -83,6 +90,31 @@ class Dashboard extends Component {
             </div>
         )
     }
+
+    organizeData = () => {
+        this.props.receipts.sort((a,b) => {
+            a = new Date(a.emission_date);
+            b = new Date(b.emission_date);
+            return a < b ? -1 : a < b ? 1 : 0;
+        })
+    }
+
+    sumSameDate = (receipts) => {
+        var i 
+        for ( i = 0; i < receipts.length; i++){
+            if(receipts[i+1] && receipts[i+1].emission_date == receipts[i].emission_date){
+                this.state.dates.push(receipts[i].emission_date)
+                this.state.prices.push(receipts[i].total_price + receipts[i+1].total_price)
+                i++
+            }
+            else{
+                this.state.dates.push(receipts[i].emission_date)
+                this.state.prices.push(receipts[i].total_price)
+            }
+        }
+    }
+
+    
     onConfirmHandler = () => { this.props.history.push('/confirmation') }
 
     chooseButton = (loading, isValid, receipts) => {
@@ -94,6 +126,14 @@ class Dashboard extends Component {
         }
     }
 
+    sumReceipts = (receipts) => {
+        var sum = 0
+        for(var i = 0; i < receipts.length; i++){
+            sum += receipts[i].total_price
+        }
+        this.setState({sum: sum.toFixed(2)})
+    }
+
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
@@ -102,28 +142,12 @@ class Dashboard extends Component {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            this.setState({ date_from: date_from, date_to: date_to })
-
-            axios.post(baseUrl.default + '/api/v1/report', {
-                "period": {
-                    date_from: date_from,
-                    date_to: date_to
-                }
+            var filteredReceipts = this.props.receipts.filter((receipt) => {
+                return date_from <= receipt.emission_date && date_to >= receipt.emission_date
             })
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                    receipts: response.data.receipts,
-                    sum: response.data.total_cost,
-                    isEndDate: false,
-                    reportCase: 'reports'
-                })
-            })
-            .catch(() => {
-                this.setState({
-                    reportCase: 'do not exist'
-                })
-            })
+            this.setState({filteredReceipts: filteredReceipts})
+            this.sumReceipts(filteredReceipts)
+            this.sumSameDate(filteredReceipts)
         }
     }
 
