@@ -1,6 +1,8 @@
 import { MenuButton, mapDispatchToProps } from '../../UI/Button/MenuButton/MenuButton'
 jest.mock('../../../services/getAllReceipts.js')
 
+jest.mock('../../services/axiosConfig.js')
+
 describe('Testing <MenuButton/>', () => {
   
   let wrapper = null
