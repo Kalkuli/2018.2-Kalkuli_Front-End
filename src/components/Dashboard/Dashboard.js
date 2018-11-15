@@ -17,6 +17,7 @@ import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import * as baseUrl from '../../helpers/baseUrl'
+import {baseURL, config} from '../../services/axiosConfig'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -210,11 +211,12 @@ class Dashboard extends Component {
         this.setState({
             loading: true
         })
-        axios.post(baseUrl.default + '/api/v1/save_report', {
+        axios.post(`${baseUrl.default}/save_report`, {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to
-            }
+            },
+            config
         })
         .then(() => {
             this.setState({

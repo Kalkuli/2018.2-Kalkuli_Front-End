@@ -13,7 +13,7 @@ import ConfirmationMessage from '../../components/UI/ConfirmationMessage/Confirm
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
 import * as baseUrl from '../../helpers/baseUrl'
-
+import {baseURL, config} from '../../services/axiosConfig'
 
 var type = "no-background"
 var comeco = null;
@@ -106,7 +106,8 @@ class Reports extends Component {
     }
 
     getAllReports = () => {
-        Axios.get(baseUrl.default + '/api/v1/get_all_reports')
+        const company_id = localStorage.getItem('company_id')
+        Axios.get(`${baseUrl.default}/${company_id}/get_all_reports`, config)
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -118,11 +119,12 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post(baseUrl.default + '/api/v1/report', {
+        Axios.post(`${baseUrl.default}/report`, {
             "period": {
                 date_from: date_from,
                 date_to: date_to
-            }
+            },
+            config
         })
         .then((response) => {
             console.log(response)
@@ -160,11 +162,12 @@ class Reports extends Component {
     onConfirmationTrue = () => { this.setState({confirmation: true}) }  
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post(baseUrl.default + '/api/v1/export', {
+        Axios.post(`${baseUrl.default}/export`, {
             "period": {
                 date_from: date_from,
                 date_to: date_to
-            }
+            },
+            config
         }).then((response) => {
             FileDownload(response.data, 'report.csv')
         })
