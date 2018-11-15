@@ -2,6 +2,10 @@ import '../../services/__mocks__/matchMedia'
 import { List, mapStateToProps } from '../Receipt/ReceiptList/List'
 import ReceiptView from '../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../UI/BackDrop/BackDrop'
+import localStorage from '../../services/__mocks__/localStorage'
+
+jest.mock('../../services/axiosConfig.js')
+window.localStorage = localStorage
 
 describe("Testing <List />", () => {
   let wrapper = null

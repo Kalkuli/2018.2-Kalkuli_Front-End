@@ -3,6 +3,8 @@ import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../Receipt/Rec
 import NavBar from '../UI/Navbar/Navbar'
 import MenuButton from '../UI/Button/MenuButton/MenuButton'
 
+jest.mock('../../services/axiosConfig.js')
+
 describe("Testing <ReceiptList/>", () => {
   
   let wrapper = null

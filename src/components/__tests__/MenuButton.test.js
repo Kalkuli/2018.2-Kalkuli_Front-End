@@ -1,5 +1,7 @@
 import {MenuButton} from '../UI/Button/MenuButton/MenuButton'
 
+jest.mock('../../services/axiosConfig.js')
+
 describe('Testing <MenuButton/>', () => {
   
   let wrapper = null
