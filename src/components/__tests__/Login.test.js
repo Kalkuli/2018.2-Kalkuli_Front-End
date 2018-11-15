@@ -1,8 +1,9 @@
 import Login from '../Login/Login'
 import Confirmation from '../UI/Confirmation/Confirmation'
+import InputField from '../UI/Input/InputField'
 
 describe('Testing <Login />', () => { 
-  let wrapper = null
+  const spyOnChangeHandler = jest.fn()
   let props = {
     inputs: {
       email: {
@@ -28,9 +29,11 @@ describe('Testing <Login />', () => {
         value: ""
       }
     },
+    onChangeHandler: spyOnChangeHandler
   }
+  let wrapper = null
   beforeEach(() => {
-      wrapper = shallow(<Login {...props}/>)
+    wrapper = mount(<Login {...props}/>)
   })
   
   it('should find login__form__inputs', () => {
@@ -40,5 +43,17 @@ describe('Testing <Login />', () => {
   it('should warn user when trying to login with no valid user', () => {
     wrapper.setProps({registration: 'fail'})
     expect(wrapper.find(Confirmation).exists()).toBe(true)
+  })
+
+  it('should simulate onChange when typing in email field', () => {
+    const event = {}
+    wrapper.find(InputField).at(0).simulate('change', event)
+    expect(spyOnChangeHandler).toHaveBeenCalled()
+  })
+
+  it('should simulate onChange when typing in password field', () => {
+    const event = {}
+    wrapper.find(InputField).at(1).simulate('change', event)
+    expect(spyOnChangeHandler).toHaveBeenCalled()
   })
 })
