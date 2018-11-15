@@ -130,7 +130,8 @@ export class HomeNavBar extends Component {
       this.setState({registration: 'done'})
       this.props.onAddAuthToken('token')
       this.props.onConfirmOk()
-      localStorage.setItem('auth_token', response)
+      localStorage.setItem('auth_token', response.token)
+      localStorage.setItem('company_id', response.company_id)
     } else {
       this.setState({registration: 'fail'})
     }
