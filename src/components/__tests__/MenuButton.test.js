@@ -1,4 +1,5 @@
-import {MenuButton} from '../UI/Button/MenuButton/MenuButton'
+import { MenuButton, mapDispatchToProps } from '../UI/Button/MenuButton/MenuButton'
+jest.mock('../../services/getAllReceipts.js')
 
 describe('Testing <MenuButton/>', () => {
   
@@ -6,10 +7,12 @@ describe('Testing <MenuButton/>', () => {
   let instance = null
 
   const spyHistoryPush = jest.fn()
+  const spyOnReceiptsAdded = jest.fn()
   const props = {
     history: {
-      push: spyHistoryPush
-    }
+      push: spyHistoryPush,
+    },
+    onReceiptsAdded: spyOnReceiptsAdded    
   }
 
   beforeEach(() => {
@@ -54,5 +57,18 @@ describe('Testing <MenuButton/>', () => {
     wrapper.setState({newReceipt: true})
     instance.onCloseReceiptAdder()
     expect(wrapper.state('newReceipt')).toBe(false)
+  })
+
+  it('should re-populate store when fetching receipts', (done) => {
+    wrapper.instance().onConfirmOk()
+    const state = wrapper.instance().state
+    expect(state.newReceipt).toBe(false)
+    done()
+  })
+
+  it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
+    const dispatch = jest.fn()
+    mapDispatchToProps(dispatch).onReceiptsAdded()
+    expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_RECEIPTS'})
   })
 })
