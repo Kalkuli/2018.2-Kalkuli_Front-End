@@ -47,7 +47,11 @@
     border: none;
     background-color: $color-yellow;
     font-size: 1em;
-    color: $color-black;
+    color: $color-black;    
+}
+
+textarea {
+    height: 7em !important;
 }
 
 .receipt-font-input{
