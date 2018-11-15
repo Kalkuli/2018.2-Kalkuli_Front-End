@@ -11,6 +11,7 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
+import {baseURL, config} from '../../../services/axiosConfig'
 
 class ReceiptAdder extends Component {
   state = {
@@ -70,11 +71,12 @@ class ReceiptAdder extends Component {
 
   onConfirmButton = (receipt) => {
     console.log(receipt)
-    axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt', {
+    axios.post(`${baseURL}/receipt`, {
       "receipt": {
         ...receipt,
-        company_id: 1
-      }
+        company_id: localStorage.getItem('company_id')
+      },
+      config
     })
       .then(() => {
         this.setState({

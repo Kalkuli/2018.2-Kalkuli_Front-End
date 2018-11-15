@@ -1,6 +1,8 @@
 import axios from 'axios'
+import {config, baseURL} from './axiosConfig'
 
 export default async receipt_id => {
-  const response = await axios.delete(`https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt/${receipt_id}`)
+  const company_id = localStorage.getItem('company_id')
+  const response = await axios.delete(`${baseURL}/${company_id}/receipt/${receipt_id}`, config)
   return response.data
 }
