@@ -18,6 +18,7 @@ describe("Testing <List />", () => {
     "description": "teste",
     "cnpj": "320490234-002",
   }
+  
   let props = {
     receipts: [{...receipt}],
     search: 'oi',
@@ -65,61 +66,25 @@ describe("Testing <List />", () => {
     }
     expect(mapStateToProps(initialState).tags).toEqual(tags)
   })
-  
-})
-
-describe("Testing <List /> searching teste", () => {
-  let wrapper = null
-  let tags = [
-    {'id': 0, 'category': 'Limpeza', 'color': '#424242'}, 
-    {'id': 1, 'category': 'Alimentação', 'color': '#fff'}
-  ]
-  let receipt = {
-    "emission_date": "2018-09-22",
-    "emission_place": "aqqqqqq",
-    "tax_value": 20.20,
-    "total_price": 123.12,
-    "title": "oi",
-    "description": "teste",
-    "cnpj": "320490234-002",
-  }
-  let props = {
-    receipts: [{...receipt}],
-    search: 'teste'
-  }
-
-  beforeEach(() => {
-    wrapper = shallow(<List {...props}/>)
-  })
 
   it('should test filterReceipts finding a receipt by its description', () => {
+    var props = {
+      receipts: [{...receipt}],
+      search: 'teste'
+    }
+    wrapper = shallow(<List {...props}/>)
     wrapper.instance().filterReceipts(props.receipts)
     expect(wrapper.find('.container-receipts__receipt-data').exists()).toBeTruthy()
   })
-})
-
-describe("Testing <List /> searching invalid title", () => {
-  let wrapper = null
-  let receipt = {
-    "emission_date": "2018-09-22",
-    "emission_place": "aqqqqqq",
-    "tax_value": 20.20,
-    "total_price": 123.12,
-    "title": "oi",
-    "description": "teste",
-    "cnpj": "320490234-002",
-  }
-  let props = {
-    receipts: [{...receipt}],
-    search: 'oi123'
-  }
-
-  beforeEach(() => {
-    wrapper = shallow(<List {...props}/>)
-  })
 
   it('should test filterReceipts not finding a receipt by its title', () => {
+    var props = {
+      receipts: [{...receipt}],
+      search: 'oi123'
+    }
+    wrapper = shallow(<List {...props}/>)
     wrapper.instance().filterReceipts(props.receipts)
     expect(wrapper.find('.container-receipts__receipt-data').exists()).toBe(false)
   })
+  
 })
