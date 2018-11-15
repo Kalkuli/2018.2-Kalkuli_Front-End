@@ -2,9 +2,6 @@ import '../../services/__mocks__/matchMedia'
 import HomePage from '../HomePage/HomePage'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
-import React, {Fragment} from 'react'
-import Register from '../Register/Form'
-import Backdrop from '../UI/BackDrop/BackDrop'
 
 describe('Testing <HomePage />', () => {
   
