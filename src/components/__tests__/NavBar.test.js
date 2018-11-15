@@ -11,4 +11,45 @@ describe('Testing <NavBar />', () => {
   it('should find <Link />', () => {
     expect(wrapper.find(Link).exists()).toBe(true)
   })
+
+  it('should be a small Device', () => {
+    wrapper.setState(() => {
+      return({smallDevice: true})
+    })
+    expect(wrapper.find('.sidebar').exists()).toBeTruthy()
+  })
+
+  it('sidebar should be open', () => {
+    wrapper.setState(() => {
+      return({smallDevice: true})
+    })
+    wrapper.setState(() => {
+      return({isOpen: true})
+    })
+    expect(wrapper.find('.Open').exists()).toBeTruthy()
+  })
+
+  it('sidebar should be close', () => {
+    wrapper.setState(() => {
+      return({smallDevice: true})
+    })
+    wrapper.setState(() => {
+      return({isOpen: false})
+    })
+    expect(wrapper.find('.Close').exists()).toBeTruthy()
+  })
+
+  it('should test onClickMenuHandler', () => {
+    wrapper.setState(() => {
+      return({smallDevice: true})
+    })
+    wrapper.setState(() => {
+      return({isOpen: false})
+    })
+    wrapper.setState(() => {
+      return({isOpen: true})
+    })
+    wrapper.instance().onClickMenuHandler()
+    expect(wrapper.state('isOpen')).toBe(false)
+  })
 })
