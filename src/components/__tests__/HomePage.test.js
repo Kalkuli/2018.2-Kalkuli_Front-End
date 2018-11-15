@@ -2,12 +2,18 @@ import '../../services/__mocks__/matchMedia'
 import HomePage from '../HomePage/HomePage'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
+import React, {Fragment} from 'react'
+import Register from '../Register/Form'
+import Backdrop from '../UI/BackDrop/BackDrop'
 
 describe('Testing <HomePage />', () => {
   
   let wrapper = null
+  let instance = null
+  const historyMock = { push: jest.fn() }
   beforeEach(() => {
-    wrapper = shallow(<HomePage />)
+    wrapper = shallow(<HomePage history={historyMock}/>)
+    instance = wrapper.instance()
   })
 
   it('should find header section', () => {
@@ -32,5 +38,29 @@ describe('Testing <HomePage />', () => {
 
   it('should find <HomeNavBar />', () => {
     expect(wrapper.find(HomeNavBar)).toHaveLength(1)
+  })
+
+  it('should test onCloseRegister', () => {
+    wrapper.setState({
+      newCompany: true
+    })
+    instance.onCloseRegister()
+    expect(wrapper.state('newCompany')).toBe(false)
+  })
+
+  it('should test registerClick', () => {
+    wrapper.setState(() => {
+      return({newCompany:false})
+    })
+    wrapper.setState(() => {
+      return({newCompany:true})
+    })
+    instance.registerClick()
+    expect(wrapper.state('newCompany')).toBe(false)
+  })
+
+  it('should test onConfirmOK', () => {
+    instance.onConfirmOk()
+    expect(historyMock.push.mock.calls[0]).toEqual(['/dashboard']);
   })
 })
