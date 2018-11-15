@@ -9,21 +9,24 @@ const Confirmation = (props) => {
     let styleText = ["confirm-message"]
     let buttonType
     let image
+    let imgClass
     if(props.valid === 'done'){
         image = confirm
         buttonType = 'confirm'
+        imgClass = 'confirm-icon'
     }
     else {
         image = error
         buttonType = 'delete'
         styleText.push('error')
+        imgClass = 'error-icon'
     }
     return(
         <Modal>
             <div className="confirm-area">
-            <img className="confirm-icon" src={image} alt="Confirmation Icon"/>
-            <p className={styleText.join(' ')} >{props.content}</p>
-            <BaseButton className="button-font" type={buttonType} click={props.onConfirmOk}>OK</BaseButton>
+                <img className={imgClass} src={image} alt="Confirmation Icon"/>
+                <p className={styleText.join(' ')} >{props.content}</p>
+                <BaseButton className="button-font" type={buttonType} click={props.onConfirmOk}>OK</BaseButton>
             </div>
         </Modal>
     )
