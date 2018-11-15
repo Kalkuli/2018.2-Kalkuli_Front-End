@@ -22,7 +22,8 @@ class ReceiptView extends Component {
     confirmation: false,
     edit: false,
     save: false,
-    receipt: receiptInput
+    receipt: receiptInput,
+    lastReceiptState: null
   }
   
   render() {
@@ -40,7 +41,8 @@ class ReceiptView extends Component {
                   <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
                   
                   <input  className={classe} 
-                          value={receipt['title']} />
+                          defaultValue={receipt['title']}
+                          disabled={!this.state.edit}/>
                 </div>
                 {Object.keys(receipt).map(data => {
                   if(data === 'title' || data === 'description' || data === 'tag_id')
@@ -50,16 +52,18 @@ class ReceiptView extends Component {
                       <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
 
                       <input  className={classe} 
-                              value={receipt[data]}
-                              onChangeHandler={(event) => this.onChangeHandler(event, data)}/>
+                              defaultValue={receipt[data]}
+                              onChange={(event) => this.changeHandler(event, data)}
+                              disabled={!this.state.edit}
+                              />
                     </div>
                 )})}
                 <div key={'description'} className='receipt-area__content'>
                   <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
                   
-                  <textarea rows='6' 
-                            className={classe} 
-                            disabled value={receipt['description']}/>
+                  <textarea disabled={!this.state.edit}
+                            className={classe}  
+                            defaultValue="{receipt['description']zxczxczczxczxczxczzxczczxczczxczczxczczxczxc}"/>
 
                 </div>
               </div>
@@ -88,9 +92,15 @@ class ReceiptView extends Component {
       </Modal>
     )
   }
-  onChangeHandler = (event,key) =>{
+
+  changeHandler = (event,key) =>{
+    console.log(key)
     let inputState = {...this.state.receipt}
+    console.log(inputState)
+
     let input = {...this.state.receipt[key]}
+    console.log(input)
+
     input.value = event.target.value
     inputState[key] = input
     this.setState({receipt: inputState})
@@ -138,6 +148,14 @@ class ReceiptView extends Component {
 
   onEditHandler = () => {
     this.setState(prevState =>({edit: !prevState.edit}))
+    
+    if(this.state.edit === false){
+      const receipt = {...this.state.receipt}
+      this.setState({lastReceiptState: receipt})
+    }else {
+      const lastReceipt = {...this.state.lastReceiptState}
+      this.setState({receipt: lastReceipt})
+    }
   }
 }
 
