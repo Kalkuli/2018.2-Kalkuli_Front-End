@@ -58,4 +58,11 @@ describe('Testing reducers', () => {
     expect(reducer(initialState, action)).toEqual({...initialState, tags: action.tags})
   })
 
+  it('should return the state with the added auth_token', () => {
+    const action = {
+      type: actionTypes.ADD_AUTH_TOKEN,
+      auth_token: 'testing'
+    }
+    expect(reducer(initialState, action)).toEqual({...initialState, auth_token: action.auth_token})
+  })
 })
