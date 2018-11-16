@@ -12,7 +12,7 @@ import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
 
-class ReceiptAdder extends Component {
+export class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
