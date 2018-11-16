@@ -6,9 +6,19 @@ const smallDevice = window.matchMedia('(max-width: 480px)').matches
 
 class BarChart extends Component {
 
+  state = {
+    smallDevice: smallDevice,
+    height: null
+  }
+
+  componentDidMount(){
+    this.setState({
+      height: this.state.smallDevice ? `${(5 * this.props.options.xaxis.categories.length)+100}%` : null
+    })
+  }
+
   render() {
-    var height = smallDevice ? `${(5 * this.props.options.xaxis.categories.length)+100}%` : null
-    if(!height){
+    if(!this.state.height){
       return (
         <Chart
           options={this.props.options}
@@ -25,7 +35,7 @@ class BarChart extends Component {
           series={this.props.series}
           type="bar"
           width="85%"
-          height={height}
+          height={this.state.height}
         />
       );
     }

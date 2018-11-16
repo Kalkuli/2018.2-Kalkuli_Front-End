@@ -2,7 +2,6 @@ import '../../services/__mocks__/matchMedia'
 import 'moment/locale/pt-br'
 import moment from 'moment'
 import 'moment/locale/pt-br'
-import renderer from 'react-test-renderer'
 import {Dashboard, mapDispatchToProps, mapStateToProps} from '../Dashboard/Dashboard'
 
 describe('Testing <Dashboard />', () => {
