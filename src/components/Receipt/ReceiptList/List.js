@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
@@ -6,15 +6,21 @@ import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
+import Confirmation from '../../UI/Confirmation/Confirmation'
+import Modal from '../../UI/Modal/Modal';
 export class List extends Component {
 
 	state = {
 		showModal: false,
 		selectedReceipt: null,
 		selectedReceiptId: null,
+		ConfirmationDone: false,
+		ConfirmationError: false
 	}
 
 	render() {
+		let done = this.editConfirmationDone()
+		let error = this.editConfirmationError()
 		let receiptView = null
 		if (this.state.selectedReceipt) {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
@@ -22,17 +28,20 @@ export class List extends Component {
 																	receiptId={this.state.selectedReceiptId}
 																	onGetAllReceipts={this.props.onGetAllReceipts} 
 																	tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
-																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
+																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}
+																	error={this.ConfirmationError}
+																	done={this.ConfirmationDone}/>
 		}
-
+		
 		let filteredReceipts = this.filterReceipts(this.props.receipts) 
 		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
-
+		
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 				{receiptView}
-
+				{this.state.ConfirmationDone ? done : null}
+				{this.state.ConfirmationError ? error : null}
 				{receipts ? receipts.map(receipt => {
 					let receiptId = receipt.id
 					delete receipt.id
@@ -65,6 +74,39 @@ export class List extends Component {
 			</div>
 		)
 	}
+	ConfirmationDone = ()=>{
+		this.setState({ConfirmationDone: true})
+	}
+
+	ConfirmationDoneClose = ()=>{
+		this.setState({ConfirmationDone: false})
+	}
+
+	editConfirmationDone = () => {
+		return (
+			<Fragment>
+				<Confirmation content='Sua nota foi editada com sucesso!' valid='done' onConfirmOk={this.ConfirmationDoneClose}/>
+				<Backdrop show={this.state.ConfirmationDone} click={this.ConfirmationDoneClose} /> 
+			</Fragment>
+	)
+}
+
+ConfirmationError = ()=>{
+	this.setState({ConfirmationError: true})
+}
+
+ConfirmationErrorClose = ()=>{
+	this.setState({ConfirmationError: false})
+}
+
+editConfirmationError = () => {
+	return (
+		<Fragment>
+			<Confirmation content='Houve edição indevida na sua nota!' valid='error' onConfirmOk={this.ConfirmationErrorClose}/>
+			<Backdrop show={this.state.ConfirmationError} click={this.ConfirmationErrorClose} /> 
+		</Fragment>
+)
+}
 
 	filterReceipts = (receipts) => {
 		if(receipts){

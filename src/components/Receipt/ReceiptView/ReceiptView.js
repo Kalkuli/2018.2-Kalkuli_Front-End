@@ -9,7 +9,6 @@ import deleteReceipt from '../../../services/deleteReceipt'
 import updateReceipt from '../../../services/updateReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
-import Confirmation from '../../UI/Confirmation/Confirmation'
 
 const smallDevice = window.matchMedia('(max-width: 645px)').matches
 var size;
@@ -30,75 +29,84 @@ class ReceiptView extends Component {
   }
   
   render() {
-    let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
+    let content = this.t(this.state.edited)
     return (
       <Modal>
-        {console.log(this.state.receipt)}
         {this.state.save ? this.renderConfirmationMessageSave() : null}
         {this.state.edit === false ? this.renderConfirmationMessageCancel() : null}
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
-        <div className="receipt-modal-area">
-          <Receipt size='large'>
-            <div className="receipt-container">
-              <div className='receipt-area receipt-font'>
-                <div key={'title'} className='receipt-area__content'>
-                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
-                  
-                  <input  className={classe} 
-                          defaultValue={this.state.receipt['title']}
-                          onChange={(event) => this.changeHandler(event, 'title')}
-                          disabled={!this.state.edit}/>
-                </div>
-                {Object.keys(this.state.receipt).map(data => {
-                  if(data === 'title' || data === 'description' || data === 'tag_id')
-                    return null
-                  return (
-                    <div key={data} className='receipt-area__content'>
-                      <p className="receipt-font receipt-area__content__label"><b>{this.state.receiptName[data].name}:</b></p>
-                      <input  className={classe} 
-                              defaultValue={this.state.receipt[data]}
-                              onChange={(event) => this.changeHandler(event, data)}
-                              disabled={!this.state.edit}
-                              />
-                    </div>
-                )})}
-                <div key={'description'} className='receipt-area__content'>
-                  <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
-                  
-                  <textarea disabled={!this.state.edit}
-                            className={classe}  
-                            onChange={(event) => this.changeHandler(event, 'description')}
-                            defaultValue={this.state.receipt['description']}/>
-                </div>
-              </div>
-              <SavedTagItem name={this.props.tagName} color={this.props.tagColor}/>
-            </div>
-          </Receipt>
-          <div className='area-buttons'>
-            <div className='area-buttons__change-buttons'>
-              <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
-              {this.state.edit ? 
-              <BaseButton type='no-background'
-                          click={this.onCancelEditHandler} 
-                          size={size}>
-                          Cancelar
-              </BaseButton> :
-              <BaseButton type='no-background'
-                          click={this.onEditHandler} 
-                          size={size}>
-                          Editar
-              </BaseButton>}
-              <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
-            </div>
-            <div className='area-buttons__confirm'>
-            {this.state.edit ? 
-              <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={size}>Salvar</BaseButton>
-              :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>}
-            </div>
-          </div>
-        </div>
+        {content}
       </Modal>
     )
+  }
+
+  t = (el) => {
+    if(el === 'done'){
+      
+    }else {
+      let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
+      return(
+        <div className="receipt-modal-area">
+        <Receipt size='large'>
+          <div className="receipt-container">
+            <div className='receipt-area receipt-font'>
+              <div key={'title'} className='receipt-area__content'>
+                <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
+                
+                <input  className={classe} 
+                        defaultValue={this.state.receipt['title']}
+                        onChange={(event) => this.changeHandler(event, 'title')}
+                        disabled={!this.state.edit}/>
+              </div>
+              {Object.keys(this.state.receipt).map(data => {
+                if(data === 'title' || data === 'description' || data === 'tag_id')
+                  return null
+                return (
+                  <div key={data} className='receipt-area__content'>
+                    <p className="receipt-font receipt-area__content__label"><b>{this.state.receiptName[data].name}:</b></p>
+                    <input  className={classe} 
+                            defaultValue={this.state.receipt[data]}
+                            onChange={(event) => this.changeHandler(event, data)}
+                            disabled={!this.state.edit}/>
+                  </div>
+              )})}
+              <div key={'description'} className='receipt-area__content'>
+                <p className="receipt-font receipt-area__content__label"><b>{receiptInput['description'].name}:</b></p>
+                
+                <textarea disabled={!this.state.edit}
+                          className={classe}  
+                          onChange={(event) => this.changeHandler(event, 'description')}
+                          defaultValue={this.state.receipt['description']}/>
+              </div>
+            </div>
+            <SavedTagItem name={this.props.tagName} color={this.props.tagColor}/>
+          </div>
+        </Receipt>
+        <div className='area-buttons'>
+          <div className='area-buttons__change-buttons'>
+            <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
+            {this.state.edit ? 
+            <BaseButton type='no-background'
+                        click={this.onCancelEditHandler} 
+                        size={size}>
+                        Cancelar
+            </BaseButton> :
+            <BaseButton type='no-background'
+                        click={this.onEditHandler} 
+                        size={size}>
+                        Editar
+            </BaseButton>}
+            <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
+          </div>
+          <div className='area-buttons__confirm'>
+          {this.state.edit ? 
+            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={size}>Salvar</BaseButton>
+            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>}
+          </div>
+        </div>
+      </div>
+      )
+    }
   }
 
   changeHandler = (event,key) =>{
@@ -107,8 +115,6 @@ class ReceiptView extends Component {
     input.value = event.target.value
     inputState[key] = input.value
     this.setState({receipt: inputState})
-    console.log(this.state.receipt)
-    console.log(this.state.receipt['total_price'])
   }
 
   onDeleteHandler = async() => {
@@ -120,7 +126,6 @@ class ReceiptView extends Component {
   }
 
   onCancelHandler = () => {
-    console.log("oo")
     this.setState({confirmation: false})
   }
 
@@ -172,9 +177,7 @@ class ReceiptView extends Component {
   }
 
   onConfirmEdit = async() => {
-
     let receipt_id = this.props.receiptId
-    
     const receipt = {
       "emission_date": this.state.receipt['emission_date'],
       "emission_place": this.state.receipt['emission_place'],
@@ -184,19 +187,15 @@ class ReceiptView extends Component {
       "description": this.state.receipt['description'],
       "cnpj": this.state.receipt['cnpj']
     }
-
-    console.log(receipt)
-
-    const response = await updateReceipt(receipt_id, receipt)
-    this.setState({ confirmation: false })
-    
+    const response = await updateReceipt(receipt_id, receipt)    
     this.props.onClosePopup()
     this.props.onGetAllReceipts()
-    
-    
-  }
-
-  
+    if(response === 'done'){
+      this.props.done()
+    }else if(response === 'error'){
+      this.props.error()
+    }
+  }  
 
   onConfirmationTrue = () => { this.setState({confirmation: true}) }
 
