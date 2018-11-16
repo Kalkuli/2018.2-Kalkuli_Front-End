@@ -4,13 +4,18 @@ import Confirmation from '../UI/Confirmation/Confirmation'
 import Colors from '../UI/Colors/Colors'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Loader from '../UI/Loader/Loader'
+jest.mock('../../services/getAllTags.js')
 
 describe('Testing <ReceiptAdder/>', () => {
 
   let wrapper = null
   let instance = null
+  const spyOnTagsAdded = jest.fn()
+  const props = {
+    onTagsAdded: spyOnTagsAdded
+  }
   beforeEach(() => {
-    wrapper = shallow(<ReceiptAdder />)
+    wrapper = shallow(<ReceiptAdder {...props}/>)
     instance = wrapper.instance()
   })
 
@@ -54,6 +59,15 @@ describe('Testing <ReceiptAdder/>', () => {
   it('should show Colors by setting createCategory to true', () => {
     instance.createCategory()
     expect(wrapper.state('creatingCategory')).toBe(true)
+  })
+
+  it('should send request for creating a new category', (done) => {
+    instance.onConfirmCategoryHandler()
+    setTimeout(() => {
+      expect(spyOnTagsAdded).toHaveBeenCalled()
+      expect(wrapper.state('creatingCategory')).toBe(false)
+      done()
+    })
   })
 
 })

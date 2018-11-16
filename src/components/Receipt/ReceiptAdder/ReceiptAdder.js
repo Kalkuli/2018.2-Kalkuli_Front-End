@@ -69,21 +69,20 @@ export class ReceiptAdder extends Component {
   }
 
   onConfirmButton = (receipt) => {
-    console.log(receipt)
     axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt', {
       "receipt": {
         ...receipt,
         company_id: 1
       }
     })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
+    .then(() => {
+      this.setState({
+        completed: true
       })
-      .catch((error) => {
-        console.log(error)
-      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   onConfirmCategoryHandler = async() => {
