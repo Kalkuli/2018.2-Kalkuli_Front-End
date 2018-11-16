@@ -6,8 +6,10 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import ConfirmationMessage from '../../UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../UI/BackDrop/BackDrop'
 import deleteReceipt from '../../../services/deleteReceipt'
+import updateReceipt from '../../../services/updateReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+import Confirmation from '../../UI/Confirmation/Confirmation'
 
 const smallDevice = window.matchMedia('(max-width: 645px)').matches
 var size;
@@ -24,12 +26,11 @@ class ReceiptView extends Component {
     save: false,
     receipt: this.props.receipt,
     lastReceiptState: null,
-    a: receiptInput
+    receiptName: receiptInput
   }
   
   render() {
     let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
-
     return (
       <Modal>
         {console.log(this.state.receipt)}
@@ -45,6 +46,7 @@ class ReceiptView extends Component {
                   
                   <input  className={classe} 
                           defaultValue={this.state.receipt['title']}
+                          onChange={(event) => this.changeHandler(event, 'title')}
                           disabled={!this.state.edit}/>
                 </div>
                 {Object.keys(this.state.receipt).map(data => {
@@ -52,8 +54,7 @@ class ReceiptView extends Component {
                     return null
                   return (
                     <div key={data} className='receipt-area__content'>
-                      <p className="receipt-font receipt-area__content__label"><b>{this.state.a[data].name}:</b></p>
-
+                      <p className="receipt-font receipt-area__content__label"><b>{this.state.receiptName[data].name}:</b></p>
                       <input  className={classe} 
                               defaultValue={this.state.receipt[data]}
                               onChange={(event) => this.changeHandler(event, data)}
@@ -66,18 +67,16 @@ class ReceiptView extends Component {
                   
                   <textarea disabled={!this.state.edit}
                             className={classe}  
+                            onChange={(event) => this.changeHandler(event, 'description')}
                             defaultValue={this.state.receipt['description']}/>
-
                 </div>
               </div>
               <SavedTagItem name={this.props.tagName} color={this.props.tagColor}/>
             </div>
           </Receipt>
-
           <div className='area-buttons'>
             <div className='area-buttons__change-buttons'>
               <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
-
               {this.state.edit ? 
               <BaseButton type='no-background'
                           click={this.onCancelEditHandler} 
@@ -89,8 +88,6 @@ class ReceiptView extends Component {
                           size={size}>
                           Editar
               </BaseButton>}
-
-
               <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
             </div>
             <div className='area-buttons__confirm'>
@@ -106,12 +103,12 @@ class ReceiptView extends Component {
 
   changeHandler = (event,key) =>{
     let inputState = {...this.state.receipt}
-
     let input = {...this.state.receipt[key]}
-
     input.value = event.target.value
-    inputState[key] = input
+    inputState[key] = input.value
     this.setState({receipt: inputState})
+    console.log(this.state.receipt)
+    console.log(this.state.receipt['total_price'])
   }
 
   onDeleteHandler = async() => {
@@ -175,25 +172,31 @@ class ReceiptView extends Component {
   }
 
   onConfirmEdit = async() => {
-    alert('GOO')
-    const updateReceipt = {
-      "emission_date": "2018-09-22",
-      "emission_place": "muduousdf",
-      "tax_value": 20.20,
-      "total_price": 1233333.12,
-      "title": "mudou",
-      "description": "teswerqwerqwr",
-      "cnpj": "320490234-002"
-    }
-  }
 
-  onDeleteHandler = async() => {
     let receipt_id = this.props.receiptId
-    const response = await deleteReceipt(receipt_id)
+    
+    const receipt = {
+      "emission_date": this.state.receipt['emission_date'],
+      "emission_place": this.state.receipt['emission_place'],
+      "tax_value": this.state.receipt['tax_value'],
+      "total_price": this.state.receipt['total_price'],
+      "title": this.state.receipt['title'],
+      "description": this.state.receipt['description'],
+      "cnpj": this.state.receipt['cnpj']
+    }
+
+    console.log(receipt)
+
+    const response = await updateReceipt(receipt_id, receipt)
     this.setState({ confirmation: false })
+    
     this.props.onClosePopup()
     this.props.onGetAllReceipts()
+    
+    
   }
+
+  
 
   onConfirmationTrue = () => { this.setState({confirmation: true}) }
 
@@ -203,7 +206,6 @@ class ReceiptView extends Component {
     const receipt = {...this.state.receipt}
     this.setState({lastReceiptState: receipt})
   }
-    
 
   onCancelEditHandler = () =>{
     this.setState({edit: false});
