@@ -20,19 +20,21 @@ class ReceiptView extends Component {
 
   state = {
     confirmation: false,
-    edit: false,
+    edit: null,
     save: false,
-    receipt: receiptInput,
-    lastReceiptState: null
+    receipt: this.props.receipt,
+    lastReceiptState: null,
+    a: receiptInput
   }
   
   render() {
     let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
-    let { receipt } = this.props
+
     return (
       <Modal>
-        {this.state.confirmation ? this.renderConfirmationMessage() : null }
         {this.state.save ? this.renderConfirmationMessageSave() : null}
+        {this.state.edit === false ? this.renderConfirmationMessageCancel() : null}
+        {this.state.confirmation ? this.renderConfirmationMessage() : null }
         <div className="receipt-modal-area">
           <Receipt size='large'>
             <div className="receipt-container">
@@ -41,18 +43,18 @@ class ReceiptView extends Component {
                   <p className="receipt-font receipt-area__content__label"><b>{receiptInput['title'].name}:</b></p>
                   
                   <input  className={classe} 
-                          defaultValue={receipt['title']}
+                          defaultValue={this.state.receipt['title']}
                           disabled={!this.state.edit}/>
                 </div>
-                {Object.keys(receipt).map(data => {
+                {Object.keys(this.state.receipt).map(data => {
                   if(data === 'title' || data === 'description' || data === 'tag_id')
                     return null
                   return (
                     <div key={data} className='receipt-area__content'>
-                      <p className="receipt-font receipt-area__content__label"><b>{receiptInput[data].name}:</b></p>
+                      <p className="receipt-font receipt-area__content__label"><b>{this.state.a[data].name}:</b></p>
 
                       <input  className={classe} 
-                              defaultValue={receipt[data]}
+                              defaultValue={this.state.receipt[data]}
                               onChange={(event) => this.changeHandler(event, data)}
                               disabled={!this.state.edit}
                               />
@@ -63,7 +65,7 @@ class ReceiptView extends Component {
                   
                   <textarea disabled={!this.state.edit}
                             className={classe}  
-                            defaultValue="{receipt['description']zxczxczczxczxczxczzxczczxczczxczczxczczxczxc}"/>
+                            defaultValue={this.state.receipt['description']}/>
 
                 </div>
               </div>
@@ -74,11 +76,19 @@ class ReceiptView extends Component {
           <div className='area-buttons'>
             <div className='area-buttons__change-buttons'>
               <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
+
+              {this.state.edit ? 
+              <BaseButton type='no-background'
+                          click={this.onCancelEditHandler} 
+                          size={size}>
+                          Cancelar
+              </BaseButton> :
               <BaseButton type='no-background'
                           click={this.onEditHandler} 
                           size={size}>
-                          {this.state.edit ? 'Cancelar' : 'Editar'}
-              </BaseButton>
+                          Editar
+              </BaseButton>}
+
 
               <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
             </div>
@@ -94,12 +104,9 @@ class ReceiptView extends Component {
   }
 
   changeHandler = (event,key) =>{
-    console.log(key)
     let inputState = {...this.state.receipt}
-    console.log(inputState)
 
     let input = {...this.state.receipt[key]}
-    console.log(input)
 
     input.value = event.target.value
     inputState[key] = input
@@ -113,16 +120,28 @@ class ReceiptView extends Component {
     this.props.onClosePopup()
     this.props.onGetAllReceipts()
   }
+
   onCancelHandler = () => {
-    this.setState({confirmation: false, save: false})
+    console.log("oo")
+    this.setState({confirmation: false})
   }
+
+  onCancelHandlerSave = () => {
+    this.setState({save: false})
+  }
+
+  onCancelHandlerCancel = () => {
+    this.setState({edit: true})
+  }
+
   renderConfirmationMessage = () => {
     return (
       <Fragment>
         <ConfirmationMessage  onDeleteHandler={this.onDeleteHandler}
                               onCancelHandler={this.onCancelHandler}   
                               action='deletar' 
-                              name={'Deletar'}/>
+                              option1={'Cancelar'}
+                              option2={'Deletar'}/>
         <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
       </Fragment>
     )
@@ -131,11 +150,25 @@ class ReceiptView extends Component {
   renderConfirmationMessageSave = () => {
     return (
       <Fragment>
-        <ConfirmationMessage  
-                              onCancelHandler={this.onCancelHandler}   
+        <ConfirmationMessage  onDeleteHandler={this.onConfirmEdit}
+                              onCancelHandler={this.onCancelHandlerSave}   
                               action='editar' 
-                              name={'Editar'}/>
-        <BackDrop show={this.state.save} click={this.onCancelHandler}/>
+                              option1={'Cancelar'}
+                              option2={'Salvar'}/>
+        <BackDrop show={this.state.save} click={this.onCancelHandlerSave}/>
+      </Fragment>
+    )
+  }
+
+  renderConfirmationMessageCancel = () => {
+    return (
+      <Fragment>
+        <ConfirmationMessage  onDeleteHandler={this.props.onClosePopup}
+                              onCancelHandler={this.onCancelHandlerCancel}   
+                              action='cancelar' 
+                              option1={'Não'}
+                              option2={'Sim'}/>
+        <BackDrop show={!this.state.edit} click={this.onCancelHandlerCancel}/>
       </Fragment>
     )
   }
@@ -147,15 +180,18 @@ class ReceiptView extends Component {
   onConfirmationTrue = () => { this.setState({confirmation: true}) }
 
   onEditHandler = () => {
-    this.setState(prevState =>({edit: !prevState.edit}))
+    this.setState({edit: true});
+  
+    const receipt = {...this.state.receipt}
+    this.setState({lastReceiptState: receipt})
+  }
     
-    if(this.state.edit === false){
-      const receipt = {...this.state.receipt}
-      this.setState({lastReceiptState: receipt})
-    }else {
-      const lastReceipt = {...this.state.lastReceiptState}
-      this.setState({receipt: lastReceipt})
-    }
+
+  onCancelEditHandler = () =>{
+    this.setState({edit: false});
+    const lastReceipt = {...this.state.lastReceiptState}
+    this.setState({receipt: lastReceipt})
+    this.setState({lastReceipt: null})
   }
 }
 
