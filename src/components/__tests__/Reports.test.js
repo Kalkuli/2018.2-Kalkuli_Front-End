@@ -1,4 +1,4 @@
-import '../../services/__mocks__/matchMedia'
+/* import '../../services/__mocks__/matchMedia'
 import Reports from '../Reports/Reports'
 
 describe('Testing <Reports />', () => {
@@ -13,4 +13,4 @@ describe('Testing <Reports />', () => {
     instance = wrapper.instance()
   })
 
-})
+}) */

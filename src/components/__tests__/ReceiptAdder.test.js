@@ -19,11 +19,6 @@ describe('Testing <ReceiptAdder/>', () => {
     instance = wrapper.instance()
   })
 
-  it('should take a snapshot and check if there is any change', () => {
-    const tree = renderer.create(<ReceiptAdder/>).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
   it('should render ReceiptCompare', () => {
     wrapper.setState({ fileSent: true, completed: false, creatingCategory: false })
     expect(wrapper.find(ReceiptCompare).exists()).toBe(true)
