@@ -1,6 +1,8 @@
 import '../../services/__mocks__/matchMedia'
+import 'moment/locale/pt-br'
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import renderer from 'react-test-renderer'
 import {Dashboard, mapDispatchToProps, mapStateToProps} from '../Dashboard/Dashboard'
 
 describe('Testing <Dashboard />', () => {
@@ -46,6 +48,19 @@ describe('Testing <Dashboard />', () => {
             emission_date: '2018-10-11',
             total_price: 10.00
         }]
+
+    const filteredReceipts = [{
+        emission_date: '2018-10-09',
+        total_price: 10.00
+    },
+    {
+        emission_date: '2018-10-09'   ,
+        total_price: 10.00
+    },
+    {
+        emission_date: '2018-10-10',
+        total_price: 10.00
+    }]
 
     const prices = [20.00, 10.00, 10.00]
     const series = [{
@@ -111,6 +126,19 @@ describe('Testing <Dashboard />', () => {
       it('should test sumReceipts', () => {
           instance.sumReceipts(orderedReceipts)
           expect(wrapper.state('sum')).toEqual('40.00')
+      })
+
+      it('should test onChange', () => {
+          wrapper.setState({receipts: orderedReceipts})
+          let startDate = new Date('Mon Oct 08 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
+          startDate = moment(startDate)
+
+          let endDate = new Date('Wed Oct 10 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
+          endDate = moment(endDate)
+
+          instance.onChange({startDate,endDate})
+
+          expect(wrapper.state('filteredReceipts')).toEqual(filteredReceipts)
       })
 
 })
