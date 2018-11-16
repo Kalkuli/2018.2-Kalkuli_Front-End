@@ -23,6 +23,17 @@ describe('Testing reducers', () => {
     expect(reducer(initialState, action)).toEqual({...initialState, filePDF: action.filePDF})
   })
 
+  it('should return the state with the added fileExtracted', () => {
+    const action = {
+      type: actionTypes.ADD_EXTRACTED_DATA,
+      fileExtracted: {
+        cnpj: '1233455678',
+        date: '10-10-2018'
+      }
+    }
+    expect(reducer(initialState, action)).toEqual({...initialState, fileExtracted: action.fileExtracted})
+  })
+
   it('should return the state with the added receipt array', () => {
     const action = {
       type: actionTypes.ADD_RECEIPTS,
@@ -33,6 +44,6 @@ describe('Testing reducers', () => {
       }]
     }
     expect(reducer(initialState, action)).toEqual({...initialState, receipts: action.receipts})
-
   })
+
 })
