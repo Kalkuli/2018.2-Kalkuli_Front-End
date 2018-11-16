@@ -32,6 +32,7 @@ class ReceiptView extends Component {
 
     return (
       <Modal>
+        {console.log(this.state.receipt)}
         {this.state.save ? this.renderConfirmationMessageSave() : null}
         {this.state.edit === false ? this.renderConfirmationMessageCancel() : null}
         {this.state.confirmation ? this.renderConfirmationMessage() : null }
@@ -173,8 +174,25 @@ class ReceiptView extends Component {
     )
   }
 
-  onConfirmEdit = () =>{
+  onConfirmEdit = async() => {
     alert('GOO')
+    const updateReceipt = {
+      "emission_date": "2018-09-22",
+      "emission_place": "muduousdf",
+      "tax_value": 20.20,
+      "total_price": 1233333.12,
+      "title": "mudou",
+      "description": "teswerqwerqwr",
+      "cnpj": "320490234-002"
+    }
+  }
+
+  onDeleteHandler = async() => {
+    let receipt_id = this.props.receiptId
+    const response = await deleteReceipt(receipt_id)
+    this.setState({ confirmation: false })
+    this.props.onClosePopup()
+    this.props.onGetAllReceipts()
   }
 
   onConfirmationTrue = () => { this.setState({confirmation: true}) }
