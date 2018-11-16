@@ -77,14 +77,14 @@ export class ReceiptAdder extends Component {
         company_id: 1
       }
     })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
+    .then(() => {
+      this.setState({
+        completed: true
       })
-      .catch((error) => {
-        console.log(error)
-      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   onConfirmCategoryHandler = async() => {
