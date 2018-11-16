@@ -7,7 +7,6 @@ import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
 import Confirmation from '../../UI/Confirmation/Confirmation'
-import Modal from '../../UI/Modal/Modal';
 export class List extends Component {
 
 	state = {
