@@ -4,6 +4,7 @@ import Confirmation from '../UI/Confirmation/Confirmation'
 import Colors from '../UI/Colors/Colors'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Loader from '../UI/Loader/Loader'
+import renderer from 'react-test-renderer'
 jest.mock('../../services/getAllTags.js')
 
 describe('Testing <ReceiptAdder/>', () => {
@@ -17,6 +18,11 @@ describe('Testing <ReceiptAdder/>', () => {
   beforeEach(() => {
     wrapper = shallow(<ReceiptAdder {...props}/>)
     instance = wrapper.instance()
+  })
+
+  it('should take a snapshot and check if there is any change', () => {
+    const tree = renderer.create(<ReceiptAdder/>).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   it('should render ReceiptCompare', () => {
@@ -69,5 +75,15 @@ describe('Testing <ReceiptAdder/>', () => {
       done()
     })
   })
+  
+  /* it('should', () => {
+    const file = [{
+      name:"nota10.pdf",
+      preview: "blob:http://localhost:3000/29d8904c-256f-4c91-8c60-2bd8f2587346",
+      type: "application/pdf"
+    }]
+    instance.onDropHandler(file, [])
+
+  }) */
 
 })
