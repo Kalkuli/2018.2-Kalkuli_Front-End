@@ -134,6 +134,7 @@ export class ReceiptAdder extends Component {
 
   onDropHandler = (file, rejectedFiles) => {
     if (file.length === 1) {
+      console.log(file)
       const currentFile = file[0]
       const reader = new FileReader()
       reader.addEventListener("load", () => {
