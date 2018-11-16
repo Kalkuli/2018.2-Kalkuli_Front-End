@@ -113,11 +113,9 @@ class Form extends Component {
         axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/auth/register', registerData)
         .then(response =>{
             this.setState({registration: 'done'})
-            console.log(response)
         })
         .catch(err =>{
             this.setState({registration: 'fail'})
-            console.log(err.response)
         })
     }
 

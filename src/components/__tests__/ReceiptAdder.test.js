@@ -1,4 +1,4 @@
-import { ReceiptAdder } from '../Receipt/ReceiptAdder/ReceiptAdder'
+import { ReceiptAdder, mapDispatchToProps } from '../Receipt/ReceiptAdder/ReceiptAdder'
 import ReceiptCompare from '../Receipt/ReceiptCompare/ReceiptCompare'
 import Confirmation from '../UI/Confirmation/Confirmation'
 import Colors from '../UI/Colors/Colors'
@@ -11,6 +11,8 @@ describe('Testing <ReceiptAdder/>', () => {
   let wrapper = null
   let instance = null
   const spyOnTagsAdded = jest.fn()
+  const dispatch = jest.fn()
+
   const props = {
     onTagsAdded: spyOnTagsAdded
   }
@@ -70,6 +72,41 @@ describe('Testing <ReceiptAdder/>', () => {
     })
   })
   
+  it('should close category creator when cancelling it', () => {
+    wrapper.setState({creatingCategory: true})
+    instance.onCancelHandler()
+    expect(wrapper.state('creatingCategory')).toBe(false)
+  })
+
+  it('should close compare screen when cancelling it', () => {
+    wrapper.setState({creatingCategory: false})
+    instance.onCancelHandler()
+    expect(wrapper.state('fileSent')).toBe(false)
+    expect(wrapper.state('fileSelected')).toBe(false)
+  })
+
+  it('should test mapDispatchToProps for dispatching onFilePDFAdded', () => {
+    mapDispatchToProps(dispatch).onFilePDFAdded()
+    expect(dispatch.mock.calls[0][0]).toEqual({type: 'ADD_PDF_FILE'})
+  })
+
+  it('should test mapDispatchToProps for dispatching onFileExtractedAdded', () => {
+    mapDispatchToProps(dispatch).onFileExtractedAdded()
+    expect(dispatch.mock.calls[1][0]).toEqual({type: 'ADD_EXTRACTED_DATA'})
+  })
+
+  it('should test mapDispatchToProps for dispatching onReceiptsAdded', () => {
+    mapDispatchToProps(dispatch).onReceiptsAdded()
+    expect(dispatch.mock.calls[2][0]).toEqual({type: 'ADD_RECEIPTS'})
+  })
+
+  it('should test mapDispatchToProps for dispatching onTagsAdded', () => {
+    mapDispatchToProps(dispatch).onTagsAdded()
+    expect(dispatch.mock.calls[3][0]).toEqual({type: 'ADD_TAGS'})
+  }) 
+  
+  
+
   /* it('should', () => {
     const file = [{
       name:"nota10.pdf",
