@@ -8,8 +8,13 @@ jest.mock('../../services/axiosConfig.js')
 
 describe("Testing <ReceiptList/>", () => {
   
+  let wrapper = null
+
+  const spyOnTagsAdded = jest.fn()
   const spyOnReceiptsAdded = jest.fn()
+
   const props = {
+    onTagsAdded: spyOnTagsAdded,
     onReceiptsAdded: spyOnReceiptsAdded
   }
   

@@ -111,6 +111,9 @@ export class ReceiptAdder extends Component {
         let statusUrl = 'https://kalkuli-extraction.herokuapp.com' + response.data.location;
         this.checkStatus(statusUrl)
       })
+      .catch((error) => {
+        console.log(error)
+    })
   }
 
   checkStatus = (statusUrl) => {
@@ -125,6 +128,9 @@ export class ReceiptAdder extends Component {
                 loading: false
               })
             })
+            .catch((error) => {
+              console.log(error)
+          })
         }
         else if (status.data.state === 'PENDING') {
           setTimeout(() => {
