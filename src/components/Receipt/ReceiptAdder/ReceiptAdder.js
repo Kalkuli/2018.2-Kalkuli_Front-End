@@ -13,7 +13,7 @@ import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
 import * as baseUrl from '../../../helpers/baseUrl'
 
-class ReceiptAdder extends Component {
+export class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
