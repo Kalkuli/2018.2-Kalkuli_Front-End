@@ -46,4 +46,16 @@ describe('Testing reducers', () => {
     expect(reducer(initialState, action)).toEqual({...initialState, receipts: action.receipts})
   })
 
+  it('should return the state with the added tag array', () => {
+    const action = {
+      type: actionTypes.ADD_TAGS,
+      tags: [{
+        id: 1,
+        category: 'Food',
+        color: '#424242'
+      }]
+    }
+    expect(reducer(initialState, action)).toEqual({...initialState, tags: action.tags})
+  })
+
 })
