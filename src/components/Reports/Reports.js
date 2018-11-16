@@ -12,6 +12,8 @@ import * as screenSize from '../../helpers/screenSize'
 import ConfirmationMessage from '../../components/UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
+import * as baseUrl from '../../helpers/baseUrl'
+
 
 var type = "no-background"
 var comeco = null;
@@ -104,7 +106,7 @@ class Reports extends Component {
     }
 
     getAllReports = () => {
-        Axios.get('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/get_all_reports')
+        Axios.get(baseUrl.default + '/api/v1/get_all_reports')
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -116,7 +118,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
+        Axios.post(baseUrl.default + '/api/v1/report', {
             "period": {
                 date_from: date_from,
                 date_to: date_to
@@ -158,7 +160,7 @@ class Reports extends Component {
     onConfirmationTrue = () => { this.setState({confirmation: true}) }  
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/export', {
+        Axios.post(baseUrl.default + '/api/v1/export', {
             "period": {
                 date_from: date_from,
                 date_to: date_to

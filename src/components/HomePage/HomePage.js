@@ -12,6 +12,11 @@ import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Form'
+import * as baseUrl from '../../helpers/baseUrl'
+
+const env1 = "Em process.env.REACT_APP_ENV: " + process.env.REACT_APP_ENV;
+console.log('\n\n\n', env1, '\n\n\n', baseUrl, '\n\n\n');
+
 
 class HomePage extends Component{
 

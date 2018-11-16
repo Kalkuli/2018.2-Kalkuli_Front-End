@@ -11,6 +11,7 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
+import * as baseUrl from '../../../helpers/baseUrl'
 
 class ReceiptAdder extends Component {
   state = {
@@ -70,7 +71,7 @@ class ReceiptAdder extends Component {
 
   onConfirmButton = (receipt) => {
     console.log(receipt)
-    axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt', {
+    axios.post(baseUrl.default + '/api/v1/receipt', {
       "receipt": {
         ...receipt,
         company_id: 1
@@ -114,7 +115,7 @@ class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post(baseUrl.default + '/api/v1/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({

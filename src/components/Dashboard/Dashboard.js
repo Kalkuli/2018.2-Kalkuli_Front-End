@@ -15,6 +15,7 @@ import './DatePicker.scss'
 import * as screenSize from '../../helpers/screenSize'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
+import * as baseUrl from '../../helpers/baseUrl'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -102,7 +103,7 @@ class Dashboard extends Component {
 
             this.setState({ date_from: date_from, date_to: date_to })
 
-            axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
+            axios.post(baseUrl.default + '/api/v1/report', {
                 "period": {
                     date_from: date_from,
                     date_to: date_to
@@ -130,7 +131,7 @@ class Dashboard extends Component {
         this.setState({
             loading: true
         })
-        axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/save_report', {
+        axios.post(baseUrl.default + '/api/v1/save_report', {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to
