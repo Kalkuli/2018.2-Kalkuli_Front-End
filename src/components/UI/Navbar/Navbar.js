@@ -59,7 +59,6 @@ class Navbar extends Component {
 
     onClickMenuHandler = () => {
         this.setState((prevState) => ({isOpen: !prevState.isOpen}))
-        console.log(this.state.isOpen)
     }
 }
 
