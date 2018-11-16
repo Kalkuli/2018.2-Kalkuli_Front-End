@@ -4,7 +4,6 @@ import Confirmation from '../UI/Confirmation/Confirmation'
 import Colors from '../UI/Colors/Colors'
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Loader from '../UI/Loader/Loader'
-import renderer from 'react-test-renderer'
 jest.mock('../../services/getAllTags.js')
 
 describe('Testing <ReceiptAdder/>', () => {
@@ -84,6 +83,6 @@ describe('Testing <ReceiptAdder/>', () => {
     }]
     instance.onDropHandler(file, [])
 
-  }) */
+  })  */
 
 })
