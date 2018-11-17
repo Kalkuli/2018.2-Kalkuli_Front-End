@@ -28,7 +28,9 @@ export class ReceiptList extends Component {
                 </div>
                 <List   search={this.state.search}
                         onGetAllReceipts={this.fetchReceipts}
-                        isSmall={smallDevice} /> 
+                        isSmall={smallDevice} 
+                        receipts={this.props.receipts}
+                        tags={this.props.tags}/> 
                 <MenuButton /> 
             </div>
         )

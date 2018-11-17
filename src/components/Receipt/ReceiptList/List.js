@@ -7,14 +7,16 @@ import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 import { connect } from 'react-redux'
 import Confirmation from '../../UI/Confirmation/Confirmation'
+
 export class List extends Component {
+
 
 	state = {
 		showModal: false,
 		selectedReceipt: null,
 		selectedReceiptId: null,
 		ConfirmationDone: false,
-		ConfirmationError: false
+		ConfirmationError: false,
 	}
 
 	render() {
@@ -120,15 +122,25 @@ editConfirmationError = () => {
 	}
 
 	getTagName = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length === 0))
-			return this.props.tags[tagId - 1].category
+		if(!(this.props.tags === undefined || this.props.tags.length === 0)){
+			for(let i = 0; i < this.props.tags.length; i++){
+				if(this.props.tags[i].id === tagId){
+					return this.props.tags[i].category
+				}
+			}
+		}
 		else
 			return 'carregando...'
 	}
 
 	getTagColor = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length === 0))
-			return this.props.tags[tagId - 1].color 
+		if(!(this.props.tags === undefined || this.props.tags.length === 0)){
+			for(let i = 0; i < this.props.tags.length; i++){
+				if(this.props.tags[i].id === tagId){
+					return this.props.tags[i].color
+				}
+			}
+		}
 		else
 			return '#424242'
 	}
