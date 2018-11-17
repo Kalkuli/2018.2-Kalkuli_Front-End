@@ -2,16 +2,21 @@ import '../../../services/__mocks__/matchMedia'
 import { ReceiptList, mapStateToProps, mapDispatchToProps } from '../../Receipt/ReceiptList/ReceiptList'
 import NavBar from '../../UI/Navbar/Navbar'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
+jest.mock('../../../services/getAllReceipts.js')
 
 describe("Testing <ReceiptList/>", () => {
   
-  let wrapper = null
+  const spyOnReceiptsAdded = jest.fn()
+  const props = {
+    onReceiptsAdded: spyOnReceiptsAdded
+  }
   
+  let wrapper = null
   beforeEach(() => {
     window.matchMedia = jest.fn(query => ({ 
       matches: query.indexOf('(min-width: 800px)') !== -1, 
     })); 
-    wrapper = shallow(<ReceiptList/>)
+    wrapper = shallow(<ReceiptList {...props} />)
   })
 
   it('should find NavBar', () => {
@@ -45,5 +50,9 @@ describe("Testing <ReceiptList/>", () => {
     }
     wrapper.instance().updateSearch(event)
     expect(wrapper.state('search')).toMatch('Pipoca')
+  })
+
+  it('should fetch all receipts', () => {
+    wrapper.instance().fetchReceipts()
   })
 }) 
