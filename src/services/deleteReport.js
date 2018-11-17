@@ -3,7 +3,12 @@ import {config, baseURL} from './axiosConfig'
 
 
 export default async report_id => {
-  const company_id = localStorage.getItem('company_id')
-  const response = await axios.delete(`${baseURL}/${company_id}/report/${report_id}`, config)
-  return response.data
+  try{
+    const company_id = localStorage.getItem('company_id')
+    const response = await axios.delete(`${baseURL}/${company_id}/report/${report_id}`, config)
+    return response.data
+  }
+  catch(err){
+    return 'error'
+  }
 }
