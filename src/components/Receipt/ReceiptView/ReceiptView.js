@@ -157,7 +157,9 @@ class ReceiptView extends Component {
                               onCancelHandler={this.onCancelHandlerSave}   
                               action='editar' 
                               option1={'Cancelar'}
-                              option2={'Salvar'}/>
+                              option2={'Salvar'}
+                              color1={'delete'}
+                              color2={'no-background'}/>
         <BackDrop show={this.state.save} click={this.onCancelHandlerSave}/>
       </Fragment>
     )
