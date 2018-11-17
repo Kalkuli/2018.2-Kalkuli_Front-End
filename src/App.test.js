@@ -1,7 +1,7 @@
-import '../../services/__mocks__/matchMedia'
-import { App, mapStateToProps, mapDispatchToProps } from '../../App'
+import './services/__mocks__/matchMedia'
+import { App, mapStateToProps, mapDispatchToProps } from './App'
 import { Route } from 'react-router-dom'
-import localStorage from '../../services/__mocks__/localStorage'
+import localStorage from './services/__mocks__/localStorage'
 
 window.localStorage = localStorage
 
