@@ -4,11 +4,12 @@ import ReceiptView from '../../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../../UI/BackDrop/BackDrop'
 
 describe("Testing <List />", () => {
-  let wrapper = null
-  let tags = [
-    {'id': 0, 'category': 'Limpeza', 'color': '#424242'}, 
-    {'id': 1, 'category': 'Alimentação', 'color': '#fff'}
+  
+  const tags = [
+    {id: 1, category: 'Limpeza', color: '#424242'}, 
+    {id: 2, category: 'Alimentação', color: '#fff'}
   ]
+
   let receipt = {
     "emission_date": "2018-09-22",
     "emission_place": "aqqqqqq",
@@ -17,6 +18,7 @@ describe("Testing <List />", () => {
     "title": "oi",
     "description": "teste",
     "cnpj": "320490234-002",
+    "tag_id": 1
   }
   
   let props = {
@@ -24,6 +26,7 @@ describe("Testing <List />", () => {
     search: 'oi',
   }
 
+  let wrapper = null
   beforeEach(() => {
     wrapper = shallow(<List {...props}/>)
   })
@@ -87,4 +90,17 @@ describe("Testing <List />", () => {
     expect(wrapper.find('.container-receipts__receipt-data').exists()).toBe(false)
   })
   
+
+  it('should get tag name', () => {
+    wrapper.setProps({ tags: tags })
+    const tagName = wrapper.instance().getTagName(1)
+    expect(tagName).toMatch('Limpeza')
+  })
+
+  it('should get tag color', () => {
+    wrapper.setProps({ tags: tags })
+    const tagName = wrapper.instance().getTagColor(1)
+    expect(tagName).toMatch('#424242')
+  })
+
 })
