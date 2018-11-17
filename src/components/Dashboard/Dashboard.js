@@ -37,6 +37,7 @@ class Dashboard extends Component {
         isValid: true,
         reportCase: null,
         series: [{
+            name: 'Valor gasto',
             data: []
         }],
         filteredReceipts: null,
@@ -143,13 +144,17 @@ class Dashboard extends Component {
     }
 
     sumSameDate = (receipts) => {
-        var i 
-        var dates = [], prices = []
+        let i
+        let dates = [], prices = []
+        let sum = 0
         for ( i = 0; i < receipts.length; i++){
-            if(receipts[i+1] && receipts[i+1].emission_date == receipts[i].emission_date){
+            if(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
+                while(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
+                    sum += receipts[i].total_price
+                    i++
+                }
                 dates.push(receipts[i].emission_date)
-                prices.push(receipts[i].total_price + receipts[i+1].total_price)
-                i++
+                prices.push(sum + receipts[i].total_price)
             }
             else{
                 dates.push(receipts[i].emission_date)
