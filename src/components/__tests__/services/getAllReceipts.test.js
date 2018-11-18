@@ -1,5 +1,7 @@
 import getAllReceipts from '../../../services/getAllReceipts'
 import mockAxios from 'axios'
+import { baseURL } from '../../../services/axiosConfig'
+jest.mock('../../../services/axiosConfig.js')
 
 it('should test if request is being done', async () => {
 
@@ -14,6 +16,6 @@ it('should test if request is being done', async () => {
   expect(response).toEqual([{title: 'testing'}])
   expect(mockAxios.get).toHaveBeenCalledTimes(1)
   expect(mockAxios.get).toHaveBeenCalledWith(
-    'https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipts'
+    `${baseURL}/${localStorage.getItem('company_id')}/receipts`, undefined
   )
 })

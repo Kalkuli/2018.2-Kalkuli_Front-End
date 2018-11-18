@@ -1,5 +1,5 @@
-import '../../services/__mocks__/matchMedia'
-import BarChart from '../UI/BarChart/BarChart'
+import '../../../services/__mocks__/matchMedia'
+import BarChart from '../../UI/BarChart/BarChart'
 import Chart from "react-apexcharts";
 
 describe('Testing <BarChart />', () => {

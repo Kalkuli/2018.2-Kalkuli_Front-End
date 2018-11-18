@@ -1,5 +1,7 @@
 import deleteReceipt from '../../../services/deleteReceipt'
 import mockAxios from 'axios'
+import { baseURL } from '../../../services/__mocks__/axiosConfig'
+jest.mock('../../../services/axiosConfig.js')
 
 it('should test if request is being done', async () => {
 
@@ -15,6 +17,6 @@ it('should test if request is being done', async () => {
   expect(response).toEqual({Message: "Receipt was deleted!"})
   expect(mockAxios.delete).toHaveBeenCalledTimes(1)
   expect(mockAxios.delete).toHaveBeenCalledWith(
-    `https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt/${receipt_id}`
+    `${baseURL}/${localStorage.getItem('company_id')}/receipt/${receipt_id}`, undefined
     )
 })

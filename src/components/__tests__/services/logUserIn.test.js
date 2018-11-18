@@ -1,5 +1,6 @@
 import logUserIn from '../../../services/logUserIn'
 import mockAxios from 'axios'
+jest.mock('../../../services/axiosConfig.js')
 
 const user = {
   email: 'test@gmail.com',
@@ -16,7 +17,7 @@ it('should test if request is being done', async () => {
 
   const response = await logUserIn(user)
 
-  expect(response).toEqual('token') 
+  expect(response).toEqual({"company_id": undefined, "token": "token"}) 
   expect(mockAxios.post).toHaveBeenCalledTimes(1)
   expect(mockAxios.post).toHaveBeenCalledWith(
     'https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/auth/login', user

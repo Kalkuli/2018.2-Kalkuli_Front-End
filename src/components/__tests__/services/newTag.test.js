@@ -1,5 +1,7 @@
 import newTag from '../../../services/newTag'
 import mockAxios from 'axios'
+import { baseURL } from '../../../services/newTag'
+jest.mock('../../../services/axiosConfig.js')
 
 const tag = {
   id: 1,
@@ -12,7 +14,7 @@ it('should test if request is being done', async () => {
   expect(response).toEqual('success') 
   expect(mockAxios.post).toHaveBeenCalledTimes(1)
   expect(mockAxios.post).toHaveBeenCalledWith(
-    'https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/create_tag', {"tag": tag}
+    `${baseURL}/create_tag`, {"tag": tag}, undefined
   )
 })
 

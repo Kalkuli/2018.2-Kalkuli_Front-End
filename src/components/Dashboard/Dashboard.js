@@ -22,7 +22,7 @@ import {baseURL, config} from '../../services/axiosConfig'
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
 
     state = {
         loading: false,

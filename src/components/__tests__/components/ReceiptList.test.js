@@ -4,11 +4,7 @@ import NavBar from '../../UI/Navbar/Navbar'
 import MenuButton from '../../UI/Button/MenuButton/MenuButton'
 jest.mock('../../../services/getAllReceipts.js')
 
-jest.mock('../../services/axiosConfig.js')
-
 describe("Testing <ReceiptList/>", () => {
-  
-  let wrapper = null
 
   const spyOnTagsAdded = jest.fn()
   const spyOnReceiptsAdded = jest.fn()

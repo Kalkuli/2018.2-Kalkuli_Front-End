@@ -1,8 +1,8 @@
-import '../../services/__mocks__/matchMedia'
+import '../../../services/__mocks__/matchMedia'
 import 'moment/locale/pt-br'
 import moment from 'moment'
 import 'moment/locale/pt-br'
-import {Dashboard, mapDispatchToProps, mapStateToProps} from '../Dashboard/Dashboard'
+import {Dashboard, mapDispatchToProps, mapStateToProps} from '../../Dashboard/Dashboard'
 
 describe('Testing <Dashboard />', () => {
     let wrapper = null 

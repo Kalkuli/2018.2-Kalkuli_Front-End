@@ -1,9 +1,6 @@
 import {HomeNavBar, mapStateToProps, mapDispatchToProps} from '../../UI/Navbar/HomeNavBar/HomeNavBar'
 import Login from '../../Login/Login'
-import localStorage from '../../../services/__mocks__/localStorage'
-
 jest.mock('../../../services/logUserIn.js')
-window.localStorage = localStorage
 
 describe('Testing <HomeNavBar />', () => {
   const validation = {
