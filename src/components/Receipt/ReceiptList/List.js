@@ -5,6 +5,7 @@ import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+import * as actionTypes from '../../../store/actions/actions'
 import { connect } from 'react-redux'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 
@@ -163,5 +164,11 @@ export const mapStateToProps = state => {
 		tags: state.tags,
 		receipts: state.receipts
 	}
+}
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
+        onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
+    }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(List)

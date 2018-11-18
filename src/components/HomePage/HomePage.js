@@ -45,9 +45,9 @@ class HomePage extends Component{
           </div>
         </section>
         <section className='call'>
-          <p className='call__p--first'>Rápido entendimento fiscal</p>
+          <p className='call__p'>Rápido entendimento fiscal</p>
           <div className='call__bar'></div>
-          <p>Melhores relatórios geram melhores gestões</p>
+          <p className='call__p'>Melhores relatórios geram melhores gestões</p>
           <SignUp size="large" click={this.registerClick}/>
         </section>
         <section id="features" className="feature">
