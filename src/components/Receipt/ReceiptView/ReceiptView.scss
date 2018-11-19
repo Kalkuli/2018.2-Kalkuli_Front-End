@@ -4,6 +4,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .area-buttons{
     display: flex;
     flex-flow: column;
@@ -38,6 +39,34 @@
     }
 }
 
+.receipt-font-input-disable{
+    width: 8em;
+    height: 1em;
+    text-align: end;
+    resize: none;
+    border: none;
+    background-color: $color-yellow;
+    font-size: 1em;
+    color: $color-black;    
+}
+
+textarea {
+    height: 7em !important;
+}
+
+.receipt-font-input{
+    width: 8em;
+    height: 1.4em;
+    text-align: end;
+    resize: none;
+    border: none;
+    border-radius: .2em .2em 0 0;
+    border-bottom: .07em solid $color-black;
+    background-color: rgb(253, 252, 229);
+    font-size: 1em;
+    color: $color-black;
+}
+
 @media (min-width:320px) {
     /* smartphones, Android phones, landscape iPhone */
     .receipt-modal-area {
@@ -66,6 +95,7 @@
         margin-left: 2.2rem;
         justify-content: flex-start;
     }
+
 }
 @media (min-width:645px) {
     .receipt-modal-area {
@@ -93,4 +123,7 @@
         margin-top: 4rem;
         margin-left: 2.2rem;
     }
+
+
 }
+

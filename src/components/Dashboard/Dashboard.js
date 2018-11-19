@@ -5,8 +5,7 @@ import Report from '../UI/Report/Report';
 import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import axios from 'axios';
 import Loader from '../UI/Loader/Loader'
-import * as actionTypes from '../../store/actions/actions'
-import { connect } from 'react-redux'
+import BarChart from '../UI/BarChart/BarChart';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
@@ -15,11 +14,14 @@ import './DatePicker.scss'
 import * as screenSize from '../../helpers/screenSize'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
+import { connect } from 'react-redux'
+import * as actionTypes from '../../store/actions/actions'
+import {baseURL, config} from '../../services/axiosConfig'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
 
     state = {
         loading: false,
@@ -32,14 +34,62 @@ class Dashboard extends Component {
         date_from: null,
         date_to: null,
         isValid: true,
-        reportCase: null
+        reportCase: null,
+        series: [{
+            name: 'Valor gasto',
+            data: []
+        }],
+        filteredReceipts: null,
+        options: {
+            chart: {
+              id: "basic-bar",
+              fontFamily: "Montserrat, sans-serif",
+              foreColor: '#353535',
+            },
+            plotOptions: {
+              bar: {
+                horizontal: false,
+              }
+            },
+            colors: "#0F8891",
+            xaxis: {
+              categories: []
+            },
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: true,
+    
+            },
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                plotOptions: {
+                  bar: {
+                    horizontal: true
+                  }
+                }
+              }
+            }]
+          }
     }
 
     componentDidMount() {
         this.fetchTags()
         this.fetchReceipts()
+        this.setState({
+            series: [{
+                data: []
+            }],
+            options: {
+                xaxis: {
+                    categories: []
+                }
+            }
+        })
     }
-
+    
     render() {
         moment.locale('pt-br')
         return (
@@ -66,7 +116,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="dashboard__area__content__graphs">
-
+                            <BarChart options={this.state.options} series={this.state.series} />
                         </div>
                     </div>
 
@@ -81,6 +131,48 @@ class Dashboard extends Component {
             </div>
         )
     }
+
+    organizeData = () => {
+        var copy = [...this.props.receipts]
+        copy.sort((a,b) => {
+            a = new Date(a.emission_date);
+            b = new Date(b.emission_date);
+            return a < b ? -1 : a < b ? 1 : 0;
+        })
+        this.setState({receipts: copy})
+    }
+
+    sumSameDate = (receipts) => {
+        let i
+        let dates = [], prices = []
+        let sum = 0
+        for ( i = 0; i < receipts.length; i++){
+            if(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
+                while(receipts[i+1] && receipts[i+1].emission_date === receipts[i].emission_date){
+                    sum += receipts[i].total_price
+                    i++
+                }
+                dates.push(receipts[i].emission_date)
+                prices.push(sum + receipts[i].total_price)
+            }
+            else{
+                dates.push(receipts[i].emission_date)
+                prices.push(receipts[i].total_price)
+            }
+        }
+        this.setState({
+            series: [{
+                data: prices
+            }],
+            options: {
+                xaxis: {
+                    categories: dates
+                }
+            }
+        })
+    }
+
+    
     onConfirmHandler = () => { this.props.history.push('/confirmation') }
 
     chooseButton = (loading, isValid, receipts) => {
@@ -92,36 +184,29 @@ class Dashboard extends Component {
         }
     }
 
+    sumReceipts = (receipts) => {
+        var sum = 0
+        for(var i = 0; i < receipts.length; i++){
+            sum += receipts[i].total_price
+        }
+        this.setState({sum: sum.toFixed(2)})
+    }
+
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
+        this.organizeData()
 
         if (this.state.isEndDate) {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            this.setState({ date_from: date_from, date_to: date_to })
-
-            axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/report', {
-                "period": {
-                    date_from: date_from,
-                    date_to: date_to
-                }
+            var filteredReceipts = this.state.receipts.filter((receipt) => {
+                return date_from <= receipt.emission_date && date_to >= receipt.emission_date
             })
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                    receipts: response.data.receipts,
-                    sum: response.data.total_cost,
-                    isEndDate: false,
-                    reportCase: 'reports'
-                })
-            })
-            .catch(() => {
-                this.setState({
-                    reportCase: 'do not exist'
-                })
-            })
+            this.setState({filteredReceipts: filteredReceipts})
+            this.sumReceipts(filteredReceipts)
+            this.sumSameDate(filteredReceipts)
         }
     }
 
@@ -130,11 +215,12 @@ class Dashboard extends Component {
         this.setState({
             loading: true
         })
-        axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/save_report', {
+        axios.post(`${baseURL}/save_report`, {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to
-            }
+            },
+            config
         })
         .then(() => {
             this.setState({
@@ -163,5 +249,11 @@ export const mapDispatchToProps = dispatch => {
         onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
     }
 }
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts,
+        tags: state.tags
+    }
+}
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

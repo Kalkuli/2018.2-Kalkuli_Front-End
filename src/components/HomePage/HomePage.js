@@ -12,6 +12,10 @@ import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Form'
+import {baseURL} from '../../services/axiosConfig'
+
+const env1 = "Em process.env.REACT_APP_ENV: " + process.env.REACT_APP_ENV;
+console.log('\n\n\n', env1, '\n\n\n', baseURL, '\n\n\n');
 
 class HomePage extends Component{
 
@@ -40,9 +44,9 @@ class HomePage extends Component{
           </div>
         </section>
         <section className='call'>
-          <p className='call__p--first'>Rápido entendimento fiscal</p>
+          <p className='call__p'>Rápido entendimento fiscal</p>
           <div className='call__bar'></div>
-          <p>Melhores relatórios geram melhores gestões</p>
+          <p className='call__p'>Melhores relatórios geram melhores gestões</p>
           <SignUp size="large" click={this.registerClick}/>
         </section>
         <section id="features" className="feature">

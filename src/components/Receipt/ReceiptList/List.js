@@ -1,20 +1,28 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import './ReceiptList.scss'
 import Receipt from '../../UI/Receipt/Receipt'
 import ReceiptView from '../ReceiptView/ReceiptView'
 import Backdrop from '../../UI/BackDrop/BackDrop'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
+import * as actionTypes from '../../../store/actions/actions'
 import { connect } from 'react-redux'
+import Confirmation from '../../UI/Confirmation/Confirmation'
+
 export class List extends Component {
+
 
 	state = {
 		showModal: false,
 		selectedReceipt: null,
 		selectedReceiptId: null,
+		ConfirmationDone: false,
+		ConfirmationError: false,
 	}
 
 	render() {
+		let done = this.editConfirmationDone()
+		let error = this.editConfirmationError()
 		let receiptView = null
 		if (this.state.selectedReceipt) {
 			receiptView = <ReceiptView 	onClosePopup={this.onClosePopup} 
@@ -22,17 +30,20 @@ export class List extends Component {
 																	receiptId={this.state.selectedReceiptId}
 																	onGetAllReceipts={this.props.onGetAllReceipts} 
 																	tagName={this.getTagName(this.state.selectedReceipt.tag_id)}
-																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}/>
+																	tagColor={this.getTagColor(this.state.selectedReceipt.tag_id)}
+																	error={this.ConfirmationError}
+																	done={this.ConfirmationDone}/>
 		}
-
+		
 		let filteredReceipts = this.filterReceipts(this.props.receipts) 
 		let receipts = JSON.parse(JSON.stringify(filteredReceipts))
-
+		
 		return (
 			<div className='container-receipts'>
 				<Backdrop show={this.state.showModal} click={this.onClosePopup} />
 				{receiptView}
-
+				{this.state.ConfirmationDone ? done : null}
+				{this.state.ConfirmationError ? error : null}
 				{receipts ? receipts.map(receipt => {
 					let receiptId = receipt.id
 					delete receipt.id
@@ -65,6 +76,39 @@ export class List extends Component {
 			</div>
 		)
 	}
+	ConfirmationDone = ()=>{
+		this.setState({ConfirmationDone: true})
+	}
+
+	ConfirmationDoneClose = ()=>{
+		this.setState({ConfirmationDone: false})
+	}
+
+	editConfirmationDone = () => {
+		return (
+			<Fragment>
+				<Confirmation content='Sua nota foi editada com sucesso!' valid='done' onConfirmOk={this.ConfirmationDoneClose}/>
+				<Backdrop show={this.state.ConfirmationDone} click={this.ConfirmationDoneClose} /> 
+			</Fragment>
+	)
+}
+
+ConfirmationError = ()=>{
+	this.setState({ConfirmationError: true})
+}
+
+ConfirmationErrorClose = ()=>{
+	this.setState({ConfirmationError: false})
+}
+
+editConfirmationError = () => {
+	return (
+		<Fragment>
+			<Confirmation content='Houve edição indevida na sua nota!' valid='error' onConfirmOk={this.ConfirmationErrorClose}/>
+			<Backdrop show={this.state.ConfirmationError} click={this.ConfirmationErrorClose} /> 
+		</Fragment>
+)
+}
 
 	filterReceipts = (receipts) => {
 		if(receipts){
@@ -79,15 +123,25 @@ export class List extends Component {
 	}
 
 	getTagName = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length == 0))
-			return this.props.tags[tagId - 1].category
+		if(!(this.props.tags === undefined || this.props.tags.length === 0)){
+			for(let i = 0; i < this.props.tags.length; i++){
+				if(this.props.tags[i].id === tagId){
+					return this.props.tags[i].category
+				}
+			}
+		}
 		else
 			return 'carregando...'
 	}
 
 	getTagColor = (tagId) => { 
-		if(!(this.props.tags === undefined || this.props.tags.length == 0))
-			return this.props.tags[tagId - 1].color 
+		if(!(this.props.tags === undefined || this.props.tags.length === 0)){
+			for(let i = 0; i < this.props.tags.length; i++){
+				if(this.props.tags[i].id === tagId){
+					return this.props.tags[i].color
+				}
+			}
+		}
 		else
 			return '#424242'
 	}
@@ -111,4 +165,10 @@ export const mapStateToProps = state => {
 		receipts: state.receipts
 	}
 }
-export default connect(mapStateToProps)(List)
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
+        onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(List)

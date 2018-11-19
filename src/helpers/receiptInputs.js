@@ -8,8 +8,8 @@ const receiptInputs = {
     touched: false,
     validation: {
       required: true,
-      minLength: 5,
-      maxLength: 10
+      minLength: 4,
+      maxLength: 15
     }
   },
   cnpj: {
@@ -19,10 +19,11 @@ const receiptInputs = {
     valid: false,
     editable: false,
     touched: false,
+    placeholder: 'xx.xxx.xxx/xxxx-xx',
     validation: {
       required: true,
-      minLength: 5,
-      maxLength: 10
+      minLength: 14,
+      maxLength: 14
     }
   },
   emission_date: {
@@ -32,6 +33,7 @@ const receiptInputs = {
     valid: false,
     editable: false,
     touched: false,
+    placeholder: 'yyyy/mm/dd',
     validation: {
       required: true,
       minLength: 5,
@@ -47,8 +49,8 @@ const receiptInputs = {
     touched: false,
     validation: {
       required: true,
-      minLength: 5,
-      maxLength: 10
+      minLength: 3,
+      maxLength: 15
     }
   },
   tax_value: {
@@ -60,7 +62,7 @@ const receiptInputs = {
     touched: false,
     validation: {
       required: true,
-      minLength: 2,
+      minLength: 1,
       maxLength: 10
     }
   },
@@ -73,7 +75,7 @@ const receiptInputs = {
     touched: false,
     validation: {
       required: true,
-      minLength: 5,
+      minLength: 1,
       maxLength: 10
     }
   },
@@ -87,7 +89,7 @@ const receiptInputs = {
     validation: {
       required: true,
       minLength: 5,
-      maxLength: 10
+      maxLength: 15
     }
   }
 }

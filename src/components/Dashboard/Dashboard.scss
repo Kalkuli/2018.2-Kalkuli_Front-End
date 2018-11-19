@@ -30,13 +30,19 @@
             }
 
             &__graphs {
-                margin-top: 5%;
+                overflow-y: hidden;
+                margin-top: 4%;
                 margin-bottom: 5%;
-                overflow-y: auto;
+                margin-left: 0%;
+                box-sizing: border-box;
+                padding-top: 5%;
+                padding-bottom: 3%;
+                padding-left: 13%;
+                border: 1px solid $color-dark-blue;
+                border-radius: 5px;
             }
         }
     }
-
 }
 
 @media (min-width:320px) {
@@ -53,9 +59,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 40em;
-                }
             }
 
             &__report {
@@ -78,9 +81,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -102,9 +102,6 @@
                     margin: auto;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -125,9 +122,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -148,9 +142,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -163,6 +154,7 @@
 @media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
+        overflow-y: hidden;
         &__area {
             padding: 3%;
 
@@ -175,9 +167,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -199,9 +188,6 @@
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {

@@ -22,9 +22,7 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
-		if(!this.state.selectedTag.hasOwnProperty('id'))
-			this.createIdForSelectedTag()
-		
+
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
@@ -85,6 +83,7 @@ export class ReceiptCompare extends Component {
 					</p>
 					<Input 	value={receiptInput[key].value}
 									valid={receiptInput[key].valid}
+									placeholder={receiptInput[key].placeholder}
 									touched={receiptInput[key].touched}
 									onChangeHandler={(event) => this.onChangeHandler(event, key)}
 									onClickHandler={this.onClickHandler.bind(this, key)}
@@ -93,12 +92,6 @@ export class ReceiptCompare extends Component {
 			))}
 			</div>
 		)
-	}
-
-	createIdForSelectedTag = () => {
-		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
-		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
-		this.setState({selectedTag: newSelectedTag})
 	}
 
 	onClickHandler = (inputKey) => {

@@ -21,7 +21,8 @@ const Input = (props) => {
               value={props.value} 
               type={props.type ? props.type : "text" }
               onChange={props.onChangeHandler} 
-              disabled={!props.editable}/>
+              disabled={!props.editable}
+              placeholder={props.placeholder}/>
       <img onClick={props.onClickHandler} className="input-area__edit-image" src={editImage} alt="edit" />
     </div>
   )

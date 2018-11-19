@@ -5,10 +5,10 @@ import Reports from './components/Reports/Reports'
 import ReceiptView from './components/Receipt/ReceiptView/ReceiptView'
 import HomePage from './components/HomePage/HomePage'
 import { connect } from 'react-redux'
-import {  BrowserRouter,Route, Switch, Redirect } from 'react-router-dom'
+import {  BrowserRouter,Route, Switch } from 'react-router-dom'
 import * as actionTypes from './store/actions/actions'
 
-class App extends Component {
+export class App extends Component {
   
   componentWillMount() {
     let token = localStorage.getItem('auth_token')
@@ -25,7 +25,7 @@ class App extends Component {
           <Route path='/list-all-receipts'component={ReceiptList} />
           <Route path='/reports' component={Reports} />
           <Route path='/receipt' component={ReceiptView} />
-          <Route render={() => <h1>Not found</h1>} />
+          <Route render={this.notFoundRoute} />
         </Switch>
       )
     }
@@ -34,18 +34,22 @@ class App extends Component {
         <Switch>
           <Route path='/' exact component={HomePage}/>
           {routes}       
-          <Route render={() => <h1>Not found</h1>} />
+          <Route render={this.notFoundRoute} />
         </Switch>
       </BrowserRouter>
     )
   }
+
+  notFoundRoute = () => {
+    return <h1>Not found</h1>
+  }
 }
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     auth_token: state.auth_token
   }
 }
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return {
     onAddAuthToken: (token) => dispatch({ type: actionTypes.ADD_AUTH_TOKEN, auth_token: token})
   }

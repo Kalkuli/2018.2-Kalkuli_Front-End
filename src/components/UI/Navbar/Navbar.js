@@ -15,11 +15,12 @@ const linkKalkuli = (
 class Navbar extends Component {
 
     state = {
-        isOpen: false
+        isOpen: false,
+        smallDevice: smallDevice
     }
 
     render(){
-        if(smallDevice){
+        if(this.state.smallDevice){
             let styleSidebar = ["sidebar"]
             if(this.state.isOpen)
                 styleSidebar.push('Open')
@@ -58,7 +59,6 @@ class Navbar extends Component {
 
     onClickMenuHandler = () => {
         this.setState((prevState) => ({isOpen: !prevState.isOpen}))
-        console.log(this.state.isOpen)
     }
 }
 

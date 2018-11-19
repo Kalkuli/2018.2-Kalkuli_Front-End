@@ -1,11 +1,13 @@
 import axios from 'axios'
+import {config, baseURL} from './axiosConfig'
 
-export default async (tag) => {
+export default async (tag, mockError) => {
     try {
-        await axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/create_tag', {"tag": tag })
+        if(mockError) throw 'mockingError'
+        await axios.post(`${baseURL}/create_tag`, {"tag": tag }, config)
         return 'success'
     }
     catch(err){
-        return err.response.data.message
+        return 'error'
     }
 }

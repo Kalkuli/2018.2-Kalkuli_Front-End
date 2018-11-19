@@ -4,9 +4,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 41rem;
+    width: 42.5rem;
     height: 10rem;
     justify-content: space-evenly;
+    z-index: 10000;
 }
 
 .confirmation-area p {

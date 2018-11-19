@@ -11,8 +11,9 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
+import { baseURL, config } from '../../../services/axiosConfig'
 
-class ReceiptAdder extends Component {
+export class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
@@ -42,7 +43,12 @@ class ReceiptAdder extends Component {
   }
 
   onNewTagHandler = (tag) => {
-    this.setState({newTag: tag})
+    const newTagArray = this.props.tags.filter(tagItem => tagItem.category === tag.category)
+    const newTag = newTagArray[0]
+    this.setState({
+      newTag: newTag,
+      creatingCategory: false
+     })
   }
 
   ChooseScreen = () => {
@@ -69,27 +75,26 @@ class ReceiptAdder extends Component {
   }
 
   onConfirmButton = (receipt) => {
-    console.log(receipt)
-    axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipt', {
+    axios.post(`${baseURL}/receipt`, {
       "receipt": {
         ...receipt,
-        company_id: 1
-      }
+        company_id: localStorage.getItem('company_id')
+      },
+    }, config)
+    .then(() => {
+      this.setState({
+        completed: true
+      })
     })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
-  onConfirmCategoryHandler = async() => {
+  onConfirmCategoryHandler = async(tag, callback) => {
     const tags = await getAllTags()
     this.props.onTagsAdded(tags)
-    this.setState({creatingCategory: false})
+    callback(tag)
   }
 
   onConfirmHandler = () => {
@@ -108,13 +113,16 @@ class ReceiptAdder extends Component {
         let statusUrl = 'https://kalkuli-extraction.herokuapp.com' + response.data.location;
         this.checkStatus(statusUrl)
       })
+      .catch((error) => {
+        console.log(error)
+    })
   }
 
   checkStatus = (statusUrl) => {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post(baseURL + '/api/v1/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({
@@ -122,6 +130,9 @@ class ReceiptAdder extends Component {
                 loading: false
               })
             })
+            .catch((error) => {
+              console.log(error)
+          })
         }
         else if (status.data.state === 'PENDING') {
           setTimeout(() => {
@@ -157,7 +168,13 @@ class ReceiptAdder extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+export const mapStateToProps = state => {
+  return {
+    tags: state.tags
+  }
+}
+
+export const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
     onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted }),
@@ -166,4 +183,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ReceiptAdder)
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptAdder)

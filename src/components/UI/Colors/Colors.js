@@ -52,13 +52,15 @@ class Colors extends Component {
 
     onConfirmHandler = async () => {
         const tag = {
+            "company_id": localStorage.getItem('company_id'),
             "category": this.state.value,
             "color": colors[this.state.selected].color
         }
         let response = await newTag(tag)
-        if(response == 'success'){
-            this.props.onConfirmHandler()
-            this.props.onNewTagHandler(tag)
+        if(response === 'success'){
+            this.props.onConfirmHandler(tag, () => {
+                this.props.onNewTagHandler(tag)
+            })
         }
         else
             this.setState({fail: response})

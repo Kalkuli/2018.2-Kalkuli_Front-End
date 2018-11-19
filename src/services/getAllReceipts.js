@@ -1,6 +1,13 @@
 import axios from 'axios'
+import {config, baseURL} from './axiosConfig'
 
 export default async () => {
-  const response = await axios.get('https://2wpulxi1r7.execute-api.sa-east-1.amazonaws.com/hom/api/v1/receipts')
-  return response.data.data.receipts
+  try{
+    const company_id = localStorage.getItem('company_id')
+    const response = await axios.get(`${baseURL}/${company_id}/receipts`, config)
+    return response.data.data.receipts
+  }
+  catch(err){
+    return 'error'
+  }
 }
