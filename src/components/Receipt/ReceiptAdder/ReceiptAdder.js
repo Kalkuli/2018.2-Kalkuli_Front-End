@@ -11,15 +11,14 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
-import * as baseUrl from '../../../helpers/baseUrl'
-import {baseURL, config} from '../../../services/axiosConfig'
+import { baseURL, config } from '../../../services/axiosConfig'
 
 export class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
     fileSelected: false,
-    fileSent: false,
+    fileSent: true,
     completed: false,
     creatingCategory: false,
     newTag: {}
@@ -72,7 +71,7 @@ export class ReceiptAdder extends Component {
 
   onConfirmButton = (receipt) => {
     console.log(receipt)
-    axios.post(`${baseUrl.default}/receipt`, {
+    axios.post(`${baseURL}/receipt`, {
       "receipt": {
         ...receipt,
         company_id: localStorage.getItem('company_id')
@@ -120,7 +119,7 @@ export class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post(baseUrl.default + '/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post(baseURL + '/api/v1/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({

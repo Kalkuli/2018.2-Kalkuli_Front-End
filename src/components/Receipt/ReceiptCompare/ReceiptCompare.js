@@ -71,6 +71,7 @@ export class ReceiptCompare extends Component {
 			"products": [],
 			"tag_id": this.state.selectedTag.id
 		}
+		console.log(this.state.selectedTag.id)
 		this.props.onConfirmButton(receipt)
 	}
 

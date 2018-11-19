@@ -12,7 +12,6 @@ import * as screenSize from '../../helpers/screenSize'
 import ConfirmationMessage from '../../components/UI/ConfirmationMessage/ConfirmationMessage'
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
-import * as baseUrl from '../../helpers/baseUrl'
 import {baseURL, config} from '../../services/axiosConfig'
 
 var type = "no-background"
@@ -107,7 +106,7 @@ class Reports extends Component {
 
     getAllReports = () => {
         const company_id = localStorage.getItem('company_id')
-        Axios.get(`${baseUrl.default}/${company_id}/get_all_reports`, config)
+        Axios.get(`${baseURL}/${company_id}/get_all_reports`, config)
             .then((response) => {
                 this.setState({
                     reports: response.data.data.reports,
@@ -119,7 +118,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        Axios.post(`${baseUrl.default}/report`, {
+        Axios.post(`${baseURL}/report`, {
             "period": {
                 date_from: date_from,
                 date_to: date_to
@@ -162,7 +161,7 @@ class Reports extends Component {
     onConfirmationTrue = () => { this.setState({confirmation: true}) }  
 
     onExportHandler = (date_from, date_to) => {
-        Axios.post(`${baseUrl.default}/export`, {
+        Axios.post(`${baseURL}/export`, {
             "period": {
                 date_from: date_from,
                 date_to: date_to

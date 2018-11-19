@@ -52,6 +52,7 @@ class Colors extends Component {
 
     onConfirmHandler = async () => {
         const tag = {
+            "company_id": localStorage.getItem('company_id'),
             "category": this.state.value,
             "color": colors[this.state.selected].color
         }

@@ -16,7 +16,6 @@ import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
-import * as baseUrl from '../../helpers/baseUrl'
 import {baseURL, config} from '../../services/axiosConfig'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
@@ -216,7 +215,7 @@ export class Dashboard extends Component {
         this.setState({
             loading: true
         })
-        axios.post(`${baseUrl.default}/save_report`, {
+        axios.post(`${baseURL}/save_report`, {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to

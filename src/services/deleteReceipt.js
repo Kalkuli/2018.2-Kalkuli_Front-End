@@ -1,5 +1,4 @@
 import axios from 'axios'
-import * as baseUrl from '../helpers/baseUrl'
 import {config, baseURL} from './axiosConfig'
 
 export default async receipt_id => {

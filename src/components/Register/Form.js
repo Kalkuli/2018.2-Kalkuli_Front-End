@@ -6,7 +6,7 @@ import registerInputs from '../../helpers/registerInputs'
 import Input from '../UI/Input/InputField'
 import Button from '../UI/Button/BaseButton/BaseButton'
 import Confirmation from '../UI/Confirmation/Confirmation';
-import * as baseUrl from '../../helpers/baseUrl'
+import {baseURL} from '../../services/axiosConfig'
 
 let changeInputColorValid = {
     color: '#0F8891'
@@ -111,7 +111,7 @@ class Form extends Component {
             "password": this.state.registerInput.admPassword.value
         } 
 
-        axios.post(baseUrl.default + '/api/v1/auth/register', registerData)
+        axios.post(`${baseURL}/auth/register`, registerData)
         .then(response =>{
             this.setState({registration: 'done'})
         })
