@@ -1,4 +1,4 @@
-import { ReceiptAdder, mapDispatchToProps } from '../../Receipt/ReceiptAdder/ReceiptAdder'
+import { ReceiptAdder, mapStateToProps, mapDispatchToProps } from '../../Receipt/ReceiptAdder/ReceiptAdder'
 import ReceiptCompare from '../../Receipt/ReceiptCompare/ReceiptCompare'
 import Confirmation from '../../UI/Confirmation/Confirmation'
 import Colors from '../../UI/Colors/Colors'
@@ -105,7 +105,13 @@ describe('Testing <ReceiptAdder/>', () => {
     expect(dispatch.mock.calls[3][0]).toEqual({type: 'ADD_TAGS'})
   }) 
   
-  
+  it('should test mapStateToProps for retrieving tags from store', () => {
+    const tags = {id: 1, category: "Food", color: "red"}
+    const initialState = {
+      tags: tags
+    }
+    expect(mapStateToProps(initialState).tags).toEqual(tags)
+  })
 
   /* it('should', () => {
     const file = [{

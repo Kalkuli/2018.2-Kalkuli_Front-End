@@ -94,7 +94,6 @@ export class ReceiptAdder extends Component {
   onConfirmCategoryHandler = async(tag, callback) => {
     const tags = await getAllTags()
     this.props.onTagsAdded(tags)
-
     callback(tag)
   }
 
