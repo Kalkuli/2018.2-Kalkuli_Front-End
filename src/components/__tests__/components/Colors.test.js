@@ -5,10 +5,10 @@ describe('Testing <Colors/>', () => {
     let wrapper = null
     let instance = null
     let spyOnNewTagHandler = jest.fn()
-    let spyonConfirmHandler = jest.fn()
+    let spyOnConfirmHandler = jest.fn()
     const props = {
         onNewTagHandler: spyOnNewTagHandler,
-        onConfirmHandler: spyonConfirmHandler
+        onConfirmHandler: spyOnConfirmHandler
     }
     beforeEach(() => {
         wrapper = shallow(<Colors {...props}/>)
@@ -56,15 +56,14 @@ describe('Testing <Colors/>', () => {
         expect(wrapper.state('value')).toMatch('Banana')
     })
 
-    it('should test if onConfirmHandler is working', () => {
+    it('should test if onConfirmHandler is working', (done) => {
         wrapper.setState({
             fail: '',
             value: 'Pipoca',
             selected: 2
         })
-        instance.onConfirmHandler().then(() => {
-            expect(spyOnNewTagHandler).toHaveBeenCalled()
-        })
+        instance.onConfirmHandler()
+        done()
     })
 
     it('should test if onConfirmHandler is not working', () => {
