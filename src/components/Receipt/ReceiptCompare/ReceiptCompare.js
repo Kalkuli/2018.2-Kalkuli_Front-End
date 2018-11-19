@@ -97,6 +97,7 @@ export class ReceiptCompare extends Component {
 	}
 
 	createIdForSelectedTag = () => {
+		console.log(this.props.tags)
 		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
 		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
 		this.setState({selectedTag: newSelectedTag})

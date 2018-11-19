@@ -76,8 +76,7 @@ export class ReceiptAdder extends Component {
         ...receipt,
         company_id: localStorage.getItem('company_id')
       },
-      config
-    })
+    }, config)
     .then(() => {
       this.setState({
         completed: true
