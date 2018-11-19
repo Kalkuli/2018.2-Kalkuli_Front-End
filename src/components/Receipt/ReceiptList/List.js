@@ -45,8 +45,6 @@ export class List extends Component {
 				{this.state.ConfirmationDone ? done : null}
 				{this.state.ConfirmationError ? error : null}
 				{receipts ? receipts.map(receipt => {
-					{console.log(receipt)
-					console.log(this.props.tags)}
 					let receiptId = receipt.id
 					delete receipt.id
 					delete receipt.company_id

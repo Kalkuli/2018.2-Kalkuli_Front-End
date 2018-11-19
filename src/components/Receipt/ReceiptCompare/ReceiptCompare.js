@@ -22,8 +22,8 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
-		if(!this.state.selectedTag.hasOwnProperty('id'))
-			this.createIdForSelectedTag()
+		// if(!this.state.selectedTag)
+		// 	this.createIdForSelectedTag()
 		
 		let preview = null
 		if (this.props.filePDF !== null) {
@@ -71,7 +71,6 @@ export class ReceiptCompare extends Component {
 			"products": [],
 			"tag_id": this.state.selectedTag.id
 		}
-		console.log(this.state.selectedTag.id)
 		this.props.onConfirmButton(receipt)
 	}
 
@@ -96,12 +95,11 @@ export class ReceiptCompare extends Component {
 		)
 	}
 
-	createIdForSelectedTag = () => {
-		console.log(this.props.tags)
-		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
-		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
-		this.setState({selectedTag: newSelectedTag})
-	}
+	// createIdForSelectedTag = () => {
+	// 	const newTagArray = this.props.tags.filter(tag => tag.category === this.state.selectedTag.category)
+	// 	const newTag = newTagArray[0]
+	// 	this.setState({selectedTag: newTag })
+	// }
 
 	onClickHandler = (inputKey) => {
 		let inputState = {...this.state.receiptInput}

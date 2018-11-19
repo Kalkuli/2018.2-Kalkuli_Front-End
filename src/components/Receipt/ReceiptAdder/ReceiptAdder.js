@@ -43,7 +43,12 @@ export class ReceiptAdder extends Component {
   }
 
   onNewTagHandler = (tag) => {
-    this.setState({newTag: tag})
+    const newTagArray = this.props.tags.filter(tagItem => tagItem.category === tag.category)
+    const newTag = newTagArray[0]
+    this.setState({
+      newTag: newTag,
+      creatingCategory: false
+     })
   }
 
   ChooseScreen = () => {
@@ -70,7 +75,6 @@ export class ReceiptAdder extends Component {
   }
 
   onConfirmButton = (receipt) => {
-    console.log(receipt)
     axios.post(`${baseURL}/receipt`, {
       "receipt": {
         ...receipt,
@@ -87,10 +91,11 @@ export class ReceiptAdder extends Component {
     })
   }
 
-  onConfirmCategoryHandler = async() => {
+  onConfirmCategoryHandler = async(tag, callback) => {
     const tags = await getAllTags()
     this.props.onTagsAdded(tags)
-    this.setState({creatingCategory: false})
+
+    callback(tag)
   }
 
   onConfirmHandler = () => {
@@ -140,7 +145,6 @@ export class ReceiptAdder extends Component {
 
   onDropHandler = (file, rejectedFiles) => {
     if (file.length === 1) {
-      console.log(file)
       const currentFile = file[0]
       const reader = new FileReader()
       reader.addEventListener("load", () => {
@@ -165,6 +169,12 @@ export class ReceiptAdder extends Component {
   }
 }
 
+export const mapStateToProps = state => {
+  return {
+    tags: state.tags
+  }
+}
+
 export const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
@@ -174,4 +184,4 @@ export const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ReceiptAdder)
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptAdder)

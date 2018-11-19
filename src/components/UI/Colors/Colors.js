@@ -58,8 +58,9 @@ class Colors extends Component {
         }
         let response = await newTag(tag)
         if(response === 'success'){
-            this.props.onConfirmHandler()
-            this.props.onNewTagHandler(tag)
+            this.props.onConfirmHandler(tag, () => {
+                this.props.onNewTagHandler(tag)
+            })
         }
         else
             this.setState({fail: response})
