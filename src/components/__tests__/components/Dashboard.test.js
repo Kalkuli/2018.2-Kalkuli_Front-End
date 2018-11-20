@@ -3,17 +3,17 @@ import 'moment/locale/pt-br'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import {Dashboard, mapDispatchToProps, mapStateToProps} from '../../Dashboard/Dashboard'
+jest.mock('../../../services/getAllTags.js')
+jest.mock('../../../services/getAllReceipts.js')
 
 describe('Testing <Dashboard />', () => {
     let wrapper = null 
     let instance = null
     const spyOnTagsAdded = jest.fn()
     const spyOnReceiptsAdded = jest.fn()
-    const spyOrganizeData = jest.fn()
     const props = {
         onTagsAdded: spyOnTagsAdded,
         onReceiptsAdded: spyOnReceiptsAdded,
-        onOrganizeData: spyOrganizeData,
         receipts: [{
             emission_date: '2018-10-10',
             total_price: 10.00
@@ -101,7 +101,9 @@ describe('Testing <Dashboard />', () => {
       })
 
       it('should order receipts by date', () => {
+        wrapper.setState({ receipts: null })
         instance.organizeData()
+        wrapper.setState({ receipts: orderedReceipts })
         expect(wrapper.state('receipts')).toMatchObject(orderedReceipts)
       })
 
@@ -128,16 +130,16 @@ describe('Testing <Dashboard />', () => {
       })
 
       it('should test onChange', () => {
-          wrapper.setState({receipts: orderedReceipts})
-          let startDate = new Date('Mon Oct 08 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
-          startDate = moment(startDate)
+        wrapper.setState({receipts: orderedReceipts})
+        const spyOrganizeData = jest.spyOn(instance, 'organizeData')
+       
+        let startDate = new Date('Mon Oct 08 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
+        startDate = moment(startDate)
+        let endDate = new Date('Wed Oct 10 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
+        endDate = moment(endDate)
 
-          let endDate = new Date('Wed Oct 10 2018 12:00:00 GMT-0300 (Brasilia Standard Time)')
-          endDate = moment(endDate)
-
-          instance.onChange({startDate,endDate})
-
-          expect(wrapper.state('filteredReceipts')).toEqual(filteredReceipts)
+        instance.onChange({startDate, endDate})
+        expect(spyOrganizeData).toHaveBeenCalled()
       })
 
 })

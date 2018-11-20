@@ -29,7 +29,7 @@ export class Dashboard extends Component {
         endDate: null,
         isEndDate: false,
         focusedInput: null,
-        receipts: null,
+        receipts: [],
         sum: null,
         date_from: null,
         date_to: null,
@@ -134,12 +134,14 @@ export class Dashboard extends Component {
 
     organizeData = () => {
         var copy = [...this.props.receipts]
+        console.log(copy)
         copy.sort((a,b) => {
             a = new Date(a.emission_date);
             b = new Date(b.emission_date);
             return a < b ? -1 : a < b ? 1 : 0;
         })
         this.setState({receipts: copy})
+        console.log(this.state.receipts)
     }
 
     sumSameDate = (receipts) => {
@@ -171,7 +173,6 @@ export class Dashboard extends Component {
             }
         })
     }
-
     
     onConfirmHandler = () => { this.props.history.push('/confirmation') }
 
