@@ -121,7 +121,7 @@ export class Dashboard extends Component {
                     </div>
 
                     <div className="dashboard__area__report">
-                        {this.state.receipts ? <Report reportCase={this.state.reportCase} receipts={this.state.receipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
+                        {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
                         <div className="dashboard__area__report__button">
                             {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
                         </div>
@@ -134,14 +134,12 @@ export class Dashboard extends Component {
 
     organizeData = () => {
         var copy = [...this.props.receipts]
-        console.log(copy)
         copy.sort((a,b) => {
             a = new Date(a.emission_date);
             b = new Date(b.emission_date);
             return a < b ? -1 : a < b ? 1 : 0;
         })
         this.setState({receipts: copy})
-        console.log(this.state.receipts)
     }
 
     sumSameDate = (receipts) => {
@@ -154,11 +152,13 @@ export class Dashboard extends Component {
                     sum += receipts[i].total_price
                     i++
                 }
-                dates.push(receipts[i].emission_date)
+                let displayDate = new Date(receipts[i].emission_date + " " + "GMT-0300").toLocaleDateString()
+                dates.push(displayDate)
                 prices.push(sum + receipts[i].total_price)
             }
             else{
-                dates.push(receipts[i].emission_date)
+                let displayDate = new Date(receipts[i].emission_date + " " + "GMT-0300").toLocaleDateString()
+                dates.push(displayDate)
                 prices.push(receipts[i].total_price)
             }
         }
@@ -193,6 +193,14 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
+    filterReceipts = (receipts, date_from, date_to) => {
+        var filteredReceipts = receipts.filter((receipt) => {
+            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
+        })
+
+        return filteredReceipts
+    }
+
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
@@ -202,12 +210,12 @@ export class Dashboard extends Component {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = this.state.receipts.filter((receipt) => {
-                return date_from <= receipt.emission_date && date_to >= receipt.emission_date
-            })
+            var filteredReceipts = this.filterReceipts(this.state.receipts, date_from, date_to)
+
             this.setState({filteredReceipts: filteredReceipts})
             this.sumReceipts(filteredReceipts)
             this.sumSameDate(filteredReceipts)
+            this.setState({reportCase: 'reports'})
         }
     }
 
@@ -220,9 +228,8 @@ export class Dashboard extends Component {
             "period": {
                 date_from: this.state.date_from,
                 date_to: this.state.date_to
-            },
-            config
-        })
+            }
+        }, config)
         .then(() => {
             this.setState({
                 loading: false
