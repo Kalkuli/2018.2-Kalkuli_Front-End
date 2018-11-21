@@ -15,6 +15,9 @@ import deleteReport from '../../services/deleteReport'
 import {baseURL, config} from '../../services/axiosConfig'
 import {connect} from 'react-redux'
 import {filterReceipts} from '../../helpers/filterReceipts'
+import getAllReceipts from '../../services/getAllReceipts'
+import getAllTags from '../../services/getAllTags'
+import * as actionTypes from '../../store/actions/actions'
 
 var type = "no-background"
 var comeco = null;
@@ -37,6 +40,8 @@ class Reports extends Component {
 
     componentDidMount() {
         this.getAllReports()
+        this.fetchReceipts()
+        this.fetchTags()
     }
 
     render() {
@@ -136,7 +141,6 @@ class Reports extends Component {
             })
         }
         else {
-            console.log(filteredReceipts)
             let sum = this.sumReceipts(filteredReceipts)
             this.setState({
                 sum: sum,
@@ -190,6 +194,22 @@ class Reports extends Component {
         );
     }
 
+    fetchReceipts = async() => {
+        const receipts = await getAllReceipts()
+        this.props.onReceiptsAdded(receipts)
+    }
+
+    fetchTags = async() => {
+        const tags = await getAllTags()
+        this.props.onTagsAdded(tags)
+	}
+
+}
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
+        onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
+    }
 }
 
 export const mapStateToProps = state => {
@@ -199,4 +219,4 @@ export const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps) (Reports)
+export default connect(mapStateToProps, mapDispatchToProps) (Reports)

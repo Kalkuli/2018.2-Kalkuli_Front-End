@@ -213,10 +213,17 @@ export class Dashboard extends Component {
 
             var filteredReceipts = filterReceipts(this.state.receipts, date_from, date_to)
 
-            this.setState({filteredReceipts: filteredReceipts})
-            this.sumReceipts(filteredReceipts)
-            this.sumSameDate(filteredReceipts)
-            this.setState({reportCase: 'reports'})
+            if(filteredReceipts <= 0){
+                this.setState({
+                    reportCase: 'do not exist'
+                })
+            }
+            else{
+                this.setState({filteredReceipts: filteredReceipts})
+                this.sumReceipts(filteredReceipts)
+                this.sumSameDate(filteredReceipts)
+                this.setState({reportCase: 'reports'})
+            }
         }
     }
 
