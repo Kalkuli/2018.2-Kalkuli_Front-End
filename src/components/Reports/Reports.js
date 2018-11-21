@@ -13,6 +13,7 @@ import ConfirmationMessage from '../../components/UI/ConfirmationMessage/Confirm
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
 import {baseURL, config} from '../../services/axiosConfig'
+import {connect} from 'react-redux'
 
 var type = "no-background"
 var comeco = null;
@@ -122,9 +123,8 @@ class Reports extends Component {
             "period": {
                 date_from: date_from,
                 date_to: date_to
-            },
-            config
-        })
+            }
+        }, config)
         .then((response) => {
             console.log(response)
             this.setState({
@@ -188,4 +188,11 @@ class Reports extends Component {
 
 }
 
-export default Reports
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts,
+        tags: state.tags
+    }
+}
+
+export default connect(mapStateToProps) (Reports)

@@ -17,6 +17,7 @@ import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import {baseURL, config} from '../../services/axiosConfig'
+import {filterReceipts} from '../../helpers/filterReceipts'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -193,14 +194,6 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
-    filterReceipts = (receipts, date_from, date_to) => {
-        var filteredReceipts = receipts.filter((receipt) => {
-            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
-        })
-
-        return filteredReceipts
-    }
-
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
@@ -210,7 +203,7 @@ export class Dashboard extends Component {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = this.filterReceipts(this.state.receipts, date_from, date_to)
+            var filteredReceipts = filterReceipts(this.state.receipts, date_from, date_to)
 
             this.setState({filteredReceipts: filteredReceipts})
             this.sumReceipts(filteredReceipts)
@@ -226,8 +219,10 @@ export class Dashboard extends Component {
         })
         axios.post(`${baseURL}/save_report`, {
             "period": {
-                date_from: this.state.date_from,
-                date_to: this.state.date_to
+                period: {
+                    date_from: this.state.date_from,
+                    date_to: this.state.date_to
+                }
             }
         }, config)
         .then(() => {
