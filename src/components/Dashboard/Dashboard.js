@@ -194,6 +194,14 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
+    filterReceipts = (receipts, date_from, date_to) => {
+        var filteredReceipts = receipts.filter((receipt) => {
+            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
+        })
+
+        return filteredReceipts
+    }
+
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
