@@ -29,7 +29,7 @@ class ReceiptView extends Component {
   }
   
   render() {
-    let content = this.t(this.state.edited)
+    let content = this.content(this.state.edited)
     return (
       <Modal>
         {this.state.save ? this.renderConfirmationMessageSave() : null}
@@ -40,7 +40,7 @@ class ReceiptView extends Component {
     )
   }
 
-  t = (el) => {
+  content = (el) => {
     if(el === 'done'){
       
     }else {

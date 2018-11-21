@@ -32,10 +32,11 @@ export class ReceiptCompare extends Component {
 		
 		return (
 			<div className="compare-area">
-				<div className="compare-area__comparing">
+				<div className="compare-area__comparing" style={{width: '40rem'}}>
+				{!this.props.extraction? 
 					<div className="compare-area__comparing__preview">
 						{preview}
-					</div>
+					</div>: null}
 					<Receipt size="large">
 						<div className="compare-area__content">
 							{this.generateInputs()}
@@ -48,7 +49,8 @@ export class ReceiptCompare extends Component {
 					</Receipt>
 				</div>
 				<div className="compare-area__buttons">
-					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
+					<BaseButton type="no-background" 
+					click={!this.props.extraction ? this.props.onCancelHandler : this.props.backDropDown}>Cancelar</BaseButton>
 					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
 											click={this.onConfirmHandler}>Confirmar</BaseButton>
 				</div>

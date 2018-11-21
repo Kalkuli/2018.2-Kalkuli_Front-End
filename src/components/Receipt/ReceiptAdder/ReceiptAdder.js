@@ -18,6 +18,7 @@ import getStatus from '../../../services/getStatus'
 export class ReceiptAdder extends Component {
   state = {
     file: null,
+    extraction: false,
     loading: false,
     fileSelected: false,
     fileSent: true,
@@ -28,6 +29,10 @@ export class ReceiptAdder extends Component {
 
   render() {
     let content = this.ChooseScreen()
+
+    if(this.state.extraction)
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} extraction backDropDown={this.jumpExtraction}/>
+
     if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) {
       content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
     } 
@@ -37,9 +42,12 @@ export class ReceiptAdder extends Component {
     else if (this.state.creatingCategory){
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
     }
+
+    
+
     return (
       <Modal show>
-        {content}
+        {content }
       </Modal>
     )
   }
@@ -59,7 +67,7 @@ export class ReceiptAdder extends Component {
         <section className="receipt-adder">
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
+            <BaseButton type="no-background" click={this.jumpExtraction}>Pular extração</BaseButton>
             {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="disable" >Confirmar</BaseButton>}
           </div>
         </section>
@@ -70,6 +78,12 @@ export class ReceiptAdder extends Component {
         <Loader />
       )
     }
+  }
+
+  jumpExtraction = () => {
+    this.setState(prevState => ({
+      extraction: !prevState.extraction
+    }))
   }
 
   createCategory = () => {
