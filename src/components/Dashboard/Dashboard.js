@@ -219,26 +219,28 @@ export class Dashboard extends Component {
                 })
             }
             else{
-                this.setState({filteredReceipts: filteredReceipts})
+                this.setState({
+                    filteredReceipts: filteredReceipts,
+                    date_to: date_to,
+                    date_from: date_from,
+                    reportCase: 'reports'
+                })
                 this.sumReceipts(filteredReceipts)
                 this.sumSameDate(filteredReceipts)
-                this.setState({reportCase: 'reports'})
             }
         }
     }
 
 
     onConfirmButton = () => {
+        const company_id = localStorage.getItem('company_id')
         this.setState({
             loading: true
         })
         axios.post(`${baseURL}/save_report`, {
-            "period": {
-                period: {
-                    date_from: this.state.date_from,
-                    date_to: this.state.date_to
-                }
-            }
+            company_id: company_id,
+            date_to: this.state.date_to,
+            date_from: this.state.date_from
         }, config)
         .then(() => {
             this.setState({
