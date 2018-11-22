@@ -13,6 +13,11 @@ import ConfirmationMessage from '../../components/UI/ConfirmationMessage/Confirm
 import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
 import {baseURL, config} from '../../services/axiosConfig'
+import {connect} from 'react-redux'
+import {filterReceipts} from '../../helpers/filterReceipts'
+import getAllReceipts from '../../services/getAllReceipts'
+import getAllTags from '../../services/getAllTags'
+import * as actionTypes from '../../store/actions/actions'
 
 var type = "no-background"
 var comeco = null;
@@ -35,6 +40,8 @@ class Reports extends Component {
 
     componentDidMount() {
         this.getAllReports()
+        this.fetchReceipts()
+        this.fetchTags()
     }
 
     render() {
@@ -117,28 +124,30 @@ class Reports extends Component {
             })
     }
 
+    sumReceipts = (receipts) => {
+        var sum = 0
+        for(var i = 0; i < receipts.length; i++){
+            sum += receipts[i].total_price
+        }
+        return sum.toFixed(2);
+    }
+
     getReportInfo = (date_from, date_to) => {
-        Axios.post(`${baseURL}/report`, {
-            "period": {
-                date_from: date_from,
-                date_to: date_to
-            },
-            config
-        })
-        .then((response) => {
-            console.log(response)
-            this.setState({
-                receipts: response.data.receipts,
-                sum: response.data.total_cost,
-                isEndDate: false,
-                reportCase: 'reports'
-            })
-        })
-        .catch(() => {
+        let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to)
+
+        if(filteredReceipts <= 0){
             this.setState({
                 reportCase: 'do not exist'
             })
-        })
+        }
+        else {
+            let sum = this.sumReceipts(filteredReceipts)
+            this.setState({
+                sum: sum,
+                receipts: filteredReceipts,
+                reportCase: 'reports'
+            })
+        }
     }
 
     onReportSelect = (index, date_from, date_to) => {
@@ -165,9 +174,8 @@ class Reports extends Component {
             "period": {
                 date_from: date_from,
                 date_to: date_to
-            },
-            config
-        }).then((response) => {
+            }
+        }, config).then((response) => {
             FileDownload(response.data, 'report.csv')
         })
         .catch((error) => {
@@ -186,6 +194,29 @@ class Reports extends Component {
         );
     }
 
+    fetchReceipts = async() => {
+        const receipts = await getAllReceipts()
+        this.props.onReceiptsAdded(receipts)
+    }
+
+    fetchTags = async() => {
+        const tags = await getAllTags()
+        this.props.onTagsAdded(tags)
+	}
+
+}
+export const mapDispatchToProps = dispatch => {
+    return {
+        onReceiptsAdded: (receipts) => {dispatch({type: actionTypes.ADD_RECEIPTS, receipts: receipts})},
+        onTagsAdded: (tags) => dispatch({ type: actionTypes.ADD_TAGS, tags: tags }) 
+    }
 }
 
-export default Reports
+export const mapStateToProps = state => {
+    return {
+        receipts: state.receipts,
+        tags: state.tags
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Reports)

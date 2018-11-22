@@ -48,6 +48,7 @@
 @media (min-width:320px) {
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .dashboard {
+        overflow-y: auto;
         &__area {
             padding: 5%;
 

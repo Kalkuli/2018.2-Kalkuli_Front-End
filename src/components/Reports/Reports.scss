@@ -56,6 +56,7 @@
 @media (min-width:320px) {
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .reports {
+        overflow-y: auto;
         &__area{
             padding: 5%;
 
@@ -165,34 +166,10 @@
         }
     }  
 }
-@media (min-width:1025px) {
-    /* big landscape tablets, laptops, and desktops */ 
-    .reports {
-        &__area{
-            &__content {
-                width: 90%;
-
-                &__datepicker {
-                    margin: 0;
-                }
-
-                &__resumes {
-                    max-height: 50em;
-
-                    &__button {
-                        margin-top: 5%;
-                    }
-                }
-            }
-            &__report {
-                margin: 0;
-            }
-        }
-    }  
-}
 @media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .reports {
+        overflow-y: hidden;
         &__area{
             padding: 3%;
 

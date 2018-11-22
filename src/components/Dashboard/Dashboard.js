@@ -17,6 +17,7 @@ import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import {baseURL, config} from '../../services/axiosConfig'
+import {filterReceipts} from '../../helpers/filterReceipts'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -121,7 +122,7 @@ export class Dashboard extends Component {
                     </div>
 
                     <div className="dashboard__area__report">
-                        {this.state.receipts ? <Report reportCase={this.state.reportCase} receipts={this.state.receipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
+                        {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
                         <div className="dashboard__area__report__button">
                             {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
                         </div>
@@ -134,14 +135,12 @@ export class Dashboard extends Component {
 
     organizeData = () => {
         var copy = [...this.props.receipts]
-        console.log(copy)
         copy.sort((a,b) => {
             a = new Date(a.emission_date);
             b = new Date(b.emission_date);
             return a < b ? -1 : a < b ? 1 : 0;
         })
         this.setState({receipts: copy})
-        console.log(this.state.receipts)
     }
 
     sumSameDate = (receipts) => {
@@ -154,11 +153,13 @@ export class Dashboard extends Component {
                     sum += receipts[i].total_price
                     i++
                 }
-                dates.push(receipts[i].emission_date)
+                let displayDate = new Date(receipts[i].emission_date + " " + "GMT-0300").toLocaleDateString()
+                dates.push(displayDate)
                 prices.push(sum + receipts[i].total_price)
             }
             else{
-                dates.push(receipts[i].emission_date)
+                let displayDate = new Date(receipts[i].emission_date + " " + "GMT-0300").toLocaleDateString()
+                dates.push(displayDate)
                 prices.push(receipts[i].total_price)
             }
         }
@@ -193,6 +194,14 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
+    filterReceipts = (receipts, date_from, date_to) => {
+        var filteredReceipts = receipts.filter((receipt) => {
+            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
+        })
+
+        return filteredReceipts
+    }
+
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
@@ -202,27 +211,37 @@ export class Dashboard extends Component {
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = this.state.receipts.filter((receipt) => {
-                return date_from <= receipt.emission_date && date_to >= receipt.emission_date
-            })
-            this.setState({filteredReceipts: filteredReceipts})
-            this.sumReceipts(filteredReceipts)
-            this.sumSameDate(filteredReceipts)
+            var filteredReceipts = filterReceipts(this.state.receipts, date_from, date_to)
+
+            if(filteredReceipts <= 0){
+                this.setState({
+                    reportCase: 'do not exist'
+                })
+            }
+            else{
+                this.setState({
+                    filteredReceipts: filteredReceipts,
+                    date_to: date_to,
+                    date_from: date_from,
+                    reportCase: 'reports'
+                })
+                this.sumReceipts(filteredReceipts)
+                this.sumSameDate(filteredReceipts)
+            }
         }
     }
 
 
     onConfirmButton = () => {
+        const company_id = localStorage.getItem('company_id')
         this.setState({
             loading: true
         })
         axios.post(`${baseURL}/save_report`, {
-            "period": {
-                date_from: this.state.date_from,
-                date_to: this.state.date_to
-            },
-            config
-        })
+            company_id: company_id,
+            date_to: this.state.date_to,
+            date_from: this.state.date_from
+        }, config)
         .then(() => {
             this.setState({
                 loading: false
