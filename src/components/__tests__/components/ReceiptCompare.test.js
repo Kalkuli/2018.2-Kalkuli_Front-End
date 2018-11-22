@@ -10,11 +10,10 @@ describe('Testing <ReceiptCompare/>', () => {
   const props = {
     onConfirmButton: spyOnConfirmButton,
     tags: [{}],
+    fileExtracted: { }
   }
   
   beforeEach(() => {
-    Array.prototype.findIndex = jest.fn()
-    Object.prototype.hasOwnProperty = jest.fn(key => false)
     wrapper = shallow(<ReceiptCompare {...props} />)
     wrapper.setState({selectedTag: {
       'category': 'food',
@@ -70,5 +69,29 @@ describe('Testing <ReceiptCompare/>', () => {
 
   it('should receive a null file', () => {
     wrapper.setProps({filePDF: null})
+  })
+
+  it('should set error when the request for fetching tag retrieve error', () => {
+    wrapper.setProps({tags: null})
+  })
+
+  it('should open drop down', () => {
+    wrapper.setState({ showItems: false })
+    expect(wrapper.state('showItems')).toBe(false)
+    wrapper.instance().onDropDownHandler()
+    expect(wrapper.state('showItems')).toBe(true)
+  })
+
+  it('should show the selected tag', () => {
+    wrapper.setState({ selectedTag: {} })
+    expect(wrapper.state('selectedTag')).toEqual({})
+    const tag = { id: 1, color: 'red', category: 'food' }
+    wrapper.instance().onSelectedTagHandler(tag)
+    expect(wrapper.state('selectedTag')).toBe(tag)
+    expect(wrapper.state('showItems')).toBe(false)
+  })
+
+  it('should initialize the inputs witt the extracted', () => {
+    
   })
 })
