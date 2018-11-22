@@ -1,5 +1,6 @@
 import { ReceiptCompare, mapStateToProps } from '../../Receipt/ReceiptCompare/ReceiptCompare'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
+import Input from '../../UI/Input/Input'
 import receiptInputs from '../../../helpers/receiptInputs'
 jest.mock('../../../services/getAllTags')
 
@@ -92,6 +93,23 @@ describe('Testing <ReceiptCompare/>', () => {
   })
 
   it('should initialize the inputs witt the extracted', () => {
-    
+    wrapper.setProps({ 
+      fileExtracted : {
+        cnpj: '123123123',
+        date: '10/10/2018'
+     }
+    })
+    wrapper.setState({ 
+      receiptInput: {
+        cnpj: { value: '123123123' },
+        date: { value: '10/10/2018' }
+      } 
+    })
+    wrapper.instance().initInputs()
+    expect(wrapper.state('receiptInput')).toEqual({
+      cnpj: { value: '123123123', valid: true },
+      date: { value: '10/10/2018', valid: true }
+    })
   })
+
 })
