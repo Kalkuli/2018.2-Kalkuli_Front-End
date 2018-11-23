@@ -11,7 +11,7 @@ import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 
 const smallDevice = window.matchMedia('(max-width: 645px)').matches
-var size;
+let size
 if(smallDevice) 
   size = 'medium'
 else 

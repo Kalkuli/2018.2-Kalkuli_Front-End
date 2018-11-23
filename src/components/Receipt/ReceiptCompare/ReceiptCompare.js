@@ -9,7 +9,7 @@ import DropDown from '../../UI/DropDown/DropDown'
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
-		receiptIsValid: true,
+		receiptIsValid: false,
 		receipt: null,
 		showItems: false,
 		items: [],

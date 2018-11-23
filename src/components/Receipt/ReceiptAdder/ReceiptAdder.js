@@ -11,6 +11,7 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
+import createReceipt from '../../../services/createReceipt'
 import { baseURL, config } from '../../../services/axiosConfig'
 
 export class ReceiptAdder extends Component {
@@ -74,21 +75,10 @@ export class ReceiptAdder extends Component {
     this.setState({creatingCategory: true})
   }
 
-  onConfirmButton = (receipt) => {
-    axios.post(`${baseURL}/receipt`, {
-      "receipt": {
-        ...receipt,
-        company_id: localStorage.getItem('company_id')
-      },
-    }, config)
-    .then(() => {
-      this.setState({
-        completed: true
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  onConfirmButton = async(receipt) => {
+    const response = await createReceipt(receipt)
+    if(response === 'success')
+      this.setState({ completed: true }) 
   }
 
   onConfirmCategoryHandler = async(tag, callback) => {
@@ -122,7 +112,7 @@ export class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post(baseURL + '/interpret_data', { raw_text: status.data.raw_text })
+          axios.post(`${baseURL}/interpret_data`, { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({
