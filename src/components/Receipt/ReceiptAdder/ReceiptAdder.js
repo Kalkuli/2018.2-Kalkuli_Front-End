@@ -12,6 +12,7 @@ import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
 import createReceipt from '../../../services/createReceipt'
+import sendFile from '../../../services/sendFile'
 import { baseURL, config } from '../../../services/axiosConfig'
 
 export class ReceiptAdder extends Component {
@@ -19,7 +20,7 @@ export class ReceiptAdder extends Component {
     file: null,
     loading: false,
     fileSelected: false,
-    fileSent: true,
+    fileSent: false,
     completed: false,
     creatingCategory: false,
     newTag: {}
@@ -87,25 +88,15 @@ export class ReceiptAdder extends Component {
     callback(tag)
   }
 
-  onConfirmHandler = () => {
-    this.setState({
-      loading: true
-    })
-    let formData = new FormData();
-    formData.append("file", this.state.file[0]);
-
-    axios.post('https://kalkuli-extraction.herokuapp.com/extract', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then((response) => {
-        let statusUrl = 'https://kalkuli-extraction.herokuapp.com' + response.data.location;
-        this.checkStatus(statusUrl)
-      })
-      .catch((error) => {
-        console.log(error)
-    })
+  onConfirmHandler = async() => {
+    this.setState({ loading: true })
+    let formData = new FormData()
+    formData.append("file", this.state.file[0])
+    const response = await sendFile(formData)
+    if(response !== 'error') {
+      let statusUrl = `https://kalkuli-extraction.herokuapp.com${response}`
+      this.checkStatus(statusUrl)
+    }
   }
 
   checkStatus = (statusUrl) => {
