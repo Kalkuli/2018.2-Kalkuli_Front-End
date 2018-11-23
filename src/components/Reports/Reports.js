@@ -133,7 +133,7 @@ class Reports extends Component {
     }
 
     getReportInfo = (date_from, date_to) => {
-        let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to)
+        let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to, {})
 
         if(filteredReceipts <= 0){
             this.setState({

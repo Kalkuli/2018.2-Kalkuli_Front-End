@@ -124,7 +124,7 @@ export class Dashboard extends Component {
                     </div>
                     <div className="dashboard__area__content">
                         <div className="dashboard__area__content__graphs">
-                            <BarChart options={this.state.options} series={this.state.series} />
+                            {this.state.filteredReceipts ? <BarChart options={this.state.options} series={this.state.series} /> : null}
                         </div>
 
                         <div className="dashboard__area__report">
@@ -151,11 +151,47 @@ export class Dashboard extends Component {
 								onSelectedTagHandler={this.onSelectedTagHandler}
 								selectedTag={this.state.selectedTag}
 								showItems={this.state.showItems}
-								createCategory={null} />
+                                createCategory={null}
+                                empty={true} />
     }
     
     onDropDownHandler = () => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
-    onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
+
+    onSelectedTagHandler = (tag) => {
+
+        this.setState({	selectedTag: tag, showItems: false })
+        let organized = this.organizeData()
+
+        let filteredReceipts
+
+        if(this.state.endDate === null) {
+            filteredReceipts = filterReceipts(organized, null, null, tag)
+        }
+        
+        else{
+            
+            let date_from = moment(this.state.startDate).format('YYYY-MM-DD')
+            let date_to = moment(this.state.endDate).format('YYYY-MM-DD')
+
+            filteredReceipts = filterReceipts(organized, date_from, date_to, tag)
+        }
+
+
+        if(filteredReceipts.length <= 0){
+            this.setState({
+                reportCase: 'do not exist',
+                filteredReceipts: null
+            })
+        }
+        else{
+            this.setState({
+                filteredReceipts: filteredReceipts,
+                reportCase: 'reports'
+            })
+            this.sumReceipts(filteredReceipts)
+            this.sumSameDate(filteredReceipts)
+        }
+    }
 
     organizeData = () => {
         var copy = [...this.props.receipts]
@@ -165,6 +201,8 @@ export class Dashboard extends Component {
             return a < b ? -1 : a < b ? 1 : 0;
         })
         this.setState({receipts: copy})
+
+        return copy
     }
 
     sumSameDate = (receipts) => {
@@ -192,10 +230,38 @@ export class Dashboard extends Component {
                 data: prices
             }],
             options: {
-                xaxis: {
+                chart: {
+                    id: "basic-bar",
+                    fontFamily: "Montserrat, sans-serif",
+                    foreColor: '#353535',
+                  },
+                  plotOptions: {
+                    bar: {
+                      horizontal: false,
+                    }
+                  },
+                  colors: "#0F8891",
+                  xaxis: {
                     categories: dates
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  tooltip: {
+                    enabled: true,
+          
+                  },
+                  responsive: [{
+                    breakpoint: 480,
+                    options: {
+                      plotOptions: {
+                        bar: {
+                          horizontal: true
+                        }
+                      }
+                    }
+                  }]
                 }
-            }
         })
     }
     
@@ -218,28 +284,25 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
-    filterReceipts = (receipts, date_from, date_to) => {
-        var filteredReceipts = receipts.filter((receipt) => {
-            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
-        })
-
-        return filteredReceipts
-    }
-
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
-        this.organizeData()
+        let organized = this.organizeData()
 
         if (this.state.isEndDate) {
+            this.setState({
+                startDate: startDate.startDate,
+                endDate: startDate.endDate
+            })
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = filterReceipts(this.state.receipts, date_from, date_to)
+            var filteredReceipts = filterReceipts(organized, date_from, date_to, this.state.selectedTag)
 
             if(filteredReceipts <= 0){
                 this.setState({
-                    reportCase: 'do not exist'
+                    reportCase: 'do not exist',
+                    filteredReceipts: null
                 })
             }
             else{
