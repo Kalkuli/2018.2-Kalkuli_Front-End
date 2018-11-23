@@ -6,6 +6,7 @@ import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import axios from 'axios';
 import Loader from '../UI/Loader/Loader'
 import BarChart from '../UI/BarChart/BarChart';
+import DropDown from '../UI/DropDown/DropDown'
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
@@ -25,6 +26,8 @@ const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.H
 export class Dashboard extends Component {
 
     state = {
+        selectedTag: {},
+        showItems: false,
         loading: false,
         startDate: null,
         endDate: null,
@@ -97,8 +100,8 @@ export class Dashboard extends Component {
             <div className="dashboard">
                 <Navbar/>
                 <div className="dashboard__area">
-                    <div className="dashboard__area__content">
-                        <div className="dashboard__area__content__datepicker">
+                    <div className="dashboard__area__filters">
+                        <div className="dashboard__area__filters__dashboard">
                             <DateRangePicker 
                             startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                             startDatePlaceholderText="Data Inicial"
@@ -115,23 +118,44 @@ export class Dashboard extends Component {
                             small={smallDevice}
                             />
                         </div>
-
+                        <div className="dashboard__area__filters__category">
+                            { this.handleExceptionDropDown() }
+                        </div>
+                    </div>
+                    <div className="dashboard__area__content">
                         <div className="dashboard__area__content__graphs">
                             <BarChart options={this.state.options} series={this.state.series} />
                         </div>
-                    </div>
 
-                    <div className="dashboard__area__report">
-                        {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
-                        <div className="dashboard__area__report__button">
-                            {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        <div className="dashboard__area__report">
+                            {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
+                            <div className="dashboard__area__report__button">
+                                {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         )
     }
+
+    handleExceptionDropDown = () => {
+		let items = null
+		if(this.props.tags)
+			items = this.props.tags
+		else 
+			items = [{"id": 0, "category": "erro", "color": "#424242"}]		
+		
+			return <DropDown 	items={items}
+								onDropDownHandler={this.onDropDownHandler}
+								onSelectedTagHandler={this.onSelectedTagHandler}
+								selectedTag={this.state.selectedTag}
+								showItems={this.state.showItems}
+								createCategory={null} />
+    }
+    
+    onDropDownHandler = () => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
+    onSelectedTagHandler = (tag) => { this.setState({	selectedTag: tag, showItems: false }) }
 
     organizeData = () => {
         var copy = [...this.props.receipts]

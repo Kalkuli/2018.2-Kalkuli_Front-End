@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import './DropDown.scss'
 import TagItem from '../TagItem/TagItem'
-import SearchBar from '../SearchBar/SearchBar'
 
 class DropDown extends Component {
   render() {
@@ -15,7 +14,6 @@ class DropDown extends Component {
         </div>
         
         <div className="select-box--items" style={{display: this.props.showItems ? 'block' : 'none'}}>
-          <SearchBar />
   
           {this.props.items.map(item => (
             <TagItem  key={item.id} 
@@ -24,7 +22,7 @@ class DropDown extends Component {
                       color={item.color}/>
           ))}
   
-          <div className="select-box--items__create-tag" onClick={this.props.createCategory} >Criar categoria</div>
+          {this.props.createCategory ? <div className="select-box--items__create-tag" onClick={this.props.createCategory} >Criar categoria</div> : null}
         </div>
   
       </div>
