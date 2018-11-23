@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {baseURL} from '../services/axiosConfig'
+import {baseURL} from './axiosConfig'
 
 export default async (user, mockError) => {
   let response = null

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import {config, baseURL} from './axiosConfig'
 
-
 export default async report_id => {
   try{
     const company_id = localStorage.getItem('company_id')
