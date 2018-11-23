@@ -171,6 +171,7 @@ class Reports extends Component {
 
     onExportHandler = (date_from, date_to) => {
         Axios.post(`${baseURL}/export`, {
+            "company_id": localStorage.getItem('company_id'),
             "period": {
                 date_from: date_from,
                 date_to: date_to
