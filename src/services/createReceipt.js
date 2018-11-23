@@ -9,7 +9,7 @@ export default async (receiptJSON, mockError) => {
     }
   }
   try {
-    if(mockError) throw 'mockingError'
+    if(mockError) throw new Error('mockingError')
     const response = await axios.post(`${baseURL}/receipt`, receipt, config)
     return response.data.status
   } catch(err) {

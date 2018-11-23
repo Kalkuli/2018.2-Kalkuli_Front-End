@@ -7,7 +7,7 @@ export default async(formData, mockError) => {
     }
   }
   try {
-    if(mockError) throw 'mockingError'
+    if(mockError) throw new Error('mockingError')
     const response = await axios.post('https://kalkuli-extraction.herokuapp.com/extract', formData, header)
     return response.data.location
   } catch(err) {

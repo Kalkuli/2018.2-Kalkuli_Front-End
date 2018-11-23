@@ -13,7 +13,8 @@ import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
 import createReceipt from '../../../services/createReceipt'
 import sendFile from '../../../services/sendFile'
-import { baseURL, config } from '../../../services/axiosConfig'
+import interpretData from '../../../services/interpretData'
+import getStatus from '../../../services/getStatus'
 
 export class ReceiptAdder extends Component {
   state = {
@@ -99,28 +100,20 @@ export class ReceiptAdder extends Component {
     }
   }
 
-  checkStatus = (statusUrl) => {
-    axios.get(statusUrl)
-      .then((status) => {
-        if (status.data.state === 'SUCCESS') {
-          axios.post(`${baseURL}/interpret_data`, { raw_text: status.data.raw_text })
-            .then((response) => {
-              this.props.onFileExtractedAdded(response.data.receipt)
-              this.setState({
-                fileSent: true,
-                loading: false
-              })
-            })
-            .catch((error) => {
-              console.log(error)
-          })
-        }
-        else if (status.data.state === 'PENDING') {
-          setTimeout(() => {
-            this.checkStatus(statusUrl)
-          }, 2000);
-        }
-      });
+  checkStatus = async(statusUrl) => {
+    const status = await getStatus(statusUrl)
+    if(status.state === 'SUCCESS') {
+      const receipt = await interpretData({ raw_text: status.raw_text })
+      if(receipt) {
+        this.props.onFileExtractedAdded(receipt)
+        this.setState({ fileSent: true, loading: false })
+      }
+    }
+    else if(status.state === 'PENDING') {
+      setTimeout(() => {
+        this.checkStatus(statusUrl)
+      }, 2000)
+    }
   }
 
   onDropHandler = (file, rejectedFiles) => {
