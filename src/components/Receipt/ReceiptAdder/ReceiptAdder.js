@@ -12,13 +12,9 @@ import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
 import createReceipt from '../../../services/createReceipt'
-<<<<<<< a35f6fe5883193bc8dea6a47f60f5a1aa7605dbd
 import sendFile from '../../../services/sendFile'
 import interpretData from '../../../services/interpretData'
 import getStatus from '../../../services/getStatus'
-=======
-import { baseURL, config } from '../../../services/axiosConfig'
->>>>>>> Extract request for creating a receipt into a service
 
 export class ReceiptAdder extends Component {
   state = {
