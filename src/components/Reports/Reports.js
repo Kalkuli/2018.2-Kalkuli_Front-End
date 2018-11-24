@@ -176,7 +176,9 @@ class Reports extends Component {
             <Fragment>
                 <ConfirmationMessage onDeleteHandler={this.onDeleteHandler}
                                      onCancelHandler={this.onCancelHandler}
-                                     action='deletar'/>
+                                     action='deletar'
+                                     option1={'Cancelar'}
+                                     option2={'Deletar'}/>
                 <BackDrop show={this.state.confirmation} click={this.onCancelHandler}/>
             </Fragment>
         );
