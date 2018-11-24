@@ -18,6 +18,8 @@ import {filterReceipts} from '../../helpers/filterReceipts'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
 import * as actionTypes from '../../store/actions/actions'
+import TagItem from '../UI/TagItem/TagItem';
+import ReportsButton from '../UI/Button/ReportsButton/ReportsButton';
 
 var type = "no-background"
 var comeco = null;
@@ -70,9 +72,16 @@ class Reports extends Component {
                                 }
                                 let tag = this.findTag(data.tag_id)
                                 let id = data.id
+                                console.log(this.props.tags)
                                 return(
                                     <div className="reports__area__content__resumes__button">
-                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end, tag, id)}} >{startDisplayReport + "-" + endDisplayReport + '\n' + tag}</BaseButton>
+                                        <ReportsButton onClickHandler={() => {this.onReportSelect(index, start, end, tag, id)}}
+                                                       date_from={startDisplayReport}
+                                                       date_to={endDisplayReport}
+                                                       color={tag.color}
+                                                       name={tag.category}
+                                                       type={type}
+                                                       />
                                     </div>
                                 )
                             })}

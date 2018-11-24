@@ -84,6 +84,7 @@ export class Dashboard extends Component {
         this.fetchReceipts()
         this.setState({
             series: [{
+                name: 'Valor Gasto',
                 data: []
             }],
             options: {
@@ -227,6 +228,7 @@ export class Dashboard extends Component {
         }
         this.setState({
             series: [{
+                name: 'Valor Gasto',
                 data: prices
             }],
             options: {
