@@ -1,6 +1,5 @@
 import createReceipt from '../../../services/createReceipt'
 import mockAxios from 'axios'
-import { baseURL } from '../../../services/axiosConfig'
 jest.mock('../../../services/axiosConfig.js')
 
 it('should test if request is being done', async() => {
@@ -21,6 +20,6 @@ it('should test if request is being done', async() => {
 
 it('should mock network error', async() => {
   const response = await createReceipt(null, true)
+  expect(response).toEqual('error')
   expect(mockAxios.post).toHaveBeenCalledTimes(1)
-
 })
