@@ -22,5 +22,7 @@ it('should test if request is being done', async () => {
 })
 
 it('should mock network error', () => {
-  
+  const response = await deleteReport(null, true)
+  expect(response).toEqual('error')
+  expect(mockAxios.post).toHaveBeenCalledTimes(1)
 })
