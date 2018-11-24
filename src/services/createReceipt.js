@@ -11,6 +11,7 @@ export default async (receiptJSON, mockError) => {
   try {
     if(mockError) throw new Error('mockingError')
     const response = await axios.post(`${baseURL}/receipt`, receipt, config)
+    console.log(response)
     return response.data.status
   } catch(err) {
     return 'error'

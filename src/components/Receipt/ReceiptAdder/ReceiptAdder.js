@@ -3,7 +3,6 @@ import './ReceiptAdder.scss'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import DropArea from '../../UI/DropArea/DropArea'
 import Modal from '../../UI/Modal/Modal'
-import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
