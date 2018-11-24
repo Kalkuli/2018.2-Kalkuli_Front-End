@@ -4,7 +4,6 @@ import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import Navbar from '../UI/Navbar/Navbar'
 import Report from '../UI/Report/Report'
 import Axios from 'axios'
-import { DateRangePicker } from 'react-dates';
 import FileDownload from 'js-file-download'
 import moment from 'moment'
 import 'moment/locale/pt-br'
@@ -18,7 +17,6 @@ import {filterReceipts} from '../../helpers/filterReceipts'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
 import * as actionTypes from '../../store/actions/actions'
-import TagItem from '../UI/TagItem/TagItem';
 import ReportsButton from '../UI/Button/ReportsButton/ReportsButton';
 
 var type = "no-background"
@@ -56,11 +54,12 @@ class Reports extends Component {
                         
                         <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
-                                let start = moment(data.date_from + " GMT-0300").format('YYYY-MM-DD')
-                                let end = moment(data.date_to + " GMT-0300").format('YYYY-MM-DD')
 
-                                let startDisplayReport = new Date(start + " GMT-0300").toLocaleDateString()
-                                let endDisplayReport = new Date(end + " GMT-0300").toLocaleDateString()
+                                let start = data.date_from !== null ? moment(data.date_from + " GMT-0300").format('YYYY-MM-DD') : null
+                                let end = data.date_to !== null ? moment(data.date_to + " GMT-0300").format('YYYY-MM-DD') : null
+
+                                let startDisplayReport = start !== null ? new Date(start + " GMT-0300").toLocaleDateString() : null
+                                let endDisplayReport = end !== null ? new Date(end + " GMT-0300").toLocaleDateString() : null
 
                                 if (this.state.position === index) {
                                     type = "confirm";
@@ -72,14 +71,13 @@ class Reports extends Component {
                                 }
                                 let tag = this.findTag(data.tag_id)
                                 let id = data.id
-                                console.log(this.props.tags)
                                 return(
                                     <div className="reports__area__content__resumes__button">
-                                        <ReportsButton onClickHandler={() => {this.onReportSelect(index, start, end, tag, id)}}
+                                        <ReportsButton onClickHandler={() => {this.onReportSelect(index, start, end, tag[0], id)}}
                                                        date_from={startDisplayReport}
                                                        date_to={endDisplayReport}
-                                                       color={tag.color}
-                                                       name={tag.category}
+                                                       color={tag.length > 0 ? tag[0].color : null}
+                                                       name={tag.length > 0 ? tag[0].category : null}
                                                        type={type}
                                                        />
                                     </div>
@@ -135,7 +133,7 @@ class Reports extends Component {
     getReportInfo = (date_from, date_to, tag) => {
         let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to, tag)
 
-        if(filteredReceipts <= 0){
+        if(filteredReceipts.length <= 0){
             this.setState({
                 reportCase: 'do not exist'
             })
