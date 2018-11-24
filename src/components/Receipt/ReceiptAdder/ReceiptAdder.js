@@ -122,7 +122,7 @@ export class ReceiptAdder extends Component {
     axios.get(statusUrl)
       .then((status) => {
         if (status.data.state === 'SUCCESS') {
-          axios.post(baseURL + '/api/v1/interpret_data', { raw_text: status.data.raw_text })
+          axios.post(baseURL + '/interpret_data', { raw_text: status.data.raw_text })
             .then((response) => {
               this.props.onFileExtractedAdded(response.data.receipt)
               this.setState({
