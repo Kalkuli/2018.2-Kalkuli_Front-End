@@ -327,7 +327,8 @@ export class Dashboard extends Component {
         axios.post(`${baseURL}/save_report`, {
             company_id: company_id,
             date_to: this.state.date_to,
-            date_from: this.state.date_from
+            date_from: this.state.date_from,
+            tag_id: this.state.selectedTag.id
         }, config)
         .then(() => {
             this.setState({

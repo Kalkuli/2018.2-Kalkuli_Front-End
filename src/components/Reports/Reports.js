@@ -51,24 +51,6 @@ class Reports extends Component {
                 <div className="reports__area">
                     {this.state.confirmation ? this.renderConfirmationMessage() : null}
                     <div className="reports__area__content">
-                        <div className="reports__area__content__datepicker">
-                            <DateRangePicker
-                                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                                startDatePlaceholderText="Data Inicial"
-                                endDatePlaceholderText="Data Final"
-                                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-                                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                                isOutsideRange={() => false}
-                                hideKeyboardShortcutsPanel={() => true}
-                                orientation={orientation}
-                                small={smallDevice}
-                            />
-                        </div>
-                        
                         
                         <div className="reports__area__content__resumes">
                             {this.state.reports === null ? null : this.state.reports.map((data, index) => {
@@ -86,9 +68,10 @@ class Reports extends Component {
                                 else{
                                     type = "no-background";
                                 }
+                                let tag = this.findTag(data.tag_id)
                                 return(
                                     <div className="reports__area__content__resumes__button">
-                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end)}} >{startDisplayReport + "-" + endDisplayReport}</BaseButton>
+                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end, tag)}} >{startDisplayReport + "-" + endDisplayReport + '\n' + tag}</BaseButton>
                                     </div>
                                 )
                             })}
@@ -109,6 +92,13 @@ class Reports extends Component {
                 </div>
             </div>
         )
+    }
+
+    findTag = (tag_id) => {
+        let tag = this.props.tags.filter((tag) => {
+            return tag_id === tag.id
+        })
+        return tag
     }
 
     getAllReports = () => {
@@ -132,8 +122,8 @@ class Reports extends Component {
         return sum.toFixed(2);
     }
 
-    getReportInfo = (date_from, date_to) => {
-        let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to, {})
+    getReportInfo = (date_from, date_to, tag) => {
+        let filteredReceipts = filterReceipts(this.props.receipts, date_from, date_to, tag)
 
         if(filteredReceipts <= 0){
             this.setState({
@@ -150,9 +140,9 @@ class Reports extends Component {
         }
     }
 
-    onReportSelect = (index, date_from, date_to) => {
+    onReportSelect = (index, date_from, date_to, tag) => {
         this.setState({ position: index, idReport: index });
-        this.getReportInfo(date_from, date_to)
+        this.getReportInfo(date_from, date_to, tag)
     }
 
     onDeleteHandler = async() => {
