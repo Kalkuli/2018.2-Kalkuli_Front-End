@@ -10,12 +10,7 @@ import updateReceipt from '../../../services/updateReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 
-const smallDevice = window.matchMedia('(max-width: 645px)').matches
-let size
-if(smallDevice) 
-  size = 'medium'
-else 
-  size = 'small'
+const smallDevice = window.matchMedia('(max-width: 450px)').matches
 
 class ReceiptView extends Component {
 
@@ -25,7 +20,8 @@ class ReceiptView extends Component {
     save: false,
     receipt: this.props.receipt,
     lastReceiptState: null,
-    receiptName: receiptInput
+    receiptName: receiptInput,
+    smallDevice: smallDevice
   }
   
   render() {
@@ -84,24 +80,23 @@ class ReceiptView extends Component {
         </Receipt>
         <div className='area-buttons'>
           <div className='area-buttons__change-buttons'>
-            <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
             {this.state.edit ? 
             <BaseButton type='no-background'
                         click={this.onCancelEditHandler} 
-                        size={size}>
+                        size={this.state.smallDevice ? 'small' : null}>
                         Cancelar
             </BaseButton> :
             <BaseButton type='no-background'
                         click={this.onEditHandler} 
-                        size={size}>
+                        size={this.state.smallDevice ? 'small' : null}>
                         Editar
             </BaseButton>}
-            <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
+            <BaseButton type="delete" click={this.onConfirmationTrue} size={this.state.smallDevice ? 'small' : null}>Excluir</BaseButton>
           </div>
           <div className='area-buttons__confirm'>
           {this.state.edit ? 
-            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={size}>Salvar</BaseButton>
-            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>}
+            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={this.state.smallDevice ? 'small' : null}>Salvar</BaseButton>
+            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={this.state.smallDevice ? 'small' : null}>Confirmar</BaseButton>}
           </div>
         </div>
       </div>

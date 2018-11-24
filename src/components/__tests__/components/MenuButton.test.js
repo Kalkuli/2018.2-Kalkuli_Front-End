@@ -1,6 +1,6 @@
+import '../../../services/__mocks__/matchMedia'
 import { MenuButton, mapDispatchToProps } from '../../UI/Button/MenuButton/MenuButton'
 jest.mock('../../../services/getAllReceipts.js')
-
 
 describe('Testing <MenuButton/>', () => {
   

@@ -42,7 +42,6 @@ export class ReceiptAdder extends Component {
     else if (this.state.creatingCategory)
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
     
-
     return (
       <Modal show>
         { content }

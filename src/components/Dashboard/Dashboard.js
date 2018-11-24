@@ -274,7 +274,7 @@ export class Dashboard extends Component {
             return <Loader type="loader_reports" />
         }
         else if (receipts && isValid) {
-            return <BaseButton size="small" type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
+            return <BaseButton type="confirm" click={this.onConfirmButton}>Salvar Relatório</BaseButton>
         }
     }
 

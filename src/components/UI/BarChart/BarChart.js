@@ -34,7 +34,7 @@ class BarChart extends Component {
           options={this.props.options}
           series={this.props.series}
           type="bar"
-          width="85%"
+          width="100%"
           height={this.state.height}
         />
       );
