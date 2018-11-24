@@ -69,9 +69,10 @@ class Reports extends Component {
                                     type = "no-background";
                                 }
                                 let tag = this.findTag(data.tag_id)
+                                let id = data.id
                                 return(
                                     <div className="reports__area__content__resumes__button">
-                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end, tag)}} >{startDisplayReport + "-" + endDisplayReport + '\n' + tag}</BaseButton>
+                                        <BaseButton size='medium' type={type} click={() => {this.onReportSelect(index, start, end, tag, id)}} >{startDisplayReport + "-" + endDisplayReport + '\n' + tag}</BaseButton>
                                     </div>
                                 )
                             })}
@@ -140,8 +141,8 @@ class Reports extends Component {
         }
     }
 
-    onReportSelect = (index, date_from, date_to, tag) => {
-        this.setState({ position: index, idReport: index });
+    onReportSelect = (index, date_from, date_to, tag, id) => {
+        this.setState({ position: index, idReport: id });
         this.getReportInfo(date_from, date_to, tag)
     }
 
