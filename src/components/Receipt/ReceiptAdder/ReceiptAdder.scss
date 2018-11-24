@@ -2,7 +2,7 @@
 
 .receipt-adder {
   z-index: 100;
-  padding: 2rem 4rem;
+  padding: 4rem 4rem;
   &__footer {
     display: flex;
     align-items: center;
@@ -12,10 +12,11 @@
 }
 
 @media (max-width:480px) { 
-  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
   .receipt-adder {
-    padding: 1rem 0 0 0;
+    padding: 0.8rem;
     &__footer {
+      margin-top: 1.8rem;
+      width: 25rem;
     }
   }
 }

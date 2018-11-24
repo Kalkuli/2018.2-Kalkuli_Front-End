@@ -14,6 +14,8 @@ import createReceipt from '../../../services/createReceipt'
 import sendFile from '../../../services/sendFile'
 import interpretData from '../../../services/interpretData'
 import getStatus from '../../../services/getStatus'
+import { baseURL, config } from '../../../services/axiosConfig'
+const smallDevice = window.matchMedia('(max-width: 440px)').matches
 
 export class ReceiptAdder extends Component {
   state = {
@@ -24,7 +26,8 @@ export class ReceiptAdder extends Component {
     fileSent: true,
     completed: false,
     creatingCategory: false,
-    newTag: {}
+    newTag: {},
+    smallDevice: smallDevice
   }
 
   render() {
@@ -32,22 +35,17 @@ export class ReceiptAdder extends Component {
 
     if(this.state.extraction)
       content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} extraction backDropDown={this.jumpExtraction}/>
-
-    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) {
+    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) 
       content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
-    } 
-    else if (this.state.completed && !this.state.creatingCategory) {
+    else if (this.state.completed && !this.state.creatingCategory) 
       content = <Confirmation valid="done" content={'Nota adicionada com sucesso'} onConfirmOk={this.props.onConfirmOk} />
-    }
-    else if (this.state.creatingCategory){
+    else if (this.state.creatingCategory)
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
-    }
-
     
 
     return (
       <Modal show>
-        {content }
+        { content }
       </Modal>
     )
   }
@@ -67,8 +65,8 @@ export class ReceiptAdder extends Component {
         <section className="receipt-adder">
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.jumpExtraction}>Pular extração</BaseButton>
-            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="disable" >Confirmar</BaseButton>}
+            <BaseButton size={this.state.smallDevice ? "small" : null} type="no-background" click={this.jumpExtraction}>Manual</BaseButton>
+            {this.state.fileSelected ? <BaseButton size={this.state.smallDevice ? "small" : null} type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton size={this.state.smallDevice ? "small" : null} type="disable" >Confirmar</BaseButton>}
           </div>
         </section>
       )
