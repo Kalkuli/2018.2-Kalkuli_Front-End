@@ -85,7 +85,7 @@ class Reports extends Component {
                                 <BaseButton size="small" type={this.state.position === null ? 'disable' : 'delete'} click={this.onConfirmationTrue}>Deletar</BaseButton>
                             </div>
                             <div className="reports__area__report__buttons__button">
-                                <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(comeco, fim)}}>Export</BaseButton>
+                                <BaseButton size="small" type="confirm" click={()=>{this.onExportHandler(this.state.receipts, this.state.sum)}}>Export</BaseButton>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,6 @@ class Reports extends Component {
     }
 
     onDeleteHandler = async() => {
-        console.log("adsfdgfhgjhk")
         let report_id = this.state.idReport
         const response = await deleteReport(report_id)
         this.setState({ confirmation: false })
@@ -159,13 +158,10 @@ class Reports extends Component {
     
     onConfirmationTrue = () => { this.setState({confirmation: true}) }  
 
-    onExportHandler = (date_from, date_to) => {
+    onExportHandler = (receipts, sum) => {
         Axios.post(`${baseURL}/export`, {
-            "company_id": localStorage.getItem('company_id'),
-            "period": {
-                date_from: date_from,
-                date_to: date_to
-            }
+            receipts: receipts,
+            total_cost: sum
         }, config).then((response) => {
             FileDownload(response.data, 'report.csv')
         })
