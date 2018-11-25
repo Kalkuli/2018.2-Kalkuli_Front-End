@@ -13,11 +13,12 @@ import BackDrop from '../../components/UI/BackDrop/BackDrop'
 import deleteReport from '../../services/deleteReport'
 import {baseURL, config} from '../../services/axiosConfig'
 import {connect} from 'react-redux'
-import {filterReceipts} from '../../helpers/filterReceipts'
+import filterReceipts from '../../helpers/filterReceipts'
 import getAllReceipts from '../../services/getAllReceipts'
 import getAllTags from '../../services/getAllTags'
 import * as actionTypes from '../../store/actions/actions'
 import ReportsButton from '../UI/Button/ReportsButton/ReportsButton';
+import getAllReports from '../../services/getAllReports'
 
 var type = "no-background"
 var comeco = null;
@@ -25,7 +26,7 @@ var fim = null;
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
 
-class Reports extends Component {
+export class Reports extends Component {
 
     state = {
         position: null,
@@ -39,7 +40,7 @@ class Reports extends Component {
     }
 
     componentDidMount() {
-        this.getAllReports()
+        this.getReports()
         this.fetchReceipts()
         this.fetchTags()
     }
@@ -72,7 +73,7 @@ class Reports extends Component {
                                 let tag = this.findTag(data.tag_id)
                                 let id = data.id
                                 return(
-                                    <div className="reports__area__content__resumes__button">
+                                    <div className="reports__area__content__resumes__button" key={index} >
                                         <ReportsButton onClickHandler={() => {this.onReportSelect(index, start, end, tag[0], id)}}
                                                        date_from={startDisplayReport}
                                                        date_to={endDisplayReport}
@@ -109,17 +110,11 @@ class Reports extends Component {
         return tag
     }
 
-    getAllReports = () => {
-        const company_id = localStorage.getItem('company_id')
-        Axios.get(`${baseURL}/${company_id}/get_all_reports`, config)
-            .then((response) => {
-                this.setState({
-                    reports: response.data.data.reports,
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    getReports = async () => {
+        let reports = await getAllReports()
+        this.setState({
+            reports: reports
+        })
     }
 
     sumReceipts = (receipts) => {
@@ -157,7 +152,7 @@ class Reports extends Component {
         let report_id = this.state.idReport
         const response = await deleteReport(report_id)
         this.setState({ confirmation: false })
-        this.getAllReports()
+        this.getReports()
       }
 
     onCancelHandler = () => {

@@ -18,7 +18,7 @@ import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import {baseURL, config} from '../../services/axiosConfig'
-import {filterReceipts} from '../../helpers/filterReceipts'
+import filterReceipts from '../../helpers/filterReceipts'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION

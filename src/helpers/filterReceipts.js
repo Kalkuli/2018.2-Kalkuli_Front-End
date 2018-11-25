@@ -1,5 +1,6 @@
-export const filterReceipts = (receipts, date_from, date_to, category) => {
-    let filteredReceipts
+
+const filterReceipts = (receipts, date_from, date_to, category) => {
+    let filteredReceipts = receipts
 
     if(date_from !== null && date_to !== null && Object.keys(category).length > 0){
 
@@ -26,3 +27,5 @@ export const filterReceipts = (receipts, date_from, date_to, category) => {
 
     return filteredReceipts
 }
+
+export default filterReceipts
