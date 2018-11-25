@@ -20,3 +20,8 @@ it('should test if request is being done', async () => {
     `${baseURL}/${localStorage.getItem('company_id')}/report/${report_id}`, undefined
     )
 })
+
+it('should mock network error', async () => {
+  const response = await deleteReport(null, true)
+  expect(response).toEqual('error')
+})

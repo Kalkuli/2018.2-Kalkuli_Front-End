@@ -12,7 +12,7 @@ const ReportsButton = (props) => {
   return(
     <div onClick={props.onClickHandler} className={styles.join(' ')} >
       <div className='reports-button__dates' >
-          {props.date_from} - {props.date_to}
+          {props.date_from} até {props.date_to}
       </div>
       <div className='reports-button__category' >
           <div className='reports-button__category__color' style={{backgroundColor: props.color}}></div>

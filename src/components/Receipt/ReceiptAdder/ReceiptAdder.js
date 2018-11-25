@@ -3,7 +3,6 @@ import './ReceiptAdder.scss'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import DropArea from '../../UI/DropArea/DropArea'
 import Modal from '../../UI/Modal/Modal'
-import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
@@ -11,14 +10,17 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
-import { baseURL, config } from '../../../services/axiosConfig'
+import createReceipt from '../../../services/createReceipt'
+import sendFile from '../../../services/sendFile'
+import interpretData from '../../../services/interpretData'
+import getStatus from '../../../services/getStatus'
 
 export class ReceiptAdder extends Component {
   state = {
     file: null,
     loading: false,
     fileSelected: false,
-    fileSent: false,
+    fileSent: true,
     completed: false,
     creatingCategory: false,
     newTag: {}
@@ -74,21 +76,10 @@ export class ReceiptAdder extends Component {
     this.setState({creatingCategory: true})
   }
 
-  onConfirmButton = (receipt) => {
-    axios.post(`${baseURL}/receipt`, {
-      "receipt": {
-        ...receipt,
-        company_id: localStorage.getItem('company_id')
-      },
-    }, config)
-    .then(() => {
-      this.setState({
-        completed: true
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  onConfirmButton = async(receipt) => {
+    const response = await createReceipt(receipt)
+    if(response === 'success')
+      this.setState({ completed: true }) 
   }
 
   onConfirmCategoryHandler = async(tag, callback) => {
@@ -97,49 +88,31 @@ export class ReceiptAdder extends Component {
     callback(tag)
   }
 
-  onConfirmHandler = () => {
-    this.setState({
-      loading: true
-    })
-    let formData = new FormData();
-    formData.append("file", this.state.file[0]);
-
-    axios.post('https://kalkuli-extraction.herokuapp.com/extract', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then((response) => {
-        let statusUrl = 'https://kalkuli-extraction.herokuapp.com' + response.data.location;
-        this.checkStatus(statusUrl)
-      })
-      .catch((error) => {
-        console.log(error)
-    })
+  onConfirmHandler = async() => {
+    this.setState({ loading: true })
+    let formData = new FormData()
+    formData.append("file", this.state.file[0])
+    const response = await sendFile(formData)
+    if(response !== 'error') {
+      let statusUrl = `https://kalkuli-extraction.herokuapp.com${response}`
+      this.checkStatus(statusUrl)
+    }
   }
 
-  checkStatus = (statusUrl) => {
-    axios.get(statusUrl)
-      .then((status) => {
-        if (status.data.state === 'SUCCESS') {
-          axios.post(baseURL + '/interpret_data', { raw_text: status.data.raw_text })
-            .then((response) => {
-              this.props.onFileExtractedAdded(response.data.receipt)
-              this.setState({
-                fileSent: true,
-                loading: false
-              })
-            })
-            .catch((error) => {
-              console.log(error)
-          })
-        }
-        else if (status.data.state === 'PENDING') {
-          setTimeout(() => {
-            this.checkStatus(statusUrl)
-          }, 2000);
-        }
-      });
+  checkStatus = async(statusUrl) => {
+    const status = await getStatus(statusUrl)
+    if(status.state === 'SUCCESS') {
+      const receipt = await interpretData({ raw_text: status.raw_text })
+      if(receipt) {
+        this.props.onFileExtractedAdded(receipt)
+        this.setState({ fileSent: true, loading: false })
+      }
+    }
+    else if(status.state === 'PENDING') {
+      setTimeout(() => {
+        this.checkStatus(statusUrl)
+      }, 2000)
+    }
   }
 
   onDropHandler = (file, rejectedFiles) => {

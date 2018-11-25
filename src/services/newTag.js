@@ -3,7 +3,7 @@ import {config, baseURL} from './axiosConfig'
 
 export default async (tag, mockError) => {
     try {
-        if(mockError) throw 'mockingError'
+        if(mockError) throw new Error('mockingError')
         await axios.post(`${baseURL}/create_tag`, {"tag": tag }, config)
         return 'success'
     }
