@@ -66,16 +66,6 @@ export class Dashboard extends Component {
               enabled: true,
     
             },
-            responsive: [{
-              breakpoint: 480,
-              options: {
-                plotOptions: {
-                  bar: {
-                    horizontal: true
-                  }
-                }
-              }
-            }]
           }
     }
 
@@ -104,20 +94,18 @@ export class Dashboard extends Component {
                     <div className="dashboard__area__filters">
                         <div className="dashboard__area__filters__dashboard">
                             <DateRangePicker 
-                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                            startDatePlaceholderText="Data Inicial"
-                            endDatePlaceholderText="Data Final"
-                            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                            endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                            onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
-                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                            isOutsideRange={() => false}
-                            hideKeyboardShortcutsPanel = {true}
-                            orientation={orientation}
-                            small={smallDevice}
-                            />
+                                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                                startDatePlaceholderText="Data Inicial"
+                                endDatePlaceholderText="Data Final"
+                                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                                onDatesChange={({ startDate, endDate }) => this.onChange({ startDate, endDate })} // PropTypes.func.isRequired,
+                                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                                isOutsideRange={() => false}
+                                hideKeyboardShortcutsPanel = {true}
+                                orientation={orientation}/>
                         </div>
                         <div className="dashboard__area__filters__category">
                             { this.handleExceptionDropDown() }
@@ -253,16 +241,6 @@ export class Dashboard extends Component {
                     enabled: true,
           
                   },
-                  responsive: [{
-                    breakpoint: 480,
-                    options: {
-                      plotOptions: {
-                        bar: {
-                          horizontal: true
-                        }
-                      }
-                    }
-                  }]
                 }
         })
     }

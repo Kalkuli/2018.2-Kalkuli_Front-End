@@ -34,7 +34,6 @@ export class ReceiptCompare extends Component {
 		}
 
 		let comparingWidth = this.props.manual ? '25rem' : '80rem'
-		console.log(comparingWidth)
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing" style={{width: comparingWidth}}>
