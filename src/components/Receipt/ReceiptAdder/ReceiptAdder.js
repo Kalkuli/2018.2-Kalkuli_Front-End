@@ -62,6 +62,7 @@ export class ReceiptAdder extends Component {
     if (!this.state.loading) {
       return (
         <section className="receipt-adder">
+          <div className="receipt-adder__close" onClick={this.props.onCancelHandler}>X</div>
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
             <BaseButton size={this.state.smallDevice ? "small" : null} type="no-background" click={this.jumpExtraction}>Manual</BaseButton>

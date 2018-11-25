@@ -2,7 +2,16 @@
 
 .receipt-adder {
   z-index: 100;
-  padding: 4rem 4rem;
+  padding: 1rem 3rem;
+  &__close {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: $color-light-blue;
+    display: flex;
+    justify-content: flex-end;
+    user-select: none;
+    cursor: pointer;
+  }
   &__footer {
     display: flex;
     align-items: center;

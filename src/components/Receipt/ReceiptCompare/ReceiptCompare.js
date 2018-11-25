@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
 const smallDevice = window.matchMedia('(max-width: 440px)').matches
+const changeCompare = window.matchMedia('(max-width: 440px)').matches
 
 export class ReceiptCompare extends Component {
 	state = {
@@ -16,7 +17,8 @@ export class ReceiptCompare extends Component {
 		showItems: false,
 		items: [],
 		selectedTag: {},
-		smallDevice: smallDevice
+		smallDevice: smallDevice,
+		changeCompare: changeCompare
 	}
 
 	componentDidMount() {
@@ -33,7 +35,7 @@ export class ReceiptCompare extends Component {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
 
-		let comparingWidth = this.props.manual ? '25rem' : '80rem'
+		let comparingWidth = this.props.manual ? '30rem' : '80rem'
 		return (
 			<div className="compare-area">
 				<div className="compare-area__comparing" style={{width: comparingWidth}}>
@@ -55,7 +57,7 @@ export class ReceiptCompare extends Component {
 				<div className="compare-area__buttons">
 					<BaseButton type="no-background"
 											size={this.state.smallDevice ? "small" : null} 
-											click={!this.props.manual ? this.props.onCancelHandler : this.props.backDropDown}>Cancelar</BaseButton>
+											click={!this.props.manual ? this.props.onCancelHandler : this.props.backDropDown}>Voltar</BaseButton>
 					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
 											size={this.state.smallDevice ? "small" : null}
 											click={this.onConfirmHandler}>Confirmar</BaseButton>
