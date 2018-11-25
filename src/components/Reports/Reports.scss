@@ -14,6 +14,7 @@
         justify-content: space-between;
         padding: 2%;
         padding-bottom: 0 !important;
+        margin-top: 8em;
         
         &__content {
             &__datepicker {
@@ -21,8 +22,6 @@
             }
             
             &__resumes {
-                margin-top: 5%;
-                margin-bottom: 5%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;

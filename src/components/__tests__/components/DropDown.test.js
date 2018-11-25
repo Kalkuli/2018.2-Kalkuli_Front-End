@@ -35,7 +35,6 @@ describe('Testing <DropDown/>', () => {
 
   it('should ', () => {
     wrapper.setProps({showItems: true})
-    expect(wrapper.find(SearchBar).exists()).toBe(true)
     expect(wrapper.find(TagItem).exists()).toBe(true)
   })
 })

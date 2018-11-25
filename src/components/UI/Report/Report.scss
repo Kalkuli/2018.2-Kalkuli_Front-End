@@ -88,7 +88,6 @@
     }
 @media (min-width: 1100px) {
     .report {
-        margin-top: 22%;
         height: 44em;
         width: 35em;
     }
@@ -96,6 +95,14 @@
 
 @media (min-width:1281px) {
      /* hi-res laptops and desktops */ 
+        .report {
+            height: 45em;
+            width: 40em;
+        }
+    }
+
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
         .report {
             height: 51em;
             width: 45em;

@@ -6,6 +6,7 @@ import BaseButton from '../UI/Button/BaseButton/BaseButton'
 import axios from 'axios';
 import Loader from '../UI/Loader/Loader'
 import BarChart from '../UI/BarChart/BarChart';
+import DropDown from '../UI/DropDown/DropDown'
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment'
@@ -17,7 +18,7 @@ import getAllTags from '../../services/getAllTags'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import {baseURL, config} from '../../services/axiosConfig'
-import {filterReceipts} from '../../helpers/filterReceipts'
+import filterReceipts from '../../helpers/filterReceipts'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -25,6 +26,8 @@ const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.H
 export class Dashboard extends Component {
 
     state = {
+        selectedTag: {},
+        showItems: false,
         loading: false,
         startDate: null,
         endDate: null,
@@ -81,6 +84,7 @@ export class Dashboard extends Component {
         this.fetchReceipts()
         this.setState({
             series: [{
+                name: 'Valor Gasto',
                 data: []
             }],
             options: {
@@ -97,8 +101,8 @@ export class Dashboard extends Component {
             <div className="dashboard">
                 <Navbar/>
                 <div className="dashboard__area">
-                    <div className="dashboard__area__content">
-                        <div className="dashboard__area__content__datepicker">
+                    <div className="dashboard__area__filters">
+                        <div className="dashboard__area__filters__dashboard">
                             <DateRangePicker 
                             startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                             startDatePlaceholderText="Data Inicial"
@@ -115,22 +119,79 @@ export class Dashboard extends Component {
                             small={smallDevice}
                             />
                         </div>
-
+                        <div className="dashboard__area__filters__category">
+                            { this.handleExceptionDropDown() }
+                        </div>
+                    </div>
+                    <div className="dashboard__area__content">
                         <div className="dashboard__area__content__graphs">
-                            <BarChart options={this.state.options} series={this.state.series} />
+                            {this.state.filteredReceipts ? <BarChart options={this.state.options} series={this.state.series} /> : null}
                         </div>
-                    </div>
 
-                    <div className="dashboard__area__report">
-                        {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
-                        <div className="dashboard__area__report__button">
-                            {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                        <div className="dashboard__area__report">
+                            {this.state.filteredReceipts ? <Report reportCase={this.state.reportCase} receipts={this.state.filteredReceipts} sum={this.state.sum} page={"dashboard"} /> : <Report reportCase={this.state.reportCase} receipts={false} sum={false} page={"dashboard"} />}
+                            <div className="dashboard__area__report__button">
+                                {this.chooseButton(this.state.loading, this.state.isValid, this.state.receipts)}
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         )
+    }
+
+    handleExceptionDropDown = () => {
+		let items = null
+		if(this.props.tags)
+			items = this.props.tags
+		else 
+			items = [{"id": 0, "category": "erro", "color": "#424242"}]		
+		
+			return <DropDown 	items={items}
+								onDropDownHandler={this.onDropDownHandler}
+								onSelectedTagHandler={this.onSelectedTagHandler}
+								selectedTag={this.state.selectedTag}
+								showItems={this.state.showItems}
+                                createCategory={null}
+                                empty={true} />
+    }
+    
+    onDropDownHandler = () => { this.setState(prevState => ({ showItems: !prevState.showItems })) }
+
+    onSelectedTagHandler = (tag) => {
+
+        this.setState({	selectedTag: tag, showItems: false })
+        let organized = this.organizeData()
+
+        let filteredReceipts
+
+        if(this.state.endDate === null) {
+            filteredReceipts = filterReceipts(organized, null, null, tag)
+        }
+        
+        else{
+            
+            let date_from = moment(this.state.startDate).format('YYYY-MM-DD')
+            let date_to = moment(this.state.endDate).format('YYYY-MM-DD')
+
+            filteredReceipts = filterReceipts(organized, date_from, date_to, tag)
+        }
+
+
+        if(filteredReceipts.length <= 0){
+            this.setState({
+                reportCase: 'do not exist',
+                filteredReceipts: null
+            })
+        }
+        else{
+            this.setState({
+                filteredReceipts: filteredReceipts,
+                reportCase: 'reports'
+            })
+            this.sumReceipts(filteredReceipts)
+            this.sumSameDate(filteredReceipts)
+        }
     }
 
     organizeData = () => {
@@ -141,6 +202,8 @@ export class Dashboard extends Component {
             return a < b ? -1 : a < b ? 1 : 0;
         })
         this.setState({receipts: copy})
+
+        return copy
     }
 
     sumSameDate = (receipts) => {
@@ -165,13 +228,42 @@ export class Dashboard extends Component {
         }
         this.setState({
             series: [{
+                name: 'Valor Gasto',
                 data: prices
             }],
             options: {
-                xaxis: {
+                chart: {
+                    id: "basic-bar",
+                    fontFamily: "Montserrat, sans-serif",
+                    foreColor: '#353535',
+                  },
+                  plotOptions: {
+                    bar: {
+                      horizontal: false,
+                    }
+                  },
+                  colors: "#0F8891",
+                  xaxis: {
                     categories: dates
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  tooltip: {
+                    enabled: true,
+          
+                  },
+                  responsive: [{
+                    breakpoint: 480,
+                    options: {
+                      plotOptions: {
+                        bar: {
+                          horizontal: true
+                        }
+                      }
+                    }
+                  }]
                 }
-            }
         })
     }
     
@@ -194,28 +286,25 @@ export class Dashboard extends Component {
         this.setState({sum: sum.toFixed(2)})
     }
 
-    filterReceipts = (receipts, date_from, date_to) => {
-        var filteredReceipts = receipts.filter((receipt) => {
-            return date_from <= receipt.emission_date && date_to >= receipt.emission_date
-        })
-
-        return filteredReceipts
-    }
-
     onChange = (startDate, endDate) => {
         this.setState(startDate, endDate)
         this.setState({ isEndDate: true })
-        this.organizeData()
+        let organized = this.organizeData()
 
         if (this.state.isEndDate) {
+            this.setState({
+                startDate: startDate.startDate,
+                endDate: startDate.endDate
+            })
             var date_from = moment(startDate.startDate).format('YYYY-MM-DD')
             var date_to = moment(startDate.endDate).format('YYYY-MM-DD')
 
-            var filteredReceipts = filterReceipts(this.state.receipts, date_from, date_to)
+            var filteredReceipts = filterReceipts(organized, date_from, date_to, this.state.selectedTag)
 
             if(filteredReceipts <= 0){
                 this.setState({
-                    reportCase: 'do not exist'
+                    reportCase: 'do not exist',
+                    filteredReceipts: null
                 })
             }
             else{
@@ -240,7 +329,8 @@ export class Dashboard extends Component {
         axios.post(`${baseURL}/save_report`, {
             company_id: company_id,
             date_to: this.state.date_to,
-            date_from: this.state.date_from
+            date_from: this.state.date_from,
+            tag_id: this.state.selectedTag.id
         }, config)
         .then(() => {
             this.setState({

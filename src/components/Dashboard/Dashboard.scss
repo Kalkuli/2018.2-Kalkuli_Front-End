@@ -4,12 +4,9 @@
     background-color: $color-white;
     height: 100vh;
     width: 100vw;
-    position: absolute;
     overflow-x: hidden;
     
     &__area {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
         padding: 2%;
         padding-bottom: 0 !important;
@@ -23,23 +20,44 @@
             }
         }
 
-        &__content {
+        &__filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            z-index: 2;
+            width: 56em;
+            position: sticky;
 
-            &__datepicker {
-                width: 302px;
+            &__category {
+                margin-bottom: 2em;
             }
+        }
+
+        &__content {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 94% !important;
 
             &__graphs {
-                overflow-y: hidden;
-                margin-top: 4%;
-                margin-bottom: 5%;
-                margin-left: 0%;
+                padding-top: 2%;
+                padding-left: 7%;
+                overflow-x: hidden;
                 box-sizing: border-box;
-                padding-top: 5%;
-                padding-bottom: 3%;
-                padding-left: 13%;
                 border: 1px solid $color-dark-blue;
                 border-radius: 5px;
+                overflow-y: hidden;
+            }
+        }
+    }
+}
+
+@media (min-height: 950px){
+    .dashboard {
+        &__area {
+            &__content {
+                top: 20%;
             }
         }
     }
@@ -48,16 +66,22 @@
 @media (min-width:320px) {
     /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .dashboard {
-        overflow-y: auto;
         &__area {
-            padding: 5%;
+            padding: 3%;
 
             &__content {
                 width: 100%;
                 margin: auto;
 
-                &__datepicker {
+                &__graphs {
+                    width: 100em;
+                    height: 40em;
+                    margin-bottom: 5%;
+                }
+
+                &__filters {
                     margin: auto;
+                    height: 20em;
                 }
 
             }
@@ -72,12 +96,18 @@
     /* smartphones, Android phones, landscape iPhone */ 
     .dashboard {
         &__area {
-            padding: 0;
 
             &__content {
-                width: 80%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 100em;
+                    height: 40em;
+                    margin-bottom: 5%;
+                    padding-top: 7%;
+                    padding-left: 10%;
+                }
+
+                &__filters {
                     padding-top: 5%;
                     margin: auto;
                 }
@@ -94,12 +124,18 @@
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
     .dashboard {
         &__area {
-            padding: 0;
 
             &__content {
-                width: 90%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 100em;
+                    height: 40em;
+                    margin-bottom: 5%;
+                    padding-top: 15%;
+                    padding-left: 15%;
+                }
+
+                &__filters {
                     margin: auto;
                 }
 
@@ -111,15 +147,50 @@
         }
     }
 }
+
+@media (max-width: 600px) {
+    .dashboard {
+        &__area {
+
+            &__filters {
+                width: 100%;
+            }
+        } 
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard {
+        &__area {
+
+            &__filters {
+                width: 100%;
+                justify-content: center;
+
+                &__dashboard {
+                    margin-bottom: 2em;
+                }
+            }
+        } 
+    }
+}
+
 @media (min-width:801px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */ 
     .dashboard {
         &__area {
 
             &__content {
-                width: 90%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 100em;
+                    height: 50em;
+                    margin-bottom: 5%;
+                    padding-top: 13%;
+                    padding-left: 14%;
+                }
+
+                &__filters {
                     margin: 0;
                 }
 
@@ -134,12 +205,22 @@
 @media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */ 
     .dashboard {
+
         &__area {
+            padding: 3%;
 
             &__content {
-                width: 90%;
+
+
+                &__graphs {
+                    width: 105em;
+                    height: 50em;
+                    margin-bottom: 5%;
+                    padding-top: 5%;
+                    padding-left: 14%;
+                }
                 
-                &__datepicker {
+                &__filters {
                     margin: 0;
                 }
 
@@ -155,15 +236,20 @@
 @media (min-width:1100px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
-        overflow-y: hidden;
         &__area {
             padding: 3%;
 
             &__content {
-                width: 55%;
-                margin: 0;
 
-                &__datepicker {
+                &__graphs {
+                    width: 65em;
+                    height: 50em;
+                    margin-bottom: 0;
+                    padding-top: 11%;
+                    padding-left: 9%;
+                }
+
+                &__filters {
                     padding-top: 0;
                     margin: 0;
                 }
@@ -177,15 +263,144 @@
         }
     }
 }
+
+@media (min-width:1200px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 72em;
+                    height: 50em;
+                    padding-top: 8%;
+                    padding-left: 9%;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1300px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 76em;
+                    height: 50em;
+                    padding-top: 7%;
+                    padding-left: 9%;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1400px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 86em;
+                    height: 50em;
+                    padding-top: 5%;
+                    padding-left: 9%;
+                }
+
+            }
+
+        }
+    }
+}
+
 @media (min-width:1500px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
         &__area {
 
             &__content {
-                width: 67%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 96em;
+                    height: 50em;
+                    padding-top: 3%;
+                    padding-left: 10%;
+                }
+
+                &__filters {
+                    margin: 0;
+                }
+
+            }
+
+            &__report {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 100em;
+                    height: 50em;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1700px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 110em;
+                    height: 50em;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1800px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 120em;
+                    height: 60em;
+                }
+
+                &__filters {
                     margin: 0;
                 }
 
