@@ -34,9 +34,9 @@ export class ReceiptAdder extends Component {
     let content = this.ChooseScreen()
 
     if(this.state.extraction)
-      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} extraction backDropDown={this.jumpExtraction}/>
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual backDropDown={this.jumpExtraction}/>
     if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) 
-      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual={false}/>
     else if (this.state.completed && !this.state.creatingCategory) 
       content = <Confirmation valid="done" content={'Nota adicionada com sucesso'} onConfirmOk={this.props.onConfirmOk} />
     else if (this.state.creatingCategory)

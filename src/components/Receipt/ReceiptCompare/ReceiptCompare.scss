@@ -2,8 +2,6 @@
 
 .compare-area {
   height: 80%;
-  width: auto;
-  
   &__buttons {
     display: flex;
     flex-flow: row;
@@ -57,7 +55,6 @@
 
   &__tag-area {
     width: 100%;
-    height: 35rem;
     margin-top: 1.2rem;
     display: flex;
     flex-flow: column wrap;
@@ -79,4 +76,25 @@
 
 .pdf-preview {
   border: 2px solid $color-black;
+}
+
+@media (max-width:650px) {
+  
+  .compare-area {
+    &__tag-area {
+      margin-top: .8rem;
+    }
+
+    &__comparing {
+      width: 20rem;
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__content__labels__label {
+      font-size: 1.2rem;
+    }
+  }
 }
