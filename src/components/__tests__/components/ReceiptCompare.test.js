@@ -1,3 +1,4 @@
+import '../../../services/__mocks__/matchMedia'
 import { ReceiptCompare, mapStateToProps } from '../../Receipt/ReceiptCompare/ReceiptCompare'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import Input from '../../UI/Input/Input'
