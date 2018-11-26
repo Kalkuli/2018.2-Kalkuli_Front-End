@@ -4,7 +4,7 @@ import Scrollchor from 'react-scrollchor'
 import SignUp from '../../Button/SignUp/SignUp'
 import { connect } from 'react-redux'
 
-class HomeNavBarLinks extends Component {
+export class HomeNavBarLinks extends Component {
   render(){
     
     const isLoggedIn = this.props.auth_token;
