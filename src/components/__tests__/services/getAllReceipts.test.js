@@ -19,3 +19,9 @@ it('should test if request is being done', async () => {
     `${baseURL}/${localStorage.getItem('company_id')}/receipts`, undefined
   )
 })
+
+it('should simulate an error', async () => {
+  const response = await getAllReceipts(true)
+  expect(response).toEqual("error")
+  expect(mockAxios.get).toHaveBeenCalledTimes(1)
+})
