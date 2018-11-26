@@ -70,8 +70,7 @@ export class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.fetchTags()
-        this.fetchReceipts()
+        this.fetchData()
         this.setState({
             series: [{
                 name: 'Valor Gasto',
@@ -320,15 +319,14 @@ export class Dashboard extends Component {
         })
     }
 
-    fetchReceipts = async() => {
-        const receipts = await getAllReceipts()
+    fetchData = async() => {
+        const [receipts, tags] = await Promise.all([
+            getAllReceipts(),
+            getAllTags()
+        ])
         this.props.onReceiptsAdded(receipts)
-    }
-
-    fetchTags = async() => {
-        const tags = await getAllTags()
         this.props.onTagsAdded(tags)
-	}
+    }
 }
 
 export const mapDispatchToProps = dispatch => {
