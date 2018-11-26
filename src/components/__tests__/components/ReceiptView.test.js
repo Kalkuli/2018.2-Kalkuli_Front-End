@@ -3,7 +3,6 @@ import ReceiptView from '../../Receipt/ReceiptView/ReceiptView'
 import BackDrop from '../../UI/BackDrop/BackDrop'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 jest.mock('../../../services/deleteReceipt')
-jest.mock('../../../services/axiosConfig')
 
 describe("Testing <ReceiptView />", () => {
 

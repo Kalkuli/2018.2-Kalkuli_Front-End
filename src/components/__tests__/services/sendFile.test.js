@@ -1,6 +1,5 @@
 import sendFile from '../../../services/sendFile'
 import mockAxios from 'axios'
-import { config } from '../../../services/axiosConfig'
 
 it('should test if request is being done', async() => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
