@@ -10,7 +10,7 @@ import updateReceipt from '../../../services/updateReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 
-const smallDevice = window.matchMedia('(max-width: 450px)').matches
+const smallDevice = window.matchMedia('(max-width: 650px)').matches
 
 class ReceiptView extends Component {
 
@@ -25,7 +25,7 @@ class ReceiptView extends Component {
   }
   
   render() {
-    let content = this.content(this.state.edited)
+    let content = this.content()
     return (
       <Modal>
         {this.state.save ? this.renderConfirmationMessageSave() : null}
@@ -36,13 +36,10 @@ class ReceiptView extends Component {
     )
   }
 
-  content = (el) => {
-    if(el === 'done'){
-      
-    }else {
-      let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
-      return(
-        <div className="receipt-modal-area">
+  content = () => {
+    let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
+    return(
+      <div className="receipt-modal-area">
         <Receipt size='large'>
           <div className="receipt-container">
             <div className='receipt-area receipt-font'>
@@ -83,25 +80,24 @@ class ReceiptView extends Component {
             {this.state.edit ? 
             <BaseButton type='no-background'
                         click={this.onCancelEditHandler} 
-                        size={this.state.smallDevice ? 'small' : null}>
+                        >
                         Cancelar
             </BaseButton> :
             <BaseButton type='no-background'
                         click={this.onEditHandler} 
-                        size={this.state.smallDevice ? 'small' : null}>
+                        >
                         Editar
             </BaseButton>}
-            <BaseButton type="delete" click={this.onConfirmationTrue} size={this.state.smallDevice ? 'small' : null}>Excluir</BaseButton>
-          </div>
+            <BaseButton type="delete" click={this.onConfirmationTrue} >Excluir</BaseButton>
+          </div> 
           <div className='area-buttons__confirm'>
           {this.state.edit ? 
-            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={this.state.smallDevice ? 'small' : null}>Salvar</BaseButton>
-            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={this.state.smallDevice ? 'small' : null}>Confirmar</BaseButton>}
+            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} >Salvar</BaseButton>
+            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} >Confirmar</BaseButton>}
           </div>
         </div>
-      </div>
-      )
-    }
+    </div>
+    )
   }
 
   changeHandler = (event,key) =>{
