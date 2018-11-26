@@ -23,7 +23,7 @@ export class ReceiptAdder extends Component {
     extraction: false,
     loading: false,
     fileSelected: false,
-    fileSent: true,
+    fileSent: false,
     completed: false,
     creatingCategory: false,
     newTag: {},

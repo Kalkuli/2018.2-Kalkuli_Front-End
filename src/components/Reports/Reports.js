@@ -72,13 +72,17 @@ export class Reports extends Component {
                                 }
                                 let tag = this.findTag(data.tag_id)
                                 let id = data.id
+
+                                if(!tag[0]){
+                                    tag[0] = {}
+                                }
                                 return(
                                     <div className="reports__area__content__resumes__button" key={index} >
                                         <ReportsButton onClickHandler={() => {this.onReportSelect(index, start, end, tag[0], id)}}
                                                        date_from={startDisplayReport}
                                                        date_to={endDisplayReport}
-                                                       color={tag.length > 0 ? tag[0].color : null}
-                                                       name={tag.length > 0 ? tag[0].category : null}
+                                                       color={tag[0] !== null ? tag[0].color : null}
+                                                       name={tag[0] !== null ? tag[0].category : null}
                                                        type={type}
                                                        />
                                     </div>

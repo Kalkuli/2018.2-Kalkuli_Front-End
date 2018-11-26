@@ -18,7 +18,7 @@ const Header = () => (
     <div className="header__container">
       <h1 className="header__container__h1">De Notas para Dados</h1>
       <div className="header__container__bar"></div>
-      <p className="header__container__p">Automatize seu controle financeiro a partir de imagens de suas Notas Fiscais</p>
+      <p className="header__container__p">Automatize seu controle financeiro a partir de Notas Fiscais escaneadas</p>
     </div>
   </section>
 )
