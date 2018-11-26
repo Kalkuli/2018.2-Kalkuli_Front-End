@@ -1,7 +1,6 @@
 import logUserIn from '../../../services/logUserIn'
 import mockAxios from 'axios'
 import { baseURL } from '../../../services/axiosConfig'
-jest.mock('../../../services/axiosConfig.js')
 
 const user = {
   email: 'test@gmail.com',
