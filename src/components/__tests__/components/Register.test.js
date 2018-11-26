@@ -43,6 +43,13 @@ describe('Testing <Register/>', () => {
         }
     }
 
+    const inputValue = {
+        confPassword: {
+            value: '123456789',
+            valid: true
+        }
+    }
+
     const registerInputInvalid = {
         admName: {
             name: '*Nome do Administrador:',
@@ -106,7 +113,7 @@ describe('Testing <Register/>', () => {
     })
 
     it('should test a valid input passaword value', () => {
-        expect(wrapper.instance().checkValidity(password, rulesPassword)).toBe(true)
+        expect(wrapper.instance().checkValidity(password, rulesPassword, inputValue)).toBe(true)
     })
 
     it('should test change color to valid', () =>{
@@ -122,4 +129,3 @@ describe('Testing <Register/>', () => {
     
     
 });
-
