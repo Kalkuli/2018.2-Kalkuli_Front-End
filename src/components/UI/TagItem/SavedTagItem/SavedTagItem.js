@@ -7,7 +7,7 @@ const TagItem = ({name, color, size}) => {
     styles.push('saved-tag-item--small')
   return (
     <div className={styles.join(' ')} style={{backgroundColor: color}}>
-      <p className="saved-tag-item__name">{name}</p>
+      <p className="saved-tag-item__name" style={(size === "small") ? {fontSize: '1rem'} : null }>{name}</p>
     </div>
   )
 }

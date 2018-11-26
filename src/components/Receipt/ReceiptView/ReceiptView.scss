@@ -19,7 +19,7 @@
 }
 
 .receipt-container {
-    height: 88%;
+    height: 100%;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
@@ -51,7 +51,7 @@
 }
 
 textarea {
-    height: 4em !important;
+    height: 3em !important;
 }
 
 .receipt-font-input{
@@ -76,7 +76,7 @@ textarea {
         justify-content: center;
     }
     .area-buttons{
-        height: 22rem;
+        height: 18rem;
         margin-left: 0rem;
         margin-right: 0rem;
         margin-top: 2em;
@@ -86,7 +86,6 @@ textarea {
             height: 17em;
         }
     }
-
     .receipt-area {
         font-size: 2rem;
         width: 80%;
@@ -94,6 +93,13 @@ textarea {
         margin-top: 4rem;
         margin-left: 2.2rem;
         justify-content: flex-start;
+    }
+    .receipt-container {
+        height: 90%;
+    }
+    .receipt-area__content {
+        font-size: 1.5rem;
+        margin: .2rem 0;
     }
 
 }
