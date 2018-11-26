@@ -6,6 +6,6 @@ const fakeData = {
 
 export default async () => {
   return await new Promise(resolve => {
-    resolve(fakeData.data.data.receipts)
+    resolve(fakeData.data.location)
   })
 }

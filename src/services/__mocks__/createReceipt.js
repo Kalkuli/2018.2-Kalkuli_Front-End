@@ -1,11 +1,11 @@
 const fakeData = {
   data: {
-    status: '200'
+    status: 'success'
   }
 }
 
 export default async () => {
   return await new Promise(resolve => {
-    resolve(fakeData.data.data.receipts)
+    resolve(fakeData.data.status)
   })
 }
