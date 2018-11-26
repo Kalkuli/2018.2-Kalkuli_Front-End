@@ -20,3 +20,9 @@ it('should test if request is being done', async () => {
     `${baseURL}/${localStorage.getItem('company_id')}/receipt/${receipt_id}`, undefined
     )
 })
+
+it('should simulate an error', async () => {
+  const response = await deleteReceipt(1, true)
+  expect(response).toEqual("err")
+  expect(mockAxios.delete).toHaveBeenCalledTimes(1)
+})
