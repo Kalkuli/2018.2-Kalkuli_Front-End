@@ -26,10 +26,11 @@
             justify-content: space-between;
             z-index: 2;
             width: 56em;
+            margin-bottom: 2rem;
             position: sticky;
-
             &__category {
-                margin-bottom: 2em;
+                position: absolute;
+                left: 40rem;
             }
         }
 
@@ -41,10 +42,10 @@
             width: 94% !important;
 
             &__graphs {
-                padding-top: 2%;
-                padding-left: 7%;
                 overflow-x: hidden;
                 box-sizing: border-box;
+                padding-top: 5%;
+                padding-bottom: 3%;
                 border: 1px solid $color-dark-blue;
                 border-radius: 5px;
                 overflow-y: hidden;
@@ -64,111 +65,47 @@
 }
 
 @media (min-width:320px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .dashboard {
         &__area {
-            padding: 3%;
-
-            &__content {
-                width: 100%;
-                margin: auto;
-
-                &__graphs {
-                    width: 100em;
-                    height: 40em;
-                    margin-bottom: 5%;
-                }
-
-                &__filters {
-                    margin: auto;
-                    height: 20em;
-                }
-
-            }
-
             &__report {
                 margin: auto;
             }
         }
-    }
-}
-@media (min-width:480px) {
-    /* smartphones, Android phones, landscape iPhone */ 
-    .dashboard {
-        &__area {
-
-            &__content {
-
-                &__graphs {
-                    width: 100em;
-                    height: 40em;
-                    margin-bottom: 5%;
-                    padding-top: 7%;
-                    padding-left: 10%;
-                }
-
-                &__filters {
-                    padding-top: 5%;
-                    margin: auto;
-                }
-
-            }
-
-            &__report {
-                margin: auto;
-            }
-        }
-    }
-}
-@media (min-width:600px) {
-    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
-    .dashboard {
-        &__area {
-
-            &__content {
-
-                &__graphs {
-                    width: 100em;
-                    height: 40em;
-                    margin-bottom: 5%;
-                    padding-top: 15%;
-                    padding-left: 15%;
-                }
-
-                &__filters {
-                    margin: auto;
-                }
-
-            }
-
-            &__report {
-                margin: auto;
-            }
-        }
-    }
-}
-
-@media (max-width: 600px) {
-    .dashboard {
-        &__area {
-
-            &__filters {
-                width: 100%;
-            }
-        } 
     }
 }
 
 @media (max-width: 500px) {
     .dashboard {
         &__area {
-
-            &__filters {
-                width: 100%;
+            &__report {
+                display: flex;
+                flex-flow: column;
+                align-items: center;
                 justify-content: center;
+                &__button {
+                    margin-top: 5%;
+                    float: right; 
+                }
+            }
+            &__content {
+                &__graphs {
+                    margin: auto;
+                    width: 28rem;
+                    height: 17em;
+                    margin-bottom: 5%;
+                }
+
+            }
+            &__filters {
+                margin-bottom: 7rem;                
+                &__category {
+                    left: 8rem;
+                    top: 7.8rem;
+                }
 
                 &__dashboard {
-                    margin-bottom: 2em;
+                    margin-top: 2rem;
+                    margin-left: 2rem;
                 }
             }
         } 
@@ -246,7 +183,7 @@
                     height: 50em;
                     margin-bottom: 0;
                     padding-top: 11%;
-                    padding-left: 9%;
+                    padding-right: 15%;
                 }
 
                 &__filters {
@@ -275,7 +212,6 @@
                     width: 72em;
                     height: 50em;
                     padding-top: 8%;
-                    padding-left: 9%;
                 }
 
             }
@@ -295,7 +231,6 @@
                     width: 76em;
                     height: 50em;
                     padding-top: 7%;
-                    padding-left: 9%;
                 }
 
             }
@@ -315,9 +250,7 @@
                     width: 86em;
                     height: 50em;
                     padding-top: 5%;
-                    padding-left: 9%;
                 }
-
             }
 
         }
@@ -335,7 +268,6 @@
                     width: 96em;
                     height: 50em;
                     padding-top: 3%;
-                    padding-left: 10%;
                 }
 
                 &__filters {

@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import getAllReceipts from '../../../../services/getAllReceipts'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../../store/actions/actions'
+
 export class MenuButton extends React.Component {
     state = {
         rotate: false,

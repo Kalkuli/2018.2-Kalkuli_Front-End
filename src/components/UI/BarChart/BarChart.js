@@ -18,27 +18,15 @@ class BarChart extends Component {
   }
 
   render() {
-    if(!this.state.height){
-      return (
-        <Chart
-          options={this.props.options}
-          series={this.props.series}
-          type="bar"
-          width="75%"
-        />
-      );
-    }
-    else {
-      return (
-        <Chart
-          options={this.props.options}
-          series={this.props.series}
-          type="bar"
-          width="85%"
-          height={this.state.height}
-        />
-      );
-    }
+    return (
+      <Chart
+        options={this.props.options}
+        series={this.props.series}
+        type="bar"
+        width="100%"
+        height="100%"
+      />
+    )
   }
 }
 

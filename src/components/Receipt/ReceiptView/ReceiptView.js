@@ -10,12 +10,7 @@ import updateReceipt from '../../../services/updateReceipt'
 import receiptInput from '../../../helpers/receiptInputs'
 import SavedTagItem from '../../UI/TagItem/SavedTagItem/SavedTagItem'
 
-const smallDevice = window.matchMedia('(max-width: 645px)').matches
-let size
-if(smallDevice) 
-  size = 'medium'
-else 
-  size = 'small'
+const smallDevice = window.matchMedia('(max-width: 650px)').matches
 
 class ReceiptView extends Component {
 
@@ -25,11 +20,12 @@ class ReceiptView extends Component {
     save: false,
     receipt: this.props.receipt,
     lastReceiptState: null,
-    receiptName: receiptInput
+    receiptName: receiptInput,
+    smallDevice: smallDevice
   }
   
   render() {
-    let content = this.t(this.state.edited)
+    let content = this.content()
     return (
       <Modal>
         {this.state.save ? this.renderConfirmationMessageSave() : null}
@@ -40,13 +36,10 @@ class ReceiptView extends Component {
     )
   }
 
-  t = (el) => {
-    if(el === 'done'){
-      
-    }else {
-      let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
-      return(
-        <div className="receipt-modal-area">
+  content = () => {
+    let classe = this.state.edit ? 'receipt-font receipt-font-input' : 'receipt-font receipt-font-input-disable'
+    return(
+      <div className="receipt-modal-area">
         <Receipt size='large'>
           <div className="receipt-container">
             <div className='receipt-area receipt-font'>
@@ -84,29 +77,27 @@ class ReceiptView extends Component {
         </Receipt>
         <div className='area-buttons'>
           <div className='area-buttons__change-buttons'>
-            <BaseButton type="confirm" click={this.onConfirmHandler} size={size}>Exportar</BaseButton>
             {this.state.edit ? 
             <BaseButton type='no-background'
                         click={this.onCancelEditHandler} 
-                        size={size}>
+                        >
                         Cancelar
             </BaseButton> :
             <BaseButton type='no-background'
                         click={this.onEditHandler} 
-                        size={size}>
+                        >
                         Editar
             </BaseButton>}
-            <BaseButton type="delete" click={this.onConfirmationTrue} size={size}>Excluir</BaseButton>
-          </div>
+            <BaseButton type="delete" click={this.onConfirmationTrue} >Excluir</BaseButton>
+          </div> 
           <div className='area-buttons__confirm'>
           {this.state.edit ? 
-            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} size={size}>Salvar</BaseButton>
-            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} size={size}>Confirmar</BaseButton>}
+            <BaseButton className='confirm-button' type="confirm" click={()=> this.setState({save: true})} >Salvar</BaseButton>
+            :<BaseButton className='confirm-button' type="confirm" click={this.props.onClosePopup} >Confirmar</BaseButton>}
           </div>
         </div>
-      </div>
-      )
-    }
+    </div>
+    )
   }
 
   changeHandler = (event,key) =>{

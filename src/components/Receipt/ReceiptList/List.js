@@ -69,7 +69,7 @@ export class List extends Component {
 										<p className="data__input receipt-font"><b>{receiptInput["description"].name}:</b></p>
 										<p className="data__input receipt-font">{receipt["description"]}</p>
 								</div>	
-								<SavedTagItem size="small" name={this.getTagName(receipt.tag_id)} color={this.getTagColor(receipt.tag_id)}/>
+								<SavedTagItem size={this.props.isSmall ? "small" : null} name={this.getTagName(receipt.tag_id)} color={this.getTagColor(receipt.tag_id)}/>
 							</div>
 						</Receipt>
 				)}): null}

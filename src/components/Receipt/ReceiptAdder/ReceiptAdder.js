@@ -14,32 +14,37 @@ import createReceipt from '../../../services/createReceipt'
 import sendFile from '../../../services/sendFile'
 import interpretData from '../../../services/interpretData'
 import getStatus from '../../../services/getStatus'
+import { baseURL, config } from '../../../services/axiosConfig'
+const smallDevice = window.matchMedia('(max-width: 440px)').matches
 
 export class ReceiptAdder extends Component {
   state = {
     file: null,
+    extraction: false,
     loading: false,
     fileSelected: false,
     fileSent: true,
     completed: false,
     creatingCategory: false,
-    newTag: {}
+    newTag: {},
+    smallDevice: smallDevice
   }
 
   render() {
     let content = this.ChooseScreen()
-    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) {
-      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
-    } 
-    else if (this.state.completed && !this.state.creatingCategory) {
+
+    if(this.state.extraction)
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual backDropDown={this.jumpExtraction}/>
+    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) 
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual={false}/>
+    else if (this.state.completed && !this.state.creatingCategory) 
       content = <Confirmation valid="done" content={'Nota adicionada com sucesso'} onConfirmOk={this.props.onConfirmOk} />
-    }
-    else if (this.state.creatingCategory){
+    else if (this.state.creatingCategory)
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
-    }
+    
     return (
       <Modal show>
-        {content}
+        { content }
       </Modal>
     )
   }
@@ -57,10 +62,11 @@ export class ReceiptAdder extends Component {
     if (!this.state.loading) {
       return (
         <section className="receipt-adder">
+          <div className="receipt-adder__close" onClick={this.props.onCancelHandler}>X</div>
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
-            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="disable" >Confirmar</BaseButton>}
+            <BaseButton size={this.state.smallDevice ? "small" : null} type="no-background" click={this.jumpExtraction}>Manual</BaseButton>
+            {this.state.fileSelected ? <BaseButton size={this.state.smallDevice ? "small" : null} type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton size={this.state.smallDevice ? "small" : null} type="disable" >Confirmar</BaseButton>}
           </div>
         </section>
       )
@@ -70,6 +76,12 @@ export class ReceiptAdder extends Component {
         <Loader />
       )
     }
+  }
+
+  jumpExtraction = () => {
+    this.setState(prevState => ({
+      extraction: !prevState.extraction
+    }))
   }
 
   createCategory = () => {

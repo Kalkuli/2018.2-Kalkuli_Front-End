@@ -1,3 +1,4 @@
+import '../../../services/__mocks__/matchMedia'
 import { ReceiptAdder, mapStateToProps, mapDispatchToProps } from '../../Receipt/ReceiptAdder/ReceiptAdder'
 import ReceiptCompare from '../../Receipt/ReceiptCompare/ReceiptCompare'
 import Confirmation from '../../UI/Confirmation/Confirmation'
@@ -102,15 +103,5 @@ describe('Testing <ReceiptAdder/>', () => {
     }
     expect(mapStateToProps(initialState).tags).toEqual(tag)
   })
-
-  /* it('should', () => {
-    const file = [{
-      name:"nota10.pdf",
-      preview: "blob:http://localhost:3000/29d8904c-256f-4c91-8c60-2bd8f2587346",
-      type: "application/pdf"
-    }]
-    instance.onDropHandler(file, [])
-
-  })  */
 
 })

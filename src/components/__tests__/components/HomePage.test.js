@@ -13,10 +13,6 @@ describe('Testing <HomePage />', () => {
     instance = wrapper.instance()
   })
 
-  it('should find header section', () => {
-    expect(wrapper.find('.header')).toHaveLength(1)
-  })
-
   it('should find about section', () => {
     expect(wrapper.find('.about')).toHaveLength(1)
   })

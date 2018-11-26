@@ -30,8 +30,8 @@ class Colors extends Component {
                     }
                 </div>
                 <div className='create-category__buttons'>
-                    <BaseButton type={'delete'} size={'small'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
-                    <BaseButton type={'confirm'} size={'small'} click={this.state.value && (this.state.selected || this.state.selected === 0) ? this.onConfirmHandler : this.showError} >Confirmar</BaseButton>
+                    <BaseButton type={'delete'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
+                    <BaseButton type={'confirm'} click={this.state.value && (this.state.selected || this.state.selected === 0) ? this.onConfirmHandler : this.showError} >Confirmar</BaseButton>
                 </div>
             </div>
         )
