@@ -3,7 +3,6 @@ import './ReceiptAdder.scss'
 import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import DropArea from '../../UI/DropArea/DropArea'
 import Modal from '../../UI/Modal/Modal'
-import axios from 'axios';
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions/actions'
 import Confirmation from '../../UI/Confirmation/Confirmation'
@@ -11,48 +10,63 @@ import Loader from '../../UI/Loader/Loader'
 import ReceiptCompare from '../ReceiptCompare/ReceiptCompare';
 import Colors from '../../UI/Colors/Colors'
 import getAllTags from '../../../services/getAllTags'
+import createReceipt from '../../../services/createReceipt'
+import sendFile from '../../../services/sendFile'
+import interpretData from '../../../services/interpretData'
+import getStatus from '../../../services/getStatus'
+import { baseURL, config } from '../../../services/axiosConfig'
+const smallDevice = window.matchMedia('(max-width: 440px)').matches
 
-class ReceiptAdder extends Component {
+export class ReceiptAdder extends Component {
   state = {
     file: null,
+    extraction: false,
     loading: false,
     fileSelected: false,
-    fileSent: true,
+    fileSent: false,
     completed: false,
     creatingCategory: false,
-    newTag: {}
+    newTag: {},
+    smallDevice: smallDevice
   }
 
   render() {
     let content = this.ChooseScreen()
-    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) {
-      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} />
-    } 
-    else if (this.state.completed && !this.state.creatingCategory) {
+
+    if(this.state.extraction)
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual backDropDown={this.jumpExtraction}/>
+    if (this.state.fileSent && !this.state.completed && !this.state.creatingCategory) 
+      content = <ReceiptCompare selectedTag={this.state.newTag} onCancelHandler={this.onCancelHandler} onConfirmButton={this.onConfirmButton} createCategory={this.createCategory} manual={false}/>
+    else if (this.state.completed && !this.state.creatingCategory) 
       content = <Confirmation valid="done" content={'Nota adicionada com sucesso'} onConfirmOk={this.props.onConfirmOk} />
-    }
-    else if (this.state.creatingCategory){
+    else if (this.state.creatingCategory)
       content = <Colors onNewTagHandler={this.onNewTagHandler} onCancelHandler={this.onCancelHandler} onConfirmHandler={this.onConfirmCategoryHandler}/>
-    }
+    
     return (
       <Modal show>
-        {content}
+        { content }
       </Modal>
     )
   }
 
   onNewTagHandler = (tag) => {
-    this.setState({newTag: tag})
+    const newTagArray = this.props.tags.filter(tagItem => tagItem.category === tag.category)
+    const newTag = newTagArray[0]
+    this.setState({
+      newTag: newTag,
+      creatingCategory: false
+     })
   }
 
   ChooseScreen = () => {
     if (!this.state.loading) {
       return (
         <section className="receipt-adder">
+          <div className="receipt-adder__close" onClick={this.props.onCancelHandler}>X</div>
           <DropArea onDropHandler={this.onDropHandler} fileSelected={this.state.fileSelected} />
           <div className="receipt-adder__footer">
-            <BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
-            {this.state.fileSelected ? <BaseButton type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton type="disable" >Confirmar</BaseButton>}
+            <BaseButton size={this.state.smallDevice ? "small" : null} type="no-background" click={this.jumpExtraction}>Manual</BaseButton>
+            {this.state.fileSelected ? <BaseButton size={this.state.smallDevice ? "small" : null} type="confirm" click={this.onConfirmHandler}>Confirmar</BaseButton> : <BaseButton size={this.state.smallDevice ? "small" : null} type="disable" >Confirmar</BaseButton>}
           </div>
         </section>
       )
@@ -64,71 +78,53 @@ class ReceiptAdder extends Component {
     }
   }
 
+  jumpExtraction = () => {
+    this.setState(prevState => ({
+      extraction: !prevState.extraction
+    }))
+  }
+
   createCategory = () => {
     this.setState({creatingCategory: true})
   }
 
-  onConfirmButton = (receipt) => {
-    console.log(receipt)
-    axios.post('http://172.21.0.1:5008/api/v1/receipt', {
-      "receipt": {
-        ...receipt,
-        company_id: 1
-      }
-    })
-      .then(() => {
-        this.setState({
-          completed: true
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  onConfirmButton = async(receipt) => {
+    const response = await createReceipt(receipt)
+    if(response === 'success')
+      this.setState({ completed: true }) 
   }
 
-  onConfirmCategoryHandler = async() => {
+  onConfirmCategoryHandler = async(tag, callback) => {
     const tags = await getAllTags()
     this.props.onTagsAdded(tags)
-    this.setState({creatingCategory: false})
+    callback(tag)
   }
 
-  onConfirmHandler = () => {
-    this.setState({
-      loading: true
-    })
-    let formData = new FormData();
-    formData.append("file", this.state.file[0]);
+  onConfirmHandler = async() => {
+    this.setState({ loading: true })
+    let formData = new FormData()
+    formData.append("file", this.state.file[0])
+    const response = await sendFile(formData)
+    if(response !== 'error') {
+      let statusUrl = `https://kalkuli-extraction.herokuapp.com${response}`
+      this.checkStatus(statusUrl)
+    }
+  }
 
-    axios.post('http://172.21.0.1:5001/extract', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+  checkStatus = async(statusUrl) => {
+    const status = await getStatus(statusUrl)
+    if(status.state === 'SUCCESS') {
+      const receipt = await interpretData({ raw_text: status.raw_text })
+      if(receipt) {
+        this.props.onFileExtractedAdded(receipt)
+        this.setState({ fileSent: true, loading: false })
       }
-    })
-      .then((response) => {
-        let statusUrl = 'http://172.21.0.1:5001' + response.data.location;
+    }
+    else if(status.state === 'PENDING') {
+      setTimeout(() => {
         this.checkStatus(statusUrl)
-      })
-  }
-
-  checkStatus = (statusUrl) => {
-    axios.get(statusUrl)
-      .then((status) => {
-        if (status.data.state === 'SUCCESS') {
-          axios.post('http://172.21.0.1:5008/api/v1/interpret_data', { raw_text: status.data.raw_text })
-            .then((response) => {
-              this.props.onFileExtractedAdded(response.data.receipt)
-              this.setState({
-                fileSent: true,
-                loading: false
-              })
-            })
-        }
-        else if (status.data.state === 'PENDING') {
-          setTimeout(() => {
-            this.checkStatus(statusUrl)
-          }, 2000);
-        }
-      });
+      }, 2000)
+    }
   }
 
   onDropHandler = (file, rejectedFiles) => {
@@ -157,7 +153,13 @@ class ReceiptAdder extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+export const mapStateToProps = state => {
+  return {
+    tags: state.tags
+  }
+}
+
+export const mapDispatchToProps = dispatch => {
   return {
     onFilePDFAdded: (filePDF) => dispatch({ type: actionTypes.ADD_PDF_FILE, filePDF: filePDF }),
     onFileExtractedAdded: (fileExtracted) => dispatch({ type: actionTypes.ADD_EXTRACTED_DATA, fileExtracted: fileExtracted }),
@@ -166,4 +168,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ReceiptAdder)
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiptAdder)

@@ -30,8 +30,8 @@ class Colors extends Component {
                     }
                 </div>
                 <div className='create-category__buttons'>
-                    <BaseButton type={'delete'} size={'small'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
-                    <BaseButton type={'confirm'} size={'small'} click={this.state.value && (this.state.selected || this.state.selected === 0) ? this.onConfirmHandler : this.showError} >Confirmar</BaseButton>
+                    <BaseButton type={'delete'} click={this.props.onCancelHandler} >Cancelar</BaseButton>
+                    <BaseButton type={'confirm'} click={this.state.value && (this.state.selected || this.state.selected === 0) ? this.onConfirmHandler : this.showError} >Confirmar</BaseButton>
                 </div>
             </div>
         )
@@ -52,13 +52,15 @@ class Colors extends Component {
 
     onConfirmHandler = async () => {
         const tag = {
+            "company_id": localStorage.getItem('company_id'),
             "category": this.state.value,
             "color": colors[this.state.selected].color
         }
         let response = await newTag(tag)
-        if(response == 'success'){
-            this.props.onConfirmHandler()
-            this.props.onNewTagHandler(tag)
+        if(response === 'success'){
+            this.props.onConfirmHandler(tag, () => {
+                this.props.onNewTagHandler(tag)
+            })
         }
         else
             this.setState({fail: response})

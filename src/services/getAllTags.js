@@ -1,9 +1,12 @@
 import axios from 'axios'
+import {config, baseURL} from './axiosConfig'
 
-export default async () => {
+export default async (mockError) => {
   let response = null
+  const company_id = localStorage.getItem('company_id')
   try {
-    response = await axios.get('http://172.21.0.1:5008/api/v1/tags')
+    if(mockError) throw new Error('mockingError')
+    response = await axios.get(`${baseURL}/${company_id}/tags`, config)
     return response.data.data.tags
   } catch(err) {
     return response

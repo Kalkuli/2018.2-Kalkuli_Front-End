@@ -4,8 +4,11 @@
     border: solid 1px $color-dark-blue;
     position: relative;
     border-radius: 5px;
-    padding: 5%;
+    box-sizing: border-box;
+    padding-right: 15%;
+    padding-left: 10%;
     padding-top: 2em;
+    margin-right: 0 !important;
 
     &__warning {
         padding-top: 58%;
@@ -30,6 +33,7 @@
 
     &__content {
         height: 96%;
+        width: 110%;
         overflow-y: auto;
 
         &__labels {
@@ -39,9 +43,6 @@
             padding-bottom: 0.5em;
             margin-bottom: 1em;
             border-bottom: solid 1px $color-dark-blue;
-            &__data{
-                font-size: 150%;
-            }
         }
     }
 }
@@ -81,14 +82,29 @@
 @media (min-width:1025px) {
      /* big landscape tablets, laptops, and desktops */ 
         .report {
-            height: 60em;
-            width: 45em;
+            height: 50em;
+            width: 37.5em;
         }
     }
+@media (min-width: 1100px) {
+    .report {
+        height: 44em;
+        width: 35em;
+    }
+}
+
 @media (min-width:1281px) {
      /* hi-res laptops and desktops */ 
         .report {
-            height: 60em;
+            height: 45em;
+            width: 40em;
+        }
+    }
+
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
+        .report {
+            height: 51em;
             width: 45em;
         }
     }

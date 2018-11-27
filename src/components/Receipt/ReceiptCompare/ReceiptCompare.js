@@ -6,14 +6,17 @@ import BaseButton from '../../UI/Button/BaseButton/BaseButton'
 import { connect } from 'react-redux'
 import receiptInputs from '../../../helpers/receiptInputs'
 import DropDown from '../../UI/DropDown/DropDown'
+const smallDevice = window.matchMedia('(max-width: 440px)').matches
+
 export class ReceiptCompare extends Component {
 	state = {
 		receiptInput: receiptInputs,
-		receiptIsValid: true,
+		receiptIsValid: false,
 		receipt: null,
 		showItems: false,
 		items: [],
 		selectedTag: {},
+		smallDevice: smallDevice,
 	}
 
 	componentDidMount() {
@@ -22,22 +25,22 @@ export class ReceiptCompare extends Component {
 	}
 	
 	render() {
-		if(!this.state.selectedTag.hasOwnProperty('id'))
-			this.createIdForSelectedTag()
-		
+
 		let preview = null
 		if (this.props.filePDF !== null) {
 			preview = <embed className="pdf-preview" src={this.props.filePDF} type="application/pdf" width="290px" height="466px" />
 		} else {
 			preview = <h1>Nenhum arquivo encontrado</h1>
 		}
-		
+
+		let comparingWidth = this.props.manual ? '30rem' : '80rem'
 		return (
 			<div className="compare-area">
-				<div className="compare-area__comparing">
+				<div className="compare-area__comparing" style={{width: comparingWidth}}>
+				{!this.props.manual ? 
 					<div className="compare-area__comparing__preview">
 						{preview}
-					</div>
+					</div>: null}
 					<Receipt size="large">
 						<div className="compare-area__content">
 							{this.generateInputs()}
@@ -50,8 +53,11 @@ export class ReceiptCompare extends Component {
 					</Receipt>
 				</div>
 				<div className="compare-area__buttons">
-					<BaseButton type="no-background" click={this.props.onCancelHandler}>Cancelar</BaseButton>
+					<BaseButton type="no-background"
+											size={this.props.manual ? "small" : null} 
+											click={!this.props.manual ? this.props.onCancelHandler : this.props.backDropDown}>Voltar</BaseButton>
 					<BaseButton type={this.state.receiptIsValid ? "confirm" : "disable"} 
+											size={this.props.manual ? "small" : null}
 											click={this.onConfirmHandler}>Confirmar</BaseButton>
 				</div>
 			</div>
@@ -59,7 +65,6 @@ export class ReceiptCompare extends Component {
 	}
 
 	onConfirmHandler = () => {
-		//this.state.receipt.tax_value = parseFloat(this.state.receipt.tax_value)
 		let { receiptInput } = this.state
 		let receipt = {
 			"emission_date": receiptInput['emission_date'].value,
@@ -86,6 +91,7 @@ export class ReceiptCompare extends Component {
 					</p>
 					<Input 	value={receiptInput[key].value}
 									valid={receiptInput[key].valid}
+									placeholder={receiptInput[key].placeholder}
 									touched={receiptInput[key].touched}
 									onChangeHandler={(event) => this.onChangeHandler(event, key)}
 									onClickHandler={this.onClickHandler.bind(this, key)}
@@ -94,12 +100,6 @@ export class ReceiptCompare extends Component {
 			))}
 			</div>
 		)
-	}
-
-	createIdForSelectedTag = () => {
-		let id = this.props.tags.findIndex(tag => tag.category === this.state.selectedTag.category)
-		const newSelectedTag = {...this.state.selectedTag, id: id + 1}
-		this.setState({selectedTag: newSelectedTag})
 	}
 
 	onClickHandler = (inputKey) => {
@@ -130,21 +130,22 @@ export class ReceiptCompare extends Component {
 		let isValid = false
 		if(rules.required)
 			isValid = value.trim() !== ''
-		
 		if(rules.minLength)
 			isValid = value.length >= rules.minLength
-
 		return isValid
 	}
 
 	initInputs = () => {
 		if(this.props.fileExtracted){
 			let inputs = { ...this.state.receiptInput}
-			inputs.cnpj.value = this.props.fileExtracted.cnpj
-			inputs.emission_date.value = this.props.fileExtracted.emission_date
-			inputs.emission_place.value = this.props.fileExtracted.emission_place
-			inputs.tax_value.value = this.props.fileExtracted.tax_value
-			inputs.total_price.value = this.props.fileExtracted.total_price
+			const fileExtractedKeys = Object.keys(this.props.fileExtracted)
+			for(let i = 0; i < fileExtractedKeys.length; i++) {
+				let key = fileExtractedKeys[i]
+				if(key !== "products" && this.props.fileExtracted[key]) {
+					inputs[key].value = this.props.fileExtracted[key]
+					inputs[key].valid = true
+				}
+			} 
 			this.setState({receiptInput: inputs})
 		}
 	}

@@ -4,14 +4,12 @@
     background-color: $color-white;
     height: 100vh;
     width: 100vw;
-    position: absolute;
     overflow-x: hidden;
-    
+
     &__area {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
         padding: 2%;
+        padding-bottom: 0 !important;
 
         &__report {
             padding-bottom: 5%;
@@ -22,111 +20,117 @@
             }
         }
 
-        &__content {
-
-            &__datepicker {
-                width: 302px;
+        &__filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            z-index: 2;
+            width: 56em;
+            margin-bottom: 2rem;
+            position: sticky;
+            &__category {
+                position: absolute;
+                left: 40rem;
             }
+        }
+
+        &__content {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 94% !important;
 
             &__graphs {
-                margin-top: 5%;
-                margin-bottom: 5%;
-                overflow-y: auto;
+                overflow-x: hidden;
+                box-sizing: border-box;
+                padding-top: 5%;
+                padding-bottom: 3%;
+                border: 1px solid $color-dark-blue;
+                border-radius: 5px;
+                overflow-y: hidden;
             }
         }
     }
+}
 
+@media (min-height: 950px){
+    .dashboard {
+        &__area {
+            &__content {
+                top: 20%;
+            }
+        }
+    }
 }
 
 @media (min-width:320px) {
-    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
     .dashboard {
         &__area {
-            padding: 5%;
-
-            &__content {
-                width: 100%;
-                margin: auto;
-
-                &__datepicker {
-                    margin: auto;
-                }
-
-                &__graphs {
-                    max-height: 40em;
-                }
-            }
-
             &__report {
                 margin: auto;
             }
         }
     }
 }
-@media (min-width:480px) {
-    /* smartphones, Android phones, landscape iPhone */ 
+
+@media (max-width: 500px) {
     .dashboard {
         &__area {
-            padding: 0;
-
-            &__content {
-                width: 80%;
-
-                &__datepicker {
-                    padding-top: 5%;
-                    margin: auto;
-                }
-
-                &__graphs {
-                    max-height: 50em;
-                }
-            }
-
             &__report {
-                margin: auto;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                &__button {
+                    margin-top: 5%;
+                    float: right; 
+                }
             }
-        }
+            &__content {
+                &__graphs {
+                    margin: auto;
+                    width: 28rem;
+                    height: 17em;
+                    margin-bottom: 5%;
+                }
+
+            }
+            &__filters {
+                margin-bottom: 7rem;                
+                &__category {
+                    left: 8rem;
+                    top: 7.8rem;
+                }
+
+                &__dashboard {
+                    margin-top: 2rem;
+                    margin-left: 2rem;
+                }
+            }
+        } 
     }
 }
-@media (min-width:600px) {
-    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
-    .dashboard {
-        &__area {
-            padding: 0;
 
-            &__content {
-                width: 90%;
-
-                &__datepicker {
-                    margin: auto;
-                }
-
-                &__graphs {
-                    max-height: 50em;
-                }
-            }
-
-            &__report {
-                margin: auto;
-            }
-        }
-    }
-}
 @media (min-width:801px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */ 
     .dashboard {
         &__area {
 
             &__content {
-                width: 90%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 100em;
+                    height: 50em;
+                    margin-bottom: 5%;
+                    padding-top: 13%;
+                    padding-left: 14%;
+                }
+
+                &__filters {
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -138,18 +142,25 @@
 @media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */ 
     .dashboard {
+
         &__area {
+            padding: 3%;
 
             &__content {
-                width: 90%;
+
+
+                &__graphs {
+                    width: 105em;
+                    height: 50em;
+                    margin-bottom: 5%;
+                    padding-top: 5%;
+                    padding-left: 14%;
+                }
                 
-                &__datepicker {
+                &__filters {
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
@@ -166,44 +177,170 @@
             padding: 3%;
 
             &__content {
-                width: 55%;
-                margin: 0;
 
-                &__datepicker {
+                &__graphs {
+                    width: 65em;
+                    height: 50em;
+                    margin-bottom: 0;
+                    padding-top: 11%;
+                    padding-right: 15%;
+                }
+
+                &__filters {
                     padding-top: 0;
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
                 padding: 0;
+                margin: 0;
             }
         }
     }
 }
+
+@media (min-width:1200px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 72em;
+                    height: 50em;
+                    padding-top: 8%;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1300px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 76em;
+                    height: 50em;
+                    padding-top: 7%;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1400px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 86em;
+                    height: 50em;
+                    padding-top: 5%;
+                }
+            }
+
+        }
+    }
+}
+
 @media (min-width:1500px) {
     /* hi-res laptops and desktops */ 
     .dashboard {
         &__area {
 
             &__content {
-                width: 67%;
 
-                &__datepicker {
+                &__graphs {
+                    width: 96em;
+                    height: 50em;
+                    padding-top: 3%;
+                }
+
+                &__filters {
                     margin: 0;
                 }
 
-                &__graphs {
-                    max-height: 50em;
-                }
             }
 
             &__report {
                 margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media (min-width:1600px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 100em;
+                    height: 50em;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1700px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 110em;
+                    height: 50em;
+                }
+
+            }
+
+        }
+    }
+}
+
+@media (min-width:1800px) {
+    /* hi-res laptops and desktops */ 
+    .dashboard {
+        &__area {
+
+            &__content {
+
+                &__graphs {
+                    width: 120em;
+                    height: 60em;
+                }
+
+                &__filters {
+                    margin: 0;
+                }
+
+            }
+
+            &__report {
+                margin: 0;
+                padding: 0;
             }
         }
     }

@@ -1,0 +1,60 @@
+@import "../../../../assets/sass/main.scss";
+
+.reports-button {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8em;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: all .2s;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    min-width: 12em;
+    margin-bottom: 0.5em;
+
+
+    &__category {
+        width: 9em;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        &__color {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 4px;
+            margin-right: 0.6em;
+        }
+
+        &__name {
+            font-weight: 600;
+        }
+    }
+}
+
+.confirm {
+    color: $color-white;
+    background-color: $color-dark-blue;
+    border: 2px solid $color-dark-blue;
+    &:hover {
+      background-color: $color-light-blue;
+      border: 2px solid $color-light-blue;
+    }
+}
+
+.no-background {
+    color: $color-dark-blue;
+    border: 2px solid $color-dark-blue;
+    &:hover {
+      background-color: $color-light-blue;
+      color: $color-white;
+      border: 2px solid $color-light-blue;
+    }
+  }

@@ -4,6 +4,7 @@ import Items from '../Items/Items'
 import { Link } from 'react-router-dom'
 import BackDrop from '../BackDrop/BackDrop'
 import Sandwich from '../../../assets/img/sandwich.svg'
+import logUserOut from '../../../services/logUserOut'
 
 const smallDevice = window.matchMedia('(max-width: 650px)').matches
 const linkKalkuli = (
@@ -15,11 +16,12 @@ const linkKalkuli = (
 class Navbar extends Component {
 
     state = {
-        isOpen: false
+        isOpen: false,
+        smallDevice: smallDevice
     }
 
     render(){
-        if(smallDevice){
+        if(this.state.smallDevice){
             let styleSidebar = ["sidebar"]
             if(this.state.isOpen)
                 styleSidebar.push('Open')
@@ -33,7 +35,7 @@ class Navbar extends Component {
                         </div>
                         <div className={styleSidebar.join(' ')}>
                             <div className="sidebar__links">
-                                <Items/>
+                                <Items onLogOut={this.logUserOut}/>
                             </div>
                         </div>
                     <BackDrop show={this.state.isOpen} click={this.onClickMenuHandler}/>
@@ -48,7 +50,7 @@ class Navbar extends Component {
                             {linkKalkuli}
                         </div>
                         <nav className="navbar__navigation">
-                            <Items/>
+                            <Items onLogOut={this.logUserOut}/>
                         </nav>
                     </header>
                 </Fragment>
@@ -58,7 +60,13 @@ class Navbar extends Component {
 
     onClickMenuHandler = () => {
         this.setState((prevState) => ({isOpen: !prevState.isOpen}))
-        console.log(this.state.isOpen)
+    }
+
+    logUserOut = async() => {
+        const response = await logUserOut()
+        localStorage.removeItem('auth_token')
+        localStorage.removeItem('company_id')
+        document.location.reload()
     }
 }
 

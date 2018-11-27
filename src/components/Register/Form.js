@@ -6,6 +6,7 @@ import registerInputs from '../../helpers/registerInputs'
 import Input from '../UI/Input/InputField'
 import Button from '../UI/Button/BaseButton/BaseButton'
 import Confirmation from '../UI/Confirmation/Confirmation';
+import {baseURL} from '../../services/axiosConfig'
 
 let changeInputColorValid = {
     color: '#0F8891'
@@ -110,7 +111,7 @@ class Form extends Component {
             "password": this.state.registerInput.admPassword.value
         } 
 
-        axios.post('http://172.21.0.1:5008/api/v1/auth/register', registerData)
+        axios.post(`${baseURL}/auth/register`, registerData)
         .then(response =>{
             this.setState({registration: 'done'})
         })
@@ -139,17 +140,18 @@ class Form extends Component {
 		let inputState = {...this.state.registerInput}
         let inputElement = {...inputState[inputKey]}
         inputElement.value = event.target.value
-        if(inputElement.validation)
-            inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation)
+        if(inputElement.validation){
+            inputElement.valid = this.checkValidity(inputElement.value, inputElement.validation, inputState)
+        }
         inputState[inputKey] = inputElement
 		let isValid = true
 		for(let inputKey in inputState) {
-			isValid = (inputState[inputKey].valid && isValid)
+            isValid = (inputState[inputKey].valid && isValid)
         } 
         this.setState({registerInput: inputState, valid: isValid}) 
     }
 
-    checkValidity = (value, rules) => {
+    checkValidity = (value, rules, inputState) => {
         let isValid = false
 		if(rules.required)
 			isValid = value.trim() !== ''
@@ -157,10 +159,32 @@ class Form extends Component {
             isValid = value.length >= rules.minLength
         if(rules.aroba)
             isValid = value.indexOf("@") !== -1
-        if(rules.pass)
-            this.setState({password: value})
-        if(rules.confPass)
+        if(rules.pass){
+            this.setState({password: value}, () => {
+                if(inputState['confPassword'].value){
+                    let inputs = {...inputState}
+                    let inputElement = {...inputs['confPassword']}
+                    if(this.state.password !== inputState['confPassword'].value){
+                        inputElement.valid = false
+                        isValid = false
+                    }
+                    else {
+                        inputElement.valid = true
+                        isValid = true
+                    }
+
+                    inputs['confPassword'] = inputElement
+                    this.setState({registerInput: inputs}, () => {
+                        this.chooseStyle(this.state.registerInput, 'confPassword')
+                    })
+                    this.setState({valid: isValid})
+                    return isValid
+                }
+            })
+        }
+        if(rules.confPass){
             isValid = this.state.password === value
+        }
 		return isValid
     }
 }

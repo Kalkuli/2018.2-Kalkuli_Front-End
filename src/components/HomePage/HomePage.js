@@ -12,25 +12,22 @@ import HomeNavBar from '../UI/Navbar/HomeNavBar/HomeNavBar'
 import SignUp from '../UI/Button/SignUp/SignUp'
 import Backdrop from '../../components/UI/BackDrop/BackDrop'
 import Register from '../Register/Form'
+import {baseURL} from '../../services/axiosConfig'
+import Header from './Header'
+
+const env1 = "Em process.env.REACT_APP_ENV: " + process.env.REACT_APP_ENV;
+console.log('\n\n\n', env1, '\n\n\n', baseURL, '\n\n\n');
 
 class HomePage extends Component{
-
   state = {
     newCompany: false
   }
-
   render(){
     return (
       <Fragment>
         <HomeNavBar onConfirmOk={this.onConfirmOk} click={this.registerClick}/>
         {this.state.newCompany ? this.showRegister() : null}
-        <section className="header">
-          <div className="header__container">
-            <h1 className="header__container__h1">De Notas para Dados</h1>
-            <div className="header__container__bar"></div>
-            <p className="header__container__p">Automatize seu controle financeiro a partir de imagens de suas Notas Fiscais</p>
-          </div>
-        </section>
+        <Header/>
         <section id="about" className="about">
           <div className='about__img'></div>
           <div className='about__text'>
@@ -40,9 +37,9 @@ class HomePage extends Component{
           </div>
         </section>
         <section className='call'>
-          <p className='call__p--first'>Rápido entendimento fiscal</p>
+          <p className='call__p'>Rápido entendimento fiscal</p>
           <div className='call__bar'></div>
-          <p>Melhores relatórios geram melhores gestões</p>
+          <p className='call__p'>Melhores relatórios geram melhores gestões</p>
           <SignUp size="large" click={this.registerClick}/>
         </section>
         <section id="features" className="feature">
@@ -90,12 +87,12 @@ class HomePage extends Component{
     )
   }
 
-  onConfirmOk = () => { this.props.history.push({pathname: '/dashboard'}) }
+  onConfirmOk = () => { this.props.history.push('/dashboard')}
 
   showRegister = () =>{
     return (
       <Fragment>
-          <Register show={this.state.newCompany} OKfunc={this.onConfirmOk}/>
+          <Register show={this.state.newCompany} OKfunc={this.onCloseRegister}/>
           <Backdrop show={this.state.newCompany} click={this.onCloseRegister} />
       </Fragment>
     )
