@@ -9,6 +9,9 @@
     align-items: center; 
     padding: 4rem 0; 
     color: $color-white;
+    &__p {
+        font-weight: 600;
+    }
     &__bar{
         padding: .3em;
         background-color: $color-yellow;
@@ -32,7 +35,7 @@
         }
         &__p {
             margin-top: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         &__bar {
             padding: .15em;
