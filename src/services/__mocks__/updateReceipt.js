@@ -1,11 +1,9 @@
 const fakeData = {
-  data: {
-    location: '/testing123'
-  }
+  data: 'done'
 }
 
 export default async () => {
   return await new Promise(resolve => {
-    resolve(fakeData.data.location)
+    resolve(fakeData.data)
   })
 }

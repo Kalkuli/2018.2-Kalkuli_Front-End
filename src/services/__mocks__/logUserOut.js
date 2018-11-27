@@ -1,11 +1,11 @@
 const fakeData = {
   data: {
-    location: '/testing123'
+    message: 'Você saiu do Kaliu com sucesso'
   }
 }
 
 export default async () => {
   return await new Promise(resolve => {
-    resolve(fakeData.data.location)
+    resolve(fakeData.data.receipt)
   })
 }

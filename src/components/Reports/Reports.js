@@ -19,6 +19,7 @@ import getAllTags from '../../services/getAllTags'
 import * as actionTypes from '../../store/actions/actions'
 import ReportsButton from '../UI/Button/ReportsButton/ReportsButton';
 import getAllReports from '../../services/getAllReports'
+import MenuButton from '../UI/Button/MenuButton/MenuButton'
 
 var type = "no-background"
 var comeco = null;
@@ -49,6 +50,7 @@ export class Reports extends Component {
         return (
             <div className="reports">
                 <Navbar />
+                <MenuButton/>
                 <div className="reports__area">
                     {this.state.confirmation ? this.renderConfirmationMessage() : null}
                     <div className="reports__area__content">
@@ -98,7 +100,7 @@ export class Reports extends Component {
                                 <BaseButton type={this.state.position === null ? 'disable' : 'delete'} click={this.onConfirmationTrue}>Deletar</BaseButton>
                             </div>
                             <div className="reports__area__report__buttons__button">
-                                <BaseButton type="confirm" click={()=>{this.onExportHandler(this.state.receipts, this.state.sum)}}>Export</BaseButton>
+                                <BaseButton type="confirm" click={()=>{this.onExportHandler(this.state.receipts, this.state.sum)}}>Exportar</BaseButton>
                             </div>
                         </div>
                     </div>

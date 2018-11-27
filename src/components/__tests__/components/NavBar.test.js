@@ -1,6 +1,7 @@
 import '../../../services/__mocks__/matchMedia'
 import NavBar from '../../UI/Navbar/Navbar'
 import { Link } from 'react-router-dom'
+jest.mock('../../../services/logUserOut.js')
 
 describe('Testing <NavBar />', () => {
   let wrapper = null
@@ -51,5 +52,11 @@ describe('Testing <NavBar />', () => {
     })
     wrapper.instance().onClickMenuHandler()
     expect(wrapper.state('isOpen')).toBe(false)
+  })
+
+  it('should log user out', async() => {
+    await wrapper.instance().logUserOut()
+    expect(localStorage.removeItem).toHaveBeenCalledWith('auth_token')
+    expect(localStorage.removeItem).toHaveBeenCalledWith('company_id')
   })
 })

@@ -12,16 +12,15 @@ const ReportsButton = (props) => {
   return(
     <div onClick={props.onClickHandler} className={styles.join(' ')} >
       {props.date_from ? 
-      <div className='reports-button__dates' >
-          {props.date_from} até {props.date_to}
-      </div> :
-      <div className='reports-button__dates' >
-          -
-      </div> }
-      <div className='reports-button__category' >
-          <div className='reports-button__category__color' style={{backgroundColor: props.color}}></div>
-          <p className='reports-button__category__name' >{props.name}</p>
-      </div>
+        <div className='reports-button__dates' >
+            {props.date_from} até {props.date_to}
+        </div> : null }
+      {props.name ? 
+        <div className='reports-button__category' >
+            <div className='reports-button__category__color' style={{backgroundColor: props.color}}></div>
+            <p className='reports-button__category__name' >{props.name}</p>
+        </div>
+      : null}
     </div>
   )
 }

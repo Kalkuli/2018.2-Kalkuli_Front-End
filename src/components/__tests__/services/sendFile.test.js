@@ -1,6 +1,5 @@
 import sendFile from '../../../services/sendFile'
 import mockAxios from 'axios'
-jest.mock('../../../services/axiosConfig.js')
 
 it('should test if request is being done', async() => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
@@ -8,9 +7,14 @@ it('should test if request is being done', async() => {
       location: '/testing'
     }
   }))
+  const header = {"Content-Type": "multipart/form-data"}
   const response = await sendFile({})
+
   expect(response).toEqual('/testing')
   expect(mockAxios.post).toHaveBeenCalledTimes(1)
+  expect(mockAxios.post).toHaveBeenCalledWith(
+    `https://kalkuli-extraction.herokuapp.com/extract`, {}, {headers: header} 
+  )
 })
 
 it('should mock network error', async() => {

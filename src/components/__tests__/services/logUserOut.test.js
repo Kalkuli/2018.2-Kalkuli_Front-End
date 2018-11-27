@@ -1,26 +1,25 @@
-import getAllReceipts from '../../../services/getAllReceipts'
+import logUserOut from '../../../services/logUserOut'
 import mockAxios from 'axios'
 import { baseURL, config } from '../../../services/axiosConfig'
 
 it('should test if request is being done', async () => {
-
   mockAxios.get.mockImplementationOnce(() => Promise.resolve({
     data: {
-      data: { receipts: [{title: 'testing'}] }
+      Message: "Você saiu do Kaliu com sucesso"
     }
-  }))
+  })) 
 
-  const response = await getAllReceipts()
-
-  expect(response).toEqual([{title: 'testing'}])
+  const response = await logUserOut()
+  expect(response).toEqual({Message: "Você saiu do Kaliu com sucesso"})
   expect(mockAxios.get).toHaveBeenCalledTimes(1)
   expect(mockAxios.get).toHaveBeenCalledWith(
-    `${baseURL}/${localStorage.getItem('company_id')}/receipts`, config
+    `${baseURL}/auth/logout`, config
   )
 })
 
 it('should simulate an error', async () => {
-  const response = await getAllReceipts(true)
+  const response = await logUserOut(true)
   expect(response).toEqual("error")
   expect(mockAxios.get).toHaveBeenCalledTimes(1)
 })
+
