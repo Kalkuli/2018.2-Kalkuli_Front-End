@@ -100,7 +100,7 @@ export class Reports extends Component {
                                 <BaseButton type={this.state.position === null ? 'disable' : 'delete'} click={this.onConfirmationTrue}>Deletar</BaseButton>
                             </div>
                             <div className="reports__area__report__buttons__button">
-                                <BaseButton type="confirm" click={()=>{this.onExportHandler(this.state.receipts, this.state.sum)}}>Export</BaseButton>
+                                <BaseButton type="confirm" click={()=>{this.onExportHandler(this.state.receipts, this.state.sum)}}>Exportar</BaseButton>
                             </div>
                         </div>
                     </div>
