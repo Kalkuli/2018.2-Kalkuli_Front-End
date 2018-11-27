@@ -44,7 +44,7 @@
   position: fixed;
   bottom: 14rem;
   right: 7rem;
-
+  z-index: 80;
   &__element {
     display: flex;
     flex-flow: row wrap;

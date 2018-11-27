@@ -19,6 +19,7 @@ import getAllTags from '../../services/getAllTags'
 import * as actionTypes from '../../store/actions/actions'
 import ReportsButton from '../UI/Button/ReportsButton/ReportsButton';
 import getAllReports from '../../services/getAllReports'
+import MenuButton from '../UI/Button/MenuButton/MenuButton'
 
 var type = "no-background"
 var comeco = null;
@@ -49,6 +50,7 @@ export class Reports extends Component {
         return (
             <div className="reports">
                 <Navbar />
+                <MenuButton/>
                 <div className="reports__area">
                     {this.state.confirmation ? this.renderConfirmationMessage() : null}
                     <div className="reports__area__content">

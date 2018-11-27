@@ -19,6 +19,7 @@ import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions/actions'
 import {baseURL, config} from '../../services/axiosConfig'
 import filterReceipts from '../../helpers/filterReceipts'
+import MenuButton from '../UI/Button/MenuButton/MenuButton'
 
 const smallDevice = window.matchMedia('(max-width: 800px)').matches
 const orientation = smallDevice ? screenSize.VERTICAL_ORIENTATION : screenSize.HORIZONTAL_ORIENTATION
@@ -89,6 +90,7 @@ export class Dashboard extends Component {
         return (
             <div className="dashboard">
                 <Navbar/>
+                <MenuButton/>
                 <div className="dashboard__area">
                     <div className="dashboard__area__filters">
                         <div className="dashboard__area__filters__dashboard">
