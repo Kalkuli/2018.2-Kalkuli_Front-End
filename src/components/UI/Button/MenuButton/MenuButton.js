@@ -66,7 +66,7 @@ export class MenuButton extends React.Component {
 
     onToggleNewReceipt = () => { this.setState(prevState => ({newReceipt: !prevState.newReceipt})) }
     
-    onNewReportHandler = () => { this.props.history.push({pathname: '/reports'}) }
+    onNewReportHandler = () => { this.props.history.push({pathname: '/dashboard'}) }
     
     renderReceiptAdder = () => {
         return (
